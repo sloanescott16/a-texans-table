@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Movie-theater popcorn</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="stylesheet" href="./fonts.css">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="A Texan&rsquo;s Table">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F3EBDA">
+<style>
+:root{
+  --ground:#F3EBDA; --card:#FAF4E7; --ink:#33291F; --muted:#7A6A56; --rule:#D9C9AF;
+  --citrus:#A85C34; --citrus-bg:#F0DFD1; --brine:#7E7047; --brine-bg:#E8E3D0;
+  --shell:#6E4A2E; --shell-bg:#EADCC9; --field:#FFFCF5;
+  --sans:Karla,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"Cutive Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --stamp:"Special Elite","Courier New",Courier,monospace;
+}
+@media (prefers-color-scheme:dark){
+ :root{
+  --ground:#17130F; --card:#211C15; --ink:#F1E3CE; --muted:#A2937C; --rule:#3A3026;
+  --citrus:#D3814F; --citrus-bg:#2E2018; --brine:#A99A63; --brine-bg:#222014;
+  --shell:#C89B6E; --shell-bg:#2A2018; --field:#1B1610;
+ }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.45;padding-bottom:64px}
+.wrap{max-width:620px;margin:0 auto;padding:0 16px}
+.back{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin:22px 0 0}
+h1{font-family:var(--stamp);font-size:clamp(23px,7.2vw,30px);line-height:1.16;letter-spacing:0.03em;text-transform:uppercase;font-weight:400;margin:10px 0 10px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 18px;max-width:34em}
+h2{font-family:var(--stamp);font-size:13px;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:26px 0 10px}
+.bar{position:sticky;top:0;z-index:5;background:var(--ground);border-bottom:1px solid var(--rule);padding:10px 0 12px;margin-bottom:4px}
+.controls{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.ctl{display:flex;flex-direction:column;gap:4px}
+.ctl label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-family:var(--mono)}
+input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:3px;padding:7px 9px;min-width:124px}
+.step{display:flex;align-items:center;gap:2px;background:var(--field);border:1px solid var(--rule);border-radius:3px;padding:3px}
+.step button{width:34px;height:34px;font-size:19px;line-height:1;border:0;background:transparent;color:var(--ink);border-radius:2px;cursor:pointer;font-family:var(--mono)}
+.step button:active{background:var(--rule)}
+.step span{min-width:26px;text-align:center;font-family:var(--mono);font-size:19px}
+.ghost{border:1px solid var(--rule);background:transparent;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 11px;border-radius:3px;cursor:pointer}
+.ghost:active{background:var(--rule)}
+:focus-visible{outline:2px solid var(--brine);outline-offset:2px}
+#nowline{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:9px;display:flex;gap:8px;align-items:baseline}
+#nowline b{color:var(--ink);font-weight:600}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:4px 14px;margin-bottom:8px}
+.grp{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);padding:14px 0 6px;border-bottom:1px solid var(--rule)}
+.item{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.item:last-child{border-bottom:0}
+.item input{width:21px;height:21px;margin:1px 0 0;accent-color:var(--citrus);flex:0 0 auto}
+.qty{font-family:var(--mono);font-size:14px;color:var(--citrus);min-width:64px;flex:0 0 auto;padding-top:1px}
+.nm{font-size:15px;line-height:1.35}
+.nm em{font-style:normal;color:var(--muted);font-size:13px;display:block}
+.on .nm,.on .qty{color:var(--muted);text-decoration:line-through}
+.row{display:flex;gap:11px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.row:last-child{border-bottom:0}
+.row input{width:21px;height:21px;margin:2px 0 0;accent-color:var(--citrus);flex:0 0 auto}
+.clock{font-family:var(--mono);font-size:14px;min-width:62px;flex:0 0 auto;color:var(--ink);padding-top:2px}
+.body{flex:1;min-width:0}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;padding:2px 6px;border-radius:2px;margin-right:7px;vertical-align:1px}
+.t-pot{background:var(--brine-bg);color:var(--brine)}
+.t-pan{background:var(--shell-bg);color:var(--shell)}
+.t-prep{background:var(--rule);color:var(--muted)}
+.t-serve{background:var(--citrus-bg);color:var(--citrus)}
+.t-fire{background:var(--citrus-bg);color:var(--citrus)}
+.t-oven{background:var(--shell-bg);color:var(--shell)}
+.t-jar{background:var(--brine-bg);color:var(--brine)}
+.t-fridge{background:var(--brine-bg);color:var(--brine)}
+.txt{font-size:15px;line-height:1.4}
+.uses{display:block;font-family:var(--mono);font-size:12px;color:var(--citrus);margin-top:5px}
+.row.now{background:var(--brine-bg);margin:0 -14px;padding:13px 14px;border-radius:3px;border-bottom-color:transparent}
+.row.on .txt,.row.on .clock,.row.on .uses{color:var(--muted);text-decoration:line-through}
+.foot{display:flex;gap:8px;margin:12px 0 8px}
+.note{color:var(--muted);font-size:13px;line-height:1.5;margin:18px 0 0}
+.note b{color:var(--ink)}
+.rowact{display:block;margin-top:8px}
+.fromhere{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:transparent;border:1px solid var(--rule);border-radius:2px;padding:4px 9px;cursor:pointer}
+.fromhere:active{background:var(--rule)}
+.row.on .fromhere{opacity:0.4}
+.gap{display:block;font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--citrus);background:transparent;border:1px dashed var(--citrus);border-radius:2px;padding:9px 10px;margin-top:8px}
+.moved{display:none}
+.moved.on{display:block;font-family:var(--mono);font-size:12px;line-height:1.45;color:var(--brine);background:var(--brine-bg);border-radius:2px;padding:8px 10px;margin-top:9px}
+.moved b{color:var(--brine);font-weight:700}
+.card.notes{padding:13px 14px}
+#notes{display:block;width:100%;min-height:132px;resize:vertical;background:transparent;border:0;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;padding:0}
+#notes:focus{outline:none}
+#notes::placeholder{color:var(--muted)}
+.saved{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);align-self:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class='back' href='./'>&lsaquo; A Texan&rsquo;s Table</a>
+  <h1>Movie-theater popcorn</h1>
+  <p class="sub">Two routes to the real thing: the Flavacol build that IS theater popcorn, and the tallow version that started it.</p>
+
+  <h2>Ingredients</h2>
+  <div class="card" id="ing"></div>
+  <div class="foot">
+    <button class="ghost" id="allIng">Check all</button>
+    <button class="ghost" id="clrIng">Clear</button>
+  </div>
+
+  <h2>The authentic build (Flavacol)</h2>
+  <div class="card" id="pre"></div>
+
+  <h2>The tallow version</h2>
+  <div class="card" id="steps"></div>
+  <div class="foot">
+    <button class="ghost" id="clrAll">Reset everything</button>
+  </div>
+
+  <h2>Notes</h2>
+  <div class="card notes">
+    <textarea id="notes" placeholder="What happened this cook. Times, changes, what to fix next time."></textarea>
+  </div>
+  <div class="foot">
+    <button class="ghost" id="clrNotes">Clear notes</button>
+    <span class="saved" id="notesSaved"></span>
+  </div>
+
+</div>
+
+<script>
+var ING = [{"id": "kernels", "g": "Either way", "per": 0, "step": 0, "unit": "", "name": "popcorn kernels", "fixed": "1/2 cup"}, {"id": "coconut", "g": "Authentic", "per": 0, "step": 0, "unit": "", "name": "coconut oil", "fixed": "3 tbsp", "note": "what the chains actually use"}, {"id": "flavacol", "g": "Authentic", "per": 0, "step": 0, "unit": "", "name": "Flavacol", "fixed": "1/2 to 1 tsp", "note": "Gold Medal's fine yellow theater salt; one carton lasts years"}, {"id": "ghee", "g": "Authentic", "per": 0, "step": 0, "unit": "", "name": "ghee", "fixed": "for topping", "note": "closest real-food stand-in for theater topping; melted butter's water makes it soggy"}, {"id": "tallow", "g": "Tallow route", "per": 0, "step": 0, "unit": "", "name": "beef tallow", "fixed": "3 tbsp", "note": "the home-rendered stuff"}, {"id": "saltsugar", "g": "Tallow route", "per": 0, "step": 0, "unit": "", "name": "salt plus a tiny pinch of sugar", "fixed": "before popping", "note": "salt first sticks to the shell; the sugar is the theater sweetness"}];
+var PRE = [{"id": "p1", "lane": "pot", "txt": "Coconut oil in a heavy pot over medium-high. Stir the Flavacol INTO the oil before the kernels: theaters salt the oil, not the bowl."}, {"id": "p2", "lane": "pot", "txt": "Two or three test kernels. When they pop: all in, cover, shake now and then, pull when the pops slow to seconds apart."}];
+var STEPS = [{"id": "s1", "lane": "pot", "txt": "Tallow generously coating a heavy pot (not nonstick), medium-high. Test with 2 or 3 kernels.", "uses": ["tallow"]}, {"id": "s2", "lane": "pot", "txt": "Kernels in a single layer, salt and the sugar pinch in, lid on but cracked so steam escapes: crisp, not chewy. Shake every 30 seconds. Off the heat at 2 to 3 seconds between pops.", "uses": ["kernels", "saltsugar"]}, {"id": "s3", "lane": "serve", "txt": "Butter, if any, melted separately and drizzled in layers as the bowl fills, never dumped on top.", "uses": ["ghee"]}];
+var TIMED = false;
+var SERV = null;
+var KEY = "kitchen:movie-theater-popcorn";
+
+var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
+            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"]};
+var state = {servings: SERV ? SERV.base : 0, serve: null, checked:{}, notes:"", planned:null};
+
+function frac(n){
+  if(n === 0) return "0";
+  var w = Math.floor(n), r = n - w, best = "", d = 1;
+  var map = [[0.125,"1/8"],[0.25,"1/4"],[0.333,"1/3"],[0.375,"3/8"],[0.5,"1/2"],[0.625,"5/8"],[0.667,"2/3"],[0.75,"3/4"],[0.875,"7/8"]];
+  if(r > 0.02){
+    for(var i=0;i<map.length;i++){ var diff = Math.abs(r-map[i][0]); if(diff < d){ d = diff; best = map[i][1]; } }
+  }
+  if(!best) return String(w);
+  return w ? w + " " + best : best;
+}
+function amount(it){
+  if(it.fixed) return it.fixed;
+  var raw = it.per * state.servings;
+  var s = it.step || 0.25;
+  var v = Math.max(s, Math.round(raw / s) * s);
+  v = Math.round(v * 1000) / 1000;
+  var txt = it.metric ? String(v) : frac(v);
+  if(it.unit){
+    var u = it.unit;
+    if(u === "cup" && v > 1) u = "cups";
+    return txt + " " + u;
+  }
+  var nm = (v > 1 && it.plural) ? it.plural : it.name;
+  return txt + "|" + nm;
+}
+function label(it){
+  var a = amount(it);
+  if(a.indexOf("|") > -1){ var p = a.split("|"); return {qty:p[0], name:p[1]}; }
+  return {qty:a, name:it.name};
+}
+function byId(id){ for(var i=0;i<ING.length;i++){ if(ING[i].id === id) return ING[i]; } return null; }
+
+function pad2(n){ return (n < 10 ? "0" : "") + n; }
+function serveDate(){
+  var p = (state.serve || "18:30").split(":");
+  var d = new Date();
+  d.setHours(parseInt(p[0],10), parseInt(p[1],10), 0, 0);
+  return d;
+}
+function dateOfHM(hm){
+  var p = (hm || "18:30").split(":");
+  var d = new Date();
+  d.setHours(parseInt(p[0],10), parseInt(p[1],10), 0, 0);
+  return d;
+}
+function clockOf(off){ return new Date(serveDate().getTime() - off*60000); }
+function hhmm(d){
+  var h = d.getHours(), m = d.getMinutes(), ap = h >= 12 ? "pm" : "am";
+  h = h % 12; if(h === 0) h = 12;
+  return h + ":" + (m < 10 ? "0" + m : m) + " " + ap;
+}
+
+function renderIngredients(){
+  var host = document.getElementById("ing");
+  if(!host) return;
+  var html = "", last = "";
+  for(var i=0;i<ING.length;i++){
+    var it = ING[i], l = label(it);
+    if(it.g !== last){ html += '<div class="grp">' + it.g + '</div>'; last = it.g; }
+    html += '<label class="item' + (state.checked[it.id] ? ' on' : '') + '" data-id="' + it.id + '">' +
+      '<input type="checkbox"' + (state.checked[it.id] ? ' checked' : '') + '>' +
+      '<span class="qty">' + l.qty + '</span>' +
+      '<span class="nm">' + l.name + (it.note ? '<em>' + it.note + '</em>' : '') + '</span></label>';
+  }
+  host.innerHTML = html;
+}
+function renderPre(){
+  var host = document.getElementById("pre");
+  if(!host) return;
+  var html = "";
+  for(var i=0;i<PRE.length;i++){
+    var s = PRE[i], lane = LANE[s.lane] || LANE.prep;
+    html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '">' +
+      '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
+      '<span class="body"><span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>' + s.txt + '</span></span></label>';
+  }
+  host.innerHTML = html;
+}
+function renderSteps(){
+  var host = document.getElementById("steps"), html = "";
+  for(var i=0;i<STEPS.length;i++){
+    var s = STEPS[i], lane = LANE[s.lane] || LANE.prep, u = "";
+    var uses = s.uses || [];
+    for(var j=0;j<uses.length;j++){
+      var it = byId(uses[j]); if(!it) continue;
+      var l = label(it);
+      u += (u ? "  ·  " : "") + l.qty + " " + l.name;
+    }
+    html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '"' +
+      (TIMED ? ' data-at="' + s.at + '"' : '') + '>' +
+      '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
+      (TIMED ? '<span class="clock">' + hhmm(clockOf(s.at)) + '</span>' : '') +
+      '<span class="body"><span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>' + s.txt + '</span>' +
+      (u ? '<span class="uses">' + u + '</span>' : '') +
+      (s.gap ? '<span class="gap">' + s.gap + '</span>' : '') +
+      '</span></label>';
+  }
+  host.innerHTML = html;
+  if(TIMED) markNow();
+}
+function markNow(){
+  if(!TIMED) return;
+  var now = new Date(), start = clockOf(STEPS[0].at), end = serveDate(), line = document.getElementById("nowline");
+  var rows = document.querySelectorAll("#steps .row"), i;
+  for(i=0;i<rows.length;i++){ rows[i].classList.remove("now"); }
+  if(now < new Date(start.getTime() - 45*60000)){
+    line.innerHTML = 'First move at <b>' + hhmm(start) + '</b>';
+    return;
+  }
+  if(now > new Date(end.getTime() + 25*60000)){
+    line.innerHTML = 'Dinner was at <b>' + hhmm(end) + '</b>';
+    return;
+  }
+  var cur = -1;
+  for(i=0;i<STEPS.length;i++){ if(clockOf(STEPS[i].at) <= now) cur = i; }
+  if(cur < 0){
+    var mins = Math.round((start - now) / 60000);
+    line.innerHTML = '<b>' + mins + ' min</b> until the first move';
+    if(rows[0]) rows[0].classList.add("now");
+    return;
+  }
+  if(rows[cur]) rows[cur].classList.add("now");
+  if(cur < STEPS.length - 1){
+    var nxt = Math.max(0, Math.round((clockOf(STEPS[cur+1].at) - now) / 60000));
+    line.innerHTML = 'Now: <b>' + LANE[STEPS[cur].lane][0].toLowerCase() + '</b> · next move in <b>' + nxt + ' min</b>';
+  } else {
+    line.innerHTML = '<b>Eat.</b>';
+  }
+}
+
+/* Pin one step to right now and let every other step keep its original gap.
+   Setting the finish line to (now + that step's offset) moves the whole chain
+   and holds the spacing exactly. Reached through "Start now", which picks the
+   step for you: the first one you have not ticked off. */
+function startFrom(i){
+  var s = STEPS[i];
+  if(!s || !TIMED) return;
+  if(!state.planned) state.planned = state.serve;
+  var d = new Date(Date.now() + s.at*60000);
+  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  var el = document.getElementById("serve");
+  if(el) el.value = state.serve;
+  renderSteps(); renderShift(); save();
+}
+function renderShift(){
+  var el = document.getElementById("moved");
+  if(!el) return;
+  if(!TIMED || !state.planned || state.planned === state.serve){
+    el.className = "moved"; el.innerHTML = ""; return;
+  }
+  el.className = "moved on";
+  el.innerHTML = 'Dinner is now <b>' + hhmm(serveDate()) + '</b>, moved from ' + hhmm(dateOfHM(state.planned)) + '.';
+}
+function clearShift(){
+  state.planned = null;
+  renderShift();
+}
+function renderNotes(){
+  var el = document.getElementById("notes");
+  if(el && el.value !== (state.notes || "")) el.value = state.notes || "";
+}
+
+function save(){
+  var raw = JSON.stringify(state);
+  try{
+    if(window.storage && window.storage.set){ window.storage.set(KEY, raw); return; }
+    window.localStorage.setItem(KEY, raw);
+  }catch(e){}
+}
+function apply(raw){
+  try{
+    var v = JSON.parse(raw);
+    if(v.servings) state.servings = v.servings;
+    if(v.serve) state.serve = v.serve;
+    if(v.checked) state.checked = v.checked;
+    if(typeof v.notes === "string") state.notes = v.notes;
+    if(v.planned) state.planned = v.planned;
+  }catch(e){}
+}
+function load(){
+  try{
+    if(window.storage && window.storage.get){
+      window.storage.get(KEY).then(function(r){
+        if(r && r.value) apply(r.value);
+        boot();
+      }).catch(function(){ boot(); });
+      return;
+    }
+    var raw = window.localStorage.getItem(KEY);
+    if(raw) apply(raw);
+  }catch(e){}
+  boot();
+}
+function boot(){
+  var sEl = document.getElementById("serve");
+  if(sEl) sEl.value = state.serve;
+  var vEl = document.getElementById("sv");
+  if(vEl) vEl.textContent = state.servings;
+  renderIngredients(); renderPre(); renderSteps(); renderNotes(); renderShift();
+}
+
+document.addEventListener("change", function(e){
+  var host = e.target.closest ? e.target.closest("[data-id]") : null;
+  if(!host || e.target.type !== "checkbox") return;
+  var id = host.getAttribute("data-id");
+  state.checked[id] = e.target.checked;
+  host.classList.toggle("on", e.target.checked);
+  save();
+});
+var serveEl = document.getElementById("serve");
+if(serveEl) serveEl.addEventListener("change", function(e){
+  state.serve = e.target.value || "18:30";
+  clearShift();
+  renderSteps(); save();
+});
+var incEl = document.getElementById("inc");
+if(incEl) incEl.addEventListener("click", function(){
+  state.servings = Math.min(SERV.max, state.servings + (SERV.inc || 1));
+  document.getElementById("sv").textContent = state.servings;
+  renderIngredients(); renderSteps(); save();
+});
+var decEl = document.getElementById("dec");
+if(decEl) decEl.addEventListener("click", function(){
+  state.servings = Math.max(SERV.min, state.servings - (SERV.inc || 1));
+  document.getElementById("sv").textContent = state.servings;
+  renderIngredients(); renderSteps(); save();
+});
+/* The first step still unticked. Ticking is how you say where you are, so
+   this is the step "now" refers to once a cook is underway. If every step is
+   ticked there is nothing left to do, so the last one stands and dinner is now. */
+function firstOpenStep(){
+  for(var i=0;i<STEPS.length;i++){ if(!state.checked[STEPS[i].id]) return i; }
+  return STEPS.length - 1;
+}
+function anyStepTicked(){
+  for(var i=0;i<STEPS.length;i++){ if(state.checked[STEPS[i].id]) return true; }
+  return false;
+}
+var nowBtn = document.getElementById("now");
+if(nowBtn) nowBtn.addEventListener("click", function(){
+  if(!STEPS.length) return;
+  var i = firstOpenStep();
+  /* Mid-cook this is a stall, not a fresh plan: same move as "start from
+     here" on the step you are actually up to, banner and all. Nothing ticked
+     means you are setting the plan, so there is no move to report. */
+  if(anyStepTicked()){ startFrom(i); return; }
+  var d = new Date(Date.now() + STEPS[i].at*60000);
+  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  document.getElementById("serve").value = state.serve;
+  clearShift();
+  renderSteps(); save();
+});
+var allBtn = document.getElementById("allIng");
+if(allBtn) allBtn.addEventListener("click", function(){
+  for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = true; }
+  renderIngredients(); save();
+});
+var clrIngBtn = document.getElementById("clrIng");
+if(clrIngBtn) clrIngBtn.addEventListener("click", function(){
+  for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = false; }
+  renderIngredients(); save();
+});
+var notesTimer = null;
+var notesEl = document.getElementById("notes");
+if(notesEl) notesEl.addEventListener("input", function(){
+  state.notes = notesEl.value;
+  var st = document.getElementById("notesSaved");
+  if(st) st.textContent = "Saving";
+  clearTimeout(notesTimer);
+  notesTimer = setTimeout(function(){
+    save();
+    if(st){ st.textContent = "Saved"; setTimeout(function(){ st.textContent = ""; }, 1800); }
+  }, 400);
+});
+var clrNotesBtn = document.getElementById("clrNotes");
+if(clrNotesBtn) clrNotesBtn.addEventListener("click", function(){
+  state.notes = "";
+  var el = document.getElementById("notes");
+  if(el) el.value = "";
+  save();
+});
+/* Reset returns the page to clean: ticks off, the clock back to what was
+   planned before any "start from here" shift. Notes are kept; they have
+   their own Clear. */
+document.getElementById("clrAll").addEventListener("click", function(){
+  state.checked = {};
+  if(state.planned){
+    state.serve = state.planned;
+    state.planned = null;
+    var el = document.getElementById("serve");
+    if(el) el.value = state.serve;
+  }
+  renderIngredients(); renderPre(); renderSteps(); renderShift(); save();
+});
+
+if(TIMED) setInterval(markNow, 20000);
+load();
+if("serviceWorker" in navigator){ navigator.serviceWorker.register("./sw.js").catch(function(){}); }
+</script>
+</body>
+</html>
