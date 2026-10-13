@@ -182,12 +182,7 @@ function label(it){
 function byId(id){ for(var i=0;i<ING.length;i++){ if(ING[i].id === id) return ING[i]; } return null; }
 
 function pad2(n){ return (n < 10 ? "0" : "") + n; }
-function serveDate(){
-  var p = (state.serve || "18:30").split(":");
-  var d = new Date();
-  d.setHours(parseInt(p[0],10), parseInt(p[1],10), 0, 0);
-  return d;
-}
+function serveDate(){ return dateOfHM(state.serve); }
 function dateOfHM(hm){
   var p = (hm || "18:30").split(":");
   var d = new Date();
@@ -312,11 +307,7 @@ function renderNotes(){
 }
 
 function save(){
-  var raw = JSON.stringify(state);
-  try{
-    if(window.storage && window.storage.set){ window.storage.set(KEY, raw); return; }
-    window.localStorage.setItem(KEY, raw);
-  }catch(e){}
+  try{ window.localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
 }
 function apply(raw){
   try{
@@ -330,13 +321,6 @@ function apply(raw){
 }
 function load(){
   try{
-    if(window.storage && window.storage.get){
-      window.storage.get(KEY).then(function(r){
-        if(r && r.value) apply(r.value);
-        boot();
-      }).catch(function(){ boot(); });
-      return;
-    }
     var raw = window.localStorage.getItem(KEY);
     if(raw) apply(raw);
   }catch(e){}
