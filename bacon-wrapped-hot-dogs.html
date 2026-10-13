@@ -96,6 +96,14 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 #notes:focus{outline:none}
 #notes::placeholder{color:var(--muted)}
 .saved{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);align-self:center}
+
+/* Desktop: ingredients in a sticky left column, steps on the right. Below 1024px nothing changes. */
+@media (min-width:1024px){
+ .wrap{max-width:1180px;padding:0 32px}
+ .layout{display:grid;grid-template-columns:minmax(330px,400px) minmax(0,1fr);gap:0 44px;align-items:start}
+ .side{position:sticky;top:calc(var(--barh,8px) + 8px);max-height:calc(100vh - var(--barh,8px) - 16px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding-bottom:8px}
+ .side h2:first-child,.main h2:first-child{margin-top:20px}
+}
 </style>
 </head>
 <body>
@@ -104,12 +112,16 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   <h1>Bacon-wrapped hot dogs</h1>
   <p class="sub">The toothpick spiral is a myth. The vendor method cooks the bacon flat first and lets the rendered fat glue the seam shut.</p>
 
+  <div class="layout">
+  <div class="side">
   <h2>Ingredients</h2>
   <div class="card" id="ing"></div>
   <div class="foot">
     <button class="ghost" id="allIng">Check all</button>
     <button class="ghost" id="clrIng">Clear</button>
   </div>
+  </div>
+  <div class="main">
 
   <h2>The vendor method</h2>
   <div class="card" id="steps"></div>
@@ -124,6 +136,8 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   <div class="foot">
     <button class="ghost" id="clrNotes">Clear notes</button>
     <span class="saved" id="notesSaved"></span>
+  </div>
+  </div>
   </div>
 
   <p class="note"><b>If wrapping raw anyway:</b> grill medium 8 to 10 min turning often; oven 400F on a rack 20 to 25 min, flip halfway; skillet about 10; air fryer 390F, 8 to 10. Skewers beat toothpicks if you must pin.</p>
@@ -422,6 +436,14 @@ document.getElementById("clrAll").addEventListener("click", function(){
 
 if(TIMED) setInterval(markNow, 20000);
 load();
+/* Desktop layout: keep the sticky ingredient column just under the sticky bar. */
+(function(){
+  var bar = document.querySelector(".bar"); if(!bar) return;
+  function setBarH(){ document.documentElement.style.setProperty("--barh", bar.offsetHeight + "px"); }
+  setBarH();
+  window.addEventListener("resize", setBarH);
+  if(window.ResizeObserver) new ResizeObserver(setBarH).observe(bar);
+})();
 if("serviceWorker" in navigator){ navigator.serviceWorker.register("./sw.js").catch(function(){}); }
 </script>
 </body>
