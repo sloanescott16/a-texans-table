@@ -563,6 +563,61 @@
    "steps": 3
   },
   {
+   "slug": "pot-roast",
+   "name": "Pot roast",
+   "file": "pot-roast.html",
+   "sub": "Classic Sunday pot roast. A hard sear, a slow 300F braise in wine and broth, carrots and potatoes for the last 90 minutes, and the braising liquid turned into gravy.",
+   "chapter": "mains",
+   "label": "OVEN",
+   "blurb": "chuck · 300F braise · gravy from the pot",
+   "meal": [
+    "dinner"
+   ],
+   "protein": [
+    "beef"
+   ],
+   "heat": [
+    "stovetop",
+    "oven"
+   ],
+   "total": 290,
+   "active": 60,
+   "band": "afternoon",
+   "time": "4 hr 50",
+   "effort": 2,
+   "ahead": false,
+   "kid": true,
+   "serves": 6,
+   "occasion": [
+    "weekend",
+    "holiday"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "boneless chuck roast (3 to 4 lb for 6; well marbled, about 3 inches thick. For 12, two roasts side by side)",
+    "yellow onion (in thick wedges)",
+    "celery stalk (in 2 inch pieces)",
+    "head of garlic (cloves peeled and smashed)",
+    "carrots (peeled, in 2 inch pieces)",
+    "Yukon Gold potatoes (halved, or quartered if large; about 1.5 inch pieces)",
+    "sprig fresh thyme",
+    "sprig fresh rosemary",
+    "low-sodium beef broth (a 32 oz carton is 4 cups)",
+    "tomato paste",
+    "dry red wine (one you would drink; or more broth)",
+    "Worcestershire sauce",
+    "bay leaf",
+    "olive oil (for the sear)",
+    "kosher salt (Diamond Crystal, about 1 tsp per pound of meat; Morton is saltier, use half. More to taste in the gravy)",
+    "black pepper, freshly ground",
+    "all-purpose flour (for the gravy; or half as much cornstarch)",
+    "unsalted butter (for the gravy)"
+   ],
+   "steps": 15
+  },
+  {
    "slug": "peppercorn-mushroom-sauce",
    "name": "Peppercorn mushroom sauce",
    "file": "peppercorn-mushroom-sauce.html",
