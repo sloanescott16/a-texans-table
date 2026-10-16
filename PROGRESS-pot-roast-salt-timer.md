@@ -6,3 +6,5 @@
 - Next: checker verifies, then ask the Captain to approve publishing.
 
 ## Stage 4 (16 Oct): fix round 2, midnight crossing and day-before label. Both suites pass.
+- Stage 5 done (16 Oct, job 1016-1143-t5z): sear and deglaze moved to the cast iron, 60 minute cook for 3 lb, cast iron care step during the cycle, re-back-timed. t5z.ts 61 passed, midnight.ts 16 passed, checker probes clean.
+- Next: checker verifies, then one publish ask covering nhd, ah2 and t5z.
