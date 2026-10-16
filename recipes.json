@@ -566,10 +566,10 @@
    "slug": "pot-roast",
    "name": "Pot roast",
    "file": "pot-roast.html",
-   "sub": "Classic pot roast. A hard sear and a red wine deglaze in the cast iron, then everything into the Instant Pot for 60 minutes under pressure in wine and broth, the carrots in a short second cycle so they hold their shape, gravy from the pot, and a Yukon Gold mash on the stove timed to finish with it.",
+   "sub": "Classic pot roast. A hard sear and a red wine deglaze in the cast iron, then everything into the Instant Pot for 60 minutes under pressure in wine and broth, then the gravy thickened in the pot and the carrots and roast left in it on Slow Cook until dinner, and a Yukon Gold mash on the stove timed to finish with it.",
    "chapter": "mains",
    "label": "POT",
-   "blurb": "cast iron and Instant Pot · 60 min at high · mash alongside",
+   "blurb": "cast iron and Instant Pot · 60 min at high · slow cook finish",
    "meal": [
     "dinner"
    ],
@@ -599,7 +599,7 @@
     "yellow onion (in thick wedges)",
     "celery stalk (in 2 inch pieces)",
     "head of garlic (cloves peeled and smashed)",
-    "carrots (peeled, in 3 inch chunks; they get their own short cycle)",
+    "carrots (peeled, in 2 inch chunks; they slow cook in the gravy at the end)",
     "sprig fresh thyme",
     "sprig fresh rosemary",
     "low-sodium beef broth (a 32 oz carton is 4 cups)",
