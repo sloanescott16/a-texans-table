@@ -427,6 +427,7 @@ document.addEventListener("change", function(e){
   var id = host.getAttribute("data-id");
   state.checked[id] = e.target.checked;
   host.classList.toggle("on", e.target.checked);
+  if(host.closest("#steps")) markNow();
   save();
 });
 var serveEl = document.getElementById("serve");
