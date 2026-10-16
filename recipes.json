@@ -579,10 +579,10 @@
    "heat": [
     "stovetop"
    ],
-   "total": 160,
+   "total": 222,
    "active": 70,
    "band": "afternoon",
-   "time": "2 hr 40",
+   "time": "3 hr 42",
    "effort": 2,
    "ahead": false,
    "kid": true,
