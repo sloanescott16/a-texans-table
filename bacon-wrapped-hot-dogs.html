@@ -143,13 +143,14 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   </div>
   </div>
 
-  <p class="note"><b>If wrapping raw anyway:</b> grill medium 8 to 10 min turning often; oven 400F on a rack 20 to 25 min, flip halfway; skillet about 10; air fryer 390F, 8 to 10. Skewers beat toothpicks if you must pin.</p>
+  <p class="note"><b>If wrapping raw anyway:</b> grill medium, grates about 350 to 400°F, 8 to 10 min turning often; oven 400F on a rack 20 to 25 min, flip halfway; skillet at 325 to 350°F, about 10; air fryer 390F, 8 to 10. Skewers beat toothpicks if you must pin.</p>
+  <p class="note"><b>Infrared readings:</b> the gun reads only the surface it points at, never the inside of the food or the depth of a liquid. Cast iron and dark, seasoned pans read true; shiny stainless and aluminum read low, so aim at the oil, the fat or a dark spot. On a grill, aim at a grate bar, not the coals. Simmering water, brine and deep oil get a probe thermometer instead. Oven and smoker numbers are the dial settings.</p>
 </div>
 
 <script>
 var ING = [{"id": "dogs", "g": "The cart", "per": 0, "step": 0, "unit": "", "name": "hot dogs", "fixed": "any number"}, {"id": "bacon", "g": "The cart", "per": 0, "step": 0, "unit": "", "name": "thin-cut bacon", "fixed": "1 strip per dog", "note": "thin conforms and bonds; thick fights you"}, {"id": "buns", "g": "The cart", "per": 0, "step": 0, "unit": "", "name": "buns, toasted", "fixed": "1 per"}, {"id": "toppings", "g": "The cart", "per": 0, "step": 0, "unit": "", "name": "mayo, mustard, ketchup, grilled onions and peppers, jalapenos", "fixed": "street style"}];
 var PRE = [];
-var STEPS = [{"id": "s1", "lane": "pan", "txt": "Bacon flat in the pan to about 80 percent done: colored, rendering, still pliable. Pull it while it flexes.", "uses": ["bacon"]}, {"id": "s2", "lane": "prep", "txt": "Roll the dog up in it immediately, while the bacon is warm and sticky.", "uses": ["dogs"]}, {"id": "s3", "lane": "pan", "txt": "Final sear seam-side down, about 60 seconds. The fat fuses the seam shut. Medium heat throughout: the bacon must finish before the dog splits."}, {"id": "s4", "lane": "serve", "txt": "Toasted bun, loaded street style.", "uses": ["buns", "toppings"]}];
+var STEPS = [{"id": "s1", "lane": "pan", "txt": "Bacon flat in the pan to about 80 percent done: colored, rendering, still pliable. Pull it while it flexes.", "uses": ["bacon"]}, {"id": "s2", "lane": "prep", "txt": "Roll the dog up in it immediately, while the bacon is warm and sticky.", "uses": ["dogs"]}, {"id": "s3", "lane": "pan", "txt": "Final sear seam-side down, about 60 seconds. The fat fuses the seam shut. Medium heat throughout, the pan at about 325 to 350°F on the infrared: the bacon must finish before the dog splits."}, {"id": "s4", "lane": "serve", "txt": "Toasted bun, loaded street style.", "uses": ["buns", "toppings"]}];
 var TIMED = false;
 var SERV = null;
 var KEY = "kitchen:bacon-wrapped-hot-dogs";

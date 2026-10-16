@@ -150,12 +150,13 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 
   <p class="note"><b>The ratios:</b> vinegar to water 1:1 by weight, sugar about 10% of the brine, salt about 3%.</p>
   <p class="note"><b>Variations:</b> more sour, 300 g vinegar to 180 g water. Bread and butter, sugar up to 100 g. Barely sweet, 25 g or none. Apple cider vinegar swaps in for a milder, fruitier jar.</p>
+  <p class="note"><b>Infrared readings:</b> the gun reads only the surface it points at, never the inside of the food or the depth of a liquid. Cast iron and dark, seasoned pans read true; shiny stainless and aluminum read low, so aim at the oil, the fat or a dark spot. On a grill, aim at a grate bar, not the coals. Simmering water, brine and deep oil get a probe thermometer instead. Oven and smoker numbers are the dial settings.</p>
 </div>
 
 <script>
 var ING = [{"id": "vinegar", "g": "Brine", "per": 240, "step": 10, "unit": "ml", "metric": true, "name": "white vinegar, 5% acidity", "note": "the house batch ran 350 g; it all scales"}, {"id": "water", "g": "Brine", "per": 240, "step": 10, "unit": "ml", "metric": true, "name": "water"}, {"id": "sugar", "g": "Brine", "per": 50, "step": 5, "unit": "g", "metric": true, "name": "granulated sugar"}, {"id": "salt", "g": "Brine", "per": 15, "step": 1, "unit": "g", "metric": true, "name": "kosher salt, non-iodized", "note": "iodized clouds the brine"}, {"id": "veg", "g": "The jar", "per": 300, "step": 25, "unit": "g", "metric": true, "name": "prepared vegetables", "note": "sliced thin and uniform"}];
 var PRE = [];
-var STEPS = [{"id": "s1", "lane": "prep", "txt": "Pack the sliced vegetables tightly into a clean glass jar.", "uses": ["veg"]}, {"id": "s2", "lane": "pot", "txt": "Vinegar, water, sugar and salt in a saucepan over medium. Stir until dissolved. Do not boil.", "uses": ["vinegar", "water", "sugar", "salt"]}, {"id": "s3", "lane": "jar", "txt": "Pour the hot brine over until fully submerged. Cool uncovered to room temperature, about 30 minutes."}, {"id": "s4", "lane": "fridge", "txt": "Seal and refrigerate. Ready in an hour, best after 24, keeps up to 3 weeks."}];
+var STEPS = [{"id": "s1", "lane": "prep", "txt": "Pack the sliced vegetables tightly into a clean glass jar.", "uses": ["veg"]}, {"id": "s2", "lane": "pot", "txt": "Vinegar, water, sugar and salt in a saucepan over medium. Stir until dissolved, about 160 to 180°F on a probe. Do not boil.", "uses": ["vinegar", "water", "sugar", "salt"]}, {"id": "s3", "lane": "jar", "txt": "Pour the hot brine over until fully submerged. Cool uncovered to room temperature, about 30 minutes."}, {"id": "s4", "lane": "fridge", "txt": "Seal and refrigerate. Ready in an hour, best after 24, keeps up to 3 weeks."}];
 var TIMED = false;
 var SERV = {"base": 1, "min": 1, "max": 4, "label": "Batches"};
 var KEY = "kitchen:quick-pickles";
