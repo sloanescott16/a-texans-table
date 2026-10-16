@@ -566,10 +566,10 @@
    "slug": "pot-roast",
    "name": "Pot roast",
    "file": "pot-roast.html",
-   "sub": "Classic pot roast in the pressure cooker. A hard sear, 70 minutes under pressure in wine and broth, the carrots in a short second cycle so they hold their shape, gravy from the pot, and a Yukon Gold mash on the stove timed to finish with it.",
+   "sub": "Classic pot roast. A hard sear and a red wine deglaze in the cast iron, then everything into the Instant Pot for 60 minutes under pressure in wine and broth, the carrots in a short second cycle so they hold their shape, gravy from the pot, and a Yukon Gold mash on the stove timed to finish with it.",
    "chapter": "mains",
    "label": "POT",
-   "blurb": "pressure cooker · 70 min at high · mash alongside",
+   "blurb": "cast iron and Instant Pot · 60 min at high · mash alongside",
    "meal": [
     "dinner"
    ],
@@ -595,7 +595,7 @@
    "scales": true,
    "test": false,
    "ingredients": [
-    "boneless chuck roast (3 to 4 lb for 6, whole or cut into 2 or 3 big chunks; well marbled)",
+    "boneless chuck roast (about 3 lb for 6, here in two pieces; well marbled)",
     "yellow onion (in thick wedges)",
     "celery stalk (in 2 inch pieces)",
     "head of garlic (cloves peeled and smashed)",
