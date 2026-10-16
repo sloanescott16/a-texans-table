@@ -81,7 +81,10 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 .t-jar{background:var(--brine-bg);color:var(--brine)}
 .t-fridge{background:var(--brine-bg);color:var(--brine)}
 .txt{font-size:15px;line-height:1.4}
-.uses{display:block;font-family:var(--mono);font-size:12px;color:var(--citrus);margin-top:5px}
+.usehd{display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--muted);margin:0 0 5px}
+.uses{display:block;margin:0 0 8px;padding:5px 0 5px 10px;border-left:3px solid var(--citrus)}
+.ui{display:block;font-size:15px;line-height:1.35;padding:1px 0}
+.ui b{font-weight:700}
 .row.now{background:var(--brine-bg);margin:0 -14px;padding:13px 14px;border-radius:3px;border-bottom-color:transparent}
 .row.on .txt,.row.on .clock,.row.on .uses{color:var(--muted);text-decoration:line-through}
 .foot{display:flex;gap:8px;margin:12px 0 8px}
@@ -262,14 +265,13 @@ function renderSteps(){
     for(var j=0;j<uses.length;j++){
       var it = byId(uses[j]); if(!it) continue;
       var l = label(it);
-      u += (u ? "  ·  " : "") + l.qty + " " + l.name;
+      u += '<span class="ui"><b>' + l.qty + '</b> ' + l.name + '</span>';
     }
     html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '"' +
       (TIMED ? ' data-at="' + s.at + '"' : '') + '>' +
       '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
       (TIMED ? '<span class="clock">' + hhmm(clockOf(s.at)) + '</span>' : '') +
-      '<span class="body"><span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>' + s.txt + '</span>' +
-      (u ? '<span class="uses">' + u + '</span>' : '') +
+      '<span class="body">' + (u ? '<span class="usehd"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>You\x27ll use</span><span class="uses">' + u + '</span><span class="txt">' : '<span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>') + s.txt + '</span>' +
       (s.gap ? '<span class="gap">' + s.gap + '</span>' : '') +
       '</span></label>';
   }
