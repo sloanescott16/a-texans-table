@@ -102,6 +102,18 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 .lvx{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:transparent;border:0;padding:0 0 0 4px;text-decoration:underline;cursor:pointer}
 .saved{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);align-self:center}
 
+/* Sear timer, in the sear step. */
+.sear{display:block;margin-top:10px;padding:10px 12px 12px;border:1px solid var(--rule);border-radius:3px;background:var(--card);cursor:default}
+.sear-hd{display:block;font-family:var(--mono);font-size:12px;line-height:1.4;color:var(--muted)}
+.sear-big{display:block;font-family:var(--mono);font-size:44px;line-height:1.1;margin:4px 0 6px;color:var(--ink);font-variant-numeric:tabular-nums}
+.sear-big.sear-done{color:var(--citrus);font-family:var(--stamp)}
+.sear-msg{display:block;font-size:15px;margin:0 0 8px;color:var(--ink)}
+.sear-btns{display:flex;gap:8px;flex-wrap:wrap}
+.sear-b{flex:1 1 140px;min-height:52px;font-family:var(--mono);font-size:18px;color:var(--ground);background:var(--citrus);border:0;border-radius:3px;padding:10px 12px;cursor:pointer}
+.sear-b.sear-alt{color:var(--ink);background:transparent;border:1px solid var(--rule)}
+.sear-b:active{opacity:0.8}
+.sear-x{display:block;margin-top:8px;min-height:44px;font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);background:transparent;border:0;text-decoration:underline;padding:0 4px;cursor:pointer}
+.row.on .sear{opacity:0.6}
 /* Desktop: ingredients in a sticky left column, steps on the right. Below 1024px nothing changes. */
 @media (min-width:1024px){
  .wrap{max-width:1180px;padding:0 32px}
@@ -601,6 +613,72 @@ document.getElementById("clrAll").addEventListener("click", function(){
   renderIngredients(); renderSteps(); renderShift(); save();
 });
 
+/* Sear timer, inside the sear step only. Each side gets its own countdown:
+   Start, it counts down, Done, Next side. The time left is worked out from
+   the stored start time every tick, so it stays right if the phone sleeps,
+   the tab is in the background or the page reloads. It never moves any
+   clock in the timeline. */
+var SEAR_STEP = "s2", SEAR_KEY = "kitchen:pot-roast:sear";
+var SEAR_SIDES = [
+  {n:"First broad side", s:300}, {n:"Second broad side", s:300},
+  {n:"Edge 1", s:60}, {n:"Edge 2", s:60}, {n:"Edge 3", s:60}, {n:"Edge 4", s:60}
+];
+var sear = {side:0, start:null};
+try{ var sr = JSON.parse(window.localStorage.getItem(SEAR_KEY) || "null");
+  if(sr && typeof sr.side === "number" && sr.side >= 0 && sr.side <= SEAR_SIDES.length) sear.side = sr.side;
+  if(sr && typeof sr.start === "number") sear.start = sr.start;
+}catch(e){}
+function searSave(){ try{ window.localStorage.setItem(SEAR_KEY, JSON.stringify(sear)); }catch(e){} }
+function mmss(t){ t = Math.max(0, Math.ceil(t)); return Math.floor(t/60) + ":" + pad2(t % 60); }
+function searLeft(){
+  var sd = SEAR_SIDES[sear.side]; if(!sd || sear.start === null) return null;
+  return sd.s - (Date.now() - sear.start)/1000;
+}
+function searHTML(){
+  var sd = SEAR_SIDES[sear.side], N = SEAR_SIDES.length;
+  if(!sd) return '<span class="sear-hd">Sear timer</span><span class="sear-big">All seared</span>' +
+    '<span class="sear-msg">Deep brown all over. Out to a plate.</span>' +
+    '<span class="sear-btns"><button type="button" class="sear-b sear-alt" data-sear="reset">Start over</button></span>';
+  var left = searLeft(), run = left !== null && left > 0, done = left !== null && left <= 0;
+  var nx = SEAR_SIDES[sear.side + 1];
+  var b = '';
+  if(!run && !done) b = '<button type="button" class="sear-b" data-sear="start">Start ' + mmss(sd.s) + '</button>';
+  if(run) b = '<button type="button" class="sear-b sear-alt" data-sear="restart">Restart this side</button>';
+  if(done) b = '<button type="button" class="sear-b" data-sear="next">' + (nx ? 'Next side' : 'Finish') + '</button>' +
+    '<button type="button" class="sear-b sear-alt" data-sear="restart">Again</button>';
+  return '<span class="sear-hd">Sear timer · Side ' + (sear.side + 1) + ' of ' + N + ': ' + sd.n + '</span>' +
+    '<span class="sear-big' + (done ? ' sear-done' : '') + '">' + (done ? 'Done' : mmss(run ? left : sd.s)) + '</span>' +
+    (done ? '<span class="sear-msg">' + (nx ? 'Turn it. Next: ' + nx.n + ', ' + mmss(nx.s) + '.' : 'Last side done.') + '</span>' : '') +
+    '<span class="sear-btns">' + b + '</span>' +
+    (sear.side > 0 || run ? '<button type="button" class="sear-x" data-sear="reset">Start over from side 1</button>' : '');
+}
+var searShown = "";
+function searMount(){
+  var row = document.querySelector('#steps .row[data-id="' + SEAR_STEP + '"] .body');
+  if(!row) return;
+  var box = row.querySelector(".sear");
+  if(!box){ box = document.createElement("span"); box.className = "sear"; row.appendChild(box); searShown = ""; }
+  var h = searHTML();
+  if(h !== searShown){ box.innerHTML = h; searShown = h; }
+}
+var searRender = renderSteps;
+renderSteps = function(){ searRender(); searMount(); };
+/* Taps in the timer never tick the step's box. */
+document.addEventListener("click", function(e){
+  var box = e.target.closest ? e.target.closest(".sear") : null;
+  if(!box) return;
+  e.preventDefault(); e.stopPropagation();
+  var b = e.target.closest("button[data-sear]"); if(!b) return;
+  var a = b.getAttribute("data-sear");
+  if(a === "start" || a === "restart") sear.start = Date.now();
+  if(a === "next"){ sear.side = Math.min(SEAR_SIDES.length, sear.side + 1); sear.start = null; }
+  if(a === "reset"){ sear.side = 0; sear.start = null; }
+  searSave(); searMount();
+}, true);
+document.getElementById("clrAll").addEventListener("click", function(){ sear.side = 0; sear.start = null; searSave(); searMount(); });
+setInterval(searMount, 250);
+document.addEventListener("visibilitychange", searMount);
+window.addEventListener("pageshow", searMount);
 if(TIMED) setInterval(markNow, 20000);
 load();
 /* Desktop layout: keep the sticky ingredient column just under the sticky bar. */
