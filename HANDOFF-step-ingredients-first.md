@@ -21,3 +21,6 @@ Scripts in C:\NIGEL-scratch\1016-1332-4ao\tools (probe.ts, cmp.ts, tick.ts; run 
 ## Unsure
 - Ticked steps rely on inherited strike-through for the ingredient lines; looked right by eye in code, not screenshotted ticked.
 - The heading text is written in JS as You\x27ll use (renders as You'll use).
+
+## Before publishing (added 16 Oct, job 1016-1409-y1n)
+This branch now also carries the infrared heat temperatures (see HANDOFF-heat-temps.md). A pot roast sear timer hotfix may reach main first: rebase step-ingredients-first onto main before publishing and re-run the check.
