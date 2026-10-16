@@ -98,6 +98,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 #notes{display:block;width:100%;min-height:132px;resize:vertical;background:transparent;border:0;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;padding:0}
 #notes:focus{outline:none}
 #notes::placeholder{color:var(--muted)}
+.lvx{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:transparent;border:0;padding:0 0 0 4px;text-decoration:underline;cursor:pointer}
 .saved{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);align-self:center}
 
 /* Desktop: ingredients in a sticky left column, steps on the right. Below 1024px nothing changes. */
@@ -116,12 +117,14 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   <p class="sub">Classic pot roast in the pressure cooker. A hard sear, 70 minutes under pressure in wine and broth, the carrots in a short second cycle so they hold their shape, gravy from the pot, and a Yukon Gold mash on the stove timed to finish with it.</p>
   <div class="bar">
     <div class="controls">
-      <div class="ctl"><label for="serve">Eating at</label><input type="time" id="serve" value="18:30"></div>
+      <div class="ctl"><label for="serve">Eating at</label><input type="time" id="serve" value="18:00"></div>
+      <div class="ctl"><label for="leave">Leave by <button type="button" class="lvx" id="noleave">clear</button></label><input type="time" id="leave" value="17:00"></div>
       <div class="ctl"><label for="dec">Servings</label><div class="step"><button id="dec" aria-label="Fewer">&minus;</button><span id="sv">6</span><button id="inc" aria-label="More">+</button></div></div>
       <button class="ghost" id="now">Start now</button>
     </div>
     <div id="nowline"></div>
     <div class="moved" id="moved"></div>
+    <div class="moved" id="leavenote"></div>
   </div>
 
   <div class="layout">
@@ -153,6 +156,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   </div>
 
   <p class="note"><b>Times are for a 3 to 4 lb roast in a 6 quart pressure cooker.</b> For 2 to 4 servings, a smaller roast needs about 45 minutes at high pressure; check by feel. For 12 you need an 8 quart pot or two batches, about 80 minutes for two roasts side by side, and the liquid must stay under the max line.</p>
+  <p class="note"><b>Leave by:</b> the time you have to head out before dinner. Everything hands-on is done by then: the roast holds in its gravy on Keep Warm in the pressure cooker, the mash and carrots covered in a warm oven, and at Eating at you only slice and serve. Clear it to cook straight through to dinner.</p>
   <p class="note"><b>Why the carrots wait:</b> cooked the full 70 minutes they turn to mush. Three minutes in the finished liquid while the roast rests keeps them tender with some bite.</p>
   <p class="note"><b>Doneness:</b> chuck is safe at 145F with a 3 minute rest (USDA), but it stays tough until the collagen melts at around 200F. Fork-tender is the test.</p>
   <p class="note"><b>Leftovers:</b> fridge within 2 hours, 3 to 4 days covered, ideally sitting in the gravy. Reheat to 165F.</p>
@@ -161,13 +165,21 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 <script>
 var ING = [{"id": "chuck", "g": "Butcher", "per": 0.5833333333333334, "step": 0.25, "unit": "lb", "name": "boneless chuck roast", "note": "3 to 4 lb for 6, whole or cut into 2 or 3 big chunks; well marbled"}, {"id": "onion", "g": "Produce", "per": 0.3333333333333333, "step": 0.5, "unit": "", "name": "yellow onion", "plural": "yellow onions", "note": "in thick wedges"}, {"id": "celery", "g": "Produce", "per": 0.5, "step": 1, "unit": "", "name": "celery stalk", "plural": "celery stalks", "note": "in 2 inch pieces"}, {"id": "garlic", "g": "Produce", "per": 0.16666666666666666, "step": 0.5, "unit": "", "name": "head of garlic", "plural": "heads of garlic", "note": "cloves peeled and smashed"}, {"id": "carrots", "g": "Produce", "per": 0.16666666666666666, "step": 0.25, "unit": "lb", "name": "carrots", "note": "peeled, in 3 inch chunks; they get their own short cycle"}, {"id": "thyme", "g": "Produce", "per": 1, "step": 1, "unit": "", "name": "sprig fresh thyme", "plural": "sprigs fresh thyme"}, {"id": "rosemary", "g": "Produce", "per": 0.3333333333333333, "step": 1, "unit": "", "name": "sprig fresh rosemary", "plural": "sprigs fresh rosemary"}, {"id": "broth", "g": "Pantry", "per": 5.333333333333333, "step": 4, "unit": "oz", "metric": true, "name": "low-sodium beef broth", "note": "a 32 oz carton is 4 cups"}, {"id": "paste", "g": "Pantry", "per": 0.3333333333333333, "step": 0.3333333333333333, "unit": "tbsp", "name": "tomato paste"}, {"id": "wine", "g": "Pantry", "per": 0.16666666666666666, "step": 0.3333333333333333, "unit": "cup", "name": "dry red wine", "note": "one you would drink; or more broth"}, {"id": "worcs", "g": "Pantry", "per": 0.16666666666666666, "step": 0.5, "unit": "tbsp", "name": "Worcestershire sauce"}, {"id": "bay", "g": "Pantry", "per": 0.3333333333333333, "step": 1, "unit": "", "name": "bay leaf", "plural": "bay leaves"}, {"id": "cornstarch", "g": "Pantry", "per": 0.5, "step": 1, "unit": "tbsp", "name": "cornstarch", "note": "for the gravy, stirred into twice as much cold water"}, {"id": "oil", "g": "Pantry", "per": 0.3333333333333333, "step": 1, "unit": "tbsp", "name": "olive oil", "note": "for the sear"}, {"id": "salt", "g": "Pantry", "per": 0.5833333333333334, "step": 0.5, "unit": "tsp", "name": "kosher salt, for the roast", "note": "Diamond Crystal, about 1 tsp per pound of meat; Morton is saltier, use half. More to taste in the gravy"}, {"id": "pepper", "g": "Pantry", "per": 0.25, "step": 0.5, "unit": "tsp", "name": "black pepper, freshly ground"}, {"id": "potatoes", "g": "Mash", "per": 0.5, "step": 0.25, "unit": "lb", "name": "Yukon Gold potatoes", "note": "peeled, in 1.5 inch chunks"}, {"id": "butter", "g": "Mash", "per": 1.3333333333333333, "step": 1, "unit": "tbsp", "name": "unsalted butter", "note": "8 tbsp is 1 stick"}, {"id": "cream", "g": "Mash", "per": 0.125, "step": 0.25, "unit": "cup", "name": "heavy cream", "note": "warm; add until it looks right, up to a splash more"}, {"id": "saltmash", "g": "Mash", "per": 0.16666666666666666, "step": 0.5, "unit": "tbsp", "name": "kosher salt, for the potato water", "note": "more to taste in the finished mash"}];
 var STEPS = [{"id": "p1", "at": 400, "lane": "fridge", "opt": true, "txt": "Optional, worth it: salt ahead. Pat the chuck dry and salt it on every side with the roast salt from the list. Uncovered on a rack over a plate, bottom of the fridge. Do it by this time, 4 hours before the first move; the night before is even better. Pepper waits for cook day. Not doing it? Tap Skip and the salt goes on in the first step.", "uses": ["salt"]},{"id": "s1", "at": 160, "lane": "prep", "txt": "Pat the chuck bone dry; salt every side (unless it was salted ahead) and pepper it. Cut the onions into thick wedges and the celery into 2 inch pieces; peel and smash the garlic. Pressure cooker on Saute, high, with the oil: it takes about 8 minutes to get properly hot.", "uses": ["salt", "pepper", "oil", "onion", "celery", "garlic"]}, {"id": "s2", "at": 152, "lane": "cooker", "txt": "Sear hard. Roast in and leave it alone: about 5 minutes on each broad side, a minute or two on the edges, until deep brown all over. Grey is no flavor. Out to a plate.", "uses": ["chuck"]}, {"id": "s3", "at": 137, "lane": "cooker", "txt": "Onion and celery into the fat with a pinch of salt, about 6 minutes, scraping up the brown bits as they soften.", "uses": ["onion", "celery"]}, {"id": "s4", "at": 131, "lane": "cooker", "txt": "Garlic and tomato paste in. Stir about 2 minutes until the paste goes from red to brick.", "uses": ["garlic", "paste"]}, {"id": "s5", "at": 129, "lane": "cooker", "txt": "Deglaze: pour in the wine and scrape the bottom completely clean. Anything left stuck can trip the burn warning. Simmer about 3 minutes.", "uses": ["wine"]}, {"id": "s6", "at": 126, "lane": "cooker", "txt": "Saute off. Broth, Worcestershire, thyme, rosemary and bay in, then the roast and its juices on top. Stay under the max fill line.", "uses": ["broth", "worcs", "thyme", "rosemary", "bay"]}, {"id": "s7", "at": 124, "lane": "cooker", "txt": "Lid on, valve to Sealing, Pressure Cook on high for 70 minutes (60 for a 3 lb roast or one cut in chunks, 75 for 4 lb). With this much liquid it takes about 13 minutes to come up to pressure before the count starts."}, {"id": "s8", "at": 111, "lane": "cooker", "txt": "Check it has reached pressure: the float valve is up and the 70 minute count has started. If it has not, it is running late; tap Start now once it does and every clock below moves with it."}, {"id": "s9", "at": 50, "lane": "prep", "txt": "Mash prep: peel the potatoes and cut them into 1.5 inch chunks. Peel the carrots and cut them into 3 inch chunks for their own short cycle later.", "uses": ["potatoes", "carrots"]}, {"id": "s10", "at": 42, "lane": "mash", "txt": "Potatoes into a pot of cold water, covered by an inch, with the salt. High heat to a boil, about 12 minutes.", "uses": ["saltmash"]}, {"id": "s11", "at": 41, "lane": "cooker", "txt": "Cook cycle ends. Natural release for 15 minutes: leave the valve alone. The meat relaxes as the pressure drops; a quick release here makes it tough and stringy."}, {"id": "s12", "at": 30, "lane": "mash", "txt": "Potatoes boiling: down to a lively simmer for about 15 minutes, until a knife slides through with no resistance."}, {"id": "s13", "at": 26, "lane": "cooker", "txt": "Release what pressure is left and open the lid away from you. A fork should slide in and twist with no fight (about 200F inside; far past the USDA 145F safe minimum, which is what chuck needs to go tender). Roast to a board, loosely tented with foil, to rest. Carrots into the liquid, lid on, Sealing, high pressure for 3 minutes.", "uses": ["carrots"], "gap": "Not fork-tender yet? Lid back on, 10 more minutes at high pressure and a 10 minute natural release, then tap Start now and every clock below moves with it."}, {"id": "s14", "at": 15, "lane": "mash", "txt": "Drain the potatoes and put them back in the hot pot over low for a minute or two to steam dry. Warm the butter and cream together until the butter melts.", "uses": ["butter", "cream"]}, {"id": "s15", "at": 14, "lane": "cooker", "txt": "Carrots done: quick release, then lift them out with a slotted spoon to the platter. Fish out the herb stems and bay leaves."}, {"id": "s16", "at": 12, "lane": "mash", "txt": "Mash or rice the potatoes, fold in the warm butter and cream, salt to taste. Lid on, off the heat; they hold hot for half an hour."}, {"id": "s17", "at": 10, "lane": "cooker", "txt": "Gravy: skim the fat off the liquid, Saute on high and bring it to a boil (simmer it down a few minutes if there is a lot). Stir the cornstarch into twice as much cold water, whisk it in, boil 1 to 2 minutes until it coats a spoon. Taste for salt.", "uses": ["cornstarch"]}, {"id": "s18", "at": 4, "lane": "prep", "txt": "Rested about 20 minutes. Slice against the grain, or pull into big chunks along the seams."}, {"id": "s19", "at": 0, "lane": "serve", "txt": "Roast and carrots on the platter with the mash, gravy over the top and the rest in a jug. Leftovers into the fridge within 2 hours."}];
+/* Leave by plan. Used when a Leave by time is set and falls before Eating at.
+   Every step is timed back from Leave by, except the ones marked eat:true,
+   which are timed back from Eating at. Nothing hands-on sits between the two:
+   the roast holds in its gravy on Keep Warm in the pressure cooker, the mash
+   and carrots in a warm oven. Ids match the straight-through plan where the
+   step is the same move, so ticks carry over if the plan changes mid-cook. */
+var AWAY = [{"id": "p1", "at": 407, "lane": "fridge", "opt": true, "txt": "Optional, worth it: salt ahead. Pat the chuck dry and salt it on every side with the roast salt from the list. Uncovered on a rack over a plate, bottom of the fridge. Do it by this time, 4 hours before the first move; the night before is even better. Pepper waits for cook day. Not doing it? Tap Skip and the salt goes on in the first step.", "uses": ["salt"]}, {"id": "s1", "at": 167, "lane": "prep", "txt": "Pat the chuck bone dry; salt every side (unless it was salted ahead) and pepper it. Cut the onions into thick wedges and the celery into 2 inch pieces; peel and smash the garlic. Pressure cooker on Saute, high, with the oil: it takes about 8 minutes to get properly hot.", "uses": ["salt", "pepper", "oil", "onion", "celery", "garlic"]}, {"id": "s2", "at": 159, "lane": "cooker", "txt": "Sear hard. Roast in and leave it alone: about 5 minutes on each broad side, a minute or two on the edges, until deep brown all over. Grey is no flavor. Out to a plate.", "uses": ["chuck"]}, {"id": "s3", "at": 144, "lane": "cooker", "txt": "Onion and celery into the fat with a pinch of salt, about 6 minutes, scraping up the brown bits as they soften.", "uses": ["onion", "celery"]}, {"id": "s4", "at": 138, "lane": "cooker", "txt": "Garlic and tomato paste in. Stir about 2 minutes until the paste goes from red to brick.", "uses": ["garlic", "paste"]}, {"id": "s5", "at": 136, "lane": "cooker", "txt": "Deglaze: pour in the wine and scrape the bottom completely clean. Anything left stuck can trip the burn warning. Simmer about 3 minutes.", "uses": ["wine"]}, {"id": "s6", "at": 133, "lane": "cooker", "txt": "Saute off. Broth, Worcestershire, thyme, rosemary and bay in, then the roast and its juices on top. Stay under the max fill line.", "uses": ["broth", "worcs", "thyme", "rosemary", "bay"]}, {"id": "s7", "at": 131, "lane": "cooker", "txt": "Lid on, valve to Sealing, Pressure Cook on high for 70 minutes (60 for a 3 lb roast or one cut in chunks, 75 for 4 lb). With this much liquid it takes about 13 minutes to come up to pressure before the count starts."}, {"id": "s8", "at": 118, "lane": "cooker", "txt": "Check it has reached pressure: the float valve is up and the 70 minute count has started. If it has not, it is running late; tap Start now once it does and every clock moves with it, Leave by included, so you can see how tight it is."}, {"id": "s9", "at": 75, "lane": "prep", "txt": "Mash prep: peel the potatoes and cut them into 1.5 inch chunks. Peel the carrots and cut them into 3 inch chunks for their own short cycle later.", "uses": ["potatoes", "carrots"]}, {"id": "s11", "at": 48, "lane": "cooker", "txt": "Cook cycle ends. Natural release for 15 minutes: leave the valve alone. The meat relaxes as the pressure drops; a quick release here makes it tough and stringy."}, {"id": "s10", "at": 45, "lane": "mash", "txt": "Potatoes into a pot of cold water, covered by an inch, with the salt. High heat to a boil, about 12 minutes.", "uses": ["saltmash"]}, {"id": "s13", "at": 33, "lane": "cooker", "txt": "Release what pressure is left and open the lid away from you. A fork should slide in and twist with no fight (about 200F inside; far past the USDA 145F safe minimum, which is what chuck needs to go tender). Roast to a board, loosely tented with foil, to rest. Carrots into the liquid, lid on, Sealing, high pressure for 3 minutes.", "uses": ["carrots"], "gap": "Not fork-tender yet? Lid back on, 10 more minutes at high pressure and a 10 minute natural release, then tap Start now: every clock moves with it, Leave by included."}, {"id": "s12", "at": 32, "lane": "mash", "txt": "Potatoes boiling: down to a lively simmer for about 15 minutes, until a knife slides through with no resistance."}, {"id": "s15", "at": 21, "lane": "cooker", "txt": "Carrots done: quick release, then lift them out with a slotted spoon into an oven-safe dish and cover it with foil. Fish out the herb stems and bay leaves."}, {"id": "s17", "at": 20, "lane": "cooker", "txt": "Gravy: skim the fat off the liquid, Saute on high and bring it to a boil. Stir the cornstarch into twice as much cold water, whisk it in, boil 1 to 2 minutes until it coats a spoon, then Cancel. Taste for salt.", "uses": ["cornstarch"]}, {"id": "s14", "at": 17, "lane": "mash", "txt": "Drain the potatoes and put them back in the hot pot over low for a minute or two to steam dry. Warm the butter and cream together until the butter melts.", "uses": ["butter", "cream"]}, {"id": "w1", "at": 15, "lane": "oven", "txt": "Oven on Warm, or its lowest setting (about 170F), so it is hot before you go."}, {"id": "s16", "at": 10, "lane": "mash", "txt": "Mash or rice the potatoes, fold in the warm butter and cream, salt to taste. Into an oven-safe dish, covered with a lid or foil."}, {"id": "w2", "at": 5, "lane": "cooker", "txt": "Set it to hold. Roast back into the pot whole, down in its gravy. Lid on, valve to Venting, Keep Warm: it holds hot until you are home. Mash and carrots, covered, into the warm oven."}, {"id": "w3", "at": 0, "lane": "away", "txt": "Out the door. Nothing to do until you are home: the roast holds in its gravy on Keep Warm, the mash and carrots in the warm oven."}, {"id": "h1", "at": 0, "eat": true, "lane": "serve", "txt": "Home. Roast out of the gravy onto a board; slice against the grain or pull into big chunks along the seams. Mash and carrots out of the oven, oven off. Platter, gravy over the top and the rest in a jug. Leftovers into the fridge within 2 hours."}];
+var HOME = STEPS;
 var TIMED = true;
 var SERV = {"base": 6, "min": 2, "max": 12};
 var KEY = "kitchen:pot-roast";
 
 var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
-            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["COOKER","t-pot"], mash:["MASH","t-pan"]};
-var state = {servings: SERV ? SERV.base : 0, serve: "18:30", checked:{}, skipped:{}, notes:"", planned:null};
+            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["COOKER","t-pot"], mash:["MASH","t-pan"], away:["AWAY","t-prep"]};
+var state = {servings: SERV ? SERV.base : 0, serve: "18:00", leave: "17:00", checked:{}, skipped:{}, notes:"", planned:null, plannedLeave:null};
 
 function frac(n){
   if(n === 0) return "0";
@@ -202,14 +214,24 @@ function label(it){
 function byId(id){ for(var i=0;i<ING.length;i++){ if(ING[i].id === id) return ING[i]; } return null; }
 
 function pad2(n){ return (n < 10 ? "0" : "") + n; }
+function hmOf(d){ return pad2(d.getHours()) + ":" + pad2(d.getMinutes()); }
 function serveDate(){ return dateOfHM(state.serve); }
+function leaveDate(){ return dateOfHM(state.leave); }
 function dateOfHM(hm){
-  var p = (hm || "18:30").split(":");
+  var p = (hm || "18:00").split(":");
   var d = new Date();
   d.setHours(parseInt(p[0],10), parseInt(p[1],10), 0, 0);
   return d;
 }
-function clockOf(off){ return new Date(serveDate().getTime() - off*60000); }
+/* Leave by counts only when it is set and comes before Eating at. Blank, the
+   page cooks straight through to dinner as it always has. */
+function leaveSet(){ return !!(state.leave && /^\d\d:\d\d$/.test(state.leave)); }
+function away(){ return leaveSet() && leaveDate() < serveDate(); }
+function pickPlan(){ STEPS = away() ? AWAY : HOME; }
+function stepClock(s){
+  var base = (away() && !s.eat) ? leaveDate() : serveDate();
+  return new Date(base.getTime() - s.at*60000);
+}
 function hhmm(d){
   var h = d.getHours(), m = d.getMinutes(), ap = h >= 12 ? "pm" : "am";
   h = h % 12; if(h === 0) h = 12;
@@ -231,6 +253,7 @@ function renderIngredients(){
   host.innerHTML = html;
 }
 function renderSteps(){
+  pickPlan();
   var host = document.getElementById("steps"), html = "";
   for(var i=0;i<STEPS.length;i++){
     var s = STEPS[i], lane = LANE[s.lane] || LANE.prep, u = "";
@@ -244,7 +267,7 @@ function renderSteps(){
     html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + (sk ? ' skip' : '') + '" data-id="' + s.id + '"' +
       (TIMED ? ' data-at="' + s.at + '"' : '') + '>' +
       '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
-      (TIMED ? '<span class="clock">' + hhmm(clockOf(s.at)) + '</span>' : '') +
+      (TIMED ? '<span class="clock">' + hhmm(stepClock(s)) + '</span>' : '') +
       '<span class="body"><span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>' + s.txt + '</span>' +
       (u ? '<span class="uses">' + u + '</span>' : '') +
       (s.gap ? '<span class="gap">' + s.gap + '</span>' : '') +
@@ -253,16 +276,27 @@ function renderSteps(){
       '</span></label>';
   }
   host.innerHTML = html;
+  renderLeaveNote();
   if(TIMED) markNow();
+}
+function renderLeaveNote(){
+  var el = document.getElementById("leavenote");
+  if(!el) return;
+  var msg = "";
+  if(leaveSet() && !away()) msg = 'Leave by has to come before Eating at, so for now the plan cooks straight through to dinner.';
+  else if(away() && serveDate() - leaveDate() > 120*60000) msg = 'That is over 2 hours away. The roast is fine on Keep Warm, but the mash dries and the carrots soften the longer they hold.';
+  el.className = msg ? "moved on" : "moved";
+  el.innerHTML = msg;
 }
 function markNow(){
   if(!TIMED) return;
+  pickPlan();
   var now = new Date(), cook = firstCookStep(), lead = optPending() ? 0 : cook;
-  var start = clockOf(STEPS[lead].at), end = serveDate(), line = document.getElementById("nowline");
+  var start = stepClock(STEPS[lead]), end = serveDate(), line = document.getElementById("nowline");
   var rows = document.querySelectorAll("#steps .row"), i;
   for(i=0;i<rows.length;i++){ rows[i].classList.remove("now"); }
   if(now < new Date(start.getTime() - 45*60000)){
-    line.innerHTML = (lead !== cook ? 'Salt by <b>' + hhmm(start) + '</b> · first move ' : 'First move at ') + '<b>' + hhmm(clockOf(STEPS[cook].at)) + '</b>';
+    line.innerHTML = (lead !== cook ? 'Salt by <b>' + hhmm(start) + '</b> · first move ' : 'First move at ') + '<b>' + hhmm(stepClock(STEPS[cook])) + '</b>';
     return;
   }
   if(now > new Date(end.getTime() + 25*60000)){
@@ -270,7 +304,7 @@ function markNow(){
     return;
   }
   var cur = -1;
-  for(i=lead;i<STEPS.length;i++){ if(!isSkipped(i) && clockOf(STEPS[i].at) <= now) cur = i; }
+  for(i=lead;i<STEPS.length;i++){ if(!isSkipped(i) && stepClock(STEPS[i]) <= now) cur = i; }
   if(cur < 0){
     var mins = Math.round((start - now) / 60000);
     line.innerHTML = '<b>' + mins + ' min</b> until ' + (lead !== cook ? 'the salt' : 'the first move');
@@ -279,7 +313,7 @@ function markNow(){
   }
   if(rows[cur]) rows[cur].classList.add("now");
   if(cur < STEPS.length - 1){
-    var nxt = Math.max(0, Math.round((clockOf(STEPS[cur+1].at) - now) / 60000));
+    var nxt = Math.max(0, Math.round((stepClock(STEPS[cur+1]) - now) / 60000));
     line.innerHTML = 'Now: <b>' + LANE[STEPS[cur].lane][0].toLowerCase() + '</b> · next move in <b>' + nxt + ' min</b>';
   } else {
     line.innerHTML = '<b>Eat.</b>';
@@ -297,31 +331,59 @@ function firstCookStep(){
   return 0;
 }
 
-/* Pin one step to right now and let every other step keep its original gap.
-   Setting the finish line to (now + that step's offset) moves the whole chain
-   and holds the spacing exactly. Reached through "Start now", which picks the
-   step for you: the first one you have not ticked off. */
-function startFrom(i){
+/* Put step i at right now and keep every other step's spacing. Straight
+   through, that moves Eating at. With Leave by set, Leave by and Eating at
+   move together so the time away stays the same. */
+function pinStep(i){
   var s = STEPS[i];
-  if(!s || !TIMED) return;
-  if(!state.planned) state.planned = state.serve;
-  var d = new Date(Date.now() + s.at*60000);
-  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  if(!s) return;
+  var target = hmOf(new Date(Date.now() + s.at*60000));
+  if(away()){
+    var gap = serveDate() - leaveDate();
+    if(s.eat){
+      state.serve = target;
+      state.leave = hmOf(new Date(serveDate().getTime() - gap));
+    } else {
+      state.leave = target;
+      state.serve = hmOf(new Date(leaveDate().getTime() + gap));
+    }
+  } else {
+    state.serve = target;
+  }
+  showTimes();
+}
+function showTimes(){
   var el = document.getElementById("serve");
   if(el) el.value = state.serve;
+  var lv = document.getElementById("leave");
+  if(lv) lv.value = state.leave || "";
+  var nb = document.getElementById("noleave");
+  if(nb) nb.textContent = state.leave ? "clear" : "add";
+}
+/* Stall: the same pin, with a note of what moved. Reached through "Start
+   now" mid-cook, which picks the first step you have not ticked off. */
+function startFrom(i){
+  if(!STEPS[i] || !TIMED) return;
+  if(!state.planned){ state.planned = state.serve; state.plannedLeave = state.leave || ""; }
+  pinStep(i);
   renderSteps(); renderShift(); save();
 }
 function renderShift(){
   var el = document.getElementById("moved");
   if(!el) return;
-  if(!TIMED || !state.planned || state.planned === state.serve){
+  if(!TIMED || !state.planned || (state.planned === state.serve && (state.plannedLeave || "") === (state.leave || ""))){
     el.className = "moved"; el.innerHTML = ""; return;
   }
   el.className = "moved on";
-  el.innerHTML = 'Dinner is now <b>' + hhmm(serveDate()) + '</b>, moved from ' + hhmm(dateOfHM(state.planned)) + '.';
+  if(away() && state.plannedLeave){
+    el.innerHTML = 'Leave by is now <b>' + hhmm(leaveDate()) + '</b> and dinner <b>' + hhmm(serveDate()) + '</b>, moved from ' + hhmm(dateOfHM(state.plannedLeave)) + ' and ' + hhmm(dateOfHM(state.planned)) + '.';
+  } else {
+    el.innerHTML = 'Dinner is now <b>' + hhmm(serveDate()) + '</b>, moved from ' + hhmm(dateOfHM(state.planned)) + '.';
+  }
 }
 function clearShift(){
   state.planned = null;
+  state.plannedLeave = null;
   renderShift();
 }
 function renderNotes(){
@@ -337,10 +399,12 @@ function apply(raw){
     var v = JSON.parse(raw);
     if(v.servings) state.servings = v.servings;
     if(v.serve) state.serve = v.serve;
+    if(typeof v.leave === "string") state.leave = v.leave;
     if(v.checked) state.checked = v.checked;
     if(v.skipped) state.skipped = v.skipped;
     if(typeof v.notes === "string") state.notes = v.notes;
     if(v.planned) state.planned = v.planned;
+    if(typeof v.plannedLeave === "string") state.plannedLeave = v.plannedLeave;
   }catch(e){}
 }
 function load(){
@@ -351,8 +415,7 @@ function load(){
   boot();
 }
 function boot(){
-  var sEl = document.getElementById("serve");
-  if(sEl) sEl.value = state.serve;
+  showTimes();
   var vEl = document.getElementById("sv");
   if(vEl) vEl.textContent = state.servings;
   renderIngredients(); renderSteps(); renderNotes(); renderShift();
@@ -368,8 +431,20 @@ document.addEventListener("change", function(e){
 });
 var serveEl = document.getElementById("serve");
 if(serveEl) serveEl.addEventListener("change", function(e){
-  state.serve = e.target.value || "18:30";
+  state.serve = e.target.value || "18:00";
   clearShift();
+  renderSteps(); save();
+});
+var leaveEl = document.getElementById("leave");
+if(leaveEl) leaveEl.addEventListener("change", function(e){
+  state.leave = e.target.value || "";
+  clearShift();
+  renderSteps(); save();
+});
+var noLeaveEl = document.getElementById("noleave");
+if(noLeaveEl) noLeaveEl.addEventListener("click", function(){
+  state.leave = state.leave ? "" : "17:00";
+  showTimes(); clearShift();
   renderSteps(); save();
 });
 var incEl = document.getElementById("inc");
@@ -401,7 +476,7 @@ document.addEventListener("click", function(e){
   var b = e.target.closest ? e.target.closest("button[data-act]") : null;
   if(!b) return;
   e.preventDefault(); e.stopPropagation();
-  var s = STEPS[parseInt(b.getAttribute("data-i"), 10)];
+  var i = parseInt(b.getAttribute("data-i"), 10), s = STEPS[i];
   if(!s) return;
   if(b.getAttribute("data-act") === "skip"){
     state.skipped[s.id] = !state.skipped[s.id];
@@ -410,24 +485,21 @@ document.addEventListener("click", function(e){
     return;
   }
   if(b.getAttribute("data-act") === "optnow"){
-    var d = new Date(Date.now() + s.at*60000);
-    state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
-    document.getElementById("serve").value = state.serve;
+    pinStep(i);
     clearShift();
     renderSteps(); save();
   }
 }, true);
 var nowBtn = document.getElementById("now");
 if(nowBtn) nowBtn.addEventListener("click", function(){
+  pickPlan();
   if(!STEPS.length) return;
   var i = firstOpenStep();
   /* Mid-cook this is a stall, not a fresh plan: same move as "start from
      here" on the step you are actually up to, banner and all. Nothing ticked
      means you are setting the plan, so there is no move to report. */
   if(anyStepTicked()){ startFrom(i); return; }
-  var d = new Date(Date.now() + STEPS[i].at*60000);
-  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
-  document.getElementById("serve").value = state.serve;
+  pinStep(i);
   clearShift();
   renderSteps(); save();
 });
@@ -460,17 +532,18 @@ if(clrNotesBtn) clrNotesBtn.addEventListener("click", function(){
   if(el) el.value = "";
   save();
 });
-/* Reset returns the page to clean: ticks off, the clock back to what was
-   planned before any "start from here" shift. Notes are kept; they have
-   their own Clear. */
+/* Reset returns the page to clean: ticks and skips off, the clocks back to
+   what was planned before any "start from here" shift. Notes are kept; they
+   have their own Clear. */
 document.getElementById("clrAll").addEventListener("click", function(){
   state.checked = {};
   state.skipped = {};
   if(state.planned){
     state.serve = state.planned;
+    if(state.plannedLeave !== null) state.leave = state.plannedLeave;
     state.planned = null;
-    var el = document.getElementById("serve");
-    if(el) el.value = state.serve;
+    state.plannedLeave = null;
+    showTimes();
   }
   renderIngredients(); renderSteps(); renderShift(); save();
 });
