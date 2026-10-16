@@ -66,6 +66,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 .row:last-child{border-bottom:0}
 .row input{width:21px;height:21px;margin:2px 0 0;accent-color:var(--citrus);flex:0 0 auto}
 .clock{font-family:var(--mono);font-size:14px;min-width:62px;flex:0 0 auto;color:var(--ink);padding-top:2px}
+.clock .dayb{display:block;width:62px;font-size:11px;line-height:1.25;white-space:normal}
 .body{flex:1;min-width:0}
 .tag{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;padding:2px 6px;border-radius:2px;margin-right:7px;vertical-align:1px}
 .t-pot{background:var(--brine-bg);color:var(--brine)}
@@ -215,8 +216,26 @@ function byId(id){ for(var i=0;i<ING.length;i++){ if(ING[i].id === id) return IN
 
 function pad2(n){ return (n < 10 ? "0" : "") + n; }
 function hmOf(d){ return pad2(d.getHours()) + ":" + pad2(d.getMinutes()); }
-function serveDate(){ return dateOfHM(state.serve); }
-function leaveDate(){ return dateOfHM(state.leave); }
+/* Times can cross midnight. Eating at is its next showing from 4 hours ago
+   on (so dinner just gone still reads as tonight's), and Leave by is the
+   last showing before Eating at, up to 12 hours before it. */
+var DAY = 86400000;
+function serveDate(){
+  var d = dateOfHM(state.serve), now = Date.now();
+  while(d.getTime() < now - 4*3600000) d = new Date(d.getTime() + DAY);
+  while(d.getTime() >= now + 20*3600000) d = new Date(d.getTime() - DAY);
+  return d;
+}
+function leaveDate(){
+  var e = serveDate(), d = dateOfHM(state.leave);
+  d = new Date(e.getFullYear(), e.getMonth(), e.getDate(), d.getHours(), d.getMinutes(), 0, 0);
+  if(d >= e) d = new Date(d.getTime() - DAY);
+  return d;
+}
+function dayBefore(d){
+  var e = serveDate();
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate()) < new Date(e.getFullYear(), e.getMonth(), e.getDate());
+}
 function dateOfHM(hm){
   var p = (hm || "18:00").split(":");
   var d = new Date();
@@ -226,7 +245,7 @@ function dateOfHM(hm){
 /* Leave by counts only when it is set and comes before Eating at. Blank, the
    page cooks straight through to dinner as it always has. */
 function leaveSet(){ return !!(state.leave && /^\d\d:\d\d$/.test(state.leave)); }
-function away(){ return leaveSet() && leaveDate() < serveDate(); }
+function away(){ return leaveSet() && serveDate() - leaveDate() <= 12*3600000; }
 function pickPlan(){ STEPS = away() ? AWAY : HOME; }
 function stepClock(s){
   var base = (away() && !s.eat) ? leaveDate() : serveDate();
@@ -267,7 +286,7 @@ function renderSteps(){
     html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + (sk ? ' skip' : '') + '" data-id="' + s.id + '"' +
       (TIMED ? ' data-at="' + s.at + '"' : '') + '>' +
       '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
-      (TIMED ? '<span class="clock">' + hhmm(stepClock(s)) + '</span>' : '') +
+      (TIMED ? '<span class="clock">' + (s.opt && dayBefore(stepClock(s)) ? '<span class="dayb">the day before,</span> ' : '') + hhmm(stepClock(s)) + '</span>' : '') +
       '<span class="body"><span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>' + s.txt + '</span>' +
       (u ? '<span class="uses">' + u + '</span>' : '') +
       (s.gap ? '<span class="gap">' + s.gap + '</span>' : '') +
@@ -283,7 +302,7 @@ function renderLeaveNote(){
   var el = document.getElementById("leavenote");
   if(!el) return;
   var msg = "";
-  if(leaveSet() && !away()) msg = 'Leave by has to come before Eating at, so for now the plan cooks straight through to dinner.';
+  if(leaveSet() && !away()) msg = 'Leave by has to come before Eating at, and no more than 12 hours before, so for now the plan cooks straight through to dinner.';
   else if(away() && serveDate() - leaveDate() > 120*60000) msg = 'That is over 2 hours away. The roast is fine on Keep Warm, but the mash dries and the carrots soften the longer they hold.';
   el.className = msg ? "moved on" : "moved";
   el.innerHTML = msg;
@@ -296,7 +315,7 @@ function markNow(){
   var rows = document.querySelectorAll("#steps .row"), i;
   for(i=0;i<rows.length;i++){ rows[i].classList.remove("now"); }
   if(now < new Date(start.getTime() - 45*60000)){
-    line.innerHTML = (lead !== cook ? 'Salt by <b>' + hhmm(start) + '</b> · first move ' : 'First move at ') + '<b>' + hhmm(stepClock(STEPS[cook])) + '</b>';
+    line.innerHTML = '<span>' + (lead !== cook ? 'Salt by <b>' + (dayBefore(start) ? 'the day before, ' : '') + hhmm(start) + '</b> · first move ' : 'First move at ') + '<b>' + hhmm(stepClock(STEPS[cook])) + '</b></span>';
     return;
   }
   if(now > new Date(end.getTime() + 25*60000)){

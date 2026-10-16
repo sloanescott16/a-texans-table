@@ -18,3 +18,9 @@ Headless Edge over DevTools, pinned clock 16 Oct 2026 9:00 am, speechSynthesis s
 - Ticks by step id carry between the two plans where the move is the same; the hold steps (w1, w2, w3, h1) exist only in Leave by mode.
 - Keep Warm and a warm oven for about an hour is food safe; the texture of the mash after an hour in the oven is a judgement, the note warns past 2 hours.
 - Found and fixed while testing: ticking a step did not refresh the "Salt by / First move" line until the 20 second tick. Now it refreshes at once.
+
+## Fix round 2 (16 Oct): crossing midnight
+- Eating at is now its next showing from 4 hours ago on (up to 20 hours ahead), and Leave by is its last showing before Eating at. Leave by mode holds for a gap up to 12 hours, across midnight too. Leave by 11:30 pm with Eating at 12:30 am stays in Leave by mode; Start now at 9:00 pm in Leave by mode keeps Leave by mode (Leave by 11:47 pm, home 12:47 am, step 1 at 9:00 pm). A Leave by after Eating at, or more than 12 hours before it, still falls back with the note (wording now adds "and no more than 12 hours before").
+- The salt step reads "the day before, 11:20 pm" (in its row and in the Salt by line) when it falls on the day before dinner. The Salt by line is wrapped in one span so it wraps as text at 390 px.
+- Tests: nhd.ts (42 checks, pinned 9:00 am) and new C:\NIGEL-scratch\1016-1104-nhd-tools\midnight.ts (16 checks, pinned 9:00 pm), same args. Both 0 failed, no console errors, no sideways scroll at 390 px. Shots in C:\NIGEL-scratch\1016-1104-nhd\round2.
+- Unsure: with a 12:30 am dinner the salt row says "the day before" while the evening cook steps carry no label; only the salt step is labelled, as asked.
