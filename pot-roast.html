@@ -142,7 +142,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 <div class="wrap">
   <a class='back' href='./'>&lsaquo; A Texan&rsquo;s Table</a>
   <h1>Pot roast</h1>
-  <p class="sub">Classic pot roast, scaled by the weight of meat you have. A hard sear and a red wine deglaze in the cast iron, then the Instant Pot for the rest: pressure in homemade chicken stock and wine, then the meat out while the carrots and rutabaga get a 3 minute burst, the meat back in big chunks. A garlic and rosemary Yukon Gold mash on the same clock, ready with it.</p>
+  <p class="sub">Classic pot roast, scaled by the weight of meat you have. All in the Instant Pot: a hard sear and a red wine deglaze on Saute, pressure in homemade chicken stock and wine, then the meat out while the carrots and rutabaga get a 3 minute burst, the meat back in big chunks. A garlic and rosemary Yukon Gold mash on the same clock, ready with it.</p>
   <div class="bar">
     <div class="controls">
       <div class="ctl"><label for="serve">Eating at</label><input type="time" id="serve" value="18:00"></div>
@@ -190,11 +190,11 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   <p class="note"><b>Why rutabaga:</b> onion melts and celery goes soft in a long pressure cook, which is what you want from them in the gravy, but it left the carrots as the only thing with colour. Rutabaga keeps its shape under pressure, its gold flesh sits beside the orange carrot, and its peppery sweetness suits beef; it is the old pot roast root that is not a potato. Cut it smaller than the carrots, since it is denser. Other picks for the same slot, same 3 minutes: parsnips (sweet but pale; 1.5 inch chunks), cremini mushrooms (firm and meaty, but brown; halved), frozen peeled pearl onions (whole), golden beets (earthy and gold; 1 inch). No potatoes: it is served with the mash.</p>
   <p class="note"><b>Onions, don&rsquo;t skimp:</b> they dissolve into the gravy, and that is their job; one was not enough at 3 lb. Celery is up to 5 stalks at 3 lb for the same reason.</p>
   <p class="note"><b>Stock:</b> homemade chicken stock is the default, and it is the better pot. Low-sodium beef stock is the alternative. Homemade is usually unsalted, which is what the gravy salt is for; with store-bought stock use half of it and taste.</p>
-  <p class="note"><b>The cast iron is only for the sear and the deglaze.</b> It browns harder than the Instant Pot&rsquo;s Saute, and every drop of the pan goes into the pot. It is washed, dried on the burner, oiled and put away while the pressure cycle runs.</p>
-  <p class="note"><b>Leave by:</b> optional. Set it when you have to head out before dinner. Everything up to the pressure cook and the whole mash is done before you go: the roast cooks, releases and sits on Keep Warm in the Instant Pot on its own, the mash holds covered in a warm oven, and the cut veg wait in the fridge. Be home about 22 minutes before Eating at for the finish. Blank, the page cooks straight through to dinner.</p>
+  <p class="note"><b>One device, the Instant Pot:</b> the sear, the onions, the paste and the deglaze are on Saute, then pressure, release, the veg, the gravy and the Keep Warm hold, all in the same inner pot. Saute More is the hottest it goes, about 375 to 400&deg;F on the oil; sear one piece at a time so the pot stays hot. Scrape the bottom clean at the deglaze, or the pot may stop with a Burn warning under pressure.</p>
+  <p class="note"><b>Leave by:</b> optional. Set it when you have to head out before dinner. Before you go: everything up to the pressure cook, the veg cut and the potatoes peeled into their salted water, both in the fridge. The roast cooks, releases and sits on Keep Warm on its own. Be home about 45 minutes before Eating at: the mash is made fresh and the finish done then, so nothing is left in an oven. Keep Warm is capped at 8 hours, since many Instant Pots switch it off at 10 and the roast would cool in the pot; a Leave by earlier than that cooks straight through instead. Blank, the page cooks straight through to dinner.</p>
   <p class="note"><b>Doneness:</b> chuck is safe at 145&deg;F with a 3 minute rest (USDA), but it stays tough until the collagen melts at around 200&deg;F. Fork-tender is the test.</p>
   <p class="note"><b>Leftovers:</b> fridge within 2 hours, 3 to 4 days covered, ideally sitting in the gravy. Reheat to 165&deg;F.</p>
-  <p class="note"><b>Infrared readings:</b> the gun reads only the surface it points at, never the inside of the food or the depth of a liquid. Cast iron and dark, seasoned pans read true; shiny stainless and aluminum read low, so aim at the oil, the fat or a dark spot. Aim close, since the spot it reads grows with distance, and read two or three spots: pans vary a lot from edge to centre. Simmering water, the butter and cream, and the gravy get a probe thermometer instead. Oven numbers are the dial settings.</p>
+  <p class="note"><b>Infrared readings:</b> the gun reads only the surface it points at, never the inside of the food or the depth of a liquid. The Instant Pot's inner pot is shiny stainless and reads low on bare metal, so aim at the oil, the fat or the brown bits. Aim close, since the spot it reads grows with distance, and read two or three spots: pans vary a lot from edge to centre. Simmering water, the butter and cream, and the gravy get a probe thermometer instead. Oven numbers are the dial settings.</p>
 </div>
 
 <script>
@@ -248,16 +248,15 @@ var FIN = [
  {id:"f5",at:2,d:2,lane:"cooker",txt:"Meat back into the pot with its board juices and stir it through gently. Keep Warm on until you dish up."}
 ];
 var PRE = [
- {id:"p1",at:384,d:5,sh:"P",lane:"fridge",opt:true,txt:"Optional, worth it: salt ahead. Pat the chuck dry and salt it on every side with the roast salt from the list. Uncovered on a rack over a plate, bottom of the fridge. Do it by this time, 4 hours before the first move; the night before is even better. Pepper waits for cook day. Not doing it? Tap Skip and the salt goes on in the first step.",uses:["salt"]},
- {id:"s1",at:144,d:8,sh:"P",lane:"prep",txt:"Pat the chuck bone dry; salt every side (unless it was salted ahead) and pepper it. Cut the onions into thick wedges and the celery into 2 inch pieces; peel and smash the garlic. Cast iron on the stove over medium-high with the oil: give it about 8 minutes, until the pan reads 400 to 425&deg;F on the infrared, oil shimmering.",uses:["salt","pepper","oil","onion","celery","garlic"]},
- {id:"s2",at:136,d:14,sh:"P",lane:"iron",txt:"Sear hard in the cast iron. Meat in with room between the pieces and leave it alone: about 5 minutes on each broad side, a minute on each edge, until deep brown all over. Grey is no flavor. Out to a plate.",uses:["chuck"]},
- {id:"s3",at:122,d:6,sh:"P",lane:"iron",txt:"Heat down to medium, the pan settling to 325 to 350&deg;F on the infrared. Onions and celery into the fat with the onion salt, about 6 minutes, scraping up the brown bits as they soften.",uses:["onion","celery","saltonion"]},
- {id:"s4",at:116,d:2,sh:"P",lane:"iron",txt:"Garlic and tomato paste in. Stir about 2 minutes until the paste goes from red to brick.",uses:["garlic","paste"]},
- {id:"s5",at:114,d:1,sh:"P",lane:"iron",txt:"Deglaze: pour in the wine and scrape the pan completely clean. Let it bubble about a minute, no longer: it only has to lift the brown bits.",uses:["wine"]},
- {id:"s6",at:113,d:3,sh:"P",lane:"cooker",txt:"Into the Instant Pot: tip in everything from the cast iron, every drop, then swirl a splash of the stock round the pan and pour that in too. The rest of the stock, Worcestershire, thyme, rosemary and bay, then the chuck and its juices on top. Stir so nothing sits on the bottom and stay under the max fill line. Cast iron off the heat onto a cold burner. From here the whole cook is in the Instant Pot.",uses:["stock","worcs","thyme","rosemary","bay"]},
+ {id:"p1",at:394,d:5,sh:"P",lane:"fridge",opt:true,txt:"Optional, worth it: salt ahead. Pat the chuck dry and salt it on every side with the roast salt from the list. Uncovered on a rack over a plate, bottom of the fridge. Do it by this time, 4 hours before the first move; the night before is even better. Pepper waits for cook day. Not doing it? Tap Skip and the salt goes on in the first step.",uses:["salt"]},
+ {id:"s1",at:154,d:8,sh:"P",lane:"cooker",txt:"Pat the chuck bone dry; salt every side (unless it was salted ahead) and pepper it. Cut the onions into thick wedges and the celery into 2 inch pieces; peel and smash the garlic. Instant Pot on Saute, set to More (high), lid off, the oil in: about 8 minutes, until the oil reads 375 to 400&deg;F on the infrared. The inner pot is shiny stainless and reads low on bare metal, so aim at the oil.",uses:["salt","pepper","oil","onion","celery","garlic"]},
+ {id:"s2",at:146,d:24,sh:"P",lane:"cooker",txt:"Sear hard in the Instant Pot on Saute More, in batches: one piece at a time unless both lie flat with an inch between them. A crowded pot steams, it does not brown. Leave each piece alone: about 5 minutes on each broad side, a minute on each edge, until deep brown all over, then out to a plate. Let the oil climb back to 375&deg;F before the next piece; tap Start over on the timer for it. Grey is no flavor.",uses:["chuck"]},
+ {id:"s3",at:122,d:6,sh:"P",lane:"cooker",txt:"Saute down to Normal (medium), the oil settling to 325 to 350&deg;F on the infrared. Onions and celery into the fat with the onion salt, about 6 minutes, scraping up the brown bits as they soften.",uses:["onion","celery","saltonion"]},
+ {id:"s4",at:116,d:2,sh:"P",lane:"cooker",txt:"Garlic and tomato paste in. Stir about 2 minutes until the paste goes from red to brick.",uses:["garlic","paste"]},
+ {id:"s5",at:114,d:1,sh:"P",lane:"cooker",txt:"Deglaze: pour in the wine and scrape the bottom of the pot completely clean. Let it bubble about a minute, no longer. Anything left stuck can trip the Burn warning under pressure.",uses:["wine"]},
+ {id:"s6",at:113,d:3,sh:"P",lane:"cooker",txt:"Cancel Saute. The stock, Worcestershire, thyme, rosemary and bay in, and one more scrape of the bottom. The chuck and its plate juices on top. Stay under the max fill line.",uses:["stock","worcs","thyme","rosemary","bay"]},
  {id:"s7",at:110,d:13,sh:"P",lane:"cooker",txt:"Lid on, valve to Sealing, Pressure Cook on high for {P} minutes: the time for {W} of chuck in two pieces. It takes about 13 minutes to come up to pressure before the count starts."},
  {id:"s8",at:97,d:"P",sh:"P",lane:"cooker",txt:"Check it has reached pressure: the float valve is up and the {P} minute count has started; start this step's timer with it. Not up yet? It is running late: tap Start now once it is and every clock below moves with it."},
- {id:"c1",at:91,d:10,sh:"P",lane:"iron",txt:"Cast iron care while it cooks. Wash the pan with hot water and a brush (a drop of soap is fine), towel it dry, then set it on a burner over medium for 3 or 4 minutes until it is bone dry and reads about 250&deg;F on the infrared (past 212&deg;F no water is left). Off the heat, wipe a few drops of oil over it with a paper towel and wipe it back until it looks almost dry. Let it cool and put it away."},
  {id:"s9",at:70,d:8,sh:"P",lane:"prep",txt:"Veg for the finish: peel the carrots and cut them into 1.5 inch chunks, halving the thick ends lengthwise. Peel the rutabaga thickly and cut it into 1 inch chunks, smaller than the carrot since it is denser. Both into one bowl, ready to tip in.",uses:["carrots","rutabaga"]}
 ];
 var MASHA = [
@@ -276,32 +275,30 @@ var SERVE = {id:"sv",at:0,d:5,lane:"serve",txt:"Serve: mash on the plate, the ro
 var S11 = {id:"s11",at:35,d:15,lane:"cooker",txt:"Cook cycle ends. Natural release for 15 minutes: leave the valve alone. The meat relaxes as the pressure drops; a quick release here makes it tough and stringy."};
 var HOME = PRE.concat(MASHA, [S11], FIN, [SERVE]);
 
-/* Leave by plan. Before-you-go steps are timed back from Leave by; the
-   finish (eat:true) from Eating at. The pressure cycle, its natural release
-   and the Keep Warm hold all happen while you are out. */
+/* Leave by plan. Before you go: the cook up to the pressure cycle, the veg
+   cut, the potatoes peeled into their water in the fridge. Timed back from
+   Leave by. The pressure cycle, its natural release and the Keep Warm hold
+   happen while you are out. Home steps (eat:true) are timed from Eating at:
+   the whole mash is made fresh then, so nothing sits in an oven unattended. */
 function copyStep(s, o){ var n = {}, k; for(k in s) n[k] = s[k]; for(k in o) n[k] = o[k]; return n; }
-function preAway(id, at, txt){ var s = null; for(var i=0;i<PRE.length;i++){ if(PRE[i].id === id) s = PRE[i]; } return copyStep(s, txt ? {at:at, sh:"B", txt:txt} : {at:at, sh:"B"}); }
+function preAway(id, at, txt){ var s = null; for(var i=0;i<PRE.length;i++){ if(PRE[i].id === id) s = PRE[i]; } return copyStep(s, txt ? {at:at, sh:"", txt:txt} : {at:at, sh:""}); }
 var AWAY = [
- preAway("p1",367), preAway("s1",127), preAway("s2",119), preAway("s3",105), preAway("s4",99), preAway("s5",97), preAway("s6",96),
- preAway("s7",93,"Lid on, valve to Sealing, Pressure Cook on high for {P} minutes: the time for {W} of chuck in two pieces. Keep Warm must be on: the pot holds the roast on it while you are out. It takes about 13 minutes to come up to pressure before the count starts."),
- preAway("s8",80,"Check it has reached pressure: the float valve is up and the {P} minute count has started; start this step's timer with it. The cycle ends and releases on its own while you are out. Not up yet? Tap Start now once it is: every clock moves with it, Leave by included."),
- preAway("c1",74), preAway("s9",64,"Veg for the finish: peel the carrots and cut them into 1.5 inch chunks, halving the thick ends lengthwise. Peel the rutabaga thickly and cut it into 1 inch chunks, smaller than the carrot since it is denser. Both into one covered bowl in the fridge for when you are home."),
- copyStep(MASHA[0],{at:56}), copyStep(MASHA[1],{at:45}), copyStep(MASHA[2],{at:30}), copyStep(MASHA[3],{at:28}), copyStep(MASHA[4],{at:22}),
- {id:"w1",at:17,d:1,lane:"oven",txt:"Oven on Warm, or its lowest setting (about 170&deg;F), for the mash."},
- copyStep(MASHA[5],{at:15}), copyStep(MASHA[6],{at:13}), copyStep(MASHA[7],{at:10}), copyStep(MASHA[8],{at:8}),
- copyStep(MASHA[9],{at:7,txt:"Season the mash: the salt, MSG and Parmesan; mix and taste, and up to half as much salt again if it wants it."}),
- {id:"m9",at:5,d:2,lane:"oven",txt:"Mash into an oven-safe dish, covered with a lid or foil, into the warm oven."},
- {id:"w2",at:3,d:3,lane:"prep",txt:"Check before you go: the Instant Pot is on Pressure Cook or Keep Warm with the valve at Sealing, the veg bowl is in the fridge, the mash is covered in the warm oven, the burners are off."},
+ preAway("p1",328), preAway("s1",88), preAway("s2",80), preAway("s3",56), preAway("s4",50), preAway("s5",48), preAway("s6",47),
+ preAway("s7",44,"Lid on, valve to Sealing, Pressure Cook on high for {P} minutes: the time for {W} of chuck in two pieces. Keep Warm must be on: the pot holds the roast on it while you are out. It takes about 13 minutes to come up to pressure before the count starts."),
+ preAway("s8",31,"Check it has reached pressure: the float valve is up and the {P} minute count has started; start this step's timer with it. The cycle ends and releases on its own while you are out. Not up yet? Tap Start now once it is: every clock moves with it, Leave by included."),
+ preAway("s9",23,"Veg for the finish: peel the carrots and cut them into 1.5 inch chunks, halving the thick ends lengthwise. Peel the rutabaga thickly and cut it into 1 inch chunks, smaller than the carrot since it is denser. Both into one covered bowl in the fridge for when you are home."),
+ copyStep(MASHA[0],{at:13,sh:"",txt:"Mash prep: peel the potatoes and cut them into 1.5 inch chunks, straight into the potato pot. Cover with the cold water and add the water salt, and the bay leaf if you are using it. Lid on, into the fridge until you are home."}),
+ {id:"w2",at:3,d:3,lane:"prep",txt:"Check before you go: the Instant Pot is on Pressure Cook with the valve at Sealing and Keep Warm on, the veg bowl and the potato pot are in the fridge, the burners are off."},
  {id:"w3",at:0,d:1,lv:true,lane:"away",txt:"Out the door. Nothing to do until you are home: the roast cooks, releases and holds on Keep Warm on its own."},
- {id:"h1",at:22,d:2,eat:true,lane:"prep",txt:"Home. The Instant Pot is on Keep Warm and its float valve is down or nearly so. The veg bowl out of the fridge. Leave the oven on Warm for the mash."}
-].concat(FIN.map(function(s){ return copyStep(s,{eat:true}); }), [copyStep(SERVE,{eat:true,txt:"Serve: mash out of the oven, oven off. Mash on the plate, the roast chunks, carrots and rutabaga beside it, gravy over the top and the rest in a jug. Truffle oil, if you like: a few drops on top of the mash at the table, start with 3. Leftovers into the fridge within 2 hours."})]);
+ {id:"h1",at:46,d:2,sh:"B",eat:true,lane:"prep",txt:"Home. The Instant Pot is on Keep Warm and its float valve is down or nearly so. The potato pot and the veg bowl out of the fridge; the potato pot onto the stove."}
+].concat(MASHA.slice(1).map(function(s){ return copyStep(s,{eat:true}); }), FIN.map(function(s){ return copyStep(s,{eat:true}); }), [copyStep(SERVE,{eat:true})]);
 var STEPS = HOME;
 var TIMED = true;
 var KEY = CFG.key;
 var SEAR_STEP = "s2";
 
 var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
-            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], iron:["CAST IRON","t-pan"], mash:["POTATO POT","t-pan"], sauce:["SAUCEPAN","t-pan"], away:["AWAY","t-prep"]};
+            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], mash:["POTATO POT","t-pan"], sauce:["SAUCEPAN","t-pan"], away:["AWAY","t-prep"]};
 var state = {lb: CFG.base, serve: "18:00", leave: "", checked:{}, skipped:{}, notes:"", planned:null, plannedLeave:null};
 
 /* Weight. Servings come from the weight, never the other way round. */
@@ -381,11 +378,18 @@ function dateOfHM(hm){
   return d;
 }
 function leaveSet(){ return !!(CFG.leave && state.leave && /^\d\d:\d\d$/.test(state.leave)); }
-function away(){ return leaveSet() && serveDate() - leaveDate() <= 12*3600000; }
-/* Latest you can leave: home 22 minutes before Eating at for the finish
-   (at least 25 after leaving), and the pressure cycle ended at least 10
-   minutes before you are home. */
-function latestLeaveMin(){ return Math.max(25, pressMin(state.lb) - 33 - boilMin(potLb())); }
+/* Keep Warm cap. Many Instant Pots switch Keep Warm off at 10 hours, and a
+   roast that cools in the pot is a food safety problem, so the plan never
+   leaves it on Keep Warm past 8 hours: from the end of the pressure cycle
+   (s8 is 31 minutes before leaving) to the finish, 20 before Eating at. */
+var KW_MAX = 480;
+function keepWarmMin(){ return Math.round((serveDate() - awayBase())/60000) + 11 - pressMin(state.lb); }
+function away(){ return leaveSet() && serveDate() - leaveDate() <= 12*3600000 && keepWarmMin() <= KW_MAX; }
+/* Latest you can leave: home at least 5 minutes after leaving (home is
+   when the mash starts, B + 31 minutes before Eating at), and the pressure
+   cycle ended at least 10 minutes before you are home. */
+function homeMin(){ return boilMin(potLb()) + 31; }
+function latestLeaveMin(){ return Math.max(homeMin() + 5, pressMin(state.lb) + boilMin(potLb()) + 10); }
 function awayBase(){
   var lv = leaveDate(), latest = new Date(serveDate().getTime() - latestLeaveMin()*60000);
   return lv < latest ? lv : latest;
@@ -464,12 +468,15 @@ function renderLeaveNote(){
   var el = document.getElementById("leavenote");
   if(!el) return;
   var msg = "";
-  if(leaveSet() && !away()) msg = 'Leave by has to come before Eating at, and no more than 12 hours before, so for now the plan cooks straight through to dinner.';
+  if(leaveSet() && !away()){
+    if(serveDate() - leaveDate() <= 12*3600000) msg = 'That Leave by would leave the roast on Keep Warm for ' + durTxt(keepWarmMin()) + '. The plan caps it at 8 hours, because many Instant Pots switch Keep Warm off at 10 and the roast would then cool in the pot. Leave later, by <b>' + hhmm(new Date(serveDate().getTime() - (KW_MAX + pressMin(state.lb) - 11)*60000)) + '</b> at the earliest; for now the plan cooks straight through to dinner.';
+    else msg = 'Leave by has to come before Eating at, and no more than 12 hours before, so for now the plan cooks straight through to dinner.';
+  }
   else if(away()){
-    var home = new Date(serveDate().getTime() - 22*60000);
-    if(awayBase() < leaveDate()) msg = 'You need to be home by <b>' + hhmm(home) + '</b> for the finish, with the pressure cycle done before then, so the plan has you out by <b>' + hhmm(awayBase()) + '</b>, ' + Math.round((leaveDate() - awayBase())/60000) + ' minutes before Leave by.';
-    else msg = 'Be home by <b>' + hhmm(home) + '</b> for the 20 minute finish.';
-    if(serveDate() - awayBase() > 120*60000) msg += ' That is over 2 hours out. The roast is fine on Keep Warm, but the mash dries the longer it holds in the oven.';
+    var home = new Date(serveDate().getTime() - homeMin()*60000);
+    if(awayBase() < leaveDate()) msg = 'You need to be home by <b>' + hhmm(home) + '</b> to make the mash and the finish, with the pressure cycle done before then, so the plan has you out by <b>' + hhmm(awayBase()) + '</b>, ' + Math.round((leaveDate() - awayBase())/60000) + ' minutes before Leave by.';
+    else msg = 'Be home by <b>' + hhmm(home) + '</b> to make the mash and the finish.';
+    msg += ' The roast sits on Keep Warm for ' + durTxt(keepWarmMin()) + ' (8 hours at most).';
   }
   el.className = msg ? "moved on" : "moved";
   el.innerHTML = msg;

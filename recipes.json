@@ -566,10 +566,10 @@
    "slug": "pot-roast",
    "name": "Pot roast",
    "file": "pot-roast.html",
-   "sub": "Classic pot roast, scaled by the weight of meat you have. A hard sear and a red wine deglaze in the cast iron, then the Instant Pot for the rest: pressure in homemade chicken stock and wine, then the meat out while the carrots and rutabaga get a 3 minute burst, the meat back in big chunks. A garlic and rosemary Yukon Gold mash on the same clock, ready with it.",
+   "sub": "Classic pot roast, scaled by the weight of meat you have. All in the Instant Pot: a hard sear and a red wine deglaze on Saute, pressure in homemade chicken stock and wine, then the meat out while the carrots and rutabaga get a 3 minute burst, the meat back in big chunks. A garlic and rosemary Yukon Gold mash on the same clock, ready with it.",
    "chapter": "mains",
    "label": "POT",
-   "blurb": "scales by meat weight · Instant Pot · 3 minute veg finish · mash on the clock",
+   "blurb": "scales by meat weight · all in the Instant Pot · 3 minute veg finish · mash on the clock",
    "meal": [
     "dinner"
    ],
@@ -579,10 +579,10 @@
    "heat": [
     "stovetop"
    ],
-   "total": 144,
+   "total": 154,
    "active": 80,
    "band": "afternoon",
-   "time": "2 hr 24",
+   "time": "2 hr 34",
    "effort": 2,
    "ahead": false,
    "kid": true,
@@ -609,7 +609,7 @@
     "Worcestershire sauce",
     "bay leaves",
     "cornstarch (for the gravy)",
-    "refined or light olive oil (for the sear)",
+    "refined or light olive oil (for the sear on Saute)",
     "kosher salt (roast, onions and gravy)",
     "black pepper, freshly ground",
     "Yukon Gold potatoes (matched to the meat, 1 to 1)",
@@ -620,7 +620,7 @@
     "Parmesan, finely grated",
     "truffle oil (optional, a few drops on top)"
    ],
-   "steps": 28
+   "steps": 27
   },
   {
    "slug": "peppercorn-mushroom-sauce",
