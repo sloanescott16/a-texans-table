@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mashed potatoes</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./favicon.ico">
+<link rel="preload" href="./special-elite-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./cutive-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./karla-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./fonts.css">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="A Texan&rsquo;s Table">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F3EBDA">
+<style>
+:root{
+  --ground:#F3EBDA; --card:#FAF4E7; --ink:#33291F; --muted:#7A6A56; --rule:#D9C9AF;
+  --citrus:#A85C34; --citrus-bg:#F0DFD1; --brine:#7E7047; --brine-bg:#E8E3D0;
+  --shell:#6E4A2E; --shell-bg:#EADCC9; --field:#FFFCF5;
+  --sans:Karla,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"Cutive Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --stamp:"Special Elite","Courier New",Courier,monospace;
+}
+@media (prefers-color-scheme:dark){
+ :root{
+  --ground:#17130F; --card:#211C15; --ink:#F1E3CE; --muted:#A2937C; --rule:#3A3026;
+  --citrus:#D3814F; --citrus-bg:#2E2018; --brine:#A99A63; --brine-bg:#222014;
+  --shell:#C89B6E; --shell-bg:#2A2018; --field:#1B1610;
+ }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.45;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+.wrap{max-width:620px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left))}
+.back{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin:22px 0 0}
+h1{font-family:var(--stamp);font-size:clamp(23px,7.2vw,30px);line-height:1.16;letter-spacing:0.03em;text-transform:uppercase;font-weight:400;margin:10px 0 10px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 18px;max-width:34em}
+h2{font-family:var(--stamp);font-size:13px;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:26px 0 10px}
+.bar{position:sticky;top:0;z-index:5;background:var(--ground);border-bottom:1px solid var(--rule);padding:10px 0 12px;margin-bottom:4px}
+.controls{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.ctl{display:flex;flex-direction:column;gap:4px}
+.ctl label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-family:var(--mono)}
+input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:3px;padding:7px 9px;min-width:124px}
+.step{display:flex;align-items:center;gap:2px;background:var(--field);border:1px solid var(--rule);border-radius:3px;padding:3px}
+.step button{width:34px;height:34px;font-size:19px;line-height:1;border:0;background:transparent;color:var(--ink);border-radius:2px;cursor:pointer;font-family:var(--mono)}
+.step button:active{background:var(--rule)}
+.step span{min-width:26px;text-align:center;font-family:var(--mono);font-size:19px}
+.ghost{border:1px solid var(--rule);background:transparent;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 11px;border-radius:3px;cursor:pointer}
+.ghost:active{background:var(--rule)}
+:focus-visible{outline:2px solid var(--brine);outline-offset:2px}
+#nowline{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:9px;display:flex;gap:8px;align-items:baseline}
+#nowline b{color:var(--ink);font-weight:600}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:4px 14px;margin-bottom:8px}
+.grp{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);padding:14px 0 6px;border-bottom:1px solid var(--rule)}
+.item{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.item:last-child{border-bottom:0}
+.item input{width:21px;height:21px;margin:1px 0 0;accent-color:var(--citrus);flex:0 0 auto}
+.qty{font-family:var(--mono);font-size:14px;color:var(--citrus);min-width:64px;flex:0 0 auto;padding-top:1px}
+.nm{font-size:15px;line-height:1.35}
+.nm em{font-style:normal;color:var(--muted);font-size:13px;display:block}
+.on .nm,.on .qty{color:var(--muted);text-decoration:line-through}
+.row{display:flex;gap:11px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.row:last-child{border-bottom:0}
+.row input{width:21px;height:21px;margin:2px 0 0;accent-color:var(--citrus);flex:0 0 auto}
+.clock{font-family:var(--mono);font-size:14px;min-width:62px;flex:0 0 auto;color:var(--ink);padding-top:2px}
+.clock .dayb{display:block;width:62px;font-size:11px;line-height:1.25;white-space:normal}
+.body{flex:1;min-width:0}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;padding:2px 6px;border-radius:2px;margin-right:7px;vertical-align:1px}
+.t-pot{background:var(--brine-bg);color:var(--brine)}
+.t-pan{background:var(--shell-bg);color:var(--shell)}
+.t-prep{background:var(--rule);color:var(--muted)}
+.t-serve{background:var(--citrus-bg);color:var(--citrus)}
+.t-fire{background:var(--citrus-bg);color:var(--citrus)}
+.t-oven{background:var(--shell-bg);color:var(--shell)}
+.t-jar{background:var(--brine-bg);color:var(--brine)}
+.t-fridge{background:var(--brine-bg);color:var(--brine)}
+.txt{font-size:15px;line-height:1.4}
+.usehd{display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--muted);margin:0 0 5px}
+.uses{display:block;margin:0 0 8px;padding:5px 0 5px 10px;border-left:3px solid var(--citrus)}
+.ui{display:block;font-size:15px;line-height:1.35;padding:1px 0}
+.ui b{font-weight:700}
+.row.now{background:var(--brine-bg);margin:0 -14px;padding:13px 14px;border-radius:3px;border-bottom-color:transparent}
+.row.on .txt,.row.on .clock,.row.on .uses{color:var(--muted);text-decoration:line-through}
+.foot{display:flex;gap:8px;margin:12px 0 8px}
+.note{color:var(--muted);font-size:13px;line-height:1.5;margin:18px 0 0}
+.note b{color:var(--ink)}
+.rowact{display:block;margin-top:8px}
+.fromhere{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:transparent;border:1px solid var(--rule);border-radius:2px;padding:4px 9px;cursor:pointer}
+.fromhere:active{background:var(--rule)}
+.row.on .fromhere{opacity:0.4}
+.rowact .fromhere{margin-right:6px}
+.row.skip .txt,.row.skip .clock,.row.skip .uses{color:var(--muted);text-decoration:line-through}
+.row.skip input{opacity:0.4}
+.gap{display:block;font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--citrus);background:transparent;border:1px dashed var(--citrus);border-radius:2px;padding:9px 10px;margin-top:8px}
+.moved{display:none}
+.moved.on{display:block;font-family:var(--mono);font-size:12px;line-height:1.45;color:var(--brine);background:var(--brine-bg);border-radius:2px;padding:8px 10px;margin-top:9px}
+.moved b{color:var(--brine);font-weight:700}
+.card.notes{padding:13px 14px}
+#notes{display:block;width:100%;min-height:132px;resize:vertical;background:transparent;border:0;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;padding:0}
+#notes:focus{outline:none}
+#notes::placeholder{color:var(--muted)}
+.lvx{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:transparent;border:0;padding:0 0 0 4px;text-decoration:underline;cursor:pointer}
+.saved{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);align-self:center}
+
+/* Sear timer, in the sear step. */
+.sear{display:block;margin-top:10px;padding:10px 12px 12px;border:1px solid var(--rule);border-radius:3px;background:var(--card);cursor:default}
+.sear-hd{display:block;font-family:var(--mono);font-size:12px;line-height:1.4;color:var(--muted)}
+.sear-big{display:block;font-family:var(--mono);font-size:44px;line-height:1.1;margin:4px 0 6px;color:var(--ink);font-variant-numeric:tabular-nums}
+.sear-big.sear-done{color:var(--citrus);font-family:var(--stamp)}
+.sear-msg{display:block;font-size:15px;margin:0 0 8px;color:var(--ink)}
+.sear-btns{display:flex;gap:8px;flex-wrap:wrap}
+.sear-b{flex:1 1 140px;min-height:52px;font-family:var(--mono);font-size:18px;color:var(--ground);background:var(--citrus);border:0;border-radius:3px;padding:10px 12px;cursor:pointer}
+.sear-b.sear-alt{color:var(--ink);background:transparent;border:1px solid var(--rule)}
+.sear-b:active{opacity:0.8}
+.sear-x{display:block;margin-top:8px;min-height:44px;font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);background:transparent;border:0;text-decoration:underline;padding:0 4px;cursor:pointer}
+.row.on .sear{opacity:0.6}
+/* Desktop: ingredients in a sticky left column, steps on the right. Below 1024px nothing changes. */
+@media (min-width:1024px){
+ .wrap{max-width:1180px;padding:0 32px}
+ .layout{display:grid;grid-template-columns:minmax(330px,400px) minmax(0,1fr);gap:0 44px;align-items:start}
+ .side{position:sticky;top:calc(var(--barh,8px) + 8px);max-height:calc(100vh - var(--barh,8px) - 16px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding-bottom:8px}
+ .side h2:first-child,.main h2:first-child{margin-top:20px}
+}
+/* Weight input, servings readout, step timers, page links. */
+.step input.wt{width:62px;border:0;background:transparent;color:var(--ink);font-family:var(--mono);font-size:19px;text-align:center;padding:4px 0;-moz-appearance:textfield}
+.step input.wt::-webkit-inner-spin-button,.step input.wt::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.srv{display:block;font-family:var(--mono);font-size:19px;padding:8px 2px;min-width:30px}
+.links{font-size:14px;margin:12px 0 0;color:var(--muted)}
+.links a{color:var(--citrus);font-weight:600}
+.tmr{display:flex;gap:8px;align-items:center;margin-top:8px;cursor:default}
+.tb{min-height:40px;font-family:var(--mono);font-size:14px;color:var(--ground);background:var(--brine);border:0;border-radius:3px;padding:6px 12px;cursor:pointer}
+.tb.alt{color:var(--ink);background:transparent;border:1px solid var(--rule)}
+.tl{font-family:var(--mono);font-size:20px;font-variant-numeric:tabular-nums}
+.tl.done{color:var(--citrus);font-family:var(--stamp)}
+.row.on .tmr{opacity:0.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class='back' href='./'>&lsaquo; A Texan&rsquo;s Table</a>
+  <h1>Mashed potatoes</h1>
+  <p class="sub">Yukon Golds boiled in salted water and riced, folded with a stick of butter and a cup of cream that have taken on garlic and rosemary, loosened with their own cooking water, finished with salt, MSG and a little Parmesan. Scaled by the weight of potatoes.</p>
+  <div class="bar">
+    <div class="controls">
+      <div class="ctl"><label for="serve">Eating at</label><input type="time" id="serve" value="18:00"></div>
+      <div class="ctl"><label for="wt">Potatoes, lb</label><div class="step"><button id="dec" aria-label="Fewer potatoes">&minus;</button><input type="number" id="wt" class="wt" value="3" min="1" max="8" step="0.25" inputmode="decimal" aria-label="Weight of potatoes in pounds"><button id="inc" aria-label="More potatoes">+</button></div></div>
+      <div class="ctl"><label>Serves</label><span class="srv" id="sv">6</span></div>
+      <button class="ghost" id="now">Start now</button>
+    </div>
+    <div id="nowline"></div>
+    <div class="moved" id="moved"></div>
+  </div>
+  <p class="links"><a id="roastlink" href="./pot-roast.html">Serve with pot roast &rsaquo;</a> <span>both on one Eating at, the roast matched to these potatoes</span></p>
+
+  <div class="layout">
+  <div class="side">
+  <h2>Ingredients</h2>
+  <div class="card" id="ing"></div>
+  <div class="foot">
+    <button class="ghost" id="allIng">Check all</button>
+    <button class="ghost" id="clrIng">Clear</button>
+  </div>
+  </div>
+  <div class="main">
+
+  <h2>Timeline</h2>
+  <div class="card" id="steps"></div>
+  <div class="foot">
+    <button class="ghost" id="clrAll">Reset everything</button>
+  </div>
+
+  <h2>Notes</h2>
+  <div class="card notes">
+    <textarea id="notes" placeholder="What happened this cook. Times, changes, what to fix next time."></textarea>
+  </div>
+  <div class="foot">
+    <button class="ghost" id="clrNotes">Clear notes</button>
+    <span class="saved" id="notesSaved"></span>
+  </div>
+  </div>
+  </div>
+
+  <p class="note"><b>The weight of potatoes drives it:</b> every amount and the time to the boil follow it, at about 1/2 lb a serving, so 3 lb serves 6. The simmer stays about 15 minutes at any weight, since chunk size sets it, not the pot. Going with the pot roast? Use the link at the top: the roast page carries this whole mash on its own timeline, potatoes matched 1 to 1 with the meat, ready with the roast.</p>
+  <p class="note"><b>Two pots, one job each:</b> the potato pot boils, drains, steam dries and takes the riced potatoes; the small saucepan makes the garlic and rosemary butter and holds the cream.</p>
+  <p class="note"><b>The water salt:</b> 2 tbsp Diamond Crystal in 3 quarts seasons the potatoes all the way through, about 0.6 percent, well under pasta water, so the kept-back water is safe to add. Morton is about twice as salty by the spoon: use half.</p>
+  <p class="note"><b>Seasoning:</b> at 3 lb, 1 tsp kosher salt, 1/2 tsp MSG and 1/2 cup of finely grated Parmesan, which is about 15 g: enough to deepen it without tasting of cheese. Taste after, and add up to half the salt again if it wants it.</p>
+  <p class="note"><b>Truffle oil:</b> optional, and only as a finishing note. A few drops on top at the table, start with 3. It is strong and it fades with heat, so it never goes in the pot.</p>
+  <p class="note"><b>Holding:</b> lid on, off the heat, it holds hot for half an hour. Longer, into a covered dish in the oven on Warm (about 170&deg;F), and loosen with a spoonful of the kept-back water before serving.</p>
+  <p class="note"><b>Infrared readings:</b> the water, the butter and the cream get a probe thermometer, not the infrared: the gun reads only the surface it points at. Oven numbers are the dial settings.</p>
+</div>
+
+<script>
+/* Mashed potatoes, job 1018-1447-1pa. Same engine as the pot roast page.
+   Amounts: base + per x potato weight, rounded to the item's step. Step
+   times: "at" is minutes before Eating at at 3 lb; sh "B" steps move with
+   the time to the boil. "d" is the step's own timer in minutes. The clocks
+   match the mash steps on the pot roast page for the same Eating at. */
+var CFG = {key:"kitchen:mash", min:1, max:8, inc:0.25, base:3, perServing:0.5, leave:false, potRatio:1};
+var ING = [
+ {id:"potatoes",g:"Potatoes",mash:true,per:1,step:0.25,unit:"lb",name:"Yukon Gold potatoes",note:"peeled, in 1.5 inch chunks"},
+ {id:"water",g:"Potatoes",mash:true,per:1,step:0.5,unit:"quart",units:"quarts",name:"cold water, for the potatoes",note:"covers them by about an inch"},
+ {id:"saltwater",g:"Potatoes",mash:true,per:2/3,step:0.5,unit:"tbsp",name:"kosher salt, for the potato water",note:"Diamond Crystal; Morton, half"},
+ {id:"bayp",g:"Potatoes",mash:true,per:1/3,step:1,min:1,name:"bay leaf, optional",plural:"bay leaves, optional",note:"in the potato water, if you're feeling fancy"},
+ {id:"butter",g:"Butter and cream",mash:true,per:8/3,step:1,unit:"tbsp",name:"unsalted butter",note:"8 tbsp is 1 stick"},
+ {id:"mgarlic",g:"Butter and cream",mash:true,per:2/3,step:1,min:1,name:"garlic clove, smashed",plural:"garlic cloves, smashed"},
+ {id:"mrosemary",g:"Butter and cream",mash:true,per:2/3,step:1,min:1,name:"sprig fresh rosemary",plural:"sprigs fresh rosemary"},
+ {id:"cream",g:"Butter and cream",mash:true,per:1/3,step:0.25,unit:"cup",units:"cups",name:"heavy cream"},
+ {id:"resw",g:"To finish",mash:true,per:1/3,step:0.25,unit:"cup",units:"cups",name:"potato cooking water, kept back",note:"dipped out before draining; most mashes take a quarter to a half of it"},
+ {id:"msalt",g:"To finish",mash:true,per:1/3,step:0.25,unit:"tsp",name:"kosher salt, for the mash",note:"Diamond Crystal; taste, then up to half as much again"},
+ {id:"msg",g:"To finish",mash:true,per:1/6,step:0.125,unit:"tsp",name:"MSG"},
+ {id:"parm",g:"To finish",mash:true,per:1/6,step:0.125,unit:"cup",units:"cups",name:"Parmesan, finely grated",note:"on a Microplane, loosely packed; 1/2 cup is about 15 g. Not too much"},
+ {id:"truffle",g:"To finish",fixed:"3 drops",name:"truffle oil, optional",note:"only on top at the table; start with 3 drops, never in the pot"}
+];
+var MASHA = [
+ {id:"m1",at:56,d:10,sh:"B",lane:"mash",txt:"Peel the potatoes and cut them into 1.5 inch chunks, straight into the potato pot. Cover with the cold water and add the water salt, and the bay leaf if you are using it.",uses:["potatoes","water","saltwater","bayp"]},
+ {id:"m2",at:44,d:"B",sh:"B",lane:"mash",txt:"Potato pot on high heat, lid ajar, to a boil, 212&deg;F on a probe: about {B} minutes."},
+ {id:"m3",at:29,d:15,lane:"mash",txt:"Potatoes boiling: down to a lively simmer, 195 to 205&deg;F on a probe, about 15 minutes, until a fork slides in with just a little resistance at the centre. Just fork tender, not falling apart."},
+ {id:"mb1",at:27,d:6,lane:"sauce",txt:"Meanwhile, the small saucepan over medium-low: the butter, smashed garlic and rosemary. Let it melt, foam and simmer about 6 minutes, until the foam and the bits on the bottom are just turning golden, about 240 to 250&deg;F on a probe in the butter. Golden, not brown.",uses:["butter","mgarlic","mrosemary"]},
+ {id:"mb2",at:21,d:7,lane:"sauce",txt:"Cream into the butter, slowly, as it bubbles up. Then the burner to its lowest: hold it at 160 to 180&deg;F on a probe, never boiling, stirring now and then.",uses:["cream"]},
+ {id:"m4",at:14,d:2,lane:"mash",txt:"Before you drain, dip out the cooking water to keep back with a mug. Drain, then the potatoes back into the hot pot, off the heat, for a minute to steam dry. Bay leaf out.",uses:["resw"]},
+ {id:"m5",at:12,d:3,lane:"mash",txt:"Rice the potatoes back into their pot, off the heat."},
+ {id:"m6",at:8,d:2,lane:"mash",txt:"Lift the garlic and rosemary out of the cream. Pour all the butter and cream into the potatoes and mix well with a spatula, no more than you need to."},
+ {id:"m7",at:4,d:1,lane:"mash",txt:"Kept-back water into the mash, 2 tablespoons at a time, mixing, until it is as loose as you like it."},
+ {id:"m8",at:3,d:2,lane:"mash",txt:"Season: the salt, MSG and Parmesan; mix and taste, and up to half as much salt again if it wants it. Lid on, off the heat: it holds hot for half an hour.",uses:["msalt","msg","parm"]}
+];
+var SERVE = {id:"sv",at:0,d:5,lane:"serve",txt:"Serve. Truffle oil, if you like: a few drops on top at the table, start with 3.",uses:["truffle"]};
+var HOME = MASHA.concat([SERVE]);
+var AWAY = HOME;
+var STEPS = HOME;
+var TIMED = true;
+var KEY = CFG.key;
+var SEAR_STEP = "";
+var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
+            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], iron:["CAST IRON","t-pan"], mash:["POTATO POT","t-pan"], sauce:["SAUCEPAN","t-pan"], away:["AWAY","t-prep"]};
+var state = {lb: CFG.base, serve: "18:00", leave: "", checked:{}, skipped:{}, notes:"", planned:null, plannedLeave:null};
+
+/* Weight. Servings come from the weight, never the other way round. */
+function clampLb(v){ v = Math.round(parseFloat(v) / CFG.inc) * CFG.inc; if(!(v > 0)) v = CFG.base; return Math.max(CFG.min, Math.min(CFG.max, v)); }
+function potLb(){ return clampLb(state.lb * CFG.potRatio); }
+function servings(){ return Math.max(1, Math.round(state.lb / CFG.perServing)); }
+function pressMin(w){ var p = w <= 3 ? 60 - (3 - w)*15 : 60 + (w - 3)*10; p = Math.round(p/5)*5; return Math.max(40, Math.min(90, p)); }
+function boilMin(w){ return Math.round(9 + 2*w); }
+function fmtLb(w){ return frac(w) + " lb"; }
+
+function frac(n){
+  if(n === 0) return "0";
+  var w = Math.floor(n + 1e-9), r = n - w, best = "", d = 1;
+  var map = [[0.125,"1/8"],[0.25,"1/4"],[0.333,"1/3"],[0.375,"3/8"],[0.5,"1/2"],[0.625,"5/8"],[0.667,"2/3"],[0.75,"3/4"],[0.875,"7/8"]];
+  if(r > 0.02){
+    for(var i=0;i<map.length;i++){ var diff = Math.abs(r-map[i][0]); if(diff < d){ d = diff; best = map[i][1]; } }
+  }
+  if(!best) return String(w);
+  return w ? w + " " + best : best;
+}
+function qtyNum(it){
+  var w = it.mash ? potLb() : state.lb;
+  var raw = (it.base || 0) + it.per * w, s = it.step || 0.25, n = raw / s;
+  n = it.up ? Math.ceil(n - 1e-9) : Math.round(n + 1e-9);
+  var v = Math.max(it.min || s, n * s);
+  return Math.round(v * 1000) / 1000;
+}
+function amount(it){
+  if(it.fixed) return it.fixed;
+  var v = qtyNum(it), txt = frac(v);
+  if(it.unit){ return txt + " " + (v > 1 && it.units ? it.units : it.unit); }
+  var nm = (v > 1 && it.plural) ? it.plural : it.name;
+  return txt + "|" + nm;
+}
+function label(it){
+  var a = amount(it);
+  if(a.indexOf("|") > -1){ var p = a.split("|"); return {qty:p[0], name:p[1]}; }
+  return {qty:a, name:it.name};
+}
+function byId(id){ for(var i=0;i<ING.length;i++){ if(ING[i].id === id) return ING[i]; } return null; }
+
+function stepAt(s){
+  var a = s.at, sh = s.sh || "";
+  if(sh.indexOf("P") > -1 && typeof pressMin === "function" && CFG.leave) a += pressMin(state.lb) - 60;
+  if(sh.indexOf("B") > -1) a += boilMin(potLb()) - 15;
+  return a;
+}
+function stepDur(s){ return s.d === "P" ? pressMin(state.lb) : s.d === "B" ? boilMin(potLb()) : s.d; }
+function stepTxt(s){ return s.txt.replace(/\{P\}/g, pressMin(state.lb)).replace(/\{B\}/g, boilMin(potLb())).replace(/\{W\}/g, fmtLb(state.lb)); }
+
+function pad2(n){ return (n < 10 ? "0" : "") + n; }
+function hmOf(d){ return pad2(d.getHours()) + ":" + pad2(d.getMinutes()); }
+/* Times can cross midnight. Eating at is its next showing from 4 hours ago
+   on (so dinner just gone still reads as tonight's), and Leave by is the
+   last showing before Eating at, up to 12 hours before it. */
+var DAY = 86400000;
+function serveDate(){
+  var d = dateOfHM(state.serve), now = Date.now();
+  while(d.getTime() < now - 4*3600000) d = new Date(d.getTime() + DAY);
+  while(d.getTime() >= now + 20*3600000) d = new Date(d.getTime() - DAY);
+  return d;
+}
+function leaveDate(){
+  var e = serveDate(), d = dateOfHM(state.leave);
+  d = new Date(e.getFullYear(), e.getMonth(), e.getDate(), d.getHours(), d.getMinutes(), 0, 0);
+  if(d >= e) d = new Date(d.getTime() - DAY);
+  return d;
+}
+function dayBefore(d){
+  var e = serveDate();
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate()) < new Date(e.getFullYear(), e.getMonth(), e.getDate());
+}
+function dateOfHM(hm){
+  var p = (hm || "18:00").split(":");
+  var d = new Date();
+  d.setHours(parseInt(p[0],10), parseInt(p[1],10), 0, 0);
+  return d;
+}
+function leaveSet(){ return !!(CFG.leave && state.leave && /^\d\d:\d\d$/.test(state.leave)); }
+function away(){ return leaveSet() && serveDate() - leaveDate() <= 12*3600000; }
+/* Latest you can leave: home 22 minutes before Eating at for the finish
+   (at least 25 after leaving), and the pressure cycle ended at least 10
+   minutes before you are home. */
+function latestLeaveMin(){ return Math.max(25, pressMin(state.lb) - 33 - boilMin(potLb())); }
+function awayBase(){
+  var lv = leaveDate(), latest = new Date(serveDate().getTime() - latestLeaveMin()*60000);
+  return lv < latest ? lv : latest;
+}
+function durTxt(m){
+  var h = Math.floor(m/60), r = m % 60, t = "";
+  if(h) t = h + (h === 1 ? " hour" : " hours");
+  if(r) t += (t ? " " : "") + r + (r === 1 ? " minute" : " minutes");
+  return t || "0 minutes";
+}
+function stepClock(s){
+  if(away() && s.lv) return awayBase();
+  var base = (away() && !s.eat) ? awayBase() : serveDate();
+  return new Date(base.getTime() - stepAt(s)*60000);
+}
+function plan(){
+  var a = (away() ? AWAY : HOME).slice();
+  a.sort(function(x, y){ return stepClock(x) - stepClock(y); });
+  return a;
+}
+function pickPlan(){ STEPS = plan(); }
+function hhmm(d){
+  var h = d.getHours(), m = d.getMinutes(), ap = h >= 12 ? "pm" : "am";
+  h = h % 12; if(h === 0) h = 12;
+  return h + ":" + (m < 10 ? "0" + m : m) + " " + ap;
+}
+
+function renderIngredients(){
+  var host = document.getElementById("ing");
+  if(!host) return;
+  var html = "", last = "";
+  for(var i=0;i<ING.length;i++){
+    var it = ING[i], l = label(it);
+    if(it.g !== last){ html += '<div class="grp">' + it.g + (it.mash && CFG.leave ? ' &middot; ' + fmtLb(potLb()) + ' potatoes' : '') + '</div>'; last = it.g; }
+    html += '<label class="item' + (state.checked[it.id] ? ' on' : '') + '" data-id="' + it.id + '">' +
+      '<input type="checkbox"' + (state.checked[it.id] ? ' checked' : '') + '>' +
+      '<span class="qty">' + l.qty + '</span>' +
+      '<span class="nm">' + l.name + (it.note ? '<em>' + it.note + '</em>' : '') + '</span></label>';
+  }
+  host.innerHTML = html;
+}
+function renderSteps(){
+  pickPlan();
+  var host = document.getElementById("steps"), html = "";
+  for(var i=0;i<STEPS.length;i++){
+    var s = STEPS[i], lane = LANE[s.lane] || LANE.prep, u = "";
+    var uses = s.uses || [];
+    for(var j=0;j<uses.length;j++){
+      var it = byId(uses[j]); if(!it) continue;
+      var l = label(it);
+      u += '<span class="ui"><b>' + l.qty + '</b> ' + l.name + '</span>';
+    }
+    var sk = s.opt && state.skipped[s.id];
+    html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + (sk ? ' skip' : '') + '" data-id="' + s.id + '"' +
+      ' data-at="' + stepAt(s) + '" data-d="' + stepDur(s) + '" data-lane="' + s.lane + '"' + (s.eat ? ' data-eat="1"' : '') + '>' +
+      '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
+      '<span class="clock">' + (s.opt && dayBefore(stepClock(s)) ? '<span class="dayb">the day before,</span> ' : '') + hhmm(stepClock(s)) + '</span>' +
+      '<span class="body">' + (u ? '<span class="usehd"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>You\x27ll use</span><span class="uses">' + u + '</span><span class="txt">' : '<span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>') + stepTxt(s) + '</span>' +
+      (s.gap ? '<span class="gap">' + s.gap + '</span>' : '') +
+      (s.id !== SEAR_STEP ? '<span class="tmr" data-tid="' + s.id + '" data-d="' + stepDur(s) + '"></span>' : '') +
+      (s.opt ? '<span class="rowact">' + (sk ? '' : '<button type="button" class="fromhere" data-act="optnow" data-i="' + i + '">Salt now</button>') +
+        '<button type="button" class="fromhere" data-act="skip" data-i="' + i + '">' + (sk ? 'Skipped. Undo' : 'Skip') + '</button></span>' : '') +
+      '</span></label>';
+  }
+  host.innerHTML = html;
+  renderLeaveNote();
+  renderLinks();
+  markNow();
+}
+function renderLinks(){
+  var a = document.getElementById("mashlink"), r = document.getElementById("roastlink");
+  if(a) a.setAttribute("href", "./mash.html?serve=" + encodeURIComponent(state.serve) + "&lb=" + potLb());
+  if(r) r.setAttribute("href", "./pot-roast.html?serve=" + encodeURIComponent(state.serve) + "&lb=" + clampLb(state.lb / CFG.potRatio));
+}
+function renderLeaveNote(){
+  var el = document.getElementById("leavenote");
+  if(!el) return;
+  var msg = "";
+  if(leaveSet() && !away()) msg = 'Leave by has to come before Eating at, and no more than 12 hours before, so for now the plan cooks straight through to dinner.';
+  else if(away()){
+    var home = new Date(serveDate().getTime() - 22*60000);
+    if(awayBase() < leaveDate()) msg = 'You need to be home by <b>' + hhmm(home) + '</b> for the finish, with the pressure cycle done before then, so the plan has you out by <b>' + hhmm(awayBase()) + '</b>, ' + Math.round((leaveDate() - awayBase())/60000) + ' minutes before Leave by.';
+    else msg = 'Be home by <b>' + hhmm(home) + '</b> for the 20 minute finish.';
+    if(serveDate() - awayBase() > 120*60000) msg += ' That is over 2 hours out. The roast is fine on Keep Warm, but the mash dries the longer it holds in the oven.';
+  }
+  el.className = msg ? "moved on" : "moved";
+  el.innerHTML = msg;
+}
+function markNow(){
+  if(!TIMED) return;
+  pickPlan();
+  var now = new Date(), cook = firstCookStep(), lead = optPending() ? 0 : cook;
+  var start = stepClock(STEPS[lead]), end = serveDate(), line = document.getElementById("nowline");
+  var rows = document.querySelectorAll("#steps .row"), i;
+  for(i=0;i<rows.length;i++){ rows[i].classList.remove("now"); }
+  if(now < new Date(start.getTime() - 45*60000)){
+    line.innerHTML = '<span>' + (lead !== cook ? 'Salt by <b>' + (dayBefore(start) ? 'the day before, ' : '') + hhmm(start) + '</b> · first move ' : 'First move at ') + '<b>' + hhmm(stepClock(STEPS[cook])) + '</b></span>';
+    return;
+  }
+  if(now > new Date(end.getTime() + 25*60000)){
+    line.innerHTML = 'Dinner was at <b>' + hhmm(end) + '</b>';
+    return;
+  }
+  var cur = -1;
+  for(i=lead;i<STEPS.length;i++){ if(!isSkipped(i) && stepClock(STEPS[i]) <= now) cur = i; }
+  if(cur < 0){
+    var mins = Math.round((start - now) / 60000);
+    line.innerHTML = '<b>' + mins + ' min</b> until ' + (lead !== cook ? 'the salt' : 'the first move');
+    if(rows[lead]) rows[lead].classList.add("now");
+    return;
+  }
+  if(rows[cur]) rows[cur].classList.add("now");
+  if(cur < STEPS.length - 1){
+    var nxt = Math.max(0, Math.round((stepClock(STEPS[cur+1]) - now) / 60000));
+    line.innerHTML = 'Now: <b>' + LANE[STEPS[cur].lane][0].toLowerCase() + '</b> · next move in <b>' + nxt + ' min</b>';
+  } else {
+    line.innerHTML = '<b>Eat.</b>';
+  }
+}
+
+function isSkipped(i){ return !!(STEPS[i] && STEPS[i].opt && state.skipped[STEPS[i].id]); }
+function optPending(){ return !!(STEPS[0] && STEPS[0].opt && !state.checked[STEPS[0].id] && !state.skipped[STEPS[0].id]); }
+function firstCookStep(){
+  for(var i=0;i<STEPS.length;i++){ if(!STEPS[i].opt) return i; }
+  return 0;
+}
+/* Put step i at right now and keep every other step's spacing. Straight
+   through, that moves Eating at. With Leave by set, Leave by and Eating at
+   move together so the time away stays the same. */
+function pinStep(i){
+  var s = STEPS[i];
+  if(!s) return;
+  var shift = Date.now() - stepClock(s).getTime();
+  var e = serveDate().getTime() + shift;
+  if(away()){
+    var l = leaveDate().getTime() + shift;
+    state.serve = hmOf(new Date(e));
+    state.leave = hmOf(new Date(l));
+  } else {
+    state.serve = hmOf(new Date(e));
+  }
+  showTimes();
+}
+function showTimes(){
+  var el = document.getElementById("serve");
+  if(el) el.value = state.serve;
+  var lv = document.getElementById("leave");
+  if(lv) lv.value = state.leave || "";
+  var nb = document.getElementById("noleave");
+  if(nb) nb.textContent = state.leave ? "clear" : "add";
+}
+function startFrom(i){
+  if(!STEPS[i] || !TIMED) return;
+  if(!state.planned){ state.planned = state.serve; state.plannedLeave = state.leave || ""; }
+  pinStep(i);
+  renderSteps(); renderShift(); save();
+}
+function renderShift(){
+  var el = document.getElementById("moved");
+  if(!el) return;
+  if(!TIMED || !state.planned || (state.planned === state.serve && (state.plannedLeave || "") === (state.leave || ""))){
+    el.className = "moved"; el.innerHTML = ""; return;
+  }
+  el.className = "moved on";
+  if(away() && state.plannedLeave){
+    el.innerHTML = 'Leave by is now <b>' + hhmm(leaveDate()) + '</b> and dinner <b>' + hhmm(serveDate()) + '</b>, moved from ' + hhmm(dateOfHM(state.plannedLeave)) + ' and ' + hhmm(dateOfHM(state.planned)) + '.';
+  } else {
+    el.innerHTML = 'Dinner is now <b>' + hhmm(serveDate()) + '</b>, moved from ' + hhmm(dateOfHM(state.planned)) + '.';
+  }
+}
+function clearShift(){ state.planned = null; state.plannedLeave = null; renderShift(); }
+function renderNotes(){
+  var el = document.getElementById("notes");
+  if(el && el.value !== (state.notes || "")) el.value = state.notes || "";
+}
+function renderWeight(){
+  var w = document.getElementById("wt"); if(w && parseFloat(w.value) !== state.lb) w.value = state.lb;
+  var v = document.getElementById("sv"); if(v) v.textContent = servings();
+}
+
+function save(){ try{ window.localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+function apply(raw){
+  try{
+    var v = JSON.parse(raw);
+    if(v.lb) state.lb = clampLb(v.lb);
+    else if(v.servings) state.lb = clampLb(v.servings * CFG.perServing);
+    if(v.serve) state.serve = v.serve;
+    if(typeof v.leave === "string") state.leave = v.leave;
+    if(v.checked) state.checked = v.checked;
+    if(v.skipped) state.skipped = v.skipped;
+    if(typeof v.notes === "string") state.notes = v.notes;
+    if(v.planned) state.planned = v.planned;
+    if(typeof v.plannedLeave === "string") state.plannedLeave = v.plannedLeave;
+  }catch(e){}
+}
+/* A link from the other page can carry ?serve=HH:MM&lb=N: it sets both. */
+function applyQuery(){
+  try{
+    var q = new URLSearchParams(window.location.search);
+    var sv = q.get("serve"), lb = q.get("lb");
+    if(sv && /^\d\d:\d\d$/.test(sv)){ state.serve = sv; state.planned = null; state.plannedLeave = null; }
+    if(lb && parseFloat(lb) > 0) state.lb = clampLb(parseFloat(lb) / CFG.potRatio);
+    if(sv || lb) save();
+  }catch(e){}
+}
+function load(){
+  try{ var raw = window.localStorage.getItem(KEY); if(raw) apply(raw); }catch(e){}
+  applyQuery();
+  boot();
+}
+function boot(){
+  showTimes(); renderWeight();
+  renderIngredients(); renderSteps(); renderNotes(); renderShift();
+}
+function setLb(v){
+  state.lb = clampLb(v);
+  renderWeight(); renderIngredients(); renderSteps(); save();
+}
+
+document.addEventListener("change", function(e){
+  var host = e.target.closest ? e.target.closest("[data-id]") : null;
+  if(!host || e.target.type !== "checkbox") return;
+  var id = host.getAttribute("data-id");
+  state.checked[id] = e.target.checked;
+  host.classList.toggle("on", e.target.checked);
+  if(host.closest("#steps")) markNow();
+  save();
+});
+var serveEl = document.getElementById("serve");
+if(serveEl) serveEl.addEventListener("change", function(e){ state.serve = e.target.value || "18:00"; clearShift(); renderSteps(); save(); });
+var leaveEl = document.getElementById("leave");
+if(leaveEl) leaveEl.addEventListener("change", function(e){ state.leave = e.target.value || ""; clearShift(); renderSteps(); save(); });
+var noLeaveEl = document.getElementById("noleave");
+if(noLeaveEl) noLeaveEl.addEventListener("click", function(){ state.leave = state.leave ? "" : "15:00"; showTimes(); clearShift(); renderSteps(); save(); });
+var wtEl = document.getElementById("wt");
+if(wtEl) wtEl.addEventListener("change", function(){ setLb(wtEl.value); });
+var incEl = document.getElementById("inc");
+if(incEl) incEl.addEventListener("click", function(){ setLb(state.lb + CFG.inc); });
+var decEl = document.getElementById("dec");
+if(decEl) decEl.addEventListener("click", function(){ setLb(state.lb - CFG.inc); });
+function firstOpenStep(){
+  for(var i=0;i<STEPS.length;i++){ if(!STEPS[i].opt && !state.checked[STEPS[i].id]) return i; }
+  return STEPS.length - 1;
+}
+function anyStepTicked(){
+  for(var i=0;i<STEPS.length;i++){ if(!STEPS[i].opt && state.checked[STEPS[i].id]) return true; }
+  return false;
+}
+document.addEventListener("click", function(e){
+  var b = e.target.closest ? e.target.closest("button[data-act]") : null;
+  if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  var i = parseInt(b.getAttribute("data-i"), 10), s = STEPS[i];
+  if(!s) return;
+  if(b.getAttribute("data-act") === "skip"){
+    state.skipped[s.id] = !state.skipped[s.id];
+    if(state.skipped[s.id]) state.checked[s.id] = false;
+    renderSteps(); save();
+    return;
+  }
+  if(b.getAttribute("data-act") === "optnow"){ pinStep(i); clearShift(); renderSteps(); save(); }
+}, true);
+var nowBtn = document.getElementById("now");
+if(nowBtn) nowBtn.addEventListener("click", function(){
+  pickPlan();
+  if(!STEPS.length) return;
+  var i = firstOpenStep();
+  if(anyStepTicked()){ startFrom(i); return; }
+  pinStep(i); clearShift(); renderSteps(); save();
+});
+var allBtn = document.getElementById("allIng");
+if(allBtn) allBtn.addEventListener("click", function(){ for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = true; } renderIngredients(); save(); });
+var clrIngBtn = document.getElementById("clrIng");
+if(clrIngBtn) clrIngBtn.addEventListener("click", function(){ for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = false; } renderIngredients(); save(); });
+var notesTimer = null;
+var notesEl = document.getElementById("notes");
+if(notesEl) notesEl.addEventListener("input", function(){
+  state.notes = notesEl.value;
+  var st = document.getElementById("notesSaved");
+  if(st) st.textContent = "Saving";
+  clearTimeout(notesTimer);
+  notesTimer = setTimeout(function(){ save(); if(st){ st.textContent = "Saved"; setTimeout(function(){ st.textContent = ""; }, 1800); } }, 400);
+});
+var clrNotesBtn = document.getElementById("clrNotes");
+if(clrNotesBtn) clrNotesBtn.addEventListener("click", function(){ state.notes = ""; var el = document.getElementById("notes"); if(el) el.value = ""; save(); });
+document.getElementById("clrAll").addEventListener("click", function(){
+  state.checked = {}; state.skipped = {};
+  if(state.planned){
+    state.serve = state.planned;
+    if(state.plannedLeave !== null) state.leave = state.plannedLeave;
+    state.planned = null; state.plannedLeave = null;
+    showTimes();
+  }
+  renderIngredients(); renderSteps(); renderShift(); save();
+});
+
+/* Step timers. Every step has one, silent, worked out from the stored start
+   time every tick so it stays right if the phone sleeps or the page reloads.
+   They never move any clock in the timeline. */
+var TKEY = KEY + ":timers", tmr = {};
+try{ var tr = JSON.parse(window.localStorage.getItem(TKEY) || "null"); if(tr && typeof tr === "object") tmr = tr; }catch(e){}
+function tmrSave(){ try{ window.localStorage.setItem(TKEY, JSON.stringify(tmr)); }catch(e){} }
+function mmss(t){ t = Math.max(0, Math.ceil(t)); return Math.floor(t/60) + ":" + pad2(t % 60); }
+function tmrHTML(id, d){
+  var tot = d * 60, st = tmr[id];
+  if(typeof st !== "number") return '<button type="button" class="tb" data-tmr="start">Timer ' + mmss(tot) + '</button>';
+  var left = tot - (Date.now() - st)/1000;
+  if(left > 0) return '<span class="tl">' + mmss(left) + ' left</span><button type="button" class="tb alt" data-tmr="stop">Stop</button>';
+  return '<span class="tl done">Time</span><button type="button" class="tb alt" data-tmr="stop">Clear</button>';
+}
+function tmrMount(){
+  var els = document.querySelectorAll("#steps .tmr");
+  for(var i=0;i<els.length;i++){
+    var el = els[i], h = tmrHTML(el.getAttribute("data-tid"), parseFloat(el.getAttribute("data-d")));
+    if(el.getAttribute("data-h") !== h){ el.innerHTML = h; el.setAttribute("data-h", h); }
+  }
+}
+document.addEventListener("click", function(e){
+  var box = e.target.closest ? e.target.closest(".tmr") : null;
+  if(!box) return;
+  e.preventDefault(); e.stopPropagation();
+  var b = e.target.closest("button[data-tmr]"); if(!b) return;
+  var id = box.getAttribute("data-tid");
+  if(b.getAttribute("data-tmr") === "start") tmr[id] = Date.now(); else delete tmr[id];
+  tmrSave(); tmrMount();
+}, true);
+document.getElementById("clrAll").addEventListener("click", function(){ tmr = {}; tmrSave(); tmrMount(); });
+
+/* Sear timer, inside the sear step only: each side its own countdown. */
+var SEAR_KEY = KEY + ":sear";
+var SEAR_SIDES = [
+  {n:"First broad side", s:300}, {n:"Second broad side", s:300},
+  {n:"Edge 1", s:60}, {n:"Edge 2", s:60}, {n:"Edge 3", s:60}, {n:"Edge 4", s:60}
+];
+var sear = {side:0, start:null};
+try{ var sr = JSON.parse(window.localStorage.getItem(SEAR_KEY) || "null");
+  if(sr && typeof sr.side === "number" && sr.side >= 0 && sr.side <= SEAR_SIDES.length) sear.side = sr.side;
+  if(sr && typeof sr.start === "number") sear.start = sr.start;
+}catch(e){}
+function searSave(){ try{ window.localStorage.setItem(SEAR_KEY, JSON.stringify(sear)); }catch(e){} }
+function searLeft(){ var sd = SEAR_SIDES[sear.side]; if(!sd || sear.start === null) return null; return sd.s - (Date.now() - sear.start)/1000; }
+function searHTML(){
+  var sd = SEAR_SIDES[sear.side], N = SEAR_SIDES.length;
+  if(!sd) return '<span class="sear-hd">Sear timer</span><span class="sear-big">All seared</span>' +
+    '<span class="sear-msg">Deep brown all over. Out to a plate.</span>' +
+    '<span class="sear-btns"><button type="button" class="sear-b sear-alt" data-sear="reset">Start over</button></span>';
+  var left = searLeft(), run = left !== null && left > 0, done = left !== null && left <= 0;
+  var nx = SEAR_SIDES[sear.side + 1], b = '';
+  if(!run && !done) b = '<button type="button" class="sear-b" data-sear="start">Start ' + mmss(sd.s) + '</button>';
+  if(run) b = '<button type="button" class="sear-b sear-alt" data-sear="restart">Restart this side</button>';
+  if(done) b = '<button type="button" class="sear-b" data-sear="next">' + (nx ? 'Next side' : 'Finish') + '</button>' +
+    '<button type="button" class="sear-b sear-alt" data-sear="restart">Again</button>';
+  return '<span class="sear-hd">Sear timer · Side ' + (sear.side + 1) + ' of ' + N + ': ' + sd.n + '</span>' +
+    '<span class="sear-big' + (done ? ' sear-done' : '') + '">' + (done ? 'Done' : mmss(run ? left : sd.s)) + '</span>' +
+    (done ? '<span class="sear-msg">' + (nx ? 'Turn it. Next: ' + nx.n + ', ' + mmss(nx.s) + '.' : 'Last side done.') + '</span>' : '') +
+    '<span class="sear-btns">' + b + '</span>' +
+    (sear.side > 0 || run ? '<button type="button" class="sear-x" data-sear="reset">Start over from side 1</button>' : '');
+}
+var searShown = "";
+function searMount(){
+  var row = document.querySelector('#steps .row[data-id="' + SEAR_STEP + '"] .body');
+  if(!row) return;
+  var box = row.querySelector(".sear");
+  if(!box){ box = document.createElement("span"); box.className = "sear"; row.appendChild(box); searShown = ""; }
+  var h = searHTML();
+  if(h !== searShown){ box.innerHTML = h; searShown = h; }
+}
+var baseRender = renderSteps;
+renderSteps = function(){ baseRender(); searMount(); tmrMount(); };
+document.addEventListener("click", function(e){
+  var box = e.target.closest ? e.target.closest(".sear") : null;
+  if(!box) return;
+  e.preventDefault(); e.stopPropagation();
+  var b = e.target.closest("button[data-sear]"); if(!b) return;
+  var a = b.getAttribute("data-sear");
+  if(a === "start" || a === "restart") sear.start = Date.now();
+  if(a === "next"){ sear.side = Math.min(SEAR_SIDES.length, sear.side + 1); sear.start = null; }
+  if(a === "reset"){ sear.side = 0; sear.start = null; }
+  searSave(); searMount();
+}, true);
+document.getElementById("clrAll").addEventListener("click", function(){ sear.side = 0; sear.start = null; searSave(); searMount(); });
+setInterval(function(){ searMount(); tmrMount(); }, 250);
+document.addEventListener("visibilitychange", function(){ searMount(); tmrMount(); });
+window.addEventListener("pageshow", function(){ searMount(); tmrMount(); });
+setInterval(markNow, 20000);
+load();
+(function(){
+  var bar = document.querySelector(".bar"); if(!bar) return;
+  function setBarH(){ document.documentElement.style.setProperty("--barh", bar.offsetHeight + "px"); }
+  setBarH();
+  window.addEventListener("resize", setBarH);
+  if(window.ResizeObserver) new ResizeObserver(setBarH).observe(bar);
+})();
+if("serviceWorker" in navigator){ navigator.serviceWorker.register("./sw.js").catch(function(){}); }
+</script>
+</body>
+</html>

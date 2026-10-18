@@ -566,10 +566,10 @@
    "slug": "pot-roast",
    "name": "Pot roast",
    "file": "pot-roast.html",
-   "sub": "Classic pot roast. A hard sear and a red wine deglaze in the cast iron, then everything into the Instant Pot for 60 minutes under pressure in wine and broth, then the gravy thickened in the pot and the carrots and roast left in it on Slow Cook until dinner, and a Yukon Gold mash on the stove timed to finish with it.",
+   "sub": "Classic pot roast, scaled by the weight of meat you have. A hard sear and a red wine deglaze in the cast iron, then the Instant Pot for the rest: pressure in homemade chicken stock and wine, then the meat out while the carrots and rutabaga get a 3 minute burst, the meat back in big chunks. A garlic and rosemary Yukon Gold mash on the same clock, ready with it.",
    "chapter": "mains",
    "label": "POT",
-   "blurb": "cast iron and Instant Pot · 60 min at high · slow cook finish",
+   "blurb": "scales by meat weight · Instant Pot · 3 minute veg finish · mash on the clock",
    "meal": [
     "dinner"
    ],
@@ -579,10 +579,10 @@
    "heat": [
     "stovetop"
    ],
-   "total": 222,
-   "active": 70,
+   "total": 144,
+   "active": 80,
    "band": "afternoon",
-   "time": "3 hr 42",
+   "time": "2 hr 24",
    "effort": 2,
    "ahead": false,
    "kid": true,
@@ -595,28 +595,32 @@
    "scales": true,
    "test": false,
    "ingredients": [
-    "boneless chuck roast (about 3 lb for 6, here in two pieces; well marbled)",
-    "yellow onion (in thick wedges)",
-    "celery stalk (in 2 inch pieces)",
+    "boneless chuck roast (the weight you have drives the page; best as two pieces, well marbled)",
+    "yellow onions (in thick wedges; don't skimp)",
+    "celery stalks (in 2 inch pieces)",
     "head of garlic (cloves peeled and smashed)",
-    "carrots (peeled, in 2 inch chunks; they slow cook in the gravy at the end)",
-    "sprig fresh thyme",
-    "sprig fresh rosemary",
-    "low-sodium beef broth (a 32 oz carton is 4 cups)",
+    "carrots (in 1.5 inch chunks; in for the 3 minute finish)",
+    "rutabaga (in 1 inch chunks; in with the carrots)",
+    "fresh thyme",
+    "fresh rosemary",
+    "homemade chicken stock (or low-sodium beef stock)",
+    "dry red wine",
     "tomato paste",
-    "dry red wine (one you would drink; or more broth)",
     "Worcestershire sauce",
-    "bay leaf",
-    "cornstarch (for the gravy, stirred into twice as much cold water)",
-    "olive oil (for the sear)",
-    "kosher salt, for the roast (Diamond Crystal, about 1 tsp per pound of meat; Morton is saltier, use half. More to taste in the gravy)",
+    "bay leaves",
+    "cornstarch (for the gravy)",
+    "refined or light olive oil (for the sear)",
+    "kosher salt (roast, onions and gravy)",
     "black pepper, freshly ground",
-    "Yukon Gold potatoes (peeled, in 1.5 inch chunks)",
-    "unsalted butter (8 tbsp is 1 stick)",
-    "heavy cream (warm; add until it looks right, up to a splash more)",
-    "kosher salt, for the potato water (more to taste in the finished mash)"
+    "Yukon Gold potatoes (matched to the meat, 1 to 1)",
+    "unsalted butter",
+    "garlic and rosemary (for the mash butter)",
+    "heavy cream",
+    "MSG",
+    "Parmesan, finely grated",
+    "truffle oil (optional, a few drops on top)"
    ],
-   "steps": 19
+   "steps": 28
   },
   {
    "slug": "peppercorn-mushroom-sauce",
@@ -790,6 +794,55 @@
     "base vinaigrette (see Base vinaigrette)"
    ],
    "steps": 3
+  },
+  {
+   "slug": "mash",
+   "name": "Mashed potatoes",
+   "file": "mash.html",
+   "sub": "Yukon Golds boiled in salted water and riced, folded with a stick of butter and a cup of cream that have taken on garlic and rosemary, loosened with their own cooking water, finished with salt, MSG and a little Parmesan. Scaled by the weight of potatoes.",
+   "chapter": "sides",
+   "label": "POT",
+   "blurb": "garlic and rosemary butter · riced · scales by potato weight",
+   "meal": [
+    "side",
+    "dinner"
+   ],
+   "protein": [
+    "none"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 56,
+   "active": 35,
+   "band": "hour",
+   "time": "56 min",
+   "effort": 2,
+   "ahead": false,
+   "kid": true,
+   "serves": 6,
+   "occasion": [
+    "weeknight",
+    "weekend",
+    "holiday"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "Yukon Gold potatoes (peeled, in 1.5 inch chunks)",
+    "kosher salt (for the water and the mash)",
+    "bay leaf (optional, if you're feeling fancy)",
+    "unsalted butter (1 stick at 3 lb)",
+    "garlic cloves, smashed",
+    "fresh rosemary sprigs",
+    "heavy cream (1 cup at 3 lb)",
+    "potato cooking water, kept back",
+    "MSG",
+    "Parmesan, finely grated (not too much)",
+    "truffle oil (optional, a few drops on top)"
+   ],
+   "steps": 11
   },
   {
    "slug": "quick-pickles",

@@ -264,8 +264,8 @@ var MASHA = [
  {id:"m1",at:56,d:10,sh:"B",lane:"mash",txt:"Mash prep: peel the potatoes and cut them into 1.5 inch chunks, straight into the potato pot. Cover with the cold water and add the water salt, and the bay leaf if you are using it.",uses:["potatoes","water","saltwater","bayp"]},
  {id:"m2",at:44,d:"B",sh:"B",lane:"mash",txt:"Potato pot on high heat, lid ajar, to a boil, 212&deg;F on a probe: about {B} minutes."},
  {id:"m3",at:29,d:15,lane:"mash",txt:"Potatoes boiling: down to a lively simmer, 195 to 205&deg;F on a probe, about 15 minutes, until a fork slides in with just a little resistance at the centre. Just fork tender, not falling apart."},
- {id:"mb1",at:27,d:6,lane:"mash",txt:"Small saucepan over medium-low: the butter, smashed garlic and rosemary. Let it melt, foam and simmer about 6 minutes, until the foam and the bits on the bottom are just turning golden, about 240 to 250&deg;F on a probe in the butter. Golden, not brown.",uses:["butter","mgarlic","mrosemary"]},
- {id:"mb2",at:21,d:7,lane:"mash",txt:"Cream into the butter, slowly, as it bubbles up. Then the burner to its lowest: hold it at 160 to 180&deg;F on a probe, never boiling, stirring now and then.",uses:["cream"]},
+ {id:"mb1",at:27,d:6,lane:"sauce",txt:"Small saucepan over medium-low: the butter, smashed garlic and rosemary. Let it melt, foam and simmer about 6 minutes, until the foam and the bits on the bottom are just turning golden, about 240 to 250&deg;F on a probe in the butter. Golden, not brown.",uses:["butter","mgarlic","mrosemary"]},
+ {id:"mb2",at:21,d:7,lane:"sauce",txt:"Cream into the butter, slowly, as it bubbles up. Then the burner to its lowest: hold it at 160 to 180&deg;F on a probe, never boiling, stirring now and then.",uses:["cream"]},
  {id:"m4",at:14,d:2,lane:"mash",txt:"Potatoes: before you drain, dip out the cooking water to keep back with a mug. Drain, then back into the hot pot, off the heat, for a minute to steam dry. Bay leaf out.",uses:["resw"]},
  {id:"m5",at:12,d:3,lane:"mash",txt:"Rice the potatoes back into their pot, off the heat."},
  {id:"m6",at:8,d:2,lane:"mash",txt:"Lift the garlic and rosemary out of the cream. Pour all the butter and cream into the potatoes and mix well with a spatula, no more than you need to."},
@@ -301,7 +301,7 @@ var KEY = CFG.key;
 var SEAR_STEP = "s2";
 
 var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
-            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], iron:["CAST IRON","t-pan"], mash:["MASH","t-pan"], away:["AWAY","t-prep"]};
+            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], iron:["CAST IRON","t-pan"], mash:["POTATO POT","t-pan"], sauce:["SAUCEPAN","t-pan"], away:["AWAY","t-prep"]};
 var state = {lb: CFG.base, serve: "18:00", leave: "", checked:{}, skipped:{}, notes:"", planned:null, plannedLeave:null};
 
 /* Weight. Servings come from the weight, never the other way round. */
@@ -456,8 +456,9 @@ function renderSteps(){
   markNow();
 }
 function renderLinks(){
-  var a = document.getElementById("mashlink");
+  var a = document.getElementById("mashlink"), r = document.getElementById("roastlink");
   if(a) a.setAttribute("href", "./mash.html?serve=" + encodeURIComponent(state.serve) + "&lb=" + potLb());
+  if(r) r.setAttribute("href", "./pot-roast.html?serve=" + encodeURIComponent(state.serve) + "&lb=" + clampLb(state.lb / CFG.potRatio));
 }
 function renderLeaveNote(){
   var el = document.getElementById("leavenote");
