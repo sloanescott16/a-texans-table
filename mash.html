@@ -128,6 +128,8 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 .step input.wt{width:62px;border:0;background:transparent;color:var(--ink);font-family:var(--mono);font-size:19px;text-align:center;padding:4px 0;-moz-appearance:textfield}
 .step input.wt::-webkit-inner-spin-button,.step input.wt::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 .srv{display:block;font-family:var(--mono);font-size:19px;padding:8px 2px;min-width:30px}
+.along{display:block;font-family:var(--mono);font-size:11.5px;color:var(--brine);margin:0 0 6px}
+.along b{font-weight:700}
 .links{font-size:14px;margin:12px 0 0;color:var(--muted)}
 .links a{color:var(--citrus);font-weight:600}
 .tmr{display:flex;gap:8px;align-items:center;margin-top:8px;cursor:default}
@@ -142,7 +144,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 <div class="wrap">
   <a class='back' href='./'>&lsaquo; A Texan&rsquo;s Table</a>
   <h1>Mashed potatoes</h1>
-  <p class="sub">Yukon Golds boiled in salted water and riced, folded with half a stick of butter and a cup of cream that have taken on garlic and rosemary, loosened with their own cooking water, finished with salt, MSG and a little Parmesan. Scaled by the weight of potatoes.</p>
+  <p class="sub">Yukon Golds boiled in salted water and riced, folded with half a stick of butter and a little good olive oil that have slowly confited garlic and fried rosemary, stopped with a cup of cream, loosened with their own cooking water, finished with salt, MSG and a little Parmesan. Two burners at once. Scaled by the weight of potatoes.</p>
   <div class="bar">
     <div class="controls">
       <div class="ctl"><label for="serve">Eating at</label><input type="time" id="serve" value="18:00"></div>
@@ -184,11 +186,11 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   </div>
 
   <p class="note"><b>The weight of potatoes drives it:</b> every amount and the time to the boil follow it, at about 1/2 lb a serving, so 3 lb serves 6. The simmer stays about 15 minutes at any weight, since chunk size sets it, not the pot. Going with the pot roast? Use the link at the top: the roast page carries this whole mash on its own timeline, potatoes matched 1 to 1 with the meat, ready with the roast.</p>
-  <p class="note"><b>Two pots, one job each:</b> the potato pot boils, drains, steam dries and takes the riced potatoes; the small saucepan makes the garlic and rosemary butter and holds the cream.</p>
+  <p class="note"><b>Two burners in parallel:</b> the butter pan starts first, on the lowest burner, as a gentle garlic confit; the rosemary goes in a little later so it gets less time than the garlic. While the potatoes cook, the butter is taken up just enough to barely brown, the garlic to golden and the rosemary to crisp, and the cream stops it. It should be subtle, on the back end. The potato pot boils, drains and takes the riced potatoes.</p>
   <p class="note"><b>The water salt:</b> 2 tbsp Diamond Crystal in 3 quarts seasons the potatoes all the way through, about 0.6 percent, well under pasta water, so the kept-back water is safe to add. Morton is about twice as salty by the spoon: use half.</p>
   <p class="note"><b>Seasoning:</b> at 3 lb, 1 tsp kosher salt, 1/2 tsp MSG and 1/2 cup of finely grated Parmesan, which is about 15 g: enough to deepen it without tasting of cheese. Taste after, and add up to half the salt again if it wants it.</p>
   <p class="note"><b>Holding:</b> lid on, off the heat, it holds hot for half an hour. Longer, into a covered dish in the oven on Warm (about 170&deg;F), and loosen with a spoonful of the kept-back water before serving.</p>
-  <p class="note"><b>Infrared readings:</b> the water, the butter and the cream get a probe thermometer, not the infrared: the gun reads only the surface it points at. Oven numbers are the dial settings.</p>
+  <p class="note"><b>Readings:</b> the butter pan gets the infrared, aimed at the butter itself (a shiny pan reads low on bare metal). The water and the cream get a probe thermometer. Oven numbers are the dial settings.</p>
 </div>
 
 <script src="./mash-steps.js"></script>
@@ -202,7 +204,7 @@ var CFG = {key:"kitchen:mash", min:1, max:8, inc:0.25, base:3, perServing:0.5, l
 var ING = MASH_ING;
 var MASHA = MASH_STEPS;
 var SERVE = {id:"sv",at:0,d:5,lane:"serve",txt:"Serve: a stir, then onto the plates."};
-var HOME = MASHA.concat([SERVE]);
+var HOME = MASHA;
 var AWAY = HOME;
 var STEPS = HOME;
 var TIMED = true;
@@ -257,7 +259,7 @@ function stepAt(s){
   if(sh.indexOf("B") > -1) a += boilMin(potLb()) - 15;
   return a;
 }
-function stepDur(s){ return s.d === "P" ? pressMin(state.lb) : s.d === "B" ? boilMin(potLb()) : s.d; }
+function stepDur(s){ if(s.dB) return s.dB + boilMin(potLb()) - 15; return s.d === "P" ? pressMin(state.lb) : s.d === "B" ? boilMin(potLb()) : s.d; }
 function stepTxt(s){ return s.txt.replace(/\{P\}/g, pressMin(state.lb)).replace(/\{B\}/g, boilMin(potLb())).replace(/\{W\}/g, fmtLb(state.lb)); }
 
 function pad2(n){ return (n < 10 ? "0" : "") + n; }
@@ -335,6 +337,21 @@ function renderIngredients(){
   }
   host.innerHTML = html;
 }
+/* Still running: on each step, the timed blocks from other lanes that are
+   under way when it starts, so parallel burners read at a glance. */
+function markAlong(){
+  var rows = document.querySelectorAll("#steps .row"), i, j;
+  for(i=0;i<STEPS.length;i++){
+    var t0 = stepClock(STEPS[i]).getTime(), out = [], body = rows[i] && rows[i].querySelector(".body");
+    if(!body || STEPS[i].opt || STEPS[i].lv) continue;
+    for(j=0;j<STEPS.length;j++){
+      var s = STEPS[j]; if(j === i || s.opt || s.lv || s.lane === STEPS[i].lane || stepDur(s) < 5) continue;
+      var st = stepClock(s).getTime(), en = st + stepDur(s)*60000;
+      if(st < t0 && en > t0) out.push('<b>' + (LANE[s.lane] || LANE.prep)[0] + '</b> until ' + hhmm(new Date(en)));
+    }
+    if(out.length){ var sp = document.createElement("span"); sp.className = "along"; sp.innerHTML = "Still running: " + out.join(" &middot; "); body.insertBefore(sp, body.firstChild); }
+  }
+}
 function renderSteps(){
   pickPlan();
   var host = document.getElementById("steps"), html = "";
@@ -359,6 +376,7 @@ function renderSteps(){
       '</span></label>';
   }
   host.innerHTML = html;
+  markAlong();
   renderLeaveNote();
   renderLinks();
   markNow();

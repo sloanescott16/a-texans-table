@@ -130,6 +130,8 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 .srv{display:block;font-family:var(--mono);font-size:19px;padding:8px 2px;min-width:30px}
 select.scl{font-family:var(--mono);font-size:19px;color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:3px;padding:7px 6px}
 .equip{font-size:14px;line-height:1.5;margin:0 0 4px}
+.along{display:block;font-family:var(--mono);font-size:11.5px;color:var(--brine);margin:0 0 6px}
+.along b{font-weight:700}
 .links{font-size:14px;margin:12px 0 0;color:var(--muted)}
 .links a{color:var(--citrus);font-weight:600}
 .tmr{display:flex;gap:8px;align-items:center;margin-top:8px;cursor:default}
@@ -258,13 +260,13 @@ var PRE = [
  {id:"s5",at:200,d:1,sh:"PS",lane:"iron",txt:"Deglaze the skillet: pour in the wine and scrape up all the fond until the pan is clean. Let it bubble about a minute, no longer.",uses:["wine"]},
  {id:"s6",at:199,d:2,sh:"PS",lane:"cooker",txt:"Into the Instant Pot: tip in everything from the skillet, every drop, then swirl a splash of the stock round the skillet and pour that in too. The rest of the stock and the Worcestershire, the herb bundle, then the chuck and its plate juices on top. Stay under the max fill line. Skillet off the heat onto a cold burner: from here the cook is all in the Instant Pot.",uses:["stock","worcs"]},
  {id:"s7",at:197,d:13,sh:"PS",lane:"cooker",txt:"Lid on, valve to Sealing, Pressure Cook on high for {P} minutes: the time for {W} of chuck in two pieces. It takes about 13 minutes to come up to pressure before the count starts."},
- {id:"s8",at:184,d:"P",sh:"PS",lane:"cooker",txt:"Check it has reached pressure: the float valve is up and the {P} minute count has started; start this step\x27s timer with it. Not up yet? It is running late: tap Start now once it is and every clock below moves with it."},
+ {id:"s8",at:184,d:"P",sh:"PS",lane:"cooker",txt:"The {P} minute pressure count starts now: check the float valve is up and the count has begun, and start this step\x27s timer with it. Not up yet? It is running late: tap Start now once it is and every clock below moves with it."},
  {id:"c1",at:178,d:10,sh:"PS",lane:"iron",txt:"Cast iron care while it cooks. Wash the skillet with hot water and a brush (a drop of soap is fine), towel it dry, then set it on a burner over medium for 3 or 4 minutes until it is bone dry and reads about 250&deg;F on the infrared (past 212&deg;F no water is left). Off the heat, wipe a little tallow or a few drops of oil over it with a paper towel and wipe it back until it looks almost dry. Let it cool and put it away."},
  {id:"s9",at:154,d:8,sh:"S",lane:"prep",txt:"Veg for the finish: peel the carrots and cut them into 1.5 inch chunks, halving the thick ends lengthwise. Peel the rutabaga thickly and cut it into 1 inch chunks, smaller than the carrot since it is denser. Both into one bowl, ready to tip in.",uses:["carrots","rutabaga"]}
 ];
 var MASHA = MASH_STEPS;
 var SERVE = {id:"sv",at:0,d:5,lane:"serve",txt:"The Slow Cook ends. Taste the gravy and add a pinch of salt if it wants it. Serve: mash on the plate, the roast chunks, carrots and rutabaga beside it, gravy over the top and the rest in a jug. Leftovers into the fridge within 2 hours."};
-var S11 = {id:"s11",at:124,d:15,sh:"S",lane:"cooker",txt:"Cook cycle ends. Natural release for 15 minutes: leave the valve alone. The meat relaxes as the pressure drops; a quick release here makes it tough and stringy."};
+var S11 = {id:"s11",at:124,d:15,sh:"S",lane:"cooker",txt:"The {P} minute count ends. Natural release for 15 minutes: leave the valve alone. The meat relaxes as the pressure drops; a quick release here makes it tough and stringy."};
 var HOME = PRE.concat(MASHA, [S11], FIN, [SERVE]);
 
 /* Leave by plan. Before you go: the whole roast up to the Slow Cook, the
@@ -284,7 +286,7 @@ var AWAY = [
  preAway("sc",5,"","Slow Cook on High (More), valve to Venting or a glass lid on, for {SC}: set {SCSET}. When it ends it drops to Keep Warm on its own and holds until you are home. Change the length with Slow cook at the top, 1 to 2 hours."),
  {id:"w2",at:3,d:3,lane:"prep",txt:"Check before you go: the Instant Pot is on Slow Cook with the valve at Venting or the glass lid on, and Keep Warm on; the potato pot is in the fridge; the burners are off."},
  {id:"w3",at:0,d:1,lv:true,lane:"away",txt:"Out the door. Nothing to do until you are home: the roast slow cooks and drops to Keep Warm on its own."},
- {id:"h1",at:46,d:2,sh:"B",eat:true,lane:"prep",txt:"Home. The Instant Pot is on Slow Cook or Keep Warm: leave it. The potato pot out of the fridge and onto the stove."}
+ {id:"h1",at:62,d:2,sh:"B",eat:true,lane:"prep",txt:"Home. The Instant Pot is on Slow Cook or Keep Warm: leave it. The potato pot out of the fridge and onto the stove; the butter goes on next."}
 ].concat(MASHA.slice(1).map(function(s){ return copyStep(s,{eat:true}); }), [copyStep(SERVE,{eat:true,txt:"The Instant Pot is on Keep Warm. Taste the gravy and add a pinch of salt if it wants it. Serve: mash on the plate, the roast chunks, carrots and rutabaga beside it, gravy over the top and the rest in a jug. Leftovers into the fridge within 2 hours."})]);
 var STEPS = HOME;
 var TIMED = true;
@@ -341,7 +343,7 @@ function stepAt(s){
   if(sh.indexOf("S") > -1) a += scMin() - 90;
   return a;
 }
-function stepDur(s){ return s.d === "P" ? pressMin(state.lb) : s.d === "B" ? boilMin(potLb()) : s.d === "SC" ? scMin() : s.d; }
+function stepDur(s){ if(s.dB) return s.dB + boilMin(potLb()) - 15; return s.d === "P" ? pressMin(state.lb) : s.d === "B" ? boilMin(potLb()) : s.d === "SC" ? scMin() : s.d; }
 /* Slow Cook length, 1 to 2 hours in 15 minute steps; 90 by default. */
 function scMin(){ var v = Math.round((state.sc || 90)/15)*15; return Math.max(60, Math.min(120, v)); }
 function stepTxt(s){ return s.txt.replace(/\{P\}/g, pressMin(state.lb)).replace(/\{B\}/g, boilMin(potLb())).replace(/\{W\}/g, fmtLb(state.lb)).replace(/\{SCSET\}/g, Math.floor(scMin()/60) + ":" + pad2(scMin() % 60)).replace(/\{SC\}/g, durTxt(scMin())); }
@@ -377,15 +379,15 @@ function dateOfHM(hm){
 function leaveSet(){ return !!(CFG.leave && state.leave && /^\d\d:\d\d$/.test(state.leave)); }
 /* Keep Warm cap. Many Instant Pots switch Keep Warm off at 10 hours, and a
    roast that cools in the pot is a food safety problem, so the plan never
-   leaves it on Keep Warm past 8 hours: from the end of the pressure cycle
-   (s8 is 31 minutes before leaving) to the finish, 20 before Eating at. */
+   leaves it on Keep Warm past 8 hours: from the end of the Slow Cook (it
+   starts 5 minutes before leaving and runs scMin) to Eating at. */
 var KW_MAX = 480;
 function keepWarmMin(){ return Math.round((serveDate() - awayBase())/60000) + 5 - scMin(); }
 function away(){ return leaveSet() && serveDate() - leaveDate() <= 12*3600000 && keepWarmMin() <= KW_MAX; }
 /* Latest you can leave: home at least 5 minutes after leaving (home is
-   when the mash starts, B + 31 minutes before Eating at), and the pressure
-   cycle ended at least 10 minutes before you are home. */
-function homeMin(){ return boilMin(potLb()) + 31; }
+   just before the mash butter goes on, B + 47 minutes before Eating at),
+   and the Slow Cook started early enough to end by Eating at. */
+function homeMin(){ return boilMin(potLb()) + 47; }
 function latestLeaveMin(){ return Math.max(homeMin() + 5, scMin() - 5); }
 function awayBase(){
   var lv = leaveDate(), latest = new Date(serveDate().getTime() - latestLeaveMin()*60000);
@@ -428,6 +430,21 @@ function renderIngredients(){
   }
   host.innerHTML = html;
 }
+/* Still running: on each step, the timed blocks from other lanes that are
+   under way when it starts, so parallel burners read at a glance. */
+function markAlong(){
+  var rows = document.querySelectorAll("#steps .row"), i, j;
+  for(i=0;i<STEPS.length;i++){
+    var t0 = stepClock(STEPS[i]).getTime(), out = [], body = rows[i] && rows[i].querySelector(".body");
+    if(!body || STEPS[i].opt || STEPS[i].lv) continue;
+    for(j=0;j<STEPS.length;j++){
+      var s = STEPS[j]; if(j === i || s.opt || s.lv || s.lane === STEPS[i].lane || stepDur(s) < 5) continue;
+      var st = stepClock(s).getTime(), en = st + stepDur(s)*60000;
+      if(st < t0 && en > t0) out.push('<b>' + (LANE[s.lane] || LANE.prep)[0] + '</b> until ' + hhmm(new Date(en)));
+    }
+    if(out.length){ var sp = document.createElement("span"); sp.className = "along"; sp.innerHTML = "Still running: " + out.join(" &middot; "); body.insertBefore(sp, body.firstChild); }
+  }
+}
 function renderSteps(){
   pickPlan();
   var host = document.getElementById("steps"), html = "";
@@ -452,6 +469,7 @@ function renderSteps(){
       '</span></label>';
   }
   host.innerHTML = html;
+  markAlong();
   renderLeaveNote();
   renderLinks();
   markNow();
