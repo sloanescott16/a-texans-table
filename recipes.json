@@ -566,10 +566,10 @@
    "slug": "pot-roast",
    "name": "Pot roast",
    "file": "pot-roast.html",
-   "sub": "Classic pot roast, scaled by the weight of meat you have. All in the Instant Pot: a hard sear and a red wine deglaze on Saute, pressure in homemade chicken stock and wine, then the meat out while the carrots and rutabaga get a 3 minute burst, the meat back in big chunks. A garlic and rosemary Yukon Gold mash on the same clock, ready with it.",
+   "sub": "Classic pot roast, scaled by the weight of meat you have. A hard sear, the aromatics and a red wine deglaze in the cast iron, then the Instant Pot for the rest: pressure in homemade chicken stock and wine, the gravy thickened, the carrots and rutabaga 3 minutes under pressure in it, the meat back in big chunks and everything on Slow Cook until dinner. A garlic and rosemary Yukon Gold mash on the same clock, ready with it.",
    "chapter": "mains",
    "label": "POT",
-   "blurb": "scales by meat weight · all in the Instant Pot · 3 minute veg finish · mash on the clock",
+   "blurb": "scales by meat weight · cast iron sear · Instant Pot · slow cook finish",
    "meal": [
     "dinner"
    ],
@@ -579,10 +579,10 @@
    "heat": [
     "stovetop"
    ],
-   "total": 154,
-   "active": 80,
+   "total": 240,
+   "active": 85,
    "band": "afternoon",
-   "time": "2 hr 34",
+   "time": "4 hr",
    "effort": 2,
    "ahead": false,
    "kid": true,
@@ -603,15 +603,16 @@
     "rutabaga (in 1 inch chunks; in with the carrots)",
     "fresh thyme",
     "fresh rosemary",
+    "fresh oregano (herb bundle)",
     "homemade chicken stock (or low-sodium beef stock)",
     "dry red wine",
     "tomato paste",
     "Worcestershire sauce",
     "bay leaves",
     "cornstarch (for the gravy)",
-    "refined or light olive oil (for the sear on Saute)",
+    "beef tallow (for the sear in the cast iron)",
     "kosher salt (roast, onions and gravy)",
-    "black pepper, freshly ground",
+    "black pepper, freshly ground (after the sear)",
     "Yukon Gold potatoes (matched to the meat, 1 to 1)",
     "unsalted butter",
     "garlic and rosemary (for the mash butter)",
@@ -620,7 +621,7 @@
     "Parmesan, finely grated",
     "truffle oil (optional, a few drops on top)"
    ],
-   "steps": 27
+   "steps": 31
   },
   {
    "slug": "peppercorn-mushroom-sauce",
