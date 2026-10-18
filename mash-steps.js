@@ -49,6 +49,6 @@ var MASH_STEPS = [
  {id:"m3",at:33,d:20,lane:"mash",txt:"Once it boils: lid on ajar, down to medium, until fork tender, 15 to 20 minutes."},
  {id:"mb3",at:33,d:2,lane:"sauce",txt:"Rosemary into the butter, same low heat. Fry until a little crispy.",uses:["mrosemary"]},
  {id:"mb4",at:31,d:1,lane:"sauce",txt:"Cold cream in and stir. Burner to its lowest to keep it warm, 160 to 180&deg;F on a probe, never boiling.",uses:["cream"]},
- {id:"m4",at:13,d:5,lane:"mash",txt:"Scoop out {Q:resw} of the potato water and keep it. Drain the potatoes in a colander and rice them back into the pot.",uses:["resw"]},
+ {id:"m4",at:13,d:5,lane:"mash",txt:"Drain. Scoop out some of the reserve water, drain in a colander, pass through ricer.",uses:["resw"]},
  {id:"m6",at:8,d:5,lane:"mash",txt:"Strain the garlic and rosemary out of the cream and pour it all into the potatoes. Add the kept water until the texture is right, then the Parmesan, salt and MSG. Mix and taste.",uses:["parm","msalt","msg"]}
 ];
