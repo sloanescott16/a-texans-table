@@ -231,7 +231,8 @@ var ING = [
  {id:"salt",g:"Pantry",per:1,step:0.25,unit:"tsp",name:"kosher salt, for the roast",note:"Diamond Crystal, 1 tsp per pound of meat; Morton is saltier, use half"},
  {id:"saltonion",g:"Pantry",per:1/12,step:0.125,unit:"tsp",name:"kosher salt, for the onions"},
  {id:"saltgravy",g:"Pantry",per:1/3,step:0.25,unit:"tsp",name:"kosher salt, for the gravy",note:"Diamond Crystal, with unsalted homemade stock; half with store-bought, then taste"},
- {id:"pepper",g:"Pantry",per:0.5,step:0.25,unit:"tsp",name:"black pepper, freshly ground",note:"on the chuck straight after the sear, never before: it burns"}
+ {id:"pepper1",g:"Pantry",per:0.25,step:0.125,unit:"tsp",name:"black pepper, freshly ground, during the sear",note:"on each seared face straight after it is flipped; never before the sear, it burns"},
+ {id:"pepper2",g:"Pantry",per:0.25,step:0.125,unit:"tsp",name:"black pepper, freshly ground, as it comes off",note:"on the last side while it is hot and glistening with fat"}
 ].concat(MASH_ING.map(function(it){ var n = {}, k; for(k in it) n[k] = it[k]; n.g = "Mash"; if(it.id === "potatoes") n.note = it.note + "; matched to the meat, 1 to 1"; return n; }));
 /* The finish (the Captain, 18 Oct): after the pressure cook and natural
    release, the meat comes out, the gravy is thickened, the carrots and
@@ -249,10 +250,9 @@ var FIN = [
  {id:"sc",at:90,d:"SC",sh:"S",lane:"cooker",txt:"Slow Cook on High (More), valve to Venting or a glass lid on, for {SC}: set {SCSET}. It ends at Eating at. Change the length with Slow cook at the top, 1 to 2 hours, and every clock follows it."}
 ];
 var PRE = [
- {id:"p1",at:480,d:5,sh:"PS",lane:"fridge",opt:true,txt:"Optional, worth it: salt ahead. Pat the chuck dry and salt it on every side with the roast salt from the list. Uncovered on a rack over a plate, bottom of the fridge. Do it by this time, 4 hours before the first move; the night before is even better. Pepper waits until after the sear. Not doing it? Tap Skip and the salt goes on in the first step.",uses:["salt"]},
- {id:"s1",at:240,d:8,sh:"PS",lane:"iron",txt:"Pat the chuck bone dry and salt every side (unless it was salted ahead). No pepper yet: it burns in a 450&deg;F pan, so it goes on after the sear. Cut the onions into thick wedges and the celery into 2 inch pieces; peel and smash the garlic. Tie the rosemary, thyme and oregano into one bundle with kitchen twine, the bay leaves tucked in. Cast iron skillet on the stove, dry, over medium-high: about 8 minutes, until it reads 450 to 500&deg;F on the infrared (cast iron reads true).",uses:["salt","onion","celery","garlic","thyme","rosemary","oregano","bay"]},
- {id:"s2",at:232,d:23,sh:"PS",lane:"iron",txt:"Sear hard in the cast iron. The tallow is solid: melt it in the preheated skillet and swirl, then check the reading again on the melted fat, 450 to 500&deg;F, before the meat goes in. Tallow smokes from about 400&deg;F, so expect smoke: fan on. Meat in with an inch between the pieces, or one at a time if they will not fit. Leave it alone: about 5 minutes on each broad side, a minute on each edge, until deep brown all over, then out to a plate. Let the pan climb back to 450&deg;F before a second batch; tap Start over on the timer for it. Grey is no flavor.",uses:["oil","chuck"]},
- {id:"sp",at:209,d:1,sh:"PS",lane:"prep",txt:"Pepper: as each piece comes off the cast iron, season it with the pepper on every side, on its plate, before it goes into the Instant Pot.",uses:["pepper"]},
+ {id:"p1",at:480,d:5,sh:"PS",lane:"fridge",opt:true,txt:"Optional, worth it: salt ahead. Pat the chuck dry and salt it on every side with the roast salt from the list. Uncovered on a rack over a plate, bottom of the fridge. Do it by this time, 4 hours before the first move; the night before is even better. Pepper waits for the sear. Not doing it? Tap Skip and the salt goes on in the first step.",uses:["salt"]},
+ {id:"s1",at:240,d:8,sh:"PS",lane:"iron",txt:"Pat the chuck bone dry and salt every side (unless it was salted ahead). No pepper yet: it burns in a 450&deg;F pan, so it goes on the seared faces during the sear. Cut the onions into thick wedges and the celery into 2 inch pieces; peel and smash the garlic. Tie the rosemary, thyme and oregano into one bundle with kitchen twine, the bay leaves tucked in. Cast iron skillet on the stove, dry, over medium-high: about 8 minutes, until it reads 450 to 500&deg;F on the infrared (cast iron reads true).",uses:["salt","onion","celery","garlic","thyme","rosemary","oregano","bay"]},
+ {id:"s2",at:232,d:24,sh:"PS",lane:"iron",txt:"Sear hard in the cast iron. The tallow is solid: melt it in the preheated skillet and swirl, then check the reading again on the melted fat, 450 to 500&deg;F, before the meat goes in. Tallow smokes from about 400&deg;F, so expect smoke: fan on. Meat in with an inch between the pieces, or one at a time if they will not fit. Leave it alone: about 5 minutes on each broad side, a minute on each edge, until deep brown all over. Pepper as you go: straight after each flip, pepper the seared face now on top with the during-the-sear pepper. As each piece comes off onto its plate, pepper the last side while it is hot and glistening with fat, with the as-it-comes-off pepper. Let the pan climb back to 450&deg;F before a second batch; tap Start over on the timer for it. Grey is no flavor.",uses:["oil","chuck","pepper1","pepper2"]},
  {id:"s3",at:208,d:6,sh:"PS",lane:"iron",txt:"Heat down to medium, the skillet settling to 325 to 350&deg;F on the infrared. Onions and celery into the fat with the onion salt, about 6 minutes, scraping up the brown bits as they soften.",uses:["onion","celery","saltonion"]},
  {id:"s4",at:202,d:2,sh:"PS",lane:"iron",txt:"Garlic and tomato paste in. Stir about 2 minutes until the paste goes from red to brick.",uses:["garlic","paste"]},
  {id:"s5",at:200,d:1,sh:"PS",lane:"iron",txt:"Deglaze the skillet: pour in the wine and scrape up all the fond until the pan is clean. Let it bubble about a minute, no longer.",uses:["wine"]},
@@ -263,7 +263,7 @@ var PRE = [
  {id:"s9",at:154,d:8,sh:"S",lane:"prep",txt:"Veg for the finish: peel the carrots and cut them into 1.5 inch chunks, halving the thick ends lengthwise. Peel the rutabaga thickly and cut it into 1 inch chunks, smaller than the carrot since it is denser. Both into one bowl, ready to tip in.",uses:["carrots","rutabaga"]}
 ];
 var MASHA = MASH_STEPS;
-var SERVE = {id:"sv",at:0,d:5,lane:"serve",txt:"The Slow Cook ends. Taste the gravy and add a pinch of salt if it wants it. Serve: mash on the plate, the roast chunks, carrots and rutabaga beside it, gravy over the top and the rest in a jug. Truffle oil, if you like: a few drops on top of the mash at the table, start with 3. Leftovers into the fridge within 2 hours.",uses:["truffle"]};
+var SERVE = {id:"sv",at:0,d:5,lane:"serve",txt:"The Slow Cook ends. Taste the gravy and add a pinch of salt if it wants it. Serve: mash on the plate, the roast chunks, carrots and rutabaga beside it, gravy over the top and the rest in a jug. Leftovers into the fridge within 2 hours."};
 var S11 = {id:"s11",at:124,d:15,sh:"S",lane:"cooker",txt:"Cook cycle ends. Natural release for 15 minutes: leave the valve alone. The meat relaxes as the pressure drops; a quick release here makes it tough and stringy."};
 var HOME = PRE.concat(MASHA, [S11], FIN, [SERVE]);
 
@@ -276,7 +276,7 @@ function copyStep(s, o){ var n = {}, k; for(k in s) n[k] = s[k]; for(k in o) n[k
 function findIn(a, id){ for(var i=0;i<a.length;i++){ if(a[i].id === id) return a[i]; } return null; }
 function preAway(id, at, sh, txt){ var s = findIn(PRE, id) || findIn(FIN, id) || (id === "s11" ? S11 : null); var o = {at:at, sh:sh}; if(txt) o.txt = txt; return copyStep(s, o); }
 var AWAY = [
- preAway("p1",396,"P"), preAway("s1",156,"P"), preAway("s2",148,"P"), preAway("sp",125,"P"), preAway("s3",124,"P"), preAway("s4",118,"P"), preAway("s5",116,"P"), preAway("s6",114,"P"),
+ preAway("p1",396,"P"), preAway("s1",156,"P"), preAway("s2",148,"P"), preAway("s3",124,"P"), preAway("s4",118,"P"), preAway("s5",116,"P"), preAway("s6",114,"P"),
  preAway("s7",112,"P"), preAway("s8",99,"P"), preAway("c1",93,"P"),
  preAway("s9",69,""),
  copyStep(MASHA[0],{at:59,sh:"",txt:"Mash prep: peel the potatoes and cut them into 1.5 inch chunks, straight into the potato pot. Cover with the cold water and add the water salt, and the bay leaf if you are using it. Lid on, into the fridge until you are home."}),
@@ -285,7 +285,7 @@ var AWAY = [
  {id:"w2",at:3,d:3,lane:"prep",txt:"Check before you go: the Instant Pot is on Slow Cook with the valve at Venting or the glass lid on, and Keep Warm on; the potato pot is in the fridge; the burners are off."},
  {id:"w3",at:0,d:1,lv:true,lane:"away",txt:"Out the door. Nothing to do until you are home: the roast slow cooks and drops to Keep Warm on its own."},
  {id:"h1",at:46,d:2,sh:"B",eat:true,lane:"prep",txt:"Home. The Instant Pot is on Slow Cook or Keep Warm: leave it. The potato pot out of the fridge and onto the stove."}
-].concat(MASHA.slice(1).map(function(s){ return copyStep(s,{eat:true}); }), [copyStep(SERVE,{eat:true,txt:"The Instant Pot is on Keep Warm. Taste the gravy and add a pinch of salt if it wants it. Serve: mash on the plate, the roast chunks, carrots and rutabaga beside it, gravy over the top and the rest in a jug. Truffle oil, if you like: a few drops on top of the mash at the table, start with 3. Leftovers into the fridge within 2 hours."})]);
+].concat(MASHA.slice(1).map(function(s){ return copyStep(s,{eat:true}); }), [copyStep(SERVE,{eat:true,txt:"The Instant Pot is on Keep Warm. Taste the gravy and add a pinch of salt if it wants it. Serve: mash on the plate, the roast chunks, carrots and rutabaga beside it, gravy over the top and the rest in a jug. Leftovers into the fridge within 2 hours."})]);
 var STEPS = HOME;
 var TIMED = true;
 var KEY = CFG.key;

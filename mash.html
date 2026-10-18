@@ -142,7 +142,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 <div class="wrap">
   <a class='back' href='./'>&lsaquo; A Texan&rsquo;s Table</a>
   <h1>Mashed potatoes</h1>
-  <p class="sub">Yukon Golds boiled in salted water and riced, folded with a stick of butter and a cup of cream that have taken on garlic and rosemary, loosened with their own cooking water, finished with salt, MSG and a little Parmesan. Scaled by the weight of potatoes.</p>
+  <p class="sub">Yukon Golds boiled in salted water and riced, folded with half a stick of butter and a cup of cream that have taken on garlic and rosemary, loosened with their own cooking water, finished with salt, MSG and a little Parmesan. Scaled by the weight of potatoes.</p>
   <div class="bar">
     <div class="controls">
       <div class="ctl"><label for="serve">Eating at</label><input type="time" id="serve" value="18:00"></div>
@@ -187,7 +187,6 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   <p class="note"><b>Two pots, one job each:</b> the potato pot boils, drains, steam dries and takes the riced potatoes; the small saucepan makes the garlic and rosemary butter and holds the cream.</p>
   <p class="note"><b>The water salt:</b> 2 tbsp Diamond Crystal in 3 quarts seasons the potatoes all the way through, about 0.6 percent, well under pasta water, so the kept-back water is safe to add. Morton is about twice as salty by the spoon: use half.</p>
   <p class="note"><b>Seasoning:</b> at 3 lb, 1 tsp kosher salt, 1/2 tsp MSG and 1/2 cup of finely grated Parmesan, which is about 15 g: enough to deepen it without tasting of cheese. Taste after, and add up to half the salt again if it wants it.</p>
-  <p class="note"><b>Truffle oil:</b> optional, and only as a finishing note. A few drops on top at the table, start with 3. It is strong and it fades with heat, so it never goes in the pot.</p>
   <p class="note"><b>Holding:</b> lid on, off the heat, it holds hot for half an hour. Longer, into a covered dish in the oven on Warm (about 170&deg;F), and loosen with a spoonful of the kept-back water before serving.</p>
   <p class="note"><b>Infrared readings:</b> the water, the butter and the cream get a probe thermometer, not the infrared: the gun reads only the surface it points at. Oven numbers are the dial settings.</p>
 </div>
@@ -202,7 +201,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 var CFG = {key:"kitchen:mash", min:1, max:8, inc:0.25, base:3, perServing:0.5, leave:false, potRatio:1};
 var ING = MASH_ING;
 var MASHA = MASH_STEPS;
-var SERVE = {id:"sv",at:0,d:5,lane:"serve",txt:"Serve. Truffle oil, if you like: a few drops on top at the table, start with 3.",uses:["truffle"]};
+var SERVE = {id:"sv",at:0,d:5,lane:"serve",txt:"Serve: a stir, then onto the plates."};
 var HOME = MASHA.concat([SERVE]);
 var AWAY = HOME;
 var STEPS = HOME;

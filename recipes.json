@@ -618,8 +618,7 @@
     "garlic and rosemary (for the mash butter)",
     "heavy cream",
     "MSG",
-    "Parmesan, finely grated",
-    "truffle oil (optional, a few drops on top)"
+    "Parmesan, finely grated"
    ],
    "steps": 31
   },
@@ -800,7 +799,7 @@
    "slug": "mash",
    "name": "Mashed potatoes",
    "file": "mash.html",
-   "sub": "Yukon Golds boiled in salted water and riced, folded with a stick of butter and a cup of cream that have taken on garlic and rosemary, loosened with their own cooking water, finished with salt, MSG and a little Parmesan. Scaled by the weight of potatoes.",
+   "sub": "Yukon Golds boiled in salted water and riced, folded with half a stick of butter and a cup of cream that have taken on garlic and rosemary, loosened with their own cooking water, finished with salt, MSG and a little Parmesan. Scaled by the weight of potatoes.",
    "chapter": "sides",
    "label": "POT",
    "blurb": "garlic and rosemary butter · riced · scales by potato weight",
@@ -834,14 +833,13 @@
     "Yukon Gold potatoes (peeled, in 1.5 inch chunks)",
     "kosher salt (for the water and the mash)",
     "bay leaf (optional, if you're feeling fancy)",
-    "unsalted butter (1 stick at 3 lb)",
+    "unsalted butter (half a stick at 3 lb)",
     "garlic cloves, smashed",
     "fresh rosemary sprigs",
     "heavy cream (1 cup at 3 lb)",
     "potato cooking water, kept back",
     "MSG",
-    "Parmesan, finely grated (not too much)",
-    "truffle oil (optional, a few drops on top)"
+    "Parmesan, finely grated (not too much)"
    ],
    "steps": 11
   },
