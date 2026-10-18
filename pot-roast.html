@@ -281,13 +281,13 @@ var AWAY = [
  preAway("p1",396,"P"), preAway("s1",156,"P"), preAway("s2",148,"P"), preAway("s3",124,"P"), preAway("s4",118,"P"), preAway("s5",116,"P"), preAway("s6",114,"P"),
  preAway("s7",112,"P"), preAway("s8",99,"P"), preAway("c1",93,"P"),
  preAway("s9",69,""),
- copyStep(MASHA[0],{at:59,sh:"",txt:"Mash prep: peel the potatoes and cut them into 1.5 inch chunks, straight into the potato pot. Cover with the cold water and add the water salt, and the bay leaf if you are using it. Lid on, into the fridge until you are home."}),
+ copyStep(MASHA[0],{at:59,sh:"",txt:"Peel the potatoes, dropping each one whole into the potato pot, about half full of cold water. Lid on, into the fridge until you are home."}),
  preAway("s11",39,""), preAway("f1",24,""), preAway("f2",21,""), preAway("f3",17,""), preAway("f3c",16,""), preAway("f4",8,""), preAway("f5",7,""),
  preAway("sc",5,"","Slow Cook on High (More), valve to Venting or a glass lid on, for {SC}: set {SCSET}. When it ends it drops to Keep Warm on its own and holds until you are home. Change the length with Slow cook at the top, 1 to 2 hours."),
  {id:"w2",at:3,d:3,lane:"prep",txt:"Check before you go: the Instant Pot is on Slow Cook with the valve at Venting or the glass lid on, and Keep Warm on; the potato pot is in the fridge; the burners are off."},
  {id:"w3",at:0,d:1,lv:true,lane:"away",txt:"Out the door. Nothing to do until you are home: the roast slow cooks and drops to Keep Warm on its own."},
- {id:"h1",at:62,d:2,sh:"B",eat:true,lane:"prep",txt:"Home. The Instant Pot is on Slow Cook or Keep Warm: leave it. The potato pot out of the fridge and onto the stove; the butter goes on next."}
-].concat(MASHA.slice(1).map(function(s){ return copyStep(s,{eat:true}); }), [copyStep(SERVE,{eat:true,txt:"The Instant Pot is on Keep Warm. Taste the gravy and add a pinch of salt if it wants it. Serve: mash on the plate, the roast chunks, carrots and rutabaga beside it, gravy over the top and the rest in a jug. Leftovers into the fridge within 2 hours."})]);
+ {id:"h1",at:74,d:2,sh:"B",eat:true,lane:"prep",txt:"Home. The Instant Pot is on Slow Cook or Keep Warm: leave it. The potato pot out of the fridge and onto the stove; the butter goes on now."}
+].concat(MASHA.slice(1).map(function(s){ return copyStep(s,{eat:true}); }).map(function(s){ return s.id === "mb1" ? copyStep(s,{at:72}) : s; }), [copyStep(SERVE,{eat:true,txt:"The Instant Pot is on Keep Warm. Taste the gravy and add a pinch of salt if it wants it. Serve: mash on the plate, the roast chunks, carrots and rutabaga beside it, gravy over the top and the rest in a jug. Leftovers into the fridge within 2 hours."})]);
 var STEPS = HOME;
 var TIMED = true;
 var KEY = CFG.key;
@@ -346,7 +346,7 @@ function stepAt(s){
 function stepDur(s){ if(s.dB) return s.dB + boilMin(potLb()) - 15; return s.d === "P" ? pressMin(state.lb) : s.d === "B" ? boilMin(potLb()) : s.d === "SC" ? scMin() : s.d; }
 /* Slow Cook length, 1 to 2 hours in 15 minute steps; 90 by default. */
 function scMin(){ var v = Math.round((state.sc || 90)/15)*15; return Math.max(60, Math.min(120, v)); }
-function stepTxt(s){ return s.txt.replace(/\{P\}/g, pressMin(state.lb)).replace(/\{B\}/g, boilMin(potLb())).replace(/\{W\}/g, fmtLb(state.lb)).replace(/\{SCSET\}/g, Math.floor(scMin()/60) + ":" + pad2(scMin() % 60)).replace(/\{SC\}/g, durTxt(scMin())); }
+function stepTxt(s){ return s.txt.replace(/\{Q:(\w+)\}/g, function(m, id){ var it = byId(id); return it ? label(it).qty : m; }).replace(/\{P\}/g, pressMin(state.lb)).replace(/\{B\}/g, boilMin(potLb())).replace(/\{W\}/g, fmtLb(state.lb)).replace(/\{SCSET\}/g, Math.floor(scMin()/60) + ":" + pad2(scMin() % 60)).replace(/\{SC\}/g, durTxt(scMin())); }
 
 function pad2(n){ return (n < 10 ? "0" : "") + n; }
 function hmOf(d){ return pad2(d.getHours()) + ":" + pad2(d.getMinutes()); }
@@ -385,9 +385,9 @@ var KW_MAX = 480;
 function keepWarmMin(){ return Math.round((serveDate() - awayBase())/60000) + 5 - scMin(); }
 function away(){ return leaveSet() && serveDate() - leaveDate() <= 12*3600000 && keepWarmMin() <= KW_MAX; }
 /* Latest you can leave: home at least 5 minutes after leaving (home is
-   just before the mash butter goes on, B + 47 minutes before Eating at),
+   just before the mash starts, B + 59 minutes before Eating at),
    and the Slow Cook started early enough to end by Eating at. */
-function homeMin(){ return boilMin(potLb()) + 47; }
+function homeMin(){ return boilMin(potLb()) + 59; }
 function latestLeaveMin(){ return Math.max(homeMin() + 5, scMin() - 5); }
 function awayBase(){
   var lv = leaveDate(), latest = new Date(serveDate().getTime() - latestLeaveMin()*60000);
@@ -440,7 +440,7 @@ function markAlong(){
     for(j=0;j<STEPS.length;j++){
       var s = STEPS[j]; if(j === i || s.opt || s.lv || s.lane === STEPS[i].lane || stepDur(s) < 5) continue;
       var st = stepClock(s).getTime(), en = st + stepDur(s)*60000;
-      if(st < t0 && en > t0) out.push('<b>' + (LANE[s.lane] || LANE.prep)[0] + '</b> until ' + hhmm(new Date(en)));
+      if((st < t0 || (st === t0 && j < i)) && en > t0) out.push('<b>' + (LANE[s.lane] || LANE.prep)[0] + '</b> until ' + hhmm(new Date(en)));
     }
     if(out.length){ var sp = document.createElement("span"); sp.className = "along"; sp.innerHTML = "Still running: " + out.join(" &middot; "); body.insertBefore(sp, body.firstChild); }
   }

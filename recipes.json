@@ -621,7 +621,7 @@
     "MSG",
     "Parmesan, finely grated"
    ],
-   "steps": 28
+   "steps": 31
   },
   {
    "slug": "peppercorn-mushroom-sauce",
@@ -803,7 +803,7 @@
    "sub": "Yukon Golds boiled in salted water and riced, folded with half a stick of butter and a little good olive oil that have slowly confited garlic and fried rosemary, stopped with a cup of cream, loosened with their own cooking water, finished with salt, MSG and a little Parmesan. Two burners at once. Scaled by the weight of potatoes.",
    "chapter": "sides",
    "label": "POT",
-   "blurb": "garlic confit butter · riced · two burners · scales by potato weight",
+   "blurb": "garlic confit butter · riced · two burners · his own process",
    "meal": [
     "side",
     "dinner"
@@ -814,10 +814,10 @@
    "heat": [
     "stovetop"
    ],
-   "total": 60,
+   "total": 72,
    "active": 35,
    "band": "hour",
-   "time": "1 hr",
+   "time": "1 hr 12",
    "effort": 2,
    "ahead": false,
    "kid": true,
@@ -843,7 +843,7 @@
     "MSG",
     "Parmesan, finely grated (not too much)"
    ],
-   "steps": 8
+   "steps": 12
   },
   {
    "slug": "quick-pickles",
