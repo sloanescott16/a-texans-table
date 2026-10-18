@@ -197,6 +197,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   <p class="note"><b>Infrared readings:</b> the gun reads only the surface it points at, never the inside of the food or the depth of a liquid. The Instant Pot's inner pot is shiny stainless and reads low on bare metal, so aim at the oil, the fat or the brown bits. Aim close, since the spot it reads grows with distance, and read two or three spots: pans vary a lot from edge to centre. Simmering water, the butter and cream, and the gravy get a probe thermometer instead. Oven numbers are the dial settings.</p>
 </div>
 
+<script src="./mash-steps.js"></script>
 <script>
 /* Pot roast, job 1018-1447-1pa. Everything is built from the weight of meat.
    Ingredient amounts: base + per x weight, rounded to the item's step (up for
@@ -220,29 +221,17 @@ var ING = [
  {id:"worcs",g:"Pantry",per:1/3,step:0.5,unit:"tbsp",name:"Worcestershire sauce"},
  {id:"bay",g:"Pantry",per:2/3,step:1,name:"bay leaf",plural:"bay leaves"},
  {id:"cornstarch",g:"Pantry",base:0.75,per:0.75,step:0.5,unit:"tbsp",name:"cornstarch",note:"for the gravy, stirred into twice as much cold water"},
- {id:"oil",g:"Pantry",per:2/3,step:0.5,unit:"tbsp",name:"refined or light olive oil",note:"for the sear, plus a few drops to oil the pan after; not extra virgin at this heat"},
+ {id:"oil",g:"Pantry",per:2/3,step:0.5,unit:"tbsp",name:"refined or light olive oil",note:"for the sear on Saute; not extra virgin at this heat"},
  {id:"salt",g:"Pantry",per:1,step:0.25,unit:"tsp",name:"kosher salt, for the roast",note:"Diamond Crystal, 1 tsp per pound of meat; Morton is saltier, use half"},
  {id:"saltonion",g:"Pantry",per:1/12,step:0.125,unit:"tsp",name:"kosher salt, for the onions"},
  {id:"saltgravy",g:"Pantry",per:1/3,step:0.25,unit:"tsp",name:"kosher salt, for the gravy",note:"Diamond Crystal, with unsalted homemade stock; half with store-bought, then taste"},
- {id:"pepper",g:"Pantry",per:0.5,step:0.25,unit:"tsp",name:"black pepper, freshly ground"},
- {id:"potatoes",g:"Mash",mash:true,per:1,step:0.25,unit:"lb",name:"Yukon Gold potatoes",note:"peeled, in 1.5 inch chunks; matched to the meat, 1 to 1"},
- {id:"water",g:"Mash",mash:true,per:1,step:0.5,unit:"quart",units:"quarts",name:"cold water, for the potatoes",note:"covers them by about an inch"},
- {id:"saltwater",g:"Mash",mash:true,per:2/3,step:0.5,unit:"tbsp",name:"kosher salt, for the potato water",note:"Diamond Crystal; Morton, half"},
- {id:"bayp",g:"Mash",mash:true,per:1/3,step:1,min:1,name:"bay leaf, optional",plural:"bay leaves, optional",note:"in the potato water, if you're feeling fancy"},
- {id:"butter",g:"Mash",mash:true,per:8/3,step:1,unit:"tbsp",name:"unsalted butter",note:"8 tbsp is 1 stick"},
- {id:"mgarlic",g:"Mash",mash:true,per:2/3,step:1,min:1,name:"garlic clove, smashed",plural:"garlic cloves, smashed"},
- {id:"mrosemary",g:"Mash",mash:true,per:2/3,step:1,min:1,name:"sprig fresh rosemary",plural:"sprigs fresh rosemary"},
- {id:"cream",g:"Mash",mash:true,per:1/3,step:0.25,unit:"cup",units:"cups",name:"heavy cream"},
- {id:"resw",g:"Mash",mash:true,per:1/3,step:0.25,unit:"cup",units:"cups",name:"potato cooking water, kept back",note:"dipped out before draining; most mashes take a quarter to a half of it"},
- {id:"msalt",g:"Mash",mash:true,per:1/3,step:0.25,unit:"tsp",name:"kosher salt, for the mash",note:"Diamond Crystal; taste, then up to half as much again"},
- {id:"msg",g:"Mash",mash:true,per:1/6,step:0.125,unit:"tsp",name:"MSG"},
- {id:"parm",g:"Mash",mash:true,per:1/6,step:0.125,unit:"cup",units:"cups",name:"Parmesan, finely grated",note:"on a Microplane, loosely packed; 1/2 cup is about 15 g. Not too much"},
- {id:"truffle",g:"Mash",fixed:"3 drops",name:"truffle oil, optional",note:"only on top at the table; start with 3 drops, never in the pot"}
-];
-var GAPMEAT = "Not fork-tender when it comes out? Back into the liquid, lid on, 10 more minutes at high pressure and a 10 minute natural release, then tap Start now: every clock below moves with it.";
+ {id:"pepper",g:"Pantry",per:0.5,step:0.25,unit:"tsp",name:"black pepper, freshly ground"}
+].concat(MASH_ING.map(function(it){ var n = {}, k; for(k in it) n[k] = it[k]; n.g = "Mash"; if(it.id === "potatoes") n.note = it.note + "; matched to the meat, 1 to 1"; return n; }));
+var GAPMEAT = "Not fork-tender when it comes out? Check before the veg go in, and if it fights the fork, keep the carrots and rutabaga in their bowl: meat back into the liquid, lid on, 10 more minutes at high pressure and a 10 minute natural release, then tap Start now: every clock below moves with it.";
+var GAPCHUNK = "Chunks still tough once the veg are in? Leave the veg where they are: chunks into the pot, lid on, 2 more minutes at high pressure and a quick release, so the veg do not go to mush. When it beeps, tick off what is done and tap Start now as you open the lid: every clock from the gravy on moves with it.";
 var FIN = [
  {id:"f1",at:20,d:3,lane:"cooker",txt:"Finish, all in the Instant Pot. Release what pressure is left and open the lid away from you. Meat out to a cutting board. Fish out the herb stems and bay leaves and skim the fat. Carrots and rutabaga into the liquid and push them under. Lid on, valve to Sealing, Pressure Cook on high for 3 minutes; hot liquid comes up to pressure in about 5.",uses:["carrots","rutabaga"],gap:GAPMEAT},
- {id:"f2",at:17,d:8,lane:"prep",txt:"While the pot comes up and runs its 3 minutes: cut the meat into large chunks, about 2 inches, against the grain where you can see it. It should part at the seams with no fight: about 200&deg;F inside, far past the USDA 145&deg;F minimum, which is what chuck needs to go tender. Tent with foil."},
+ {id:"f2",at:17,d:8,lane:"prep",txt:"While the pot comes up and runs its 3 minutes: cut the meat into large chunks, about 2 inches, against the grain where you can see it. It should part at the seams with no fight: about 200&deg;F inside, far past the USDA 145&deg;F minimum, which is what chuck needs to go tender. Tent with foil.",gap:GAPCHUNK},
  {id:"f3",at:9,d:1,lane:"cooker",txt:"The Instant Pot beeps: quick release at once and open the lid away from you. A knife should slide into a carrot chunk with a little bite left."},
  {id:"f4",at:6,d:3,lane:"cooker",txt:"Gravy, in the Instant Pot: Saute on high and bring the liquid back to a boil, 212&deg;F on a probe. Stir the cornstarch into twice as much cold water, pour it in and stir gently round the veg for 1 to 2 minutes until it coats a spoon. Stir in the gravy salt, taste, then Cancel.",uses:["cornstarch","saltgravy"]},
  {id:"f5",at:2,d:2,lane:"cooker",txt:"Meat back into the pot with its board juices and stir it through gently. Keep Warm on until you dish up."}
@@ -259,18 +248,7 @@ var PRE = [
  {id:"s8",at:97,d:"P",sh:"P",lane:"cooker",txt:"Check it has reached pressure: the float valve is up and the {P} minute count has started; start this step's timer with it. Not up yet? It is running late: tap Start now once it is and every clock below moves with it."},
  {id:"s9",at:70,d:8,sh:"P",lane:"prep",txt:"Veg for the finish: peel the carrots and cut them into 1.5 inch chunks, halving the thick ends lengthwise. Peel the rutabaga thickly and cut it into 1 inch chunks, smaller than the carrot since it is denser. Both into one bowl, ready to tip in.",uses:["carrots","rutabaga"]}
 ];
-var MASHA = [
- {id:"m1",at:56,d:10,sh:"B",lane:"mash",txt:"Mash prep: peel the potatoes and cut them into 1.5 inch chunks, straight into the potato pot. Cover with the cold water and add the water salt, and the bay leaf if you are using it.",uses:["potatoes","water","saltwater","bayp"]},
- {id:"m2",at:44,d:"B",sh:"B",lane:"mash",txt:"Potato pot on high heat, lid ajar, to a boil, 212&deg;F on a probe: about {B} minutes."},
- {id:"m3",at:29,d:15,lane:"mash",txt:"Potatoes boiling: down to a lively simmer, 195 to 205&deg;F on a probe, about 15 minutes, until a fork slides in with just a little resistance at the centre. Just fork tender, not falling apart."},
- {id:"mb1",at:27,d:6,lane:"sauce",txt:"Small saucepan over medium-low: the butter, smashed garlic and rosemary. Let it melt, foam and simmer about 6 minutes, until the foam and the bits on the bottom are just turning golden, about 240 to 250&deg;F on a probe in the butter. Golden, not brown.",uses:["butter","mgarlic","mrosemary"]},
- {id:"mb2",at:21,d:7,lane:"sauce",txt:"Cream into the butter, slowly, as it bubbles up. Then the burner to its lowest: hold it at 160 to 180&deg;F on a probe, never boiling, stirring now and then.",uses:["cream"]},
- {id:"m4",at:14,d:2,lane:"mash",txt:"Potatoes: before you drain, dip out the cooking water to keep back with a mug. Drain, then back into the hot pot, off the heat, for a minute to steam dry. Bay leaf out.",uses:["resw"]},
- {id:"m5",at:12,d:3,lane:"mash",txt:"Rice the potatoes back into their pot, off the heat."},
- {id:"m6",at:8,d:2,lane:"mash",txt:"Lift the garlic and rosemary out of the cream. Pour all the butter and cream into the potatoes and mix well with a spatula, no more than you need to."},
- {id:"m7",at:4,d:1,lane:"mash",txt:"Kept-back water into the mash, 2 tablespoons at a time, mixing, until it is as loose as you like it."},
- {id:"m8",at:3,d:2,lane:"mash",txt:"Season the mash: the salt, MSG and Parmesan; mix and taste, and up to half as much salt again if it wants it. Lid on, off the heat: it holds hot for half an hour.",uses:["msalt","msg","parm"]}
-];
+var MASHA = MASH_STEPS;
 var SERVE = {id:"sv",at:0,d:5,lane:"serve",txt:"Serve: mash on the plate, the roast chunks, carrots and rutabaga beside it, gravy over the top and the rest in a jug. Truffle oil, if you like: a few drops on top of the mash at the table, start with 3. Leftovers into the fridge within 2 hours.",uses:["truffle"]};
 var S11 = {id:"s11",at:35,d:15,lane:"cooker",txt:"Cook cycle ends. Natural release for 15 minutes: leave the valve alone. The meat relaxes as the pressure drops; a quick release here makes it tough and stringy."};
 var HOME = PRE.concat(MASHA, [S11], FIN, [SERVE]);
