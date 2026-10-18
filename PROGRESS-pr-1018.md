@@ -14,3 +14,6 @@
 - pot-roast.html rebuilt on the live engine: weight scaler, new finish, rutabaga, stock, onions, celery, mash on the same clock, a timer on every step.
 - mash.html new, same engine, scales by potato weight, links both ways with ?serve=&lb=.
 - index.html DATA and recipes.json: pot roast card updated, mash card added under Sides. sw.js caches mash.html, cache v14.
+
+## Stage 3, 18 Oct: tested
+- tests/check-pr-1018.ts run headless: 35/35 pass. 390 px renders checked by eye. HANDOFF-pr-1018.md written. Done; not pushed.
