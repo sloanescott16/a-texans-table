@@ -124,24 +124,38 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
  .side{position:sticky;top:calc(var(--barh,8px) + 8px);max-height:calc(100vh - var(--barh,8px) - 16px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding-bottom:8px}
  .side h2:first-child,.main h2:first-child{margin-top:20px}
 }
+/* Weight input, servings readout, step timers, page links. */
+.step input.wt{width:62px;border:0;background:transparent;color:var(--ink);font-family:var(--mono);font-size:19px;text-align:center;padding:4px 0;-moz-appearance:textfield}
+.step input.wt::-webkit-inner-spin-button,.step input.wt::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.srv{display:block;font-family:var(--mono);font-size:19px;padding:8px 2px;min-width:30px}
+.links{font-size:14px;margin:12px 0 0;color:var(--muted)}
+.links a{color:var(--citrus);font-weight:600}
+.tmr{display:flex;gap:8px;align-items:center;margin-top:8px;cursor:default}
+.tb{min-height:40px;font-family:var(--mono);font-size:14px;color:var(--ground);background:var(--brine);border:0;border-radius:3px;padding:6px 12px;cursor:pointer}
+.tb.alt{color:var(--ink);background:transparent;border:1px solid var(--rule)}
+.tl{font-family:var(--mono);font-size:20px;font-variant-numeric:tabular-nums}
+.tl.done{color:var(--citrus);font-family:var(--stamp)}
+.row.on .tmr{opacity:0.5}
 </style>
 </head>
 <body>
 <div class="wrap">
   <a class='back' href='./'>&lsaquo; A Texan&rsquo;s Table</a>
   <h1>Pot roast</h1>
-  <p class="sub">Classic pot roast. A hard sear and a red wine deglaze in the cast iron, then everything into the Instant Pot for 60 minutes under pressure in wine and broth, then the gravy thickened in the pot and the carrots and roast left in it on Slow Cook until dinner, and a Yukon Gold mash on the stove timed to finish with it.</p>
+  <p class="sub">Classic pot roast, scaled by the weight of meat you have. A hard sear and a red wine deglaze in the cast iron, then the Instant Pot for the rest: pressure in homemade chicken stock and wine, then the meat out while the carrots and rutabaga get a 3 minute burst, the meat back in big chunks. A garlic and rosemary Yukon Gold mash on the same clock, ready with it.</p>
   <div class="bar">
     <div class="controls">
       <div class="ctl"><label for="serve">Eating at</label><input type="time" id="serve" value="18:00"></div>
-      <div class="ctl"><label for="leave">Leave by <button type="button" class="lvx" id="noleave">clear</button></label><input type="time" id="leave" value="17:00"></div>
-      <div class="ctl"><label for="dec">Servings</label><div class="step"><button id="dec" aria-label="Fewer">&minus;</button><span id="sv">6</span><button id="inc" aria-label="More">+</button></div></div>
+      <div class="ctl"><label for="leave">Leave by <button type="button" class="lvx" id="noleave">clear</button></label><input type="time" id="leave" value=""></div>
+      <div class="ctl"><label for="wt">Chuck, lb</label><div class="step"><button id="dec" aria-label="Less meat">&minus;</button><input type="number" id="wt" class="wt" value="3" min="1.5" max="6" step="0.25" inputmode="decimal" aria-label="Weight of chuck in pounds"><button id="inc" aria-label="More meat">+</button></div></div>
+      <div class="ctl"><label>Serves</label><span class="srv" id="sv">6</span></div>
       <button class="ghost" id="now">Start now</button>
     </div>
     <div id="nowline"></div>
     <div class="moved" id="moved"></div>
     <div class="moved" id="leavenote"></div>
   </div>
+  <p class="links"><a id="mashlink" href="./mash.html">Mash on its own page &rsaquo;</a> <span>same Eating at, potatoes matched to the meat</span></p>
 
   <div class="layout">
   <div class="side">
@@ -171,37 +185,136 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   </div>
   </div>
 
-  <p class="note"><b>Times are for about 3 lb of chuck in two pieces in a 6 quart Instant Pot,</b> which is the 6 servings setting. The servings buttons scale the shopping, not the clock. For 2 to 4 servings a smaller roast needs about 45 minutes at high pressure; at 8 servings, about 4 lb, give it 70; for 12 you need an 8 quart pot or two batches, about 80 minutes, and the liquid must stay under the max line. If you set a longer time, tick the steps as you go and tap Start now when the cycle ends: every clock after it catches up. Check by feel.</p>
-  <p class="note"><b>The cast iron is only for the sear and the deglaze.</b> It browns harder than the Instant Pot&rsquo;s Saute, and every drop of the pan goes into the pot. The cook itself, pressure, release, gravy, the carrots&rsquo; Slow Cook and the Keep Warm hold, is all in the Instant Pot, and the cast iron is washed, dried on the burner, oiled and put away while the pressure cycle runs.</p>
-  <p class="note"><b>Leave by:</b> the time you have to head out before dinner. Everything hands-on is done by then: the roast and carrots slow cook in the gravy in the Instant Pot, timed to end at Eating at and drop to Keep Warm, the mash is covered in a warm oven, and at Eating at you only slice and serve. Clear it to cook straight through to dinner.</p>
-  <p class="note"><b>Why the carrots go in last:</b> cooked the full 60 minutes under pressure they turn to mush. In 2 inch chunks, in the hot gravy on Slow Cook More, they go tender with some bite in an hour or more, so the page never sets the Slow Cook shorter than 1 hour; if Leave by is too close to Eating at for that, the plan starts earlier instead. Past 3 hours they only get softer, so the page stops the Slow Cook at 3 hours and Keep Warm holds the rest. If your pot sets Slow Cook only in half hours, round up to the next half hour. It may finish a few minutes after Eating at and simply sits ready, and the extra time only makes the carrots more tender.</p>
-  <p class="note"><b>Doneness:</b> chuck is safe at 145F with a 3 minute rest (USDA), but it stays tough until the collagen melts at around 200F. Fork-tender is the test.</p>
-  <p class="note"><b>Leftovers:</b> fridge within 2 hours, 3 to 4 days covered, ideally sitting in the gravy. Reheat to 165F.</p>
-  <p class="note"><b>Infrared readings:</b> the gun reads only the surface it points at, never the inside of the food or the depth of a liquid. Cast iron and dark, seasoned pans read true; shiny stainless and aluminum read low, so aim at the oil, the fat or a dark spot. Aim close, since the spot it reads grows with distance, and read two or three spots: pans vary a lot from edge to centre. On a grill, aim at a grate bar, not the coals. Simmering water, brine and deep oil get a probe thermometer instead. Oven and smoker numbers are the dial settings.</p>
+  <p class="note"><b>The weight of meat drives everything.</b> Put in the weight of chuck you have: every amount, the pressure time, the potato boil and the servings follow it, at about 1/2 lb of raw chuck a serving, so 3 lb serves 6. The page is built on 3 lb in two pieces in a 6 quart Instant Pot, 60 minutes at high. Under 3 lb takes 15 minutes less a pound, over 3 lb 10 more a pound (2 lb 45, 4.5 lb 75), rounded to 5. Over about 4.5 lb use an 8 quart pot and keep the liquid under the max line. One single thick roast instead of two pieces: give it 10 minutes more and tap Start now when the count begins.</p>
+  <p class="note"><b>The finish, all in the Instant Pot:</b> meat out, the carrots and rutabaga go into the hot liquid for 3 minutes at high pressure, the meat is cut into large chunks during those minutes, then it goes back in and is stirred through. It replaces the Slow Cook finish, which left the carrots undone after about 2 hours. No device change: the Instant Pot does pressure, release, the veg, the gravy and the Keep Warm hold.</p>
+  <p class="note"><b>Why rutabaga:</b> onion melts and celery goes soft in a long pressure cook, which is what you want from them in the gravy, but it left the carrots as the only thing with colour. Rutabaga keeps its shape under pressure, its gold flesh sits beside the orange carrot, and its peppery sweetness suits beef; it is the old pot roast root that is not a potato. Cut it smaller than the carrots, since it is denser. Other picks for the same slot, same 3 minutes: parsnips (sweet but pale; 1.5 inch chunks), cremini mushrooms (firm and meaty, but brown; halved), frozen peeled pearl onions (whole), golden beets (earthy and gold; 1 inch). No potatoes: it is served with the mash.</p>
+  <p class="note"><b>Onions, don&rsquo;t skimp:</b> they dissolve into the gravy, and that is their job; one was not enough at 3 lb. Celery is up to 5 stalks at 3 lb for the same reason.</p>
+  <p class="note"><b>Stock:</b> homemade chicken stock is the default, and it is the better pot. Low-sodium beef stock is the alternative. Homemade is usually unsalted, which is what the gravy salt is for; with store-bought stock use half of it and taste.</p>
+  <p class="note"><b>The cast iron is only for the sear and the deglaze.</b> It browns harder than the Instant Pot&rsquo;s Saute, and every drop of the pan goes into the pot. It is washed, dried on the burner, oiled and put away while the pressure cycle runs.</p>
+  <p class="note"><b>Leave by:</b> optional. Set it when you have to head out before dinner. Everything up to the pressure cook and the whole mash is done before you go: the roast cooks, releases and sits on Keep Warm in the Instant Pot on its own, the mash holds covered in a warm oven, and the cut veg wait in the fridge. Be home about 22 minutes before Eating at for the finish. Blank, the page cooks straight through to dinner.</p>
+  <p class="note"><b>Doneness:</b> chuck is safe at 145&deg;F with a 3 minute rest (USDA), but it stays tough until the collagen melts at around 200&deg;F. Fork-tender is the test.</p>
+  <p class="note"><b>Leftovers:</b> fridge within 2 hours, 3 to 4 days covered, ideally sitting in the gravy. Reheat to 165&deg;F.</p>
+  <p class="note"><b>Infrared readings:</b> the gun reads only the surface it points at, never the inside of the food or the depth of a liquid. Cast iron and dark, seasoned pans read true; shiny stainless and aluminum read low, so aim at the oil, the fat or a dark spot. Aim close, since the spot it reads grows with distance, and read two or three spots: pans vary a lot from edge to centre. Simmering water, the butter and cream, and the gravy get a probe thermometer instead. Oven numbers are the dial settings.</p>
 </div>
 
 <script>
-var ING = [{"id":"chuck","g":"Butcher","per":0.5,"step":0.25,"unit":"lb","name":"boneless chuck roast","note":"about 3 lb for 6, here in two pieces (two muscles); well marbled"},{"id":"onion","g":"Produce","per":0.3333333333333333,"step":0.5,"unit":"","name":"yellow onion","plural":"yellow onions","note":"in thick wedges"},{"id":"celery","g":"Produce","per":0.5,"step":1,"unit":"","name":"celery stalk","plural":"celery stalks","note":"in 2 inch pieces"},{"id":"garlic","g":"Produce","per":0.16666666666666666,"step":0.5,"unit":"","name":"head of garlic","plural":"heads of garlic","note":"cloves peeled and smashed"},{"id":"carrots","g":"Produce","per":0.16666666666666666,"step":0.25,"unit":"lb","name":"carrots","note":"peeled, in 2 inch chunks; they slow cook in the gravy at the end"},{"id":"thyme","g":"Produce","per":1,"step":1,"unit":"","name":"sprig fresh thyme","plural":"sprigs fresh thyme"},{"id":"rosemary","g":"Produce","per":0.3333333333333333,"step":1,"unit":"","name":"sprig fresh rosemary","plural":"sprigs fresh rosemary"},{"id":"broth","g":"Pantry","per":5.333333333333333,"step":4,"unit":"oz","metric":true,"name":"low-sodium beef broth","note":"a 32 oz carton is 4 cups"},{"id":"paste","g":"Pantry","per":0.3333333333333333,"step":0.3333333333333333,"unit":"tbsp","name":"tomato paste"},{"id":"wine","g":"Pantry","per":0.16666666666666666,"step":0.3333333333333333,"unit":"cup","name":"dry red wine","note":"one you would drink; or more broth"},{"id":"worcs","g":"Pantry","per":0.16666666666666666,"step":0.5,"unit":"tbsp","name":"Worcestershire sauce"},{"id":"bay","g":"Pantry","per":0.3333333333333333,"step":1,"unit":"","name":"bay leaf","plural":"bay leaves"},{"id":"cornstarch","g":"Pantry","per":0.5,"step":1,"unit":"tbsp","name":"cornstarch","note":"for the gravy, stirred into twice as much cold water"},{"id":"oil","g":"Pantry","per":0.3333333333333333,"step":1,"unit":"tbsp","name":"olive oil","note":"for the sear in the cast iron, plus a few drops to oil the pan after"},{"id":"salt","g":"Pantry","per":0.5,"step":0.5,"unit":"tsp","name":"kosher salt, for the roast","note":"Diamond Crystal, about 1 tsp per pound of meat; Morton is saltier, use half. More to taste in the gravy"},{"id":"pepper","g":"Pantry","per":0.25,"step":0.5,"unit":"tsp","name":"black pepper, freshly ground"},{"id":"potatoes","g":"Mash","per":0.5,"step":0.25,"unit":"lb","name":"Yukon Gold potatoes","note":"peeled, in 1.5 inch chunks"},{"id":"butter","g":"Mash","per":1.3333333333333333,"step":1,"unit":"tbsp","name":"unsalted butter","note":"8 tbsp is 1 stick"},{"id":"cream","g":"Mash","per":0.125,"step":0.25,"unit":"cup","name":"heavy cream","note":"warm; add until it looks right, up to a splash more"},{"id":"saltmash","g":"Mash","per":0.16666666666666666,"step":0.5,"unit":"tbsp","name":"kosher salt, for the potato water","note":"more to taste in the finished mash"}];
-var STEPS = [{"id":"p1","at":462,"lane":"fridge","opt":true,"txt":"Optional, worth it: salt ahead. Pat both pieces of chuck dry and salt them on every side with the roast salt from the list. Uncovered on a rack over a plate, bottom of the fridge. Do it by this time, 4 hours before the first move; the night before is even better. Pepper waits for cook day. Not doing it? Tap Skip and the salt goes on in the first step.","uses":["salt"]},{"id":"s1","at":222,"lane":"prep","txt":"Pat both pieces of chuck bone dry; salt every side (unless they were salted ahead) and pepper them. Cut the onions into thick wedges and the celery into 2 inch pieces; peel and smash the garlic. Cast iron on the stove over medium-high with the oil: give it about 8 minutes, until the pan reads 400 to 425°F on the infrared, oil shimmering. At this heat use refined or light olive oil or a neutral oil; extra virgin olive oil smokes there.","uses":["salt","pepper","oil","onion","celery","garlic"]},{"id":"s2","at":214,"lane":"iron","txt":"Sear hard in the cast iron. Both pieces in with room between them and leave them alone: about 5 minutes on each broad side, a minute or two on the edges, until deep brown all over. Grey is no flavor. Out to a plate.","uses":["chuck"]},{"id":"s3","at":199,"lane":"iron","txt":"Heat down to medium, the pan settling to about 325 to 350°F. Onion and celery into the fat with a pinch of salt, about 6 minutes, scraping up the brown bits as they soften.","uses":["onion","celery"]},{"id":"s4","at":193,"lane":"iron","txt":"Garlic and tomato paste in. Stir about 2 minutes until the paste goes from red to brick.","uses":["garlic","paste"]},{"id":"s5","at":191,"lane":"iron","txt":"Deglaze: pour in the wine and scrape the pan completely clean. Let it bubble about a minute, no longer: it only has to lift the brown bits.","uses":["wine"]},{"id":"s6","at":189,"lane":"cooker","txt":"Into the Instant Pot: tip in everything from the cast iron, every drop, then swirl a splash of the broth round the pan and pour that in too. The rest of the broth, Worcestershire, thyme, rosemary and bay, then both pieces of chuck and their juices on top. Stir so nothing sits on the bottom and stay under the max fill line. Cast iron off the heat onto a cold burner. That is all the cast iron does: from here the whole cook is in the Instant Pot.","uses":["broth","worcs","thyme","rosemary","bay"]},{"id":"s7","at":186,"lane":"cooker","txt":"Lid on, valve to Sealing, Pressure Cook on high for 60 minutes: right for about 3 lb of chuck in two pieces (a single 4 lb roast needs 70; the clocks are timed for 60). With this much liquid it takes about 13 minutes to come up to pressure before the count starts."},{"id":"s8","at":173,"lane":"cooker","txt":"Check it has reached pressure: the float valve is up and the 60 minute count has started. If it has not, it is running late; tap Start now once it does and every clock below moves with it."},{"id":"c1","at":167,"lane":"iron","txt":"Cast iron care while it cooks. Wash the pan with hot water and a brush (a drop of soap is fine), towel it dry, then set it on a burner over medium for 3 or 4 minutes until it is bone dry and reads about 250°F (past 212°F no water is left). Off the heat, wipe a few drops of oil over it with a paper towel and wipe it back until it looks almost dry. Let it cool and put it away: about 10 minutes all told."},{"id":"s9","at":140,"lane":"prep","txt":"Carrot and mash prep: peel the carrots and cut them into 2 inch chunks, the size that goes tender in the slow cook at the end. Peel the potatoes, cut them into 1.5 inch chunks and put them in a pot of cold water, covered by an inch, to wait off the heat.","uses":["carrots","potatoes"]},{"id":"s11","at":113,"lane":"cooker","txt":"Cook cycle ends. Natural release for 15 minutes: leave the valve alone. The meat relaxes as the pressure drops; a quick release here makes it tough and stringy."},{"id":"s13","at":98,"lane":"cooker","txt":"Release what pressure is left and open the lid away from you. A fork should slide in and twist with no fight (about 200F inside; far past the USDA 145F safe minimum, which is what chuck needs to go tender). Roast out to a plate, loosely tented with foil. Fish out the herb stems and bay leaves and skim the fat off the liquid.","gap":"Not quite fork-tender? Carry on: the slow cook keeps working on it. Still tough? Lid back on, 10 more minutes at high pressure and a 10 minute natural release, then tap Start now and every clock below moves with it."},{"id":"s17","at":92,"lane":"cooker","txt":"Gravy: Saute on high and bring the liquid to a boil. Stir the cornstarch into twice as much cold water, whisk it in and boil 1 to 2 minutes until it coats a spoon. Take it a shade thicker than you want it: the carrots loosen it and it relaxes as it holds. Taste for salt, then Cancel to turn Saute off.","uses":["cornstarch"]},{"id":"sc","at":86,"lane":"cooker","sc":true,"txt":"Carrots into the gravy and stir them down, then the roast back in on top with its juices. Lid on, valve to Venting, Slow Cook on More (high) for {SC}","uses":["carrots"]},{"id":"s10","at":45,"lane":"mash","txt":"Potatoes: the salt into their water, high heat to a boil, about 12 minutes.","uses":["saltmash"]},{"id":"s12","at":33,"lane":"mash","txt":"Potatoes boiling: down to a lively simmer, about 195 to 205°F on a probe, for about 15 minutes, until a knife slides through with no resistance."},{"id":"s14","at":18,"lane":"mash","txt":"Drain the potatoes and put them back in the hot pot over low for a minute or two to steam dry. Warm the butter and cream together until the butter melts.","uses":["butter","cream"]},{"id":"s16","at":12,"lane":"mash","txt":"Mash or rice the potatoes, fold in the warm butter and cream, salt to taste. Lid on, off the heat; they hold hot for half an hour."},{"id":"s19","at":0,"lane":"serve","txt":"The Slow Cook ends and the pot drops to Keep Warm. Roast and carrots out onto the platter with the mash; slice the roast against the grain or pull it into big chunks along the seams. Gravy over the top and the rest in a jug. Leftovers into the fridge within 2 hours."}];
-/* Leave by plan. Used when a Leave by time is set and falls before Eating at.
-   Every step is timed back from Leave by, except the ones marked eat:true,
-   which are timed back from Eating at. Nothing hands-on sits between the two:
-   the roast holds in its gravy on Keep Warm in the Instant Pot, the mash
-   and carrots in a warm oven. Ids match the straight-through plan where the
-   step is the same move, so ticks carry over if the plan changes mid-cook. */
-var AWAY = [{"id":"p1","at":397,"lane":"fridge","opt":true,"txt":"Optional, worth it: salt ahead. Pat both pieces of chuck dry and salt them on every side with the roast salt from the list. Uncovered on a rack over a plate, bottom of the fridge. Do it by this time, 4 hours before the first move; the night before is even better. Pepper waits for cook day. Not doing it? Tap Skip and the salt goes on in the first step.","uses":["salt"]},{"id":"s1","at":157,"lane":"prep","txt":"Pat both pieces of chuck bone dry; salt every side (unless they were salted ahead) and pepper them. Cut the onions into thick wedges and the celery into 2 inch pieces; peel and smash the garlic. Cast iron on the stove over medium-high with the oil: give it about 8 minutes, until the pan reads 400 to 425°F on the infrared, oil shimmering. At this heat use refined or light olive oil or a neutral oil; extra virgin olive oil smokes there.","uses":["salt","pepper","oil","onion","celery","garlic"]},{"id":"s2","at":149,"lane":"iron","txt":"Sear hard in the cast iron. Both pieces in with room between them and leave them alone: about 5 minutes on each broad side, a minute or two on the edges, until deep brown all over. Grey is no flavor. Out to a plate.","uses":["chuck"]},{"id":"s3","at":134,"lane":"iron","txt":"Heat down to medium, the pan settling to about 325 to 350°F. Onion and celery into the fat with a pinch of salt, about 6 minutes, scraping up the brown bits as they soften.","uses":["onion","celery"]},{"id":"s4","at":128,"lane":"iron","txt":"Garlic and tomato paste in. Stir about 2 minutes until the paste goes from red to brick.","uses":["garlic","paste"]},{"id":"s5","at":126,"lane":"iron","txt":"Deglaze: pour in the wine and scrape the pan completely clean. Let it bubble about a minute, no longer: it only has to lift the brown bits.","uses":["wine"]},{"id":"s6","at":124,"lane":"cooker","txt":"Into the Instant Pot: tip in everything from the cast iron, every drop, then swirl a splash of the broth round the pan and pour that in too. The rest of the broth, Worcestershire, thyme, rosemary and bay, then both pieces of chuck and their juices on top. Stir so nothing sits on the bottom and stay under the max fill line. Cast iron off the heat onto a cold burner. That is all the cast iron does: from here the whole cook is in the Instant Pot.","uses":["broth","worcs","thyme","rosemary","bay"]},{"id":"s7","at":121,"lane":"cooker","txt":"Lid on, valve to Sealing, Pressure Cook on high for 60 minutes: right for about 3 lb of chuck in two pieces (a single 4 lb roast needs 70; the clocks are timed for 60). With this much liquid it takes about 13 minutes to come up to pressure before the count starts."},{"id":"s8","at":108,"lane":"cooker","txt":"Check it has reached pressure: the float valve is up and the 60 minute count has started. If it has not, it is running late; tap Start now once it does and every clock moves with it, Leave by included, so you can see how tight it is."},{"id":"c1","at":102,"lane":"iron","txt":"Cast iron care while it cooks. Wash the pan with hot water and a brush (a drop of soap is fine), towel it dry, then set it on a burner over medium for 3 or 4 minutes until it is bone dry and reads about 250°F (past 212°F no water is left). Off the heat, wipe a few drops of oil over it with a paper towel and wipe it back until it looks almost dry. Let it cool and put it away: about 10 minutes all told. Done long before Leave by."},{"id":"s9","at":75,"lane":"prep","txt":"Mash and carrot prep: peel the potatoes and cut them into 1.5 inch chunks. Peel the carrots and cut them into 2 inch chunks, the size that goes tender in the slow cook at the end.","uses":["potatoes","carrots"]},{"id":"s11","at":48,"lane":"cooker","txt":"Cook cycle ends. Natural release for 15 minutes: leave the valve alone. The meat relaxes as the pressure drops; a quick release here makes it tough and stringy."},{"id":"s10","at":45,"lane":"mash","txt":"Potatoes into a pot of cold water, covered by an inch, with the salt. High heat to a boil, about 12 minutes.","uses":["saltmash"]},{"id":"s13","at":33,"lane":"cooker","txt":"Release what pressure is left and open the lid away from you. A fork should slide in and twist with no fight (about 200F inside; far past the USDA 145F safe minimum, which is what chuck needs to go tender). Roast out to a plate, loosely tented with foil. Fish out the herb stems and bay leaves and skim the fat off the liquid.","gap":"Not quite fork-tender? Carry on: the slow cook keeps working on it. Still tough? Lid back on, 10 more minutes at high pressure and a 10 minute natural release, then tap Start now: every clock moves with it, Leave by included."},{"id":"s12","at":32,"lane":"mash","txt":"Potatoes boiling: down to a lively simmer, about 195 to 205°F on a probe, for about 15 minutes, until a knife slides through with no resistance."},{"id":"s17","at":27,"lane":"cooker","txt":"Gravy: Saute on high and bring the liquid to a boil. Stir the cornstarch into twice as much cold water, whisk it in and boil 1 to 2 minutes until it coats a spoon. Take it a shade thicker than you want it: the carrots loosen it and it relaxes as it holds. Taste for salt, then Cancel to turn Saute off.","uses":["cornstarch"]},{"id":"sc","at":21,"lane":"cooker","sc":true,"txt":"Carrots into the gravy and stir them down, then the roast back in on top with its juices. Lid on, valve to Venting, Slow Cook on More (high) for {SC}","uses":["carrots"]},{"id":"s14","at":17,"lane":"mash","txt":"Drain the potatoes and put them back in the hot pot over low for a minute or two to steam dry. Warm the butter and cream together until the butter melts.","uses":["butter","cream"]},{"id":"w1","at":15,"lane":"oven","txt":"Oven on Warm, or its lowest setting (about 170F), for the mash."},{"id":"s16","at":10,"lane":"mash","txt":"Mash or rice the potatoes, fold in the warm butter and cream, salt to taste. Into an oven-safe dish, covered with a lid or foil, and into the warm oven."},{"id":"w2","at":5,"lane":"prep","txt":"Check before you go: the Instant Pot shows Slow Cook counting down with the lid on and the valve at Venting, the mash is covered in the warm oven, the burners are off."},{"id":"w3","at":0,"lv":true,"lane":"away","txt":"Out the door. Nothing to do until you are home: the roast and carrots slow cook in the gravy and drop to Keep Warm on their own, the mash holds in the warm oven."},{"id":"h1","at":0,"eat":true,"lane":"serve","txt":"Home. The Slow Cook has just ended and the pot is on Keep Warm. Roast and carrots out onto the platter; slice the roast against the grain or pull it into big chunks along the seams. Mash out of the oven, oven off. Gravy over the top and the rest in a jug. Leftovers into the fridge within 2 hours."}];
-var HOME = STEPS;
+/* Pot roast, job 1018-1447-1pa. Everything is built from the weight of meat.
+   Ingredient amounts: base + per x weight, rounded to the item's step (up for
+   onions). Mash items (mash:true) scale by the potato weight, which on this
+   page is the meat weight, 1 to 1. Step times: "at" is minutes before the
+   reference time at 3 lb; sh "P" steps move with the pressure time, sh "B"
+   steps with the potato boil. "d" is the step's own timer in minutes. */
+var CFG = {key:"kitchen:pot-roast", min:1.5, max:6, inc:0.25, base:3, perServing:0.5, leave:true, potRatio:1};
+var ING = [
+ {id:"chuck",g:"Butcher",per:1,step:0.25,unit:"lb",name:"boneless chuck roast",note:"the weight you have drives the page; best as two pieces (two muscles), well marbled"},
+ {id:"onion",g:"Produce",per:2/3,step:0.5,up:true,name:"yellow onion",plural:"yellow onions",note:"in thick wedges. Don't skimp: they melt into the gravy"},
+ {id:"celery",g:"Produce",per:5/3,step:1,name:"celery stalk",plural:"celery stalks",note:"in 2 inch pieces"},
+ {id:"garlic",g:"Produce",per:1/3,step:0.5,name:"head of garlic",plural:"heads of garlic",note:"cloves peeled and smashed"},
+ {id:"carrots",g:"Produce",per:1/3,step:0.25,unit:"lb",name:"carrots",note:"peeled, in 1.5 inch chunks, thick ends halved lengthwise; in for the 3 minute finish"},
+ {id:"rutabaga",g:"Produce",per:1/3,step:0.25,unit:"lb",name:"rutabaga",note:"peeled thickly (most are waxed), in 1 inch chunks; in with the carrots. Or parsnips, cremini, pearl onions or golden beets: see the notes"},
+ {id:"thyme",g:"Produce",per:2,step:1,name:"sprig fresh thyme",plural:"sprigs fresh thyme"},
+ {id:"rosemary",g:"Produce",per:2/3,step:1,name:"sprig fresh rosemary",plural:"sprigs fresh rosemary"},
+ {id:"stock",g:"Pantry",base:1,per:1,step:0.5,unit:"cup",units:"cups",name:"homemade chicken stock",note:"the default, and better. Or low-sodium beef stock"},
+ {id:"wine",g:"Pantry",per:1/3,step:0.25,unit:"cup",units:"cups",name:"dry red wine",note:"one you would drink; or more stock"},
+ {id:"paste",g:"Pantry",per:2/3,step:0.5,unit:"tbsp",name:"tomato paste"},
+ {id:"worcs",g:"Pantry",per:1/3,step:0.5,unit:"tbsp",name:"Worcestershire sauce"},
+ {id:"bay",g:"Pantry",per:2/3,step:1,name:"bay leaf",plural:"bay leaves"},
+ {id:"cornstarch",g:"Pantry",base:0.75,per:0.75,step:0.5,unit:"tbsp",name:"cornstarch",note:"for the gravy, stirred into twice as much cold water"},
+ {id:"oil",g:"Pantry",per:2/3,step:0.5,unit:"tbsp",name:"refined or light olive oil",note:"for the sear, plus a few drops to oil the pan after; not extra virgin at this heat"},
+ {id:"salt",g:"Pantry",per:1,step:0.25,unit:"tsp",name:"kosher salt, for the roast",note:"Diamond Crystal, 1 tsp per pound of meat; Morton is saltier, use half"},
+ {id:"saltonion",g:"Pantry",per:1/12,step:0.125,unit:"tsp",name:"kosher salt, for the onions"},
+ {id:"saltgravy",g:"Pantry",per:1/3,step:0.25,unit:"tsp",name:"kosher salt, for the gravy",note:"Diamond Crystal, with unsalted homemade stock; half with store-bought, then taste"},
+ {id:"pepper",g:"Pantry",per:0.5,step:0.25,unit:"tsp",name:"black pepper, freshly ground"},
+ {id:"potatoes",g:"Mash",mash:true,per:1,step:0.25,unit:"lb",name:"Yukon Gold potatoes",note:"peeled, in 1.5 inch chunks; matched to the meat, 1 to 1"},
+ {id:"water",g:"Mash",mash:true,per:1,step:0.5,unit:"quart",units:"quarts",name:"cold water, for the potatoes",note:"covers them by about an inch"},
+ {id:"saltwater",g:"Mash",mash:true,per:2/3,step:0.5,unit:"tbsp",name:"kosher salt, for the potato water",note:"Diamond Crystal; Morton, half"},
+ {id:"bayp",g:"Mash",mash:true,per:1/3,step:1,min:1,name:"bay leaf, optional",plural:"bay leaves, optional",note:"in the potato water, if you're feeling fancy"},
+ {id:"butter",g:"Mash",mash:true,per:8/3,step:1,unit:"tbsp",name:"unsalted butter",note:"8 tbsp is 1 stick"},
+ {id:"mgarlic",g:"Mash",mash:true,per:2/3,step:1,min:1,name:"garlic clove, smashed",plural:"garlic cloves, smashed"},
+ {id:"mrosemary",g:"Mash",mash:true,per:2/3,step:1,min:1,name:"sprig fresh rosemary",plural:"sprigs fresh rosemary"},
+ {id:"cream",g:"Mash",mash:true,per:1/3,step:0.25,unit:"cup",units:"cups",name:"heavy cream"},
+ {id:"resw",g:"Mash",mash:true,per:1/3,step:0.25,unit:"cup",units:"cups",name:"potato cooking water, kept back",note:"dipped out before draining; most mashes take a quarter to a half of it"},
+ {id:"msalt",g:"Mash",mash:true,per:1/3,step:0.25,unit:"tsp",name:"kosher salt, for the mash",note:"Diamond Crystal; taste, then up to half as much again"},
+ {id:"msg",g:"Mash",mash:true,per:1/6,step:0.125,unit:"tsp",name:"MSG"},
+ {id:"parm",g:"Mash",mash:true,per:1/6,step:0.125,unit:"cup",units:"cups",name:"Parmesan, finely grated",note:"on a Microplane, loosely packed; 1/2 cup is about 15 g. Not too much"},
+ {id:"truffle",g:"Mash",fixed:"3 drops",name:"truffle oil, optional",note:"only on top at the table; start with 3 drops, never in the pot"}
+];
+var GAPMEAT = "Not fork-tender when it comes out? Back into the liquid, lid on, 10 more minutes at high pressure and a 10 minute natural release, then tap Start now: every clock below moves with it.";
+var FIN = [
+ {id:"f1",at:20,d:3,lane:"cooker",txt:"Finish, all in the Instant Pot. Release what pressure is left and open the lid away from you. Meat out to a cutting board. Fish out the herb stems and bay leaves and skim the fat. Carrots and rutabaga into the liquid and push them under. Lid on, valve to Sealing, Pressure Cook on high for 3 minutes; hot liquid comes up to pressure in about 5.",uses:["carrots","rutabaga"],gap:GAPMEAT},
+ {id:"f2",at:17,d:8,lane:"prep",txt:"While the pot comes up and runs its 3 minutes: cut the meat into large chunks, about 2 inches, against the grain where you can see it. It should part at the seams with no fight: about 200&deg;F inside, far past the USDA 145&deg;F minimum, which is what chuck needs to go tender. Tent with foil."},
+ {id:"f3",at:9,d:1,lane:"cooker",txt:"The Instant Pot beeps: quick release at once and open the lid away from you. A knife should slide into a carrot chunk with a little bite left."},
+ {id:"f4",at:6,d:3,lane:"cooker",txt:"Gravy, in the Instant Pot: Saute on high and bring the liquid back to a boil, 212&deg;F on a probe. Stir the cornstarch into twice as much cold water, pour it in and stir gently round the veg for 1 to 2 minutes until it coats a spoon. Stir in the gravy salt, taste, then Cancel.",uses:["cornstarch","saltgravy"]},
+ {id:"f5",at:2,d:2,lane:"cooker",txt:"Meat back into the pot with its board juices and stir it through gently. Keep Warm on until you dish up."}
+];
+var PRE = [
+ {id:"p1",at:384,d:5,sh:"P",lane:"fridge",opt:true,txt:"Optional, worth it: salt ahead. Pat the chuck dry and salt it on every side with the roast salt from the list. Uncovered on a rack over a plate, bottom of the fridge. Do it by this time, 4 hours before the first move; the night before is even better. Pepper waits for cook day. Not doing it? Tap Skip and the salt goes on in the first step.",uses:["salt"]},
+ {id:"s1",at:144,d:8,sh:"P",lane:"prep",txt:"Pat the chuck bone dry; salt every side (unless it was salted ahead) and pepper it. Cut the onions into thick wedges and the celery into 2 inch pieces; peel and smash the garlic. Cast iron on the stove over medium-high with the oil: give it about 8 minutes, until the pan reads 400 to 425&deg;F on the infrared, oil shimmering.",uses:["salt","pepper","oil","onion","celery","garlic"]},
+ {id:"s2",at:136,d:14,sh:"P",lane:"iron",txt:"Sear hard in the cast iron. Meat in with room between the pieces and leave it alone: about 5 minutes on each broad side, a minute on each edge, until deep brown all over. Grey is no flavor. Out to a plate.",uses:["chuck"]},
+ {id:"s3",at:122,d:6,sh:"P",lane:"iron",txt:"Heat down to medium, the pan settling to 325 to 350&deg;F on the infrared. Onions and celery into the fat with the onion salt, about 6 minutes, scraping up the brown bits as they soften.",uses:["onion","celery","saltonion"]},
+ {id:"s4",at:116,d:2,sh:"P",lane:"iron",txt:"Garlic and tomato paste in. Stir about 2 minutes until the paste goes from red to brick.",uses:["garlic","paste"]},
+ {id:"s5",at:114,d:1,sh:"P",lane:"iron",txt:"Deglaze: pour in the wine and scrape the pan completely clean. Let it bubble about a minute, no longer: it only has to lift the brown bits.",uses:["wine"]},
+ {id:"s6",at:113,d:3,sh:"P",lane:"cooker",txt:"Into the Instant Pot: tip in everything from the cast iron, every drop, then swirl a splash of the stock round the pan and pour that in too. The rest of the stock, Worcestershire, thyme, rosemary and bay, then the chuck and its juices on top. Stir so nothing sits on the bottom and stay under the max fill line. Cast iron off the heat onto a cold burner. From here the whole cook is in the Instant Pot.",uses:["stock","worcs","thyme","rosemary","bay"]},
+ {id:"s7",at:110,d:13,sh:"P",lane:"cooker",txt:"Lid on, valve to Sealing, Pressure Cook on high for {P} minutes: the time for {W} of chuck in two pieces. It takes about 13 minutes to come up to pressure before the count starts."},
+ {id:"s8",at:97,d:"P",sh:"P",lane:"cooker",txt:"Check it has reached pressure: the float valve is up and the {P} minute count has started; start this step's timer with it. Not up yet? It is running late: tap Start now once it is and every clock below moves with it."},
+ {id:"c1",at:91,d:10,sh:"P",lane:"iron",txt:"Cast iron care while it cooks. Wash the pan with hot water and a brush (a drop of soap is fine), towel it dry, then set it on a burner over medium for 3 or 4 minutes until it is bone dry and reads about 250&deg;F on the infrared (past 212&deg;F no water is left). Off the heat, wipe a few drops of oil over it with a paper towel and wipe it back until it looks almost dry. Let it cool and put it away."},
+ {id:"s9",at:70,d:8,sh:"P",lane:"prep",txt:"Veg for the finish: peel the carrots and cut them into 1.5 inch chunks, halving the thick ends lengthwise. Peel the rutabaga thickly and cut it into 1 inch chunks, smaller than the carrot since it is denser. Both into one bowl, ready to tip in.",uses:["carrots","rutabaga"]}
+];
+var MASHA = [
+ {id:"m1",at:56,d:10,sh:"B",lane:"mash",txt:"Mash prep: peel the potatoes and cut them into 1.5 inch chunks, straight into the potato pot. Cover with the cold water and add the water salt, and the bay leaf if you are using it.",uses:["potatoes","water","saltwater","bayp"]},
+ {id:"m2",at:44,d:"B",sh:"B",lane:"mash",txt:"Potato pot on high heat, lid ajar, to a boil, 212&deg;F on a probe: about {B} minutes."},
+ {id:"m3",at:29,d:15,lane:"mash",txt:"Potatoes boiling: down to a lively simmer, 195 to 205&deg;F on a probe, about 15 minutes, until a fork slides in with just a little resistance at the centre. Just fork tender, not falling apart."},
+ {id:"mb1",at:27,d:6,lane:"mash",txt:"Small saucepan over medium-low: the butter, smashed garlic and rosemary. Let it melt, foam and simmer about 6 minutes, until the foam and the bits on the bottom are just turning golden, about 240 to 250&deg;F on a probe in the butter. Golden, not brown.",uses:["butter","mgarlic","mrosemary"]},
+ {id:"mb2",at:21,d:7,lane:"mash",txt:"Cream into the butter, slowly, as it bubbles up. Then the burner to its lowest: hold it at 160 to 180&deg;F on a probe, never boiling, stirring now and then.",uses:["cream"]},
+ {id:"m4",at:14,d:2,lane:"mash",txt:"Potatoes: before you drain, dip out the cooking water to keep back with a mug. Drain, then back into the hot pot, off the heat, for a minute to steam dry. Bay leaf out.",uses:["resw"]},
+ {id:"m5",at:12,d:3,lane:"mash",txt:"Rice the potatoes back into their pot, off the heat."},
+ {id:"m6",at:8,d:2,lane:"mash",txt:"Lift the garlic and rosemary out of the cream. Pour all the butter and cream into the potatoes and mix well with a spatula, no more than you need to."},
+ {id:"m7",at:4,d:1,lane:"mash",txt:"Kept-back water into the mash, 2 tablespoons at a time, mixing, until it is as loose as you like it."},
+ {id:"m8",at:3,d:2,lane:"mash",txt:"Season the mash: the salt, MSG and Parmesan; mix and taste, and up to half as much salt again if it wants it. Lid on, off the heat: it holds hot for half an hour.",uses:["msalt","msg","parm"]}
+];
+var SERVE = {id:"sv",at:0,d:5,lane:"serve",txt:"Serve: mash on the plate, the roast chunks, carrots and rutabaga beside it, gravy over the top and the rest in a jug. Truffle oil, if you like: a few drops on top of the mash at the table, start with 3. Leftovers into the fridge within 2 hours.",uses:["truffle"]};
+var S11 = {id:"s11",at:35,d:15,lane:"cooker",txt:"Cook cycle ends. Natural release for 15 minutes: leave the valve alone. The meat relaxes as the pressure drops; a quick release here makes it tough and stringy."};
+var HOME = PRE.concat(MASHA, [S11], FIN, [SERVE]);
+
+/* Leave by plan. Before-you-go steps are timed back from Leave by; the
+   finish (eat:true) from Eating at. The pressure cycle, its natural release
+   and the Keep Warm hold all happen while you are out. */
+function copyStep(s, o){ var n = {}, k; for(k in s) n[k] = s[k]; for(k in o) n[k] = o[k]; return n; }
+function preAway(id, at, txt){ var s = null; for(var i=0;i<PRE.length;i++){ if(PRE[i].id === id) s = PRE[i]; } return copyStep(s, txt ? {at:at, sh:"B", txt:txt} : {at:at, sh:"B"}); }
+var AWAY = [
+ preAway("p1",367), preAway("s1",127), preAway("s2",119), preAway("s3",105), preAway("s4",99), preAway("s5",97), preAway("s6",96),
+ preAway("s7",93,"Lid on, valve to Sealing, Pressure Cook on high for {P} minutes: the time for {W} of chuck in two pieces. Keep Warm must be on: the pot holds the roast on it while you are out. It takes about 13 minutes to come up to pressure before the count starts."),
+ preAway("s8",80,"Check it has reached pressure: the float valve is up and the {P} minute count has started; start this step's timer with it. The cycle ends and releases on its own while you are out. Not up yet? Tap Start now once it is: every clock moves with it, Leave by included."),
+ preAway("c1",74), preAway("s9",64,"Veg for the finish: peel the carrots and cut them into 1.5 inch chunks, halving the thick ends lengthwise. Peel the rutabaga thickly and cut it into 1 inch chunks, smaller than the carrot since it is denser. Both into one covered bowl in the fridge for when you are home."),
+ copyStep(MASHA[0],{at:56}), copyStep(MASHA[1],{at:45}), copyStep(MASHA[2],{at:30}), copyStep(MASHA[3],{at:28}), copyStep(MASHA[4],{at:22}),
+ {id:"w1",at:17,d:1,lane:"oven",txt:"Oven on Warm, or its lowest setting (about 170&deg;F), for the mash."},
+ copyStep(MASHA[5],{at:15}), copyStep(MASHA[6],{at:13}), copyStep(MASHA[7],{at:10}), copyStep(MASHA[8],{at:8}),
+ copyStep(MASHA[9],{at:7,txt:"Season the mash: the salt, MSG and Parmesan; mix and taste, and up to half as much salt again if it wants it."}),
+ {id:"m9",at:5,d:2,lane:"oven",txt:"Mash into an oven-safe dish, covered with a lid or foil, into the warm oven."},
+ {id:"w2",at:3,d:3,lane:"prep",txt:"Check before you go: the Instant Pot is on Pressure Cook or Keep Warm with the valve at Sealing, the veg bowl is in the fridge, the mash is covered in the warm oven, the burners are off."},
+ {id:"w3",at:0,d:1,lv:true,lane:"away",txt:"Out the door. Nothing to do until you are home: the roast cooks, releases and holds on Keep Warm on its own."},
+ {id:"h1",at:22,d:2,eat:true,lane:"prep",txt:"Home. The Instant Pot is on Keep Warm and its float valve is down or nearly so. The veg bowl out of the fridge. Leave the oven on Warm for the mash."}
+].concat(FIN.map(function(s){ return copyStep(s,{eat:true}); }), [copyStep(SERVE,{eat:true,txt:"Serve: mash out of the oven, oven off. Mash on the plate, the roast chunks, carrots and rutabaga beside it, gravy over the top and the rest in a jug. Truffle oil, if you like: a few drops on top of the mash at the table, start with 3. Leftovers into the fridge within 2 hours."})]);
+var STEPS = HOME;
 var TIMED = true;
-var SERV = {"base": 6, "min": 2, "max": 12};
-var KEY = "kitchen:pot-roast";
+var KEY = CFG.key;
+var SEAR_STEP = "s2";
 
 var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
-            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["COOKER","t-pot"], iron:["CAST IRON","t-pan"], mash:["MASH","t-pan"], away:["AWAY","t-prep"]};
-var state = {servings: SERV ? SERV.base : 0, serve: "18:00", leave: "17:00", checked:{}, skipped:{}, notes:"", planned:null, plannedLeave:null};
+            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], iron:["CAST IRON","t-pan"], mash:["MASH","t-pan"], away:["AWAY","t-prep"]};
+var state = {lb: CFG.base, serve: "18:00", leave: "", checked:{}, skipped:{}, notes:"", planned:null, plannedLeave:null};
+
+/* Weight. Servings come from the weight, never the other way round. */
+function clampLb(v){ v = Math.round(parseFloat(v) / CFG.inc) * CFG.inc; if(!(v > 0)) v = CFG.base; return Math.max(CFG.min, Math.min(CFG.max, v)); }
+function potLb(){ return clampLb(state.lb * CFG.potRatio); }
+function servings(){ return Math.max(1, Math.round(state.lb / CFG.perServing)); }
+function pressMin(w){ var p = w <= 3 ? 60 - (3 - w)*15 : 60 + (w - 3)*10; p = Math.round(p/5)*5; return Math.max(40, Math.min(90, p)); }
+function boilMin(w){ return Math.round(9 + 2*w); }
+function fmtLb(w){ return frac(w) + " lb"; }
 
 function frac(n){
   if(n === 0) return "0";
-  var w = Math.floor(n), r = n - w, best = "", d = 1;
+  var w = Math.floor(n + 1e-9), r = n - w, best = "", d = 1;
   var map = [[0.125,"1/8"],[0.25,"1/4"],[0.333,"1/3"],[0.375,"3/8"],[0.5,"1/2"],[0.625,"5/8"],[0.667,"2/3"],[0.75,"3/4"],[0.875,"7/8"]];
   if(r > 0.02){
     for(var i=0;i<map.length;i++){ var diff = Math.abs(r-map[i][0]); if(diff < d){ d = diff; best = map[i][1]; } }
@@ -209,18 +322,17 @@ function frac(n){
   if(!best) return String(w);
   return w ? w + " " + best : best;
 }
+function qtyNum(it){
+  var w = it.mash ? potLb() : state.lb;
+  var raw = (it.base || 0) + it.per * w, s = it.step || 0.25, n = raw / s;
+  n = it.up ? Math.ceil(n - 1e-9) : Math.round(n + 1e-9);
+  var v = Math.max(it.min || s, n * s);
+  return Math.round(v * 1000) / 1000;
+}
 function amount(it){
   if(it.fixed) return it.fixed;
-  var raw = it.per * state.servings;
-  var s = it.step || 0.25;
-  var v = Math.max(s, Math.round(raw / s) * s);
-  v = Math.round(v * 1000) / 1000;
-  var txt = it.metric ? String(v) : frac(v);
-  if(it.unit){
-    var u = it.unit;
-    if(u === "cup" && v > 1) u = "cups";
-    return txt + " " + u;
-  }
+  var v = qtyNum(it), txt = frac(v);
+  if(it.unit){ return txt + " " + (v > 1 && it.units ? it.units : it.unit); }
   var nm = (v > 1 && it.plural) ? it.plural : it.name;
   return txt + "|" + nm;
 }
@@ -230,6 +342,15 @@ function label(it){
   return {qty:a, name:it.name};
 }
 function byId(id){ for(var i=0;i<ING.length;i++){ if(ING[i].id === id) return ING[i]; } return null; }
+
+function stepAt(s){
+  var a = s.at, sh = s.sh || "";
+  if(sh.indexOf("P") > -1 && typeof pressMin === "function" && CFG.leave) a += pressMin(state.lb) - 60;
+  if(sh.indexOf("B") > -1) a += boilMin(potLb()) - 15;
+  return a;
+}
+function stepDur(s){ return s.d === "P" ? pressMin(state.lb) : s.d === "B" ? boilMin(potLb()) : s.d; }
+function stepTxt(s){ return s.txt.replace(/\{P\}/g, pressMin(state.lb)).replace(/\{B\}/g, boilMin(potLb())).replace(/\{W\}/g, fmtLb(state.lb)); }
 
 function pad2(n){ return (n < 10 ? "0" : "") + n; }
 function hmOf(d){ return pad2(d.getHours()) + ":" + pad2(d.getMinutes()); }
@@ -259,29 +380,15 @@ function dateOfHM(hm){
   d.setHours(parseInt(p[0],10), parseInt(p[1],10), 0, 0);
   return d;
 }
-/* Leave by counts only when it is set and comes before Eating at. Blank, the
-   page cooks straight through to dinner as it always has. */
-function leaveSet(){ return !!(state.leave && /^\d\d:\d\d$/.test(state.leave)); }
+function leaveSet(){ return !!(CFG.leave && state.leave && /^\d\d:\d\d$/.test(state.leave)); }
 function away(){ return leaveSet() && serveDate() - leaveDate() <= 12*3600000; }
-/* Slow cook finish. The carrots and roast go back in on Slow Cook More,
-   timed to end at Eating at. It never runs under SC_MIN minutes (the carrots
-   need it): if Leave by is too close to Eating at, the steps before Leave by
-   start earlier instead. Over SC_MAX it stops early and Keep Warm holds. */
-var SC_MIN = 60, SC_MAX = 180;
-function scStep(){ for(var i=0;i<STEPS.length;i++){ if(STEPS[i].sc) return STEPS[i]; } return null; }
+/* Latest you can leave: home 22 minutes before Eating at for the finish
+   (at least 25 after leaving), and the pressure cycle ended at least 10
+   minutes before you are home. */
+function latestLeaveMin(){ return Math.max(25, pressMin(state.lb) - 33 - boilMin(potLb())); }
 function awayBase(){
-  var lv = leaveDate(), s = null, i;
-  for(i=0;i<AWAY.length;i++){ if(AWAY[i].sc) s = AWAY[i]; }
-  if(!s) return lv;
-  var latest = new Date(serveDate().getTime() - (SC_MIN - s.at)*60000);
+  var lv = leaveDate(), latest = new Date(serveDate().getTime() - latestLeaveMin()*60000);
   return lv < latest ? lv : latest;
-}
-function scInfo(){
-  var s = scStep(); if(!s) return null;
-  var start = stepClock(s), end = serveDate();
-  var mins = Math.round((end - start)/60000), capped = false;
-  if(mins > SC_MAX){ mins = SC_MAX; capped = true; }
-  return {mins:mins, start:start, end:new Date(start.getTime() + mins*60000), capped:capped};
 }
 function durTxt(m){
   var h = Math.floor(m/60), r = m % 60, t = "";
@@ -289,19 +396,17 @@ function durTxt(m){
   if(r) t += (t ? " " : "") + r + (r === 1 ? " minute" : " minutes");
   return t || "0 minutes";
 }
-function scTxt(){
-  var c = scInfo(); if(!c) return "";
-  var set = Math.floor(c.mins/60) + ":" + pad2(c.mins % 60);
-  if(c.capped) return durTxt(c.mins) + ": set " + set + ". Longer only softens the carrots, so it ends at " + hhmm(c.end) + " and drops to Keep Warm on its own until " + (away() ? "you are home." : "dinner.");
-  return durTxt(c.mins) + ": set " + set + ". It ends at " + hhmm(c.end) + ", right at Eating at, and drops to Keep Warm on its own.";
-}
-function stepTxt(s){ return s.sc ? s.txt.replace("{SC}", scTxt()) : s.txt; }
-function pickPlan(){ STEPS = away() ? AWAY : HOME; }
 function stepClock(s){
-  if(away() && s.lv) return leaveDate();
+  if(away() && s.lv) return awayBase();
   var base = (away() && !s.eat) ? awayBase() : serveDate();
-  return new Date(base.getTime() - s.at*60000);
+  return new Date(base.getTime() - stepAt(s)*60000);
 }
+function plan(){
+  var a = (away() ? AWAY : HOME).slice();
+  a.sort(function(x, y){ return stepClock(x) - stepClock(y); });
+  return a;
+}
+function pickPlan(){ STEPS = plan(); }
 function hhmm(d){
   var h = d.getHours(), m = d.getMinutes(), ap = h >= 12 ? "pm" : "am";
   h = h % 12; if(h === 0) h = 12;
@@ -314,7 +419,7 @@ function renderIngredients(){
   var html = "", last = "";
   for(var i=0;i<ING.length;i++){
     var it = ING[i], l = label(it);
-    if(it.g !== last){ html += '<div class="grp">' + it.g + '</div>'; last = it.g; }
+    if(it.g !== last){ html += '<div class="grp">' + it.g + (it.mash && CFG.leave ? ' &middot; ' + fmtLb(potLb()) + ' potatoes' : '') + '</div>'; last = it.g; }
     html += '<label class="item' + (state.checked[it.id] ? ' on' : '') + '" data-id="' + it.id + '">' +
       '<input type="checkbox"' + (state.checked[it.id] ? ' checked' : '') + '>' +
       '<span class="qty">' + l.qty + '</span>' +
@@ -335,26 +440,36 @@ function renderSteps(){
     }
     var sk = s.opt && state.skipped[s.id];
     html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + (sk ? ' skip' : '') + '" data-id="' + s.id + '"' +
-      (TIMED ? ' data-at="' + s.at + '"' : '') + '>' +
+      ' data-at="' + stepAt(s) + '" data-d="' + stepDur(s) + '" data-lane="' + s.lane + '"' + (s.eat ? ' data-eat="1"' : '') + '>' +
       '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
-      (TIMED ? '<span class="clock">' + (s.opt && dayBefore(stepClock(s)) ? '<span class="dayb">the day before,</span> ' : '') + hhmm(stepClock(s)) + '</span>' : '') +
+      '<span class="clock">' + (s.opt && dayBefore(stepClock(s)) ? '<span class="dayb">the day before,</span> ' : '') + hhmm(stepClock(s)) + '</span>' +
       '<span class="body">' + (u ? '<span class="usehd"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>You\x27ll use</span><span class="uses">' + u + '</span><span class="txt">' : '<span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>') + stepTxt(s) + '</span>' +
       (s.gap ? '<span class="gap">' + s.gap + '</span>' : '') +
+      (s.id !== SEAR_STEP ? '<span class="tmr" data-tid="' + s.id + '" data-d="' + stepDur(s) + '"></span>' : '') +
       (s.opt ? '<span class="rowact">' + (sk ? '' : '<button type="button" class="fromhere" data-act="optnow" data-i="' + i + '">Salt now</button>') +
         '<button type="button" class="fromhere" data-act="skip" data-i="' + i + '">' + (sk ? 'Skipped. Undo' : 'Skip') + '</button></span>' : '') +
       '</span></label>';
   }
   host.innerHTML = html;
   renderLeaveNote();
-  if(TIMED) markNow();
+  renderLinks();
+  markNow();
+}
+function renderLinks(){
+  var a = document.getElementById("mashlink");
+  if(a) a.setAttribute("href", "./mash.html?serve=" + encodeURIComponent(state.serve) + "&lb=" + potLb());
 }
 function renderLeaveNote(){
   var el = document.getElementById("leavenote");
   if(!el) return;
   var msg = "";
   if(leaveSet() && !away()) msg = 'Leave by has to come before Eating at, and no more than 12 hours before, so for now the plan cooks straight through to dinner.';
-  else if(away() && awayBase() < leaveDate()) msg = 'The carrots need at least ' + durTxt(SC_MIN) + ' of Slow Cook, so the plan starts ' + Math.round((leaveDate() - awayBase())/60000) + ' minutes earlier and everything is done by <b>' + hhmm(awayBase()) + '</b>.';
-  else if(away() && serveDate() - leaveDate() > 120*60000) msg = 'That is over 2 hours away. The roast and carrots are fine in the Instant Pot, but the mash dries the longer it holds in the oven.';
+  else if(away()){
+    var home = new Date(serveDate().getTime() - 22*60000);
+    if(awayBase() < leaveDate()) msg = 'You need to be home by <b>' + hhmm(home) + '</b> for the finish, with the pressure cycle done before then, so the plan has you out by <b>' + hhmm(awayBase()) + '</b>, ' + Math.round((leaveDate() - awayBase())/60000) + ' minutes before Leave by.';
+    else msg = 'Be home by <b>' + hhmm(home) + '</b> for the 20 minute finish.';
+    if(serveDate() - awayBase() > 120*60000) msg += ' That is over 2 hours out. The roast is fine on Keep Warm, but the mash dries the longer it holds in the oven.';
+  }
   el.className = msg ? "moved on" : "moved";
   el.innerHTML = msg;
 }
@@ -390,24 +505,18 @@ function markNow(){
   }
 }
 
-/* The optional salt-ahead step sits first in the timeline with its own clock.
-   It can be skipped (the salt then goes on in the first prep step) and it is
-   never what "Start now" pins to: Start now means start cooking. Its own
-   "Salt now" button plans the whole day from the salt instead. */
 function isSkipped(i){ return !!(STEPS[i] && STEPS[i].opt && state.skipped[STEPS[i].id]); }
 function optPending(){ return !!(STEPS[0] && STEPS[0].opt && !state.checked[STEPS[0].id] && !state.skipped[STEPS[0].id]); }
 function firstCookStep(){
   for(var i=0;i<STEPS.length;i++){ if(!STEPS[i].opt) return i; }
   return 0;
 }
-
 /* Put step i at right now and keep every other step's spacing. Straight
    through, that moves Eating at. With Leave by set, Leave by and Eating at
    move together so the time away stays the same. */
 function pinStep(i){
   var s = STEPS[i];
   if(!s) return;
-  /* Move every clock by the same amount, so step i lands on right now. */
   var shift = Date.now() - stepClock(s).getTime();
   var e = serveDate().getTime() + shift;
   if(away()){
@@ -427,8 +536,6 @@ function showTimes(){
   var nb = document.getElementById("noleave");
   if(nb) nb.textContent = state.leave ? "clear" : "add";
 }
-/* Stall: the same pin, with a note of what moved. Reached through "Start
-   now" mid-cook, which picks the first step you have not ticked off. */
 function startFrom(i){
   if(!STEPS[i] || !TIMED) return;
   if(!state.planned){ state.planned = state.serve; state.plannedLeave = state.leave || ""; }
@@ -448,23 +555,22 @@ function renderShift(){
     el.innerHTML = 'Dinner is now <b>' + hhmm(serveDate()) + '</b>, moved from ' + hhmm(dateOfHM(state.planned)) + '.';
   }
 }
-function clearShift(){
-  state.planned = null;
-  state.plannedLeave = null;
-  renderShift();
-}
+function clearShift(){ state.planned = null; state.plannedLeave = null; renderShift(); }
 function renderNotes(){
   var el = document.getElementById("notes");
   if(el && el.value !== (state.notes || "")) el.value = state.notes || "";
 }
-
-function save(){
-  try{ window.localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+function renderWeight(){
+  var w = document.getElementById("wt"); if(w && parseFloat(w.value) !== state.lb) w.value = state.lb;
+  var v = document.getElementById("sv"); if(v) v.textContent = servings();
 }
+
+function save(){ try{ window.localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
 function apply(raw){
   try{
     var v = JSON.parse(raw);
-    if(v.servings) state.servings = v.servings;
+    if(v.lb) state.lb = clampLb(v.lb);
+    else if(v.servings) state.lb = clampLb(v.servings * CFG.perServing);
     if(v.serve) state.serve = v.serve;
     if(typeof v.leave === "string") state.leave = v.leave;
     if(v.checked) state.checked = v.checked;
@@ -474,18 +580,28 @@ function apply(raw){
     if(typeof v.plannedLeave === "string") state.plannedLeave = v.plannedLeave;
   }catch(e){}
 }
-function load(){
+/* A link from the other page can carry ?serve=HH:MM&lb=N: it sets both. */
+function applyQuery(){
   try{
-    var raw = window.localStorage.getItem(KEY);
-    if(raw) apply(raw);
+    var q = new URLSearchParams(window.location.search);
+    var sv = q.get("serve"), lb = q.get("lb");
+    if(sv && /^\d\d:\d\d$/.test(sv)){ state.serve = sv; state.planned = null; state.plannedLeave = null; }
+    if(lb && parseFloat(lb) > 0) state.lb = clampLb(parseFloat(lb) / CFG.potRatio);
+    if(sv || lb) save();
   }catch(e){}
+}
+function load(){
+  try{ var raw = window.localStorage.getItem(KEY); if(raw) apply(raw); }catch(e){}
+  applyQuery();
   boot();
 }
 function boot(){
-  showTimes();
-  var vEl = document.getElementById("sv");
-  if(vEl) vEl.textContent = state.servings;
+  showTimes(); renderWeight();
   renderIngredients(); renderSteps(); renderNotes(); renderShift();
+}
+function setLb(v){
+  state.lb = clampLb(v);
+  renderWeight(); renderIngredients(); renderSteps(); save();
 }
 
 document.addEventListener("change", function(e){
@@ -498,38 +614,17 @@ document.addEventListener("change", function(e){
   save();
 });
 var serveEl = document.getElementById("serve");
-if(serveEl) serveEl.addEventListener("change", function(e){
-  state.serve = e.target.value || "18:00";
-  clearShift();
-  renderSteps(); save();
-});
+if(serveEl) serveEl.addEventListener("change", function(e){ state.serve = e.target.value || "18:00"; clearShift(); renderSteps(); save(); });
 var leaveEl = document.getElementById("leave");
-if(leaveEl) leaveEl.addEventListener("change", function(e){
-  state.leave = e.target.value || "";
-  clearShift();
-  renderSteps(); save();
-});
+if(leaveEl) leaveEl.addEventListener("change", function(e){ state.leave = e.target.value || ""; clearShift(); renderSteps(); save(); });
 var noLeaveEl = document.getElementById("noleave");
-if(noLeaveEl) noLeaveEl.addEventListener("click", function(){
-  state.leave = state.leave ? "" : "17:00";
-  showTimes(); clearShift();
-  renderSteps(); save();
-});
+if(noLeaveEl) noLeaveEl.addEventListener("click", function(){ state.leave = state.leave ? "" : "15:00"; showTimes(); clearShift(); renderSteps(); save(); });
+var wtEl = document.getElementById("wt");
+if(wtEl) wtEl.addEventListener("change", function(){ setLb(wtEl.value); });
 var incEl = document.getElementById("inc");
-if(incEl) incEl.addEventListener("click", function(){
-  state.servings = Math.min(SERV.max, state.servings + (SERV.inc || 1));
-  document.getElementById("sv").textContent = state.servings;
-  renderIngredients(); renderSteps(); save();
-});
+if(incEl) incEl.addEventListener("click", function(){ setLb(state.lb + CFG.inc); });
 var decEl = document.getElementById("dec");
-if(decEl) decEl.addEventListener("click", function(){
-  state.servings = Math.max(SERV.min, state.servings - (SERV.inc || 1));
-  document.getElementById("sv").textContent = state.servings;
-  renderIngredients(); renderSteps(); save();
-});
-/* The first step still unticked. Ticking is how you say where you are, so
-   this is the step "now" refers to once a cook is underway. If every step is
-   ticked there is nothing left to do, so the last one stands and dinner is now. */
+if(decEl) decEl.addEventListener("click", function(){ setLb(state.lb - CFG.inc); });
 function firstOpenStep(){
   for(var i=0;i<STEPS.length;i++){ if(!STEPS[i].opt && !state.checked[STEPS[i].id]) return i; }
   return STEPS.length - 1;
@@ -538,8 +633,6 @@ function anyStepTicked(){
   for(var i=0;i<STEPS.length;i++){ if(!STEPS[i].opt && state.checked[STEPS[i].id]) return true; }
   return false;
 }
-/* Skip and Salt now buttons on the optional step. They sit inside the row's
-   label, so the click is stopped before it can tick the box. */
 document.addEventListener("click", function(e){
   var b = e.target.closest ? e.target.closest("button[data-act]") : null;
   if(!b) return;
@@ -552,35 +645,20 @@ document.addEventListener("click", function(e){
     renderSteps(); save();
     return;
   }
-  if(b.getAttribute("data-act") === "optnow"){
-    pinStep(i);
-    clearShift();
-    renderSteps(); save();
-  }
+  if(b.getAttribute("data-act") === "optnow"){ pinStep(i); clearShift(); renderSteps(); save(); }
 }, true);
 var nowBtn = document.getElementById("now");
 if(nowBtn) nowBtn.addEventListener("click", function(){
   pickPlan();
   if(!STEPS.length) return;
   var i = firstOpenStep();
-  /* Mid-cook this is a stall, not a fresh plan: same move as "start from
-     here" on the step you are actually up to, banner and all. Nothing ticked
-     means you are setting the plan, so there is no move to report. */
   if(anyStepTicked()){ startFrom(i); return; }
-  pinStep(i);
-  clearShift();
-  renderSteps(); save();
+  pinStep(i); clearShift(); renderSteps(); save();
 });
 var allBtn = document.getElementById("allIng");
-if(allBtn) allBtn.addEventListener("click", function(){
-  for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = true; }
-  renderIngredients(); save();
-});
+if(allBtn) allBtn.addEventListener("click", function(){ for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = true; } renderIngredients(); save(); });
 var clrIngBtn = document.getElementById("clrIng");
-if(clrIngBtn) clrIngBtn.addEventListener("click", function(){
-  for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = false; }
-  renderIngredients(); save();
-});
+if(clrIngBtn) clrIngBtn.addEventListener("click", function(){ for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = false; } renderIngredients(); save(); });
 var notesTimer = null;
 var notesEl = document.getElementById("notes");
 if(notesEl) notesEl.addEventListener("input", function(){
@@ -588,40 +666,55 @@ if(notesEl) notesEl.addEventListener("input", function(){
   var st = document.getElementById("notesSaved");
   if(st) st.textContent = "Saving";
   clearTimeout(notesTimer);
-  notesTimer = setTimeout(function(){
-    save();
-    if(st){ st.textContent = "Saved"; setTimeout(function(){ st.textContent = ""; }, 1800); }
-  }, 400);
+  notesTimer = setTimeout(function(){ save(); if(st){ st.textContent = "Saved"; setTimeout(function(){ st.textContent = ""; }, 1800); } }, 400);
 });
 var clrNotesBtn = document.getElementById("clrNotes");
-if(clrNotesBtn) clrNotesBtn.addEventListener("click", function(){
-  state.notes = "";
-  var el = document.getElementById("notes");
-  if(el) el.value = "";
-  save();
-});
-/* Reset returns the page to clean: ticks and skips off, the clocks back to
-   what was planned before any "start from here" shift. Notes are kept; they
-   have their own Clear. */
+if(clrNotesBtn) clrNotesBtn.addEventListener("click", function(){ state.notes = ""; var el = document.getElementById("notes"); if(el) el.value = ""; save(); });
 document.getElementById("clrAll").addEventListener("click", function(){
-  state.checked = {};
-  state.skipped = {};
+  state.checked = {}; state.skipped = {};
   if(state.planned){
     state.serve = state.planned;
     if(state.plannedLeave !== null) state.leave = state.plannedLeave;
-    state.planned = null;
-    state.plannedLeave = null;
+    state.planned = null; state.plannedLeave = null;
     showTimes();
   }
   renderIngredients(); renderSteps(); renderShift(); save();
 });
 
-/* Sear timer, inside the sear step only. Each side gets its own countdown:
-   Start, it counts down, Done, Next side. The time left is worked out from
-   the stored start time every tick, so it stays right if the phone sleeps,
-   the tab is in the background or the page reloads. It never moves any
-   clock in the timeline. */
-var SEAR_STEP = "s2", SEAR_KEY = "kitchen:pot-roast:sear";
+/* Step timers. Every step has one, silent, worked out from the stored start
+   time every tick so it stays right if the phone sleeps or the page reloads.
+   They never move any clock in the timeline. */
+var TKEY = KEY + ":timers", tmr = {};
+try{ var tr = JSON.parse(window.localStorage.getItem(TKEY) || "null"); if(tr && typeof tr === "object") tmr = tr; }catch(e){}
+function tmrSave(){ try{ window.localStorage.setItem(TKEY, JSON.stringify(tmr)); }catch(e){} }
+function mmss(t){ t = Math.max(0, Math.ceil(t)); return Math.floor(t/60) + ":" + pad2(t % 60); }
+function tmrHTML(id, d){
+  var tot = d * 60, st = tmr[id];
+  if(typeof st !== "number") return '<button type="button" class="tb" data-tmr="start">Timer ' + mmss(tot) + '</button>';
+  var left = tot - (Date.now() - st)/1000;
+  if(left > 0) return '<span class="tl">' + mmss(left) + ' left</span><button type="button" class="tb alt" data-tmr="stop">Stop</button>';
+  return '<span class="tl done">Time</span><button type="button" class="tb alt" data-tmr="stop">Clear</button>';
+}
+function tmrMount(){
+  var els = document.querySelectorAll("#steps .tmr");
+  for(var i=0;i<els.length;i++){
+    var el = els[i], h = tmrHTML(el.getAttribute("data-tid"), parseFloat(el.getAttribute("data-d")));
+    if(el.getAttribute("data-h") !== h){ el.innerHTML = h; el.setAttribute("data-h", h); }
+  }
+}
+document.addEventListener("click", function(e){
+  var box = e.target.closest ? e.target.closest(".tmr") : null;
+  if(!box) return;
+  e.preventDefault(); e.stopPropagation();
+  var b = e.target.closest("button[data-tmr]"); if(!b) return;
+  var id = box.getAttribute("data-tid");
+  if(b.getAttribute("data-tmr") === "start") tmr[id] = Date.now(); else delete tmr[id];
+  tmrSave(); tmrMount();
+}, true);
+document.getElementById("clrAll").addEventListener("click", function(){ tmr = {}; tmrSave(); tmrMount(); });
+
+/* Sear timer, inside the sear step only: each side its own countdown. */
+var SEAR_KEY = KEY + ":sear";
 var SEAR_SIDES = [
   {n:"First broad side", s:300}, {n:"Second broad side", s:300},
   {n:"Edge 1", s:60}, {n:"Edge 2", s:60}, {n:"Edge 3", s:60}, {n:"Edge 4", s:60}
@@ -632,19 +725,14 @@ try{ var sr = JSON.parse(window.localStorage.getItem(SEAR_KEY) || "null");
   if(sr && typeof sr.start === "number") sear.start = sr.start;
 }catch(e){}
 function searSave(){ try{ window.localStorage.setItem(SEAR_KEY, JSON.stringify(sear)); }catch(e){} }
-function mmss(t){ t = Math.max(0, Math.ceil(t)); return Math.floor(t/60) + ":" + pad2(t % 60); }
-function searLeft(){
-  var sd = SEAR_SIDES[sear.side]; if(!sd || sear.start === null) return null;
-  return sd.s - (Date.now() - sear.start)/1000;
-}
+function searLeft(){ var sd = SEAR_SIDES[sear.side]; if(!sd || sear.start === null) return null; return sd.s - (Date.now() - sear.start)/1000; }
 function searHTML(){
   var sd = SEAR_SIDES[sear.side], N = SEAR_SIDES.length;
   if(!sd) return '<span class="sear-hd">Sear timer</span><span class="sear-big">All seared</span>' +
     '<span class="sear-msg">Deep brown all over. Out to a plate.</span>' +
     '<span class="sear-btns"><button type="button" class="sear-b sear-alt" data-sear="reset">Start over</button></span>';
   var left = searLeft(), run = left !== null && left > 0, done = left !== null && left <= 0;
-  var nx = SEAR_SIDES[sear.side + 1];
-  var b = '';
+  var nx = SEAR_SIDES[sear.side + 1], b = '';
   if(!run && !done) b = '<button type="button" class="sear-b" data-sear="start">Start ' + mmss(sd.s) + '</button>';
   if(run) b = '<button type="button" class="sear-b sear-alt" data-sear="restart">Restart this side</button>';
   if(done) b = '<button type="button" class="sear-b" data-sear="next">' + (nx ? 'Next side' : 'Finish') + '</button>' +
@@ -664,9 +752,8 @@ function searMount(){
   var h = searHTML();
   if(h !== searShown){ box.innerHTML = h; searShown = h; }
 }
-var searRender = renderSteps;
-renderSteps = function(){ searRender(); searMount(); };
-/* Taps in the timer never tick the step's box. */
+var baseRender = renderSteps;
+renderSteps = function(){ baseRender(); searMount(); tmrMount(); };
 document.addEventListener("click", function(e){
   var box = e.target.closest ? e.target.closest(".sear") : null;
   if(!box) return;
@@ -679,12 +766,11 @@ document.addEventListener("click", function(e){
   searSave(); searMount();
 }, true);
 document.getElementById("clrAll").addEventListener("click", function(){ sear.side = 0; sear.start = null; searSave(); searMount(); });
-setInterval(searMount, 250);
-document.addEventListener("visibilitychange", searMount);
-window.addEventListener("pageshow", searMount);
-if(TIMED) setInterval(markNow, 20000);
+setInterval(function(){ searMount(); tmrMount(); }, 250);
+document.addEventListener("visibilitychange", function(){ searMount(); tmrMount(); });
+window.addEventListener("pageshow", function(){ searMount(); tmrMount(); });
+setInterval(markNow, 20000);
 load();
-/* Desktop layout: keep the sticky ingredient column just under the sticky bar. */
 (function(){
   var bar = document.querySelector(".bar"); if(!bar) return;
   function setBarH(){ document.documentElement.style.setProperty("--barh", bar.offsetHeight + "px"); }
