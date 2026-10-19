@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cajun red beans and rice</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./favicon.ico">
+<link rel="preload" href="./special-elite-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./cutive-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./karla-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./fonts.css">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="A Texan&rsquo;s Table">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F3EBDA">
+<style>
+:root{
+  --ground:#F3EBDA; --card:#FAF4E7; --ink:#33291F; --muted:#7A6A56; --rule:#D9C9AF;
+  --citrus:#A85C34; --citrus-bg:#F0DFD1; --brine:#7E7047; --brine-bg:#E8E3D0;
+  --shell:#6E4A2E; --shell-bg:#EADCC9; --field:#FFFCF5;
+  --sans:Karla,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"Cutive Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --stamp:"Special Elite","Courier New",Courier,monospace;
+}
+@media (prefers-color-scheme:dark){
+ :root{
+  --ground:#17130F; --card:#211C15; --ink:#F1E3CE; --muted:#A2937C; --rule:#3A3026;
+  --citrus:#D3814F; --citrus-bg:#2E2018; --brine:#A99A63; --brine-bg:#222014;
+  --shell:#C89B6E; --shell-bg:#2A2018; --field:#1B1610;
+ }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.45;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+.wrap{max-width:620px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left))}
+.back{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin:22px 0 0}
+h1{font-family:var(--stamp);font-size:clamp(23px,7.2vw,30px);line-height:1.16;letter-spacing:0.03em;text-transform:uppercase;font-weight:400;margin:10px 0 10px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 18px;max-width:34em}
+h2{font-family:var(--stamp);font-size:13px;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:26px 0 10px}
+
+.bar{position:sticky;top:0;z-index:5;background:var(--ground);border-bottom:1px solid var(--rule);padding:10px 0 12px;margin-bottom:4px}
+.controls{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.ctl{display:flex;flex-direction:column;gap:4px}
+.ctl label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-family:var(--mono)}
+input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:3px;padding:7px 9px;min-width:124px}
+.step{display:flex;align-items:center;gap:2px;background:var(--field);border:1px solid var(--rule);border-radius:3px;padding:3px}
+.step button{width:34px;height:34px;font-size:19px;line-height:1;border:0;background:transparent;color:var(--ink);border-radius:2px;cursor:pointer;font-family:var(--mono)}
+.step button:active{background:var(--rule)}
+.step span{min-width:26px;text-align:center;font-family:var(--mono);font-size:19px}
+.ghost{border:1px solid var(--rule);background:transparent;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 11px;border-radius:3px;cursor:pointer}
+.ghost:active{background:var(--rule)}
+:focus-visible{outline:2px solid var(--brine);outline-offset:2px}
+
+#nowline{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:9px;display:flex;gap:8px;align-items:baseline}
+#nowline b{color:var(--ink);font-weight:600}
+
+.card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:4px 14px;margin-bottom:8px}
+.grp{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);padding:14px 0 6px;border-bottom:1px solid var(--rule)}
+.item{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.item:last-child{border-bottom:0}
+.item input{width:21px;height:21px;margin:1px 0 0;accent-color:var(--citrus);flex:0 0 auto}
+.qty{font-family:var(--mono);font-size:14px;color:var(--citrus);min-width:64px;flex:0 0 auto;padding-top:1px}
+.nm{font-size:15px;line-height:1.35}
+.nm em{font-style:normal;color:var(--muted);font-size:13px;display:block}
+.on .nm,.on .qty{color:var(--muted);text-decoration:line-through}
+
+.row{display:flex;gap:11px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.row:last-child{border-bottom:0}
+.row input{width:21px;height:21px;margin:2px 0 0;accent-color:var(--citrus);flex:0 0 auto}
+.clock{font-family:var(--mono);font-size:14px;min-width:62px;flex:0 0 auto;color:var(--ink);padding-top:2px}
+.body{flex:1;min-width:0}
+.clock .day{display:block;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--citrus)}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;padding:2px 6px;border-radius:2px;margin-right:7px;vertical-align:1px}
+.t-pot{background:var(--brine-bg);color:var(--brine)}
+.t-pan{background:var(--shell-bg);color:var(--shell)}
+.t-prep{background:var(--rule);color:var(--muted)}
+.t-serve{background:var(--citrus-bg);color:var(--citrus)}
+.t-fire{background:var(--citrus-bg);color:var(--citrus)}
+.t-oven{background:var(--shell-bg);color:var(--shell)}
+.t-jar{background:var(--brine-bg);color:var(--brine)}
+.t-fridge{background:var(--brine-bg);color:var(--brine)}
+.txt{font-size:15px;line-height:1.4}
+.usehd{display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--muted);margin:0 0 5px}
+.uses{display:block;margin:0 0 8px;padding:5px 0 5px 10px;border-left:3px solid var(--citrus)}
+.ui{display:block;font-size:15px;line-height:1.35;padding:1px 0}
+.ui b{font-weight:700}
+.row.now{background:var(--brine-bg);margin:0 -14px;padding:13px 14px;border-radius:3px;border-bottom-color:transparent}
+.row.on .txt,.row.on .clock,.row.on .uses{color:var(--muted);text-decoration:line-through}
+.foot{display:flex;gap:8px;margin:12px 0 8px}
+.note{color:var(--muted);font-size:13px;line-height:1.5;margin:18px 0 0}
+.note b{color:var(--ink)}
+.rowact{display:block;margin-top:8px}
+.fromhere{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:transparent;border:1px solid var(--rule);border-radius:2px;padding:4px 9px;cursor:pointer}
+.fromhere:active{background:var(--rule)}
+.row.on .fromhere{opacity:0.4}
+.gap{display:block;font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--citrus);background:transparent;border:1px dashed var(--citrus);border-radius:2px;padding:9px 10px;margin-top:8px}
+.moved{display:none}
+.moved.on{display:block;font-family:var(--mono);font-size:12px;line-height:1.45;color:var(--brine);background:var(--brine-bg);border-radius:2px;padding:8px 10px;margin-top:9px}
+.moved b{color:var(--brine);font-weight:700}
+.card.notes{padding:13px 14px}
+#notes{display:block;width:100%;min-height:132px;resize:vertical;background:transparent;border:0;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;padding:0}
+#notes:focus{outline:none}
+#notes::placeholder{color:var(--muted)}
+.saved{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);align-self:center}
+
+/* Desktop: ingredients in a sticky left column, steps on the right. Below 1024px nothing changes. */
+@media (min-width:1024px){
+ .wrap{max-width:1180px;padding:0 32px}
+ .layout{display:grid;grid-template-columns:minmax(330px,400px) minmax(0,1fr);gap:0 44px;align-items:start}
+ .side{position:sticky;top:calc(var(--barh,8px) + 8px);max-height:calc(100vh - var(--barh,8px) - 16px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding-bottom:8px}
+ .side h2:first-child,.main h2:first-child{margin-top:20px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class='back' href='./'>&lsaquo; A Texan&rsquo;s Table</a>
+  <h1>Cajun red beans and rice</h1>
+  <p class="sub">Soak on Tuesday night. Wednesday morning the beans boil hard in the Instant Pot, then everything goes in on Slow Cook before you leave. Home at 5:00, rice in the rice cooker, and the beans are mashed creamy for dinner. Mild for the boys, hot sauce on the side. Set the time you want to eat and everything runs itself backward.</p>
+
+  <div class="bar">
+    <div class="controls">
+      <div class="ctl">
+        <label for="serve">Eating at</label>
+        <input type="time" id="serve" value="18:30">
+      </div>
+      <div class="ctl">
+        <label for="dec">Servings</label>
+        <div class="step">
+          <button id="dec" aria-label="Fewer servings">&minus;</button>
+          <span id="sv">4</span>
+          <button id="inc" aria-label="More servings">+</button>
+        </div>
+      </div>
+      <button class="ghost" id="now">Start now</button>
+    </div>
+    <div id="nowline"></div>
+    <div class="moved" id="moved"></div>
+  </div>
+
+  <div class="layout">
+  <div class="side">
+  <h2>Ingredients</h2>
+  <div class="card" id="ing"></div>
+  <div class="foot">
+    <button class="ghost" id="allIng">Check all</button>
+    <button class="ghost" id="clrIng">Clear</button>
+  </div>
+  </div>
+  <div class="main">
+
+  <h2>The cook</h2>
+  <div class="card" id="steps"></div>
+  <div class="foot">
+    <button class="ghost" id="clrAll">Reset everything</button>
+  </div>
+
+  <h2>Notes</h2>
+  <div class="card notes">
+    <textarea id="notes" placeholder="What happened this cook. Times, changes, what to fix next time."></textarea>
+  </div>
+  <div class="foot">
+    <button class="ghost" id="clrNotes">Clear notes</button>
+    <span class="saved" id="notesSaved"></span>
+  </div>
+  </div>
+  </div>
+
+  <p class="note"><b>Why the hard boil:</b> raw kidney beans carry a toxin (phytohaemagglutinin) that slow cooker heat does not destroy and can make worse, so the FDA says soak, drain, then boil hard in fresh water for at least 10 minutes before slow cooking. The timer starts at a full rolling boil, not when the pot first steams. Canned kidney beans are already cooked and safe.</p>
+  <p class="note"><b>One pot, two jobs:</b> the Instant Pot does the hard boil on Saute in the morning and the slow cook after it. The rice cooker does the rice at 5:00. Nothing else to wash.</p>
+  <p class="note"><b>Size:</b> a 6 quart Instant Pot holds the hard boil up to 4 servings (1 lb of beans). For 6 or 8, use an 8 quart pot, or the boil foams over.</p>
+  <p class="note"><b>Beans still firm at the finish?</b> Old beans and hard water slow them down. Keep simmering on Saute Less, lid off, stirring, until they crush easily; push Eating at back to match.</p>
+  <p class="note"><b>Heat:</b> 1/8 teaspoon of cayenne for the whole pot, plus whatever the sausage brings. Smoked sausage is the mildest choice; andouille adds a little warmth.</p>
+  <p class="note"><b>Infrared readings:</b> the gun reads only the surface it points at, never the inside of the food or the depth of a liquid. Cast iron and dark, seasoned pans read true; shiny stainless and aluminum read low, so aim at the oil, the fat or a dark spot. Aim close, since the spot it reads grows with distance, and read two or three spots: pans vary a lot from edge to centre. On a grill, aim at a grate bar, not the coals. Simmering water, brine and deep oil get a probe thermometer instead. Oven and smoker numbers are the dial settings.</p>
+</div>
+
+<script>
+var ING = [{"id":"beans","g":"Pantry","per":0.25,"step":0.25,"unit":"lb","name":"dried red kidney beans","note":"sorted, any stones or shrivelled beans out"},{"id":"soakw","g":"Pantry","per":2,"step":0.5,"unit":"cup","name":"cold water, for the soak"},{"id":"boilw","g":"Pantry","per":2,"step":0.5,"unit":"cup","name":"fresh water, for the hard boil"},{"id":"stock","g":"Pantry","per":1.25,"step":0.25,"unit":"cup","name":"low-sodium chicken stock"},{"id":"oil","g":"Pantry","per":0.25,"step":0.25,"unit":"tbsp","name":"neutral oil","note":"vegetable or canola"},{"id":"rice","g":"Pantry","per":0.5,"step":0.25,"unit":"cup","name":"long-grain white rice","note":"dry, measured with a standard cup"},{"id":"ricew","g":"Pantry","per":0.625,"step":0.125,"unit":"cup","name":"water, for the rice","note":"or to the rice cooker's white rice line"},{"id":"hot","g":"Pantry","per":0.5,"step":0.5,"unit":"tbsp","name":"Louisiana hot sauce","note":"Crystal or Tabasco, on the table for the grown-ups only"},{"id":"sausage","g":"Meat","per":0.25,"step":0.25,"unit":"lb","name":"andouille or smoked sausage","note":"smoked sausage keeps it mildest; cut in 1/4 inch coins"},{"id":"onion","g":"Produce","per":0.25,"step":0.5,"unit":"","name":"yellow onion","plural":"yellow onions","note":"large, diced"},{"id":"pepper","g":"Produce","per":0.25,"step":0.5,"unit":"","name":"green bell pepper","plural":"green bell peppers","note":"diced"},{"id":"celery","g":"Produce","per":0.5,"step":1,"unit":"","name":"celery rib","plural":"celery ribs","note":"diced"},{"id":"garlic","g":"Produce","per":1,"step":1,"unit":"","name":"garlic clove","plural":"garlic cloves","note":"minced"},{"id":"scallion","g":"Produce","per":1,"step":1,"unit":"","name":"green onion","plural":"green onions","note":"sliced, to finish"},{"id":"salt","g":"Spices","per":0.25,"step":0.125,"unit":"tsp","name":"Diamond Crystal kosher salt, in the pot","note":"the sausage brings salt too"},{"id":"salt2","g":"Spices","per":0.125,"step":0.125,"unit":"tsp","name":"Diamond Crystal kosher salt, at the finish","note":"up to this much, after tasting"},{"id":"ricesalt","g":"Spices","per":0.125,"step":0.125,"unit":"tsp","name":"Diamond Crystal kosher salt, for the rice"},{"id":"paprika","g":"Spices","per":0.5,"step":0.25,"unit":"tsp","name":"sweet paprika"},{"id":"garpow","g":"Spices","per":0.25,"step":0.125,"unit":"tsp","name":"garlic powder"},{"id":"onpow","g":"Spices","per":0.25,"step":0.125,"unit":"tsp","name":"onion powder"},{"id":"thyme","g":"Spices","per":0.25,"step":0.125,"unit":"tsp","name":"dried thyme"},{"id":"oregano","g":"Spices","per":0.125,"step":0.125,"unit":"tsp","name":"dried oregano"},{"id":"bpep","g":"Spices","per":0.125,"step":0.125,"unit":"tsp","name":"ground black pepper"},{"id":"wpep","g":"Spices","per":0.0625,"step":0.125,"unit":"tsp","name":"ground white pepper"},{"id":"cayenne","g":"Spices","per":0.03125,"step":0.125,"unit":"tsp","name":"cayenne","note":"the only heat in the pot, kept mild for the boys"},{"id":"bay","g":"Spices","per":0.5,"step":1,"unit":"","name":"bay leaf","plural":"bay leaves"}];
+var PRE = [];
+var STEPS = [{"id":"s0","at":1290,"lane":"prep","txt":"Tuesday night soak. Tip the beans onto a plate and pick out any stones or shrivelled beans, rinse them in a colander, then into a big bowl with the cold water. Leave them on the counter overnight, at least 5 hours, about 9 by the morning. They double in size, so use a bowl twice as big as you think.","uses":["beans","soakw"]},{"id":"s1","at":1280,"lane":"fridge","txt":"Tuesday night prep, 15 minutes. Dice the onion, bell pepper and celery, mince the garlic, cut the sausage in 1/4 inch coins: all into one lidded container in the fridge. Mix every spice except the bay leaves and salt in a small jar.","uses":["onion","pepper","celery","garlic","sausage","paprika","garpow","onpow","thyme","oregano","bpep","wpep","cayenne"]},{"id":"s2","at":750,"lane":"cooker","txt":"Drain the beans and rinse them well; the soak water goes down the sink. Beans into the Instant Pot inner pot with the fresh water. Saute on More (High), glass lid or no lid, never the locked lid. It takes about 15 to 18 minutes to come to a boil.","uses":["beans","boilw"]},{"id":"s3","at":732,"lane":"cooker","txt":"Full rolling boil: big bubbles across the whole surface that a stir does not knock down, 212°F on a probe. Start a 10 minute timer only now and keep it boiling hard the whole 10 minutes, skimming the foam. Raw kidney beans carry a natural toxin that slow cooker heat does not destroy and can make worse, so they boil hard for at least 10 minutes first (FDA)."},{"id":"s4","at":722,"lane":"cooker","txt":"Cancel. Lift the inner pot out with mitts and drain the beans in a colander in the sink, a quick rinse. Wipe the inner pot dry and set it back in."},{"id":"s5","at":720,"lane":"cooker","txt":"Saute on More with the oil. Sausage coins in, 5 minutes, turning once, until browned at the edges. The fat should read 325 to 375°F on the infrared; aim at the fat, since the stainless pot reads low.","uses":["oil","sausage"]},{"id":"s6","at":714,"lane":"cooker","txt":"Onion, pepper, celery and garlic in, 3 minutes, scraping the bottom clean with a wooden spoon so the pot does not throw a Burn warning later.","uses":["onion","pepper","celery","garlic"]},{"id":"s7","at":710,"lane":"cooker","txt":"Cancel. Beans back in with the spice jar, bay leaves, salt and stock. Stir and scrape the bottom once more. The stock should cover the beans by about an inch; top up with water if not.","uses":["beans","paprika","garpow","onpow","thyme","oregano","bpep","wpep","cayenne","bay","salt","stock"]},{"id":"s8","at":705,"lane":"cooker","txt":"Lid on, steam valve to Venting. Slow Cook on Normal, 11 hours, Keep Warm left on. Normal is the Instant Pot's match for a slow cooker's Low; Less runs too cool for beans. It switches itself to Keep Warm about 15 minutes before you start the finish."},{"id":"s9","at":690,"lane":"away","txt":"Out the door. The pot runs on its own all day."},{"id":"s10","at":90,"lane":"rice","txt":"Home. Rinse the rice in a sieve until the water runs nearly clear, into the rice cooker with the water and salt, white rice setting. It is done in about 40 minutes and holds on warm.","uses":["rice","ricew","ricesalt"]},{"id":"s11","at":45,"lane":"cooker","txt":"The Instant Pot beeps and drops to Keep Warm on its own. Leave the lid on."},{"id":"s12","at":30,"lane":"cooker","txt":"Lid off, bay leaves out. A bean should crush easily against the side with a spoon. Saute on Less (Low). Mash about a cupful of beans against the side with a potato masher or the back of a spoon and stir them through. Simmer uncovered 15 minutes, 180 to 190°F on a probe, stirring every few minutes and scraping the bottom, until it turns creamy and coats a spoon."},{"id":"s13","at":15,"lane":"prep","txt":"Slice the green onions while it thickens.","uses":["scallion"]},{"id":"s14","at":10,"lane":"cooker","txt":"Taste a spoonful with a bean and a coin of sausage, then add salt up to the finishing amount. Cancel the Saute; Keep Warm holds it. Fluff the rice with a paddle.","uses":["salt2"]},{"id":"s15","at":5,"lane":"prep","txt":"Hot sauce on the table for the grown-ups. The pot itself stays mild.","uses":["hot"]},{"id":"s16","at":0,"lane":"serve","txt":"Rice in the bowl, red beans ladled over, green onions on top.","uses":["scallion"]}];
+var TIMED = true;
+var SERV = {"base":4,"min":2,"max":8};
+var KEY = "kitchen:red-beans-and-rice";
+
+var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
+            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], rice:["RICE COOKER","t-jar"], away:["AWAY","t-prep"]};
+var state = {servings: SERV ? SERV.base : 0, serve: "18:30", checked:{}, notes:"", planned:null};
+
+function frac(n){
+  if(n === 0) return "0";
+  var w = Math.floor(n), r = n - w, best = "", d = 1;
+  var map = [[0.125,"1/8"],[0.25,"1/4"],[0.333,"1/3"],[0.375,"3/8"],[0.5,"1/2"],[0.625,"5/8"],[0.667,"2/3"],[0.75,"3/4"],[0.875,"7/8"]];
+  if(r > 0.02){
+    for(var i=0;i<map.length;i++){ var diff = Math.abs(r-map[i][0]); if(diff < d){ d = diff; best = map[i][1]; } }
+  }
+  if(!best) return String(w);
+  return w ? w + " " + best : best;
+}
+function amount(it){
+  if(it.fixed) return it.fixed;
+  var raw = it.per * state.servings;
+  var s = it.step || 0.25;
+  var v = Math.max(s, Math.round(raw / s) * s);
+  v = Math.round(v * 1000) / 1000;
+  var txt = it.metric ? String(v) : frac(v);
+  if(it.unit){
+    var u = it.unit;
+    if(u === "cup" && v > 1) u = "cups";
+    return txt + " " + u;
+  }
+  var nm = (v > 1 && it.plural) ? it.plural : it.name;
+  return txt + "|" + nm;
+}
+function label(it){
+  var a = amount(it);
+  if(a.indexOf("|") > -1){ var p = a.split("|"); return {qty:p[0], name:p[1]}; }
+  return {qty:a, name:it.name};
+}
+function byId(id){ for(var i=0;i<ING.length;i++){ if(ING[i].id === id) return ING[i]; } return null; }
+
+function pad2(n){ return (n < 10 ? "0" : "") + n; }
+/* This cook starts the day before, so once today's dinner time has passed by
+   25 minutes, Eating at means tomorrow and the night-before steps are tonight. */
+var LONG = STEPS.length && STEPS[0].at > 720;
+function serveDate(){
+  var d = dateOfHM(state.serve);
+  if(LONG && Date.now() > d.getTime() + 25*60000) d = new Date(d.getTime() + 86400000);
+  return d;
+}
+function dayOf(off){
+  var c = clockOf(off), s = serveDate();
+  return c.toDateString() === s.toDateString() ? "" : '<span class="day">day before</span>';
+}
+function dateOfHM(hm){
+  var p = (hm || "18:30").split(":");
+  var d = new Date();
+  d.setHours(parseInt(p[0],10), parseInt(p[1],10), 0, 0);
+  return d;
+}
+function clockOf(off){ return new Date(serveDate().getTime() - off*60000); }
+function hhmm(d){
+  var h = d.getHours(), m = d.getMinutes(), ap = h >= 12 ? "pm" : "am";
+  h = h % 12; if(h === 0) h = 12;
+  return h + ":" + (m < 10 ? "0" + m : m) + " " + ap;
+}
+
+function renderIngredients(){
+  var host = document.getElementById("ing");
+  if(!host) return;
+  var html = "", last = "";
+  for(var i=0;i<ING.length;i++){
+    var it = ING[i], l = label(it);
+    if(it.g !== last){ html += '<div class="grp">' + it.g + '</div>'; last = it.g; }
+    html += '<label class="item' + (state.checked[it.id] ? ' on' : '') + '" data-id="' + it.id + '">' +
+      '<input type="checkbox"' + (state.checked[it.id] ? ' checked' : '') + '>' +
+      '<span class="qty">' + l.qty + '</span>' +
+      '<span class="nm">' + l.name + (it.note ? '<em>' + it.note + '</em>' : '') + '</span></label>';
+  }
+  host.innerHTML = html;
+}
+function renderPre(){
+  var host = document.getElementById("pre");
+  if(!host) return;
+  var html = "";
+  for(var i=0;i<PRE.length;i++){
+    var s = PRE[i], lane = LANE[s.lane] || LANE.prep;
+    html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '">' +
+      '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
+      '<span class="body"><span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>' + s.txt + '</span></span></label>';
+  }
+  host.innerHTML = html;
+}
+function renderSteps(){
+  var host = document.getElementById("steps"), html = "";
+  for(var i=0;i<STEPS.length;i++){
+    var s = STEPS[i], lane = LANE[s.lane] || LANE.prep, u = "";
+    var uses = s.uses || [];
+    for(var j=0;j<uses.length;j++){
+      var it = byId(uses[j]); if(!it) continue;
+      var l = label(it);
+      u += '<span class="ui"><b>' + l.qty + '</b> ' + l.name + '</span>';
+    }
+    html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '"' +
+      (TIMED ? ' data-at="' + s.at + '"' : '') + '>' +
+      '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
+      (TIMED ? '<span class="clock">' + hhmm(clockOf(s.at)) + dayOf(s.at) + '</span>' : '') +
+      '<span class="body">' + (u ? '<span class="usehd"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>You\x27ll use</span><span class="uses">' + u + '</span><span class="txt">' : '<span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>') + s.txt + '</span>' +
+      (s.gap ? '<span class="gap">' + s.gap + '</span>' : '') +
+      '</span></label>';
+  }
+  host.innerHTML = html;
+  if(TIMED) markNow();
+}
+function markNow(){
+  if(!TIMED) return;
+  var now = new Date(), start = clockOf(STEPS[0].at), end = serveDate(), line = document.getElementById("nowline");
+  var rows = document.querySelectorAll("#steps .row"), i;
+  for(i=0;i<rows.length;i++){ rows[i].classList.remove("now"); }
+  if(now < new Date(start.getTime() - 45*60000)){
+    line.innerHTML = 'First move at <b>' + hhmm(start) + '</b>' + (start.toDateString() !== end.toDateString() ? ' the day before' : '');
+    return;
+  }
+  if(now > new Date(end.getTime() + 25*60000)){
+    line.innerHTML = 'Dinner was at <b>' + hhmm(end) + '</b>';
+    return;
+  }
+  var cur = -1;
+  for(i=0;i<STEPS.length;i++){ if(clockOf(STEPS[i].at) <= now) cur = i; }
+  if(cur < 0){
+    var mins = Math.round((start - now) / 60000);
+    line.innerHTML = '<b>' + mins + ' min</b> until the first move';
+    if(rows[0]) rows[0].classList.add("now");
+    return;
+  }
+  if(rows[cur]) rows[cur].classList.add("now");
+  if(cur < STEPS.length - 1){
+    var nxt = Math.max(0, Math.round((clockOf(STEPS[cur+1].at) - now) / 60000));
+    line.innerHTML = 'Now: <b>' + LANE[STEPS[cur].lane][0].toLowerCase() + '</b> · next move in <b>' + nxt + ' min</b>';
+  } else {
+    line.innerHTML = '<b>Eat.</b>';
+  }
+}
+
+/* Pin one step to right now and let every other step keep its original gap.
+   Setting the finish line to (now + that step's offset) moves the whole chain
+   and holds the spacing exactly. Reached through "Start now", which picks the
+   step for you: the first one you have not ticked off. */
+function startFrom(i){
+  var s = STEPS[i];
+  if(!s || !TIMED) return;
+  if(!state.planned) state.planned = state.serve;
+  var d = new Date(Date.now() + s.at*60000);
+  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  var el = document.getElementById("serve");
+  if(el) el.value = state.serve;
+  renderSteps(); renderShift(); save();
+}
+function renderShift(){
+  var el = document.getElementById("moved");
+  if(!el) return;
+  if(!TIMED || !state.planned || state.planned === state.serve){
+    el.className = "moved"; el.innerHTML = ""; return;
+  }
+  el.className = "moved on";
+  el.innerHTML = 'Dinner is now <b>' + hhmm(serveDate()) + '</b>, moved from ' + hhmm(dateOfHM(state.planned)) + '.';
+}
+function clearShift(){
+  state.planned = null;
+  renderShift();
+}
+function renderNotes(){
+  var el = document.getElementById("notes");
+  if(el && el.value !== (state.notes || "")) el.value = state.notes || "";
+}
+
+function save(){
+  try{ window.localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+}
+function apply(raw){
+  try{
+    var v = JSON.parse(raw);
+    if(v.servings) state.servings = v.servings;
+    if(v.serve) state.serve = v.serve;
+    if(v.checked) state.checked = v.checked;
+    if(typeof v.notes === "string") state.notes = v.notes;
+    if(v.planned) state.planned = v.planned;
+  }catch(e){}
+}
+function load(){
+  try{
+    var raw = window.localStorage.getItem(KEY);
+    if(raw) apply(raw);
+  }catch(e){}
+  boot();
+}
+function boot(){
+  var sEl = document.getElementById("serve");
+  if(sEl) sEl.value = state.serve;
+  var vEl = document.getElementById("sv");
+  if(vEl) vEl.textContent = state.servings;
+  renderIngredients(); renderPre(); renderSteps(); renderNotes(); renderShift();
+}
+
+document.addEventListener("change", function(e){
+  var host = e.target.closest ? e.target.closest("[data-id]") : null;
+  if(!host || e.target.type !== "checkbox") return;
+  var id = host.getAttribute("data-id");
+  state.checked[id] = e.target.checked;
+  host.classList.toggle("on", e.target.checked);
+  save();
+});
+var serveEl = document.getElementById("serve");
+if(serveEl) serveEl.addEventListener("change", function(e){
+  state.serve = e.target.value || "18:30";
+  clearShift();
+  renderSteps(); save();
+});
+var incEl = document.getElementById("inc");
+if(incEl) incEl.addEventListener("click", function(){
+  state.servings = Math.min(SERV.max, state.servings + (SERV.inc || 1));
+  document.getElementById("sv").textContent = state.servings;
+  renderIngredients(); renderSteps(); save();
+});
+var decEl = document.getElementById("dec");
+if(decEl) decEl.addEventListener("click", function(){
+  state.servings = Math.max(SERV.min, state.servings - (SERV.inc || 1));
+  document.getElementById("sv").textContent = state.servings;
+  renderIngredients(); renderSteps(); save();
+});
+/* The first step still unticked. Ticking is how you say where you are, so
+   this is the step "now" refers to once a cook is underway. If every step is
+   ticked there is nothing left to do, so the last one stands and dinner is now. */
+function firstOpenStep(){
+  for(var i=0;i<STEPS.length;i++){ if(!state.checked[STEPS[i].id]) return i; }
+  return STEPS.length - 1;
+}
+function anyStepTicked(){
+  for(var i=0;i<STEPS.length;i++){ if(state.checked[STEPS[i].id]) return true; }
+  return false;
+}
+var nowBtn = document.getElementById("now");
+if(nowBtn) nowBtn.addEventListener("click", function(){
+  if(!STEPS.length) return;
+  var i = firstOpenStep();
+  /* Mid-cook this is a stall, not a fresh plan: same move as "start from
+     here" on the step you are actually up to, banner and all. Nothing ticked
+     means you are setting the plan, so there is no move to report. */
+  if(anyStepTicked()){ startFrom(i); return; }
+  var d = new Date(Date.now() + STEPS[i].at*60000);
+  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  document.getElementById("serve").value = state.serve;
+  clearShift();
+  renderSteps(); save();
+});
+var allBtn = document.getElementById("allIng");
+if(allBtn) allBtn.addEventListener("click", function(){
+  for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = true; }
+  renderIngredients(); save();
+});
+var clrIngBtn = document.getElementById("clrIng");
+if(clrIngBtn) clrIngBtn.addEventListener("click", function(){
+  for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = false; }
+  renderIngredients(); save();
+});
+var notesTimer = null;
+var notesEl = document.getElementById("notes");
+if(notesEl) notesEl.addEventListener("input", function(){
+  state.notes = notesEl.value;
+  var st = document.getElementById("notesSaved");
+  if(st) st.textContent = "Saving";
+  clearTimeout(notesTimer);
+  notesTimer = setTimeout(function(){
+    save();
+    if(st){ st.textContent = "Saved"; setTimeout(function(){ st.textContent = ""; }, 1800); }
+  }, 400);
+});
+var clrNotesBtn = document.getElementById("clrNotes");
+if(clrNotesBtn) clrNotesBtn.addEventListener("click", function(){
+  state.notes = "";
+  var el = document.getElementById("notes");
+  if(el) el.value = "";
+  save();
+});
+/* Reset returns the page to clean: ticks off, the clock back to what was
+   planned before any "start from here" shift. Notes are kept; they have
+   their own Clear. */
+document.getElementById("clrAll").addEventListener("click", function(){
+  state.checked = {};
+  if(state.planned){
+    state.serve = state.planned;
+    state.planned = null;
+    var el = document.getElementById("serve");
+    if(el) el.value = state.serve;
+  }
+  renderIngredients(); renderPre(); renderSteps(); renderShift(); save();
+});
+
+if(TIMED) setInterval(markNow, 20000);
+load();
+/* Desktop layout: keep the sticky ingredient column just under the sticky bar. */
+(function(){
+  var bar = document.querySelector(".bar"); if(!bar) return;
+  function setBarH(){ document.documentElement.style.setProperty("--barh", bar.offsetHeight + "px"); }
+  setBarH();
+  window.addEventListener("resize", setBarH);
+  if(window.ResizeObserver) new ResizeObserver(setBarH).observe(bar);
+})();
+if("serviceWorker" in navigator){ navigator.serviceWorker.register("./sw.js").catch(function(){}); }
+</script>
+</body>
+</html>

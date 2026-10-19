@@ -624,6 +624,129 @@
    "steps": 31
   },
   {
+   "slug": "chicken-tacos",
+   "name": "Taco Thursday chicken tacos",
+   "file": "chicken-tacos.html",
+   "sub": "Chicken thighs go into the Instant Pot on Slow Cook before you leave, mild enough for the boys. Home at 5:00, rice in the rice cooker. At 6:00 the chicken is shredded back into its juices and the toppings go out; the heat sits on the side for you. Set the time you want to eat and everything runs itself backward.",
+   "chapter": "mains",
+   "label": "POT",
+   "blurb": "Instant Pot slow cook all day · shredded thighs · heat on the side",
+   "meal": [
+    "dinner"
+   ],
+   "protein": [
+    "chicken"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 720,
+   "active": 45,
+   "band": "day",
+   "time": "all-day slow cook",
+   "effort": 1,
+   "ahead": true,
+   "kid": true,
+   "serves": 4,
+   "occasion": [
+    "weeknight"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "boneless skinless chicken thighs (fridge cold, fully thawed, never frozen into the pot)",
+    "yellow onion (sliced thin)",
+    "garlic clove (smashed)",
+    "lime, juiced into the chicken",
+    "lime, in wedges",
+    "shredded lettuce (romaine or iceberg)",
+    "Roma tomato (diced)",
+    "shredded cheese (Mexican blend or Monterey Jack)",
+    "sour cream",
+    "6 inch flour or corn tortilla",
+    "low-sodium chicken stock",
+    "tomato paste",
+    "long-grain white rice (dry, measured with a standard cup)",
+    "water, for the rice (or to the rice cooker's white rice line)",
+    "pickled jalapeno slices (his heat, on the side)",
+    "hot sauce (Valentina or Cholula, on the side)",
+    "mild chili powder (the American blend, not pure chile)",
+    "ground cumin",
+    "smoked paprika",
+    "garlic powder",
+    "onion powder",
+    "dried oregano (Mexican if you have it)",
+    "brown sugar",
+    "ground black pepper",
+    "Diamond Crystal kosher salt, in the rub",
+    "Diamond Crystal kosher salt, at the finish (up to this much, after tasting)",
+    "Diamond Crystal kosher salt, for the rice"
+   ],
+   "steps": 15
+  },
+  {
+   "slug": "red-beans-and-rice",
+   "name": "Cajun red beans and rice",
+   "file": "red-beans-and-rice.html",
+   "sub": "Soak on Tuesday night. Wednesday morning the beans boil hard in the Instant Pot, then everything goes in on Slow Cook before you leave. Home at 5:00, rice in the rice cooker, and the beans are mashed creamy for dinner. Mild for the boys, hot sauce on the side. Set the time you want to eat and everything runs itself backward.",
+   "chapter": "mains",
+   "label": "POT",
+   "blurb": "Tuesday soak · Instant Pot hard boil, then slow cook all day · rice at 5",
+   "meal": [
+    "dinner"
+   ],
+   "protein": [
+    "pork"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 1290,
+   "active": 75,
+   "band": "days",
+   "time": "overnight soak, all-day slow cook",
+   "effort": 2,
+   "ahead": true,
+   "kid": true,
+   "serves": 4,
+   "occasion": [
+    "weeknight"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "dried red kidney beans (sorted, any stones or shrivelled beans out)",
+    "cold water, for the soak",
+    "fresh water, for the hard boil",
+    "low-sodium chicken stock",
+    "neutral oil (vegetable or canola)",
+    "long-grain white rice (dry, measured with a standard cup)",
+    "water, for the rice (or to the rice cooker's white rice line)",
+    "Louisiana hot sauce (Crystal or Tabasco, on the table for the grown-ups only)",
+    "andouille or smoked sausage (smoked sausage keeps it mildest; cut in 1/4 inch coins)",
+    "yellow onion (large, diced)",
+    "green bell pepper (diced)",
+    "celery rib (diced)",
+    "garlic clove (minced)",
+    "green onion (sliced, to finish)",
+    "Diamond Crystal kosher salt, in the pot (the sausage brings salt too)",
+    "Diamond Crystal kosher salt, at the finish (up to this much, after tasting)",
+    "Diamond Crystal kosher salt, for the rice",
+    "sweet paprika",
+    "garlic powder",
+    "onion powder",
+    "dried thyme",
+    "dried oregano",
+    "ground black pepper",
+    "ground white pepper",
+    "cayenne (the only heat in the pot, kept mild for the boys)",
+    "bay leaf"
+   ],
+   "steps": 17
+  },
+  {
    "slug": "peppercorn-mushroom-sauce",
    "name": "Peppercorn mushroom sauce",
    "file": "peppercorn-mushroom-sauce.html",
