@@ -71,6 +71,11 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 .row input{width:21px;height:21px;margin:2px 0 0;accent-color:var(--citrus);flex:0 0 auto}
 .clock{font-family:var(--mono);font-size:14px;min-width:62px;flex:0 0 auto;color:var(--ink);padding-top:2px}
 .body{flex:1;min-width:0}
+.dday{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 0 10px}
+#dday{font-size:24px;font-weight:700;line-height:1.15;color:var(--ink)}
+#dday small{display:block;font-size:16px;font-weight:600;color:var(--ink);margin-top:2px}
+.clock .due{display:block;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--citrus);font-weight:700}
+.row.late .txt{opacity:0.85}
 .clock .date{display:block;font-size:10px;letter-spacing:0.06em;color:var(--muted)}
 .clock .day{display:block;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--citrus)}
 .tag{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;padding:2px 6px;border-radius:2px;margin-right:7px;vertical-align:1px}
@@ -122,6 +127,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   <p class="sub">Stage one, under 30 minutes the night before: the beans get a quick soak in the Instant Pot while the sausage and the trinity brown in cast iron, then it all goes into the Instant Pot insert and the fridge. Stage two, the morning of: stock and Cajun seasoning in, a 30 minute hard boil for safety, then Slow Cook before you leave. Home at 5:00, rice in the rice cooker, dinner at 6:30. For a Wednesday dinner that is Tuesday 9:00 pm and Wednesday 6:03 am. Mild for the boys, hot sauce on the side. Set the time you want to eat and every step, the night-before ones included, runs itself backward, each with its day and date.</p>
 
   <div class="bar">
+    <div class="dday"><div id="dday"></div><button class="ghost" id="dswitch"></button></div>
     <div class="controls">
       <div class="ctl">
         <label for="serve">Eating at</label>
@@ -226,49 +232,59 @@ function pad2(n){ return (n < 10 ? "0" : "") + n; }
    25 minutes, Eating at means tomorrow and the night-before steps are tonight. */
 function atOf(s){ var a = s.at; if(s.atBy){ for(var k=0;k<s.atBy.length;k++){ if(state.servings >= s.atBy[k][0]) a = s.atBy[k][1]; } } return a; }
 var LONG = STEPS.length && STEPS[0].at > 720;
-/* The plan has a real serve date, kept in state.date. A fresh plan takes the
-   first day whose first step is still ahead (45 minutes' grace) and whose
-   dinner has not passed by 25 minutes, so a late or early Eating at never
-   plans for a day that has already started without you. Once chosen, the
-   date holds until that dinner has passed, so the cook carries on through
-   the night and the next day whatever the clock says. */
+/* The plan has a real serve date, kept in state.date. A fresh plan (no date
+   saved on this device) takes the meal plan's dinner while it is still ahead,
+   then the soonest dinner whose time has not passed by 25 minutes. Steps whose
+   time has gone by are marked "should be done"; they never move the dinner.
+   Once chosen, the date holds until that dinner has passed. */
+var PLAN = {date:"2026-10-21", serve:"18:30"};
 function ymd(d){ return d.getFullYear() + "-" + pad2(d.getMonth()+1) + "-" + pad2(d.getDate()); }
 function dOn(ds, hm){ var a = ds.split("-"), q = (hm || "18:30").split(":"); return new Date(+a[0], +a[1]-1, +a[2], parseInt(q[0],10), parseInt(q[1],10), 0, 0); }
-function lead(){ return STEPS.length ? atOf(STEPS[0]) : 0; }
-function usable(d, keepIfTicked){
-  var now = Date.now();
-  if(now > d.getTime() + 25*60000) return false;
-  if(keepIfTicked && anyStepTicked()) return true;
-  return d.getTime() - lead()*60000 >= now - 45*60000;
+function ahead(d){ return Date.now() <= d.getTime() + 25*60000; }
+function soonest(){
+  var t = new Date(), q = (state.serve || "18:30").split(":");
+  for(var k=0;k<3;k++){
+    var d = new Date(t.getFullYear(), t.getMonth(), t.getDate()+k, parseInt(q[0],10), parseInt(q[1],10), 0, 0);
+    if(ahead(d)) return d;
+  }
+  return new Date(t.getFullYear(), t.getMonth(), t.getDate()+1, parseInt(q[0],10), parseInt(q[1],10), 0, 0);
 }
 function freshDate(){
-  var t = new Date(), q = (state.serve || "18:30").split(":");
-  for(var k=0;k<4;k++){
-    var d = new Date(t.getFullYear(), t.getMonth(), t.getDate()+k, parseInt(q[0],10), parseInt(q[1],10), 0, 0);
-    if(usable(d, false)) return ymd(d);
-  }
-  return ymd(new Date(t.getFullYear(), t.getMonth(), t.getDate()+1));
+  if(PLAN && ahead(dOn(PLAN.date, state.serve))) return PLAN.date;
+  return ymd(soonest());
 }
 function serveDate(){
-  if(!LONG){
-    var d0 = dateOfHM(state.serve);
-    return d0;
-  }
+  if(!LONG) return dateOfHM(state.serve);
   if(state.date){
     var d = dOn(state.date, state.serve);
-    if(Date.now() <= d.getTime() + 25*60000) return d;
+    if(ahead(d)) return d;
   }
   state.date = freshDate();
   return dOn(state.date, state.serve);
 }
-/* After Eating at changes, keep the plan's date if it still works, else re-pick. */
+/* After Eating at changes, keep the plan's date while that dinner is still ahead, else re-pick. */
 function recheckDate(){
   if(!LONG) return;
-  if(state.date && usable(dOn(state.date, state.serve), true)) return;
+  if(state.date && ahead(dOn(state.date, state.serve))) return;
   state.date = null; serveDate();
 }
 var WD = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], MO = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function dayName(d){ return WD[d.getDay()] + " " + d.getDate() + " " + MO[d.getMonth()]; }
+var WDL = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+/* The big dinner line, and one tap between the soonest dinner and the day after it. */
+function otherDay(){
+  var s = serveDate(), b = soonest();
+  return s.toDateString() === b.toDateString() ? new Date(b.getFullYear(), b.getMonth(), b.getDate()+1, b.getHours(), b.getMinutes()) : b;
+}
+function renderDay(){
+  var el = document.getElementById("dday"), bt = document.getElementById("dswitch");
+  if(!el) return;
+  if(!LONG){ el.parentNode.style.display = "none"; return; }
+  var s = serveDate(), o = otherDay();
+  el.innerHTML = 'Dinner ' + WDL[s.getDay()] + ' ' + s.getDate() + ' ' + MO[s.getMonth()] + ' <small>' + hhmm(s) + '</small>';
+  bt.textContent = 'Make it ' + dayName(o);
+  bt.setAttribute("data-date", ymd(o));
+}
 function dayOf(off){
   if(!LONG) return "";
   var c = clockOf(off), s = serveDate();
@@ -327,19 +343,29 @@ function renderSteps(){
     html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '"' +
       (TIMED ? ' data-at="' + atOf(s) + '"' : '') + '>' +
       '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
-      (TIMED ? '<span class="clock">' + hhmm(clockOf(atOf(s))) + dayOf(atOf(s)) + '</span>' : '') +
+      (TIMED ? '<span class="clock">' + hhmm(clockOf(atOf(s))) + dayOf(atOf(s)) + '<span class="due"></span></span>' : '') +
       '<span class="body">' + (u ? '<span class="usehd"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>You\x27ll use</span><span class="uses">' + u + '</span><span class="txt">' : '<span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>') + s.txt + '</span>' +
       (s.gap ? '<span class="gap">' + s.gap + '</span>' : '') +
       '</span></label>';
   }
   host.innerHTML = html;
+  renderDay();
   if(TIMED) markNow();
 }
 function markNow(){
   if(!TIMED) return;
   var now = new Date(), start = clockOf(atOf(STEPS[0])), end = serveDate(), line = document.getElementById("nowline");
   var rows = document.querySelectorAll("#steps .row"), i;
-  for(i=0;i<rows.length;i++){ rows[i].classList.remove("now"); }
+  for(i=0;i<rows.length;i++){
+    rows[i].classList.remove("now"); rows[i].classList.remove("late");
+    var du = rows[i].querySelector(".due"); if(du) du.textContent = "";
+  }
+  /* Unticked steps whose time has gone by, before the one that is due now. */
+  var due = -1;
+  for(i=0;i<STEPS.length;i++){ if(clockOf(atOf(STEPS[i])) <= now) due = i; }
+  for(i=0;i<due && i<rows.length;i++){
+    if(!state.checked[STEPS[i].id]){ rows[i].classList.add("late"); var dz = rows[i].querySelector(".due"); if(dz) dz.textContent = "should be done"; }
+  }
   if(now < new Date(start.getTime() - 45*60000)){
     line.innerHTML = '<span>Dinner ' + dayName(end) + ' at ' + hhmm(end) + '. First move <b>' + dayName(start) + ', ' + hhmm(start) + '</b>' + (start.toDateString() !== end.toDateString() ? ', the day before' : '') + '</span>';
     return;
@@ -433,6 +459,7 @@ document.addEventListener("change", function(e){
   var id = host.getAttribute("data-id");
   state.checked[id] = e.target.checked;
   host.classList.toggle("on", e.target.checked);
+  if(TIMED && host.parentNode && host.parentNode.id === "steps") markNow();
   save();
 });
 var serveEl = document.getElementById("serve");
@@ -440,6 +467,12 @@ if(serveEl) serveEl.addEventListener("change", function(e){
   state.serve = e.target.value || "18:30";
   recheckDate();
   clearShift();
+  renderSteps(); save();
+});
+var swEl = document.getElementById("dswitch");
+if(swEl) swEl.addEventListener("click", function(){
+  var d = swEl.getAttribute("data-date"); if(!d) return;
+  state.date = d; clearShift();
   renderSteps(); save();
 });
 var incEl = document.getElementById("inc");
