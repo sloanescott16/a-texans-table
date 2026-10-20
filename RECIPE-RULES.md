@@ -35,3 +35,12 @@ These are the ranges used so far, checked by the researcher on 16 Oct 2026 (rese
 - Warm fat for an egg emulsion (aioli, bacon mayo): 100 to 120.
 - Liquids on a probe: gentle simmer 180 to 190, lively or brisk simmer 195 to 205, boil 212 at sea level; pickling brine dissolved at 160 to 180.
 - Egg sauce (carbonara): pan under 150 and off the heat before the eggs; sauce done at 160, never above 165, stirring off the heat.
+
+## Plain ingredient names (the Captain, 19 Oct 2026)
+
+"It's a low sodium chicken stock because I'll just spend all your time looking for it. Just say chicken stock. And use that for other things, right? Like recipes. Recipes need to stop being so specific. Just grab what you can get and get on with it."
+
+- Ingredients use plain generic names: chicken stock, smoked sausage, yellow onions, kosher salt, pork shoulder, apples, ground beef.
+- No brand names and no buying qualifiers like "low-sodium", "Diamond Crystal", "80/20", "Boston butt", "Honeycrisp or Gala", "Valentina or Cholula". Keep a qualifier only when it really changes the dish: bone-in or boneless, skin-on, dry or canned beans, 6 inch or 8 inch tortillas, mild vs hot sausage, unsalted butter, block cheese that has to melt. A brand stays only where the brand is the dish (Cafe du Monde cold brew, Flavacol theater popcorn, Velveeta in the mac and cheese, Coca-Cola in the chashu braise).
+- Full measurements stay. Where an amount depends on a brand (Diamond Crystal kosher salt is about half as salty by volume as Morton), keep the amount, call it "kosher salt", and leave the "Morton: use half" note in the page notes.
+- Shopping lists: the item and roughly how much to buy, no "need X tsp" notes.
