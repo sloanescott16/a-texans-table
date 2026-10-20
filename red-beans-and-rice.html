@@ -71,6 +71,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 .row input{width:21px;height:21px;margin:2px 0 0;accent-color:var(--citrus);flex:0 0 auto}
 .clock{font-family:var(--mono);font-size:14px;min-width:62px;flex:0 0 auto;color:var(--ink);padding-top:2px}
 .body{flex:1;min-width:0}
+.clock .date{display:block;font-size:10px;letter-spacing:0.06em;color:var(--muted)}
 .clock .day{display:block;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--citrus)}
 .tag{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;padding:2px 6px;border-radius:2px;margin-right:7px;vertical-align:1px}
 .t-pot{background:var(--brine-bg);color:var(--brine)}
@@ -118,7 +119,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 <div class="wrap">
   <a class='back' href='./'>&lsaquo; A Texan&rsquo;s Table</a>
   <h1>Cajun red beans and rice</h1>
-  <p class="sub">Under 30 minutes on Tuesday night: the beans get a quick soak in the Instant Pot while the sausage and the trinity brown in cast iron, then it all goes into the Instant Pot insert and the fridge. Wednesday morning, stock and Cajun seasoning in, a 10 minute hard boil for safety, then Slow Cook before you leave. Home at 5:00, rice in the rice cooker, dinner at 6:30. Mild for the boys, hot sauce on the side. Set the time you want to eat and every step, Tuesday night's included, runs itself backward.</p>
+  <p class="sub">Stage one, under 30 minutes the night before: the beans get a quick soak in the Instant Pot while the sausage and the trinity brown in cast iron, then it all goes into the Instant Pot insert and the fridge. Stage two, the morning of: stock and Cajun seasoning in, a 30 minute hard boil for safety, then Slow Cook before you leave. Home at 5:00, rice in the rice cooker, dinner at 6:30. For a Wednesday dinner that is Tuesday 9:00 pm and Wednesday 6:03 am. Mild for the boys, hot sauce on the side. Set the time you want to eat and every step, the night-before ones included, runs itself backward, each with its day and date.</p>
 
   <div class="bar">
     <div class="controls">
@@ -168,8 +169,8 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   </div>
   </div>
 
-  <p class="note"><b>Why the Wednesday boil:</b> raw kidney beans carry a toxin (phytohaemagglutinin, a lectin) that only a hard boil destroys. A slow cooker on low, and the Instant Pot's Slow Cook most of all, may never reach a boil, and beans heated but not boiled can be more toxic than raw. Tuesday's 2 minute pressure cook is a quick soak and may not be enough on its own, so the FDA's rule is kept: at least 10 minutes at a full rolling boil, timed from the boil, before Slow Cook. It also takes the cold pot from the fridge straight up to heat instead of letting it creep up all morning. Canned kidney beans are already cooked and safe.</p>
-  <p class="note"><b>Two nights, three tools:</b> Tuesday the Instant Pot quick soaks the beans while the cast iron browns the sausage and trinity, and it all ends up in the Instant Pot insert in the fridge. Wednesday the Instant Pot does the boil and the slow cook, and the rice cooker does the rice.</p>
+  <p class="note"><b>Why the 30 minute boil:</b> raw kidney beans carry a toxin (phytohaemagglutinin, a lectin) that slow cooker heat does not destroy. The FDA says: &ldquo;Consumers should boil the beans for at least 30 minutes to ensure that the product reaches sufficient temperature, for a sufficient amount of time, to completely destroy the toxin. Slow cookers should not be used to cook these beans or dishes that contain them.&rdquo; Slow cooker casseroles it studied often reached only 75&deg;C (167&deg;F) or less. So the beans boil hard for the full 30 minutes, timed from the boil, and the toxin is gone before Slow Cook starts: the slow cook afterwards is only for flavour and texture. The 2 minute pressure cook in stage one is only a quick soak. The 10 minutes you may see elsewhere is a lab figure; the FDA asks home cooks for 30. Canned kidney beans are already cooked and safe. Source: FDA Bad Bug Book, 2nd edition, phytohaemagglutinin.</p>
+  <p class="note"><b>Two stages, three tools:</b> the night before, the Instant Pot quick soaks the beans while the cast iron browns the sausage and trinity, and it all ends up in the Instant Pot insert in the fridge. The morning of, the Instant Pot does the boil and the slow cook, and the rice cooker does the rice.</p>
   <p class="note"><b>Size:</b> a 6 quart Instant Pot holds up to 4 servings (1 lb of beans). For 6 or 8, use an 8 quart pot, or the soak runs past the half line and the boil foams over.</p>
   <p class="note"><b>Beans still firm at the finish?</b> Old beans and hard water slow them down. Keep simmering on Saute Less, lid off, stirring, until they crush easily; push Eating at back to match.</p>
   <p class="note"><b>Heat:</b> 1/8 teaspoon of cayenne for the whole pot, plus whatever the sausage brings. Smoked sausage is the mild choice; andouille is the option for a spicier pot.</p>
@@ -179,14 +180,14 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 <script>
 var ING = [{"id":"beans","g":"Pantry","per":0.25,"step":0.25,"unit":"lb","name":"dried red kidney beans","note":"sorted, any stones or shrivelled beans out"},{"id":"soakw","g":"Pantry","per":1.5,"step":0.5,"unit":"cup","name":"hot tap water, for the quick soak","note":"hot water comes to pressure sooner; it goes down the sink after"},{"id":"stock","g":"Pantry","per":1.25,"step":0.25,"unit":"cup","name":"chicken stock","note":"enough to cover the beans by about 1 inch; top up with water if not"},{"id":"oil","g":"Pantry","per":0.25,"step":0.25,"unit":"tbsp","name":"vegetable oil"},{"id":"rice","g":"Pantry","per":0.5,"step":0.25,"unit":"cup","name":"white rice","note":"dry, measured with a standard cup"},{"id":"ricew","g":"Pantry","per":0.625,"step":0.125,"unit":"cup","name":"water, for the rice","note":"or to the rice cooker's white rice line"},{"id":"hot","g":"Pantry","per":0.5,"step":0.5,"unit":"tbsp","name":"Louisiana hot sauce","note":"on the table for the grown-ups only"},{"id":"sausage","g":"Meat","per":0.25,"step":0.25,"unit":"lb","name":"smoked sausage","note":"cut in 1/4 inch coins"},{"id":"onion","g":"Produce","per":0.25,"step":0.5,"unit":"","name":"yellow onion","plural":"yellow onions","note":"large, diced"},{"id":"pepper","g":"Produce","per":0.25,"step":0.5,"unit":"","name":"green bell pepper","plural":"green bell peppers","note":"diced"},{"id":"celery","g":"Produce","per":0.5,"step":1,"unit":"","name":"celery rib","plural":"celery ribs","note":"diced"},{"id":"garlic","g":"Produce","per":1,"step":1,"unit":"","name":"garlic clove","plural":"garlic cloves","note":"minced"},{"id":"scallion","g":"Produce","per":1,"step":1,"unit":"","name":"green onion","plural":"green onions","note":"sliced, to finish"},{"id":"salt","g":"Spices","per":0.25,"step":0.125,"unit":"tsp","name":"kosher salt, in the pot","note":"the sausage brings salt too; sized for Diamond Crystal; Morton is about twice as salty, use half"},{"id":"salt2","g":"Spices","per":0.125,"step":0.125,"unit":"tsp","name":"kosher salt, at the finish","note":"up to this much, after tasting; sized for Diamond Crystal; Morton is about twice as salty, use half"},{"id":"ricesalt","g":"Spices","per":0.125,"step":0.125,"unit":"tsp","name":"kosher salt, for the rice","note":"sized for Diamond Crystal; Morton is about twice as salty, use half"},{"id":"paprika","g":"Spices","per":0.5,"step":0.25,"unit":"tsp","name":"sweet paprika","note":"this and the next seven make the mild Cajun seasoning"},{"id":"garpow","g":"Spices","per":0.25,"step":0.125,"unit":"tsp","name":"garlic powder"},{"id":"onpow","g":"Spices","per":0.25,"step":0.125,"unit":"tsp","name":"onion powder"},{"id":"thyme","g":"Spices","per":0.25,"step":0.125,"unit":"tsp","name":"dried thyme"},{"id":"oregano","g":"Spices","per":0.125,"step":0.125,"unit":"tsp","name":"dried oregano"},{"id":"bpep","g":"Spices","per":0.125,"step":0.125,"unit":"tsp","name":"ground black pepper"},{"id":"wpep","g":"Spices","per":0.0625,"step":0.125,"unit":"tsp","name":"ground white pepper"},{"id":"cayenne","g":"Spices","per":0.03125,"step":0.125,"unit":"tsp","name":"cayenne","note":"the only heat in the pot, kept mild for the boys"},{"id":"bay","g":"Spices","per":0.5,"step":1,"unit":"","name":"bay leaf","plural":"bay leaves"}];
 var PRE = [];
-var STEPS = [{"id":"t0","at":1290,"atBy":[[0,1290],[5,1292],[7,1294]],"lane":"cooker","txt":"Tuesday night, under 30 minutes. Tip the beans onto a plate, pick out any stones or shrivelled beans and rinse them in a colander. Into the Instant Pot inner pot with the hot water; never past the half line. Lid on, valve to Sealing. Pressure Cook on High, 2 minutes. It takes about 10 minutes to come to pressure, then the 2 minutes, then leave it to release on its own for 10 minutes. This is only a quick soak, not the safety boil: that is Wednesday morning. Bigger pots take a little longer to come up, so this step starts earlier for 6 or 8.","uses":["beans","soakw"]},{"id":"t1","at":1288,"lane":"pan","txt":"Cast iron skillet on the burner, medium heat, to preheat. While it heats, cut the sausage in 1/4 inch coins, dice the onion, bell pepper and celery, and mince the garlic. Keep the garlic to one side; it goes in last.","uses":["sausage","onion","pepper","celery","garlic"]},{"id":"t2","at":1280,"lane":"pan","txt":"Infrared on the middle of the dry pan: 375°F. Below that, give it another minute; over 400°F, lift it off the heat for a minute and read again. Oil in, then the sausage coins in one layer. 3 minutes a side, 6 minutes in all, until browned at the edges. Hold the burner at medium so the pan stays at about 375°F; aim at a bare spot or the fat, not a coin.","uses":["oil","sausage"]},{"id":"t3","at":1274,"lane":"pan","txt":"Sausage out to a plate with a slotted spoon; the fat stays in the pan. Onion, bell pepper and celery into the fat, 6 minutes, stirring now and then, until soft and the onion turns clear.","uses":["onion","pepper","celery"]},{"id":"t4","at":1268,"lane":"pan","txt":"Garlic in, 1 minute, stirring, until you can smell it. Burner off.","uses":["garlic"]},{"id":"t5","at":1266,"lane":"cooker","txt":"The 10 minute natural release is up. Push the valve to Venting with a long spoon to let any last steam out, then lid off. Lift the inner pot out with mitts and drain the beans in a colander in the sink, a quick rinse; the soak water goes down the sink. Set the inner pot back on the counter.","uses":["beans"]},{"id":"t6","at":1264,"lane":"fridge","txt":"Beans back into the inner pot. Sausage and trinity on top, and scrape the skillet in with every bit of fat and brown. Cover the insert loosely with foil or a plate and into the fridge. It can go in warm; it must be in within 2 hours. That is Tuesday done, inside 30 minutes.","uses":["beans","sausage"]},{"id":"w0","at":737,"atBy":[[0,737],[5,741],[7,747]],"lane":"cooker","txt":"Wednesday morning. Insert out of the fridge and into the Instant Pot. In go the stock, the mild Cajun seasoning (the paprika, garlic and onion powders, thyme, oregano, black and white pepper and cayenne), the bay leaves and the salt. Stir and scrape the bottom. The stock should cover the beans by about an inch; top up with water if not. Saute on More (High), no lid or the glass lid, never the locked lid. From the fridge it takes about 22 minutes to boil at 2 to 4 servings, 26 at 6 and 32 at 8, so the bigger pots start earlier. Stir and scrape every 5 minutes on the way up. Saute shuts itself off after about 30 minutes: if it beeps and stops, press Saute More again at once.","uses":["stock","paprika","garpow","onpow","thyme","oregano","bpep","wpep","cayenne","bay","salt"]},{"id":"w1","at":715,"lane":"cooker","txt":"The safety boil. Wait for a full rolling boil: big bubbles across the whole surface that a stir does not knock down, 212°F on a probe. Press Saute More again right now to reset its 30 minute shut-off, then start a 10 minute timer, whatever the clock says. Keep it boiling hard the whole 10 minutes, stirring and scraping the bottom every couple of minutes and skimming any foam. If the boil breaks, start the 10 minutes again from the full rolling boil. Raw kidney beans carry a natural toxin that only a hard boil destroys; Slow Cook may never reach a boil, and beans warmed but not boiled can be worse than raw, so the FDA says at least 10 minutes at a rolling boil first."},{"id":"w2","at":705,"lane":"cooker","txt":"Cancel. Lid on, steam valve to Venting. Slow Cook on Normal, 11 hours, Keep Warm left on. Normal is the Instant Pot's match for a slow cooker's Low; Less runs too cool for beans. It switches itself to Keep Warm about 15 minutes before you start the finish."},{"id":"w3","at":690,"lane":"away","txt":"Out the door. The pot runs on its own all day."},{"id":"s10","at":90,"lane":"rice","txt":"Home. Rinse the rice in a sieve until the water runs nearly clear, into the rice cooker with the water and salt, white rice setting. It is done in about 40 minutes and holds on warm.","uses":["rice","ricew","ricesalt"]},{"id":"s11","at":45,"lane":"cooker","txt":"The Instant Pot beeps and drops to Keep Warm on its own. Leave the lid on."},{"id":"s12","at":30,"lane":"cooker","txt":"Lid off, bay leaves out. A bean should crush easily against the side with a spoon. Saute on Less (Low). Mash about a cupful of beans against the side with a potato masher or the back of a spoon and stir them through. Simmer uncovered 15 minutes, 180 to 190°F on a probe, stirring every few minutes and scraping the bottom, until it turns creamy and coats a spoon."},{"id":"s13","at":15,"lane":"prep","txt":"Slice the green onions while it thickens.","uses":["scallion"]},{"id":"s14","at":10,"lane":"cooker","txt":"Taste a spoonful with a bean and a coin of sausage, then add salt up to the finishing amount. Cancel the Saute; Keep Warm holds it. Fluff the rice with a paddle.","uses":["salt2"]},{"id":"s15","at":5,"lane":"prep","txt":"Hot sauce on the table for the grown-ups. The pot itself stays mild.","uses":["hot"]},{"id":"s16","at":0,"lane":"serve","txt":"Rice in the bowl, red beans ladled over, green onions on top.","uses":["scallion"]}];
+var STEPS = [{"id":"t0","at":1290,"atBy":[[0,1290],[5,1292],[7,1294]],"lane":"cooker","txt":"Stage one, under 30 minutes. Tip the beans onto a plate, pick out any stones or shrivelled beans and rinse them in a colander. Into the Instant Pot inner pot with the hot water; never past the half line. Lid on, valve to Sealing. Pressure Cook on High, 2 minutes. It takes about 10 minutes to come to pressure, then the 2 minutes, then leave it to release on its own for 10 minutes. This is only a quick soak, not the safety boil: that comes in stage two. Bigger pots take a little longer to come up, so this step starts earlier for 6 or 8.","uses":["beans","soakw"]},{"id":"t1","at":1288,"lane":"pan","txt":"Cast iron skillet on the burner, medium heat, to preheat. While it heats, cut the sausage in 1/4 inch coins, dice the onion, bell pepper and celery, and mince the garlic. Keep the garlic to one side; it goes in last.","uses":["sausage","onion","pepper","celery","garlic"]},{"id":"t2","at":1280,"lane":"pan","txt":"Infrared on the middle of the dry pan: 375°F. Below that, give it another minute; over 400°F, lift it off the heat for a minute and read again. Oil in, then the sausage coins in one layer. 3 minutes a side, 6 minutes in all, until browned at the edges. Hold the burner at medium so the pan stays at about 375°F; aim at a bare spot or the fat, not a coin.","uses":["oil","sausage"]},{"id":"t3","at":1274,"lane":"pan","txt":"Sausage out to a plate with a slotted spoon; the fat stays in the pan. Onion, bell pepper and celery into the fat, 6 minutes, stirring now and then, until soft and the onion turns clear.","uses":["onion","pepper","celery"]},{"id":"t4","at":1268,"lane":"pan","txt":"Garlic in, 1 minute, stirring, until you can smell it. Burner off.","uses":["garlic"]},{"id":"t5","at":1266,"lane":"cooker","txt":"The 10 minute natural release is up. Push the valve to Venting with a long spoon to let any last steam out, then lid off. Lift the inner pot out with mitts and drain the beans in a colander in the sink, a quick rinse; the soak water goes down the sink. Set the inner pot back on the counter.","uses":["beans"]},{"id":"t6","at":1264,"lane":"fridge","txt":"Beans back into the inner pot. Sausage and trinity on top, and scrape the skillet in with every bit of fat and brown. Cover the insert loosely with foil or a plate and into the fridge. It can go in warm; chill promptly, within 2 hours. Stage one done, inside 30 minutes.","uses":["beans","sausage"]},{"id":"w0","at":747,"atBy":[[0,747],[5,751],[7,757]],"lane":"cooker","txt":"Stage two. Insert out of the fridge and into the Instant Pot. In go the stock, the mild Cajun seasoning (the paprika, garlic and onion powders, thyme, oregano, black and white pepper and cayenne), the bay leaves and the salt. Stir and scrape the bottom. The stock should cover the beans by about an inch; top up with water if not. Saute on More (High), no lid or the glass lid, never the locked lid. From the fridge it takes about 22 minutes to boil at 2 to 4 servings, 26 at 6 and 32 at 8, so the bigger pots start earlier. Stir and scrape every 5 minutes on the way up. Saute shuts itself off after about 30 minutes: if it beeps and stops, press Saute More again at once.","uses":["stock","paprika","garpow","onpow","thyme","oregano","bpep","wpep","cayenne","bay","salt"]},{"id":"w1","at":725,"lane":"cooker","txt":"The safety boil, 30 minutes. Wait for a full rolling boil: big bubbles across the whole surface that a stir does not knock down, 212°F on a probe. Press Saute More again right now to reset its 30 minute shut-off, then start a 30 minute timer, whatever the clock says. Press Saute More again at the 15 minute mark, so the shut-off never cuts in before the 30 minutes are up. Keep it boiling hard the whole time, stirring and scraping the bottom every few minutes and skimming any foam; top up with hot water if the beans start to show. If the boil breaks, start the 30 minutes again from the full rolling boil. The FDA says to boil kidney beans for at least 30 minutes to destroy their natural toxin, and that a slow cooker alone is not safe for them."},{"id":"w2","at":695,"lane":"cooker","txt":"Cancel. Lid on, steam valve to Venting. Slow Cook on Normal, 10 hours 30 minutes, Keep Warm left on. The beans are already safe after the boil; this is for flavour and texture. Normal is the Instant Pot's match for a slow cooker's Low. It switches itself to Keep Warm about 35 minutes before you start the finish."},{"id":"w3","at":690,"lane":"away","txt":"Out the door. The pot runs on its own all day."},{"id":"s10","at":90,"lane":"rice","txt":"Home. Rinse the rice in a sieve until the water runs nearly clear, into the rice cooker with the water and salt, white rice setting. It is done in about 40 minutes and holds on warm.","uses":["rice","ricew","ricesalt"]},{"id":"s11","at":65,"lane":"cooker","txt":"The Instant Pot beeps and drops to Keep Warm on its own. Leave the lid on."},{"id":"s12","at":30,"lane":"cooker","txt":"Lid off, bay leaves out. A bean should crush easily against the side with a spoon. Saute on Less (Low). Mash about a cupful of beans against the side with a potato masher or the back of a spoon and stir them through. Simmer uncovered 15 minutes, 180 to 190°F on a probe, stirring every few minutes and scraping the bottom, until it turns creamy and coats a spoon."},{"id":"s13","at":15,"lane":"prep","txt":"Slice the green onions while it thickens.","uses":["scallion"]},{"id":"s14","at":10,"lane":"cooker","txt":"Taste a spoonful with a bean and a coin of sausage, then add salt up to the finishing amount. Cancel the Saute; Keep Warm holds it. Fluff the rice with a paddle.","uses":["salt2"]},{"id":"s15","at":5,"lane":"prep","txt":"Hot sauce on the table for the grown-ups. The pot itself stays mild.","uses":["hot"]},{"id":"s16","at":0,"lane":"serve","txt":"Rice in the bowl, red beans ladled over, green onions on top.","uses":["scallion"]}];
 var TIMED = true;
 var SERV = {"base":4,"min":2,"max":8};
 var KEY = "kitchen:red-beans-and-rice";
 
 var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
             fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], rice:["RICE COOKER","t-jar"], away:["AWAY","t-prep"]};
-var state = {servings: SERV ? SERV.base : 0, serve: "18:30", checked:{}, notes:"", planned:null};
+var state = {servings: SERV ? SERV.base : 0, serve: "18:30", date:null, checked:{}, notes:"", planned:null};
 
 function frac(n){
   if(n === 0) return "0";
@@ -225,14 +226,54 @@ function pad2(n){ return (n < 10 ? "0" : "") + n; }
    25 minutes, Eating at means tomorrow and the night-before steps are tonight. */
 function atOf(s){ var a = s.at; if(s.atBy){ for(var k=0;k<s.atBy.length;k++){ if(state.servings >= s.atBy[k][0]) a = s.atBy[k][1]; } } return a; }
 var LONG = STEPS.length && STEPS[0].at > 720;
-function serveDate(){
-  var d = dateOfHM(state.serve);
-  if(LONG && Date.now() > d.getTime() + 25*60000) d = new Date(d.getTime() + 86400000);
-  return d;
+/* The plan has a real serve date, kept in state.date. A fresh plan takes the
+   first day whose first step is still ahead (45 minutes' grace) and whose
+   dinner has not passed by 25 minutes, so a late or early Eating at never
+   plans for a day that has already started without you. Once chosen, the
+   date holds until that dinner has passed, so the cook carries on through
+   the night and the next day whatever the clock says. */
+function ymd(d){ return d.getFullYear() + "-" + pad2(d.getMonth()+1) + "-" + pad2(d.getDate()); }
+function dOn(ds, hm){ var a = ds.split("-"), q = (hm || "18:30").split(":"); return new Date(+a[0], +a[1]-1, +a[2], parseInt(q[0],10), parseInt(q[1],10), 0, 0); }
+function lead(){ return STEPS.length ? atOf(STEPS[0]) : 0; }
+function usable(d, keepIfTicked){
+  var now = Date.now();
+  if(now > d.getTime() + 25*60000) return false;
+  if(keepIfTicked && anyStepTicked()) return true;
+  return d.getTime() - lead()*60000 >= now - 45*60000;
 }
+function freshDate(){
+  var t = new Date(), q = (state.serve || "18:30").split(":");
+  for(var k=0;k<4;k++){
+    var d = new Date(t.getFullYear(), t.getMonth(), t.getDate()+k, parseInt(q[0],10), parseInt(q[1],10), 0, 0);
+    if(usable(d, false)) return ymd(d);
+  }
+  return ymd(new Date(t.getFullYear(), t.getMonth(), t.getDate()+1));
+}
+function serveDate(){
+  if(!LONG){
+    var d0 = dateOfHM(state.serve);
+    return d0;
+  }
+  if(state.date){
+    var d = dOn(state.date, state.serve);
+    if(Date.now() <= d.getTime() + 25*60000) return d;
+  }
+  state.date = freshDate();
+  return dOn(state.date, state.serve);
+}
+/* After Eating at changes, keep the plan's date if it still works, else re-pick. */
+function recheckDate(){
+  if(!LONG) return;
+  if(state.date && usable(dOn(state.date, state.serve), true)) return;
+  state.date = null; serveDate();
+}
+var WD = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], MO = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function dayName(d){ return WD[d.getDay()] + " " + d.getDate() + " " + MO[d.getMonth()]; }
 function dayOf(off){
+  if(!LONG) return "";
   var c = clockOf(off), s = serveDate();
-  return c.toDateString() === s.toDateString() ? "" : '<span class="day">day before</span>';
+  var before = c.toDateString() !== s.toDateString();
+  return (before ? '<span class="day">day before</span>' : '') + '<span class="date">' + dayName(c) + '</span>';
 }
 function dateOfHM(hm){
   var p = (hm || "18:30").split(":");
@@ -300,7 +341,7 @@ function markNow(){
   var rows = document.querySelectorAll("#steps .row"), i;
   for(i=0;i<rows.length;i++){ rows[i].classList.remove("now"); }
   if(now < new Date(start.getTime() - 45*60000)){
-    line.innerHTML = 'First move at <b>' + hhmm(start) + '</b>' + (start.toDateString() !== end.toDateString() ? ' the day before' : '');
+    line.innerHTML = '<span>Dinner ' + dayName(end) + ' at ' + hhmm(end) + '. First move <b>' + dayName(start) + ', ' + hhmm(start) + '</b>' + (start.toDateString() !== end.toDateString() ? ', the day before' : '') + '</span>';
     return;
   }
   if(now > new Date(end.getTime() + 25*60000)){
@@ -333,7 +374,7 @@ function startFrom(i){
   if(!s || !TIMED) return;
   if(!state.planned) state.planned = state.serve;
   var d = new Date(Date.now() + atOf(s)*60000);
-  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes()); state.date = ymd(d);
   var el = document.getElementById("serve");
   if(el) el.value = state.serve;
   renderSteps(); renderShift(); save();
@@ -345,7 +386,7 @@ function renderShift(){
     el.className = "moved"; el.innerHTML = ""; return;
   }
   el.className = "moved on";
-  el.innerHTML = 'Dinner is now <b>' + hhmm(serveDate()) + '</b>, moved from ' + hhmm(dateOfHM(state.planned)) + '.';
+  el.innerHTML = 'Dinner is now <b>' + (LONG ? dayName(serveDate()) + ', ' : '') + hhmm(serveDate()) + '</b>, moved from ' + hhmm(dateOfHM(state.planned)) + '.';
 }
 function clearShift(){
   state.planned = null;
@@ -364,6 +405,7 @@ function apply(raw){
     var v = JSON.parse(raw);
     if(v.servings) state.servings = v.servings;
     if(v.serve) state.serve = v.serve;
+    if(v.date) state.date = v.date;
     if(v.checked) state.checked = v.checked;
     if(typeof v.notes === "string") state.notes = v.notes;
     if(v.planned) state.planned = v.planned;
@@ -382,6 +424,7 @@ function boot(){
   var vEl = document.getElementById("sv");
   if(vEl) vEl.textContent = state.servings;
   renderIngredients(); renderPre(); renderSteps(); renderNotes(); renderShift();
+  save();
 }
 
 document.addEventListener("change", function(e){
@@ -395,6 +438,7 @@ document.addEventListener("change", function(e){
 var serveEl = document.getElementById("serve");
 if(serveEl) serveEl.addEventListener("change", function(e){
   state.serve = e.target.value || "18:30";
+  recheckDate();
   clearShift();
   renderSteps(); save();
 });
@@ -430,7 +474,7 @@ if(nowBtn) nowBtn.addEventListener("click", function(){
      means you are setting the plan, so there is no move to report. */
   if(anyStepTicked()){ startFrom(i); return; }
   var d = new Date(Date.now() + atOf(STEPS[i])*60000);
-  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes()); state.date = ymd(d);
   document.getElementById("serve").value = state.serve;
   clearShift();
   renderSteps(); save();
@@ -469,6 +513,7 @@ if(clrNotesBtn) clrNotesBtn.addEventListener("click", function(){
    their own Clear. */
 document.getElementById("clrAll").addEventListener("click", function(){
   state.checked = {};
+  state.date = null;
   if(state.planned){
     state.serve = state.planned;
     state.planned = null;
