@@ -131,6 +131,7 @@ for (const slug of Object.keys(PAGES)) {
   check(slug + " reset clears ticks", await ev(`document.querySelectorAll('#steps .row.on, #ing .item.on').length===1`) || await ev(`document.querySelectorAll('#steps .row.on').length===0`), "reset");
   check(slug + " no console errors or failed requests", errors.length === 0, errors.join(" || "));
   check(slug + " no speech", (await ev(`window.__spoke`)) === 0, "spoke");
+  console.log("page done " + slug);
   timeline.push(slug + ": " + (await rows()).map((x: any) => x.clock).join(", "));
 }
 // index

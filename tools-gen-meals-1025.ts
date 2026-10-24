@@ -20,6 +20,7 @@ R.push({
     `<b>Marinade time:</b> 2 to 4 hours in the fridge. Past about 4 hours the lime starts to turn the meat mealy.`,
     `<b>Food safety:</b> chicken to 165°F minimum on a probe in the thickest part, not touching bone; thighs are best at 175 to 185°F. Never judge by the juices. The used marinade goes down the drain, never on the food.`,
     SALT,
+    IR,
   ],
   ing: [
     { id: "chicken", g: "Meat", per: 2, step: 1, unit: "", name: "bone-in, skin-on chicken thigh", plural: "bone-in, skin-on chicken thighs", note: "about 3 and a half pounds at 4 servings" },
