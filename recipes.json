@@ -248,7 +248,7 @@
    "slug": "peruvian-grilled-chicken",
    "name": "Peruvian-style grilled chicken",
    "file": "peruvian-grilled-chicken.html",
-   "sub": "Bone-in thighs in a soy, lime, cumin and smoked paprika marinade, cooked through on the cool side of a two-zone grill, then the skin crisped over the coals. A mild green herb sauce in the aji verde style, a big salad on the house vinaigrette, rice for the boys. Set the time you want to eat and everything runs itself backward.",
+   "sub": "Boneless, skinless thighs in a soy, lime, cumin and smoked paprika marinade, grilled hot and fast over the coals, 6 minutes a side, off at 175°F and rested. A mild green herb sauce in the aji verde style, a big salad on the house vinaigrette, rice for the boys. Set the time you want to eat and everything runs itself backward.",
    "chapter": "smoker",
    "label": "FIRE",
    "blurb": "two-zone grill · mild green sauce · big salad",
@@ -262,7 +262,7 @@
     "grill"
    ],
    "total": 270,
-   "active": 60,
+   "active": 50,
    "band": "afternoon",
    "time": "4 hr 30 with the marinade",
    "effort": 2,
@@ -276,7 +276,7 @@
    "scales": true,
    "test": false,
    "ingredients": [
-    "bone-in, skin-on chicken thigh (about 3 and a half pounds at 4 servings)",
+    "boneless, skinless chicken thighs",
     "soy sauce",
     "lime juice",
     "olive oil",
@@ -307,7 +307,7 @@
     "black pepper",
     "jasmine rice (water to the rice cooker's line)"
    ],
-   "steps": 12
+   "steps": 10
   },
   {
    "slug": "shrimp-scampi",
@@ -850,7 +850,7 @@
     "beef stock (made up from beef bouillon paste: 1 tsp paste to each cup of hot water)",
     "bay leaf",
     "jasmine rice (water to the rice cooker's line)",
-    "flour tortilla",
+    "flour tortilla (at home)",
     "cilantro, chopped",
     "red onion, diced",
     "jalapeno (sliced, his bowl only)"
@@ -965,11 +965,11 @@
     "extra virgin olive oil",
     "garlic clove, smashed",
     "sprig fresh rosemary (from the garden)",
-    "heavy cream",
+    "heavy cream (at home)",
     "potato cooking water, kept back",
     "kosher salt, for the mash (taste, then up to half as much again)",
     "MSG",
-    "Parmesan, finely grated (not too much)"
+    "Parmesan, finely grated (at home; not too much)"
    ],
    "steps": 25
   },

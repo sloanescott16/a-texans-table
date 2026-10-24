@@ -29,3 +29,8 @@ Waiting for the go from Nigel.
 - Stock is made up from beef bouillon paste or chicken stock powder, 1 tsp per cup of hot water (ingredient notes and a Stock note on three pages). Rosemary from the garden.
 - Beef stock, chicken stock, mayonnaise, jasmine rice and rosemary taken off the grocery list.
 - Headless check 67 of 67.
+
+## Job 1024-1230-vk7, 24 Oct
+- Sunday: boneless, skinless thighs, 2.5 lb for 4. Grill lit 5:40, thighs on 6:12, flip 6:18, probe and pull at 175F 6:24, rest 5 minutes, dinner 6:30.
+- Tortillas, heavy cream and Parmesan at home: off the list, "at home" on the pages.
+- Preview folder preview-1025-1tc9hi rebuilt from these pages (tools-preview-1025.ts).

@@ -1,7 +1,7 @@
 # Grocery list, week of Sun 25 Oct 2026
 
 One shop for Sun 25 (grilled chicken), Mon 26 (carne guisada), Wed 28 (her tom kha, 40 Aprons) and Thu 29 (pork chops with mash). All for 4.
-Skipped because they are in the house: soy sauce, Dijon, cider vinegar, brown sugar, lime and lemon juice, olive oil, canola, jarred minced garlic, beef tallow, bay leaves, mayonnaise, jasmine rice, beef bouillon paste (the beef stock) and chicken stock powder (the chicken stock). Rosemary comes from the garden. Salt and pepper not listed.
+Skipped because they are in the house: soy sauce, Dijon, cider vinegar, brown sugar, lime and lemon juice, olive oil, canola, jarred minced garlic, beef tallow, bay leaves, mayonnaise, jasmine rice, beef bouillon paste (the beef stock), chicken stock powder (the chicken stock), flour tortillas, heavy cream and Parmesan. Rosemary comes from the garden. Salt and pepper not listed.
 
 ## Produce
 - Cilantro, 2 bunches
@@ -26,19 +26,14 @@ Skipped because they are in the house: soy sauce, Dijon, cider vinegar, brown su
 - Fresh thyme, 1 small pack
 
 ## Meat
-- Bone-in, skin-on chicken thighs, 8, about 3 and a half pounds
+- Boneless, skinless chicken thighs, about 2 and a half pounds
 - Beef chuck roast, about 2 and a half pounds
 - Boneless, skinless chicken breast, about 1 pound
 - Bone-in pork chops, about 1 inch thick, 4
 
 ## Dairy and cheese
 - Butter, 2 sticks
-- Heavy cream, 1 pint
 - Cotija cheese, a small piece
-- Parmesan, a small wedge
-
-## Tortillas and bread
-- Flour tortillas, 1 pack
 
 ## Canned, dry goods and international aisle
 - Full-fat coconut milk, 2 cans
@@ -61,7 +56,7 @@ Skipped because they are in the house: soy sauce, Dijon, cider vinegar, brown su
 ## The four recipes, settled for 4 (stage 2 builds the pages from these)
 
 Sun 25, Peruvian-style grilled chicken, aji verde style sauce, big salad, rice for the boys
-- Chicken: 8 bone-in skin-on chicken thighs (about 3.5 lb). Marinade: 3 tbsp soy sauce, 3 tbsp lime juice, 2 tbsp olive oil, 1 tbsp jarred minced garlic, 2 tsp ground cumin, 2 tsp smoked paprika, 1 tsp dried oregano, 1 tsp brown sugar, 2 tsp kosher salt, 1 tsp black pepper. To 175 to 185°F on a probe (165°F minimum).
+- Chicken: 2.5 lb boneless skinless chicken thighs. Marinade: 3 tbsp soy sauce, 3 tbsp lime juice, 2 tbsp olive oil, 1 tbsp jarred minced garlic, 2 tsp ground cumin, 2 tsp smoked paprika, 1 tsp dried oregano, 1 tsp brown sugar, 2 tsp kosher salt, 1 tsp black pepper. Grilled direct, 6 minutes a side, pulled at 175°F on a probe (165°F minimum), 5 minute rest.
 - Green sauce, mild: 2 cups packed cilantro (about 1 bunch), 1/2 cup mayonnaise, 1/4 cup crumbled cotija, 2 tbsp lime juice, 1 tsp jarred minced garlic, 2 tbsp olive oil, 1/4 tsp kosher salt. His side: blend 1 jalapeno into a third of it.
 - Salad: 2 romaine hearts, 1 pint cherry tomatoes, 1 cucumber, half a red onion, 1 avocado. Base vinaigrette: 2 tbsp cider vinegar, 1 tsp Dijon, 6 tbsp olive oil, 1/2 tsp kosher salt, 1/4 tsp black pepper.
 - Rice for the boys: 1 cup jasmine rice.
