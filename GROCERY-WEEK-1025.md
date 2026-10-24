@@ -1,7 +1,7 @@
 # Grocery list, week of Sun 25 Oct 2026
 
 One shop for Sun 25 (grilled chicken), Mon 26 (carne guisada), Wed 28 (her tom kha, 40 Aprons) and Thu 29 (pork chops with mash). All for 4.
-Skipped because they are in the house: soy sauce, Dijon, cider vinegar, brown sugar, lime and lemon juice, olive oil, canola, jarred minced garlic, beef tallow, bay leaves. Salt and pepper not listed.
+Skipped because they are in the house: soy sauce, Dijon, cider vinegar, brown sugar, lime and lemon juice, olive oil, canola, jarred minced garlic, beef tallow, bay leaves, mayonnaise, jasmine rice, beef bouillon paste (the beef stock) and chicken stock powder (the chicken stock). Rosemary comes from the garden. Salt and pepper not listed.
 
 ## Produce
 - Cilantro, 2 bunches
@@ -24,7 +24,6 @@ Skipped because they are in the house: soy sauce, Dijon, cider vinegar, brown su
 - Gold potatoes, 3 pounds
 - Garlic, 1 head
 - Fresh thyme, 1 small pack
-- Fresh rosemary, 1 small pack
 
 ## Meat
 - Bone-in, skin-on chicken thighs, 8, about 3 and a half pounds
@@ -44,13 +43,9 @@ Skipped because they are in the house: soy sauce, Dijon, cider vinegar, brown su
 ## Canned, dry goods and international aisle
 - Full-fat coconut milk, 2 cans
 - Red Thai curry paste, 1 small jar
-- Chicken stock, 2 cartons
-- Beef stock, 1 carton
 - Tomato sauce, 1 small can
 - Fish sauce, 1 bottle, if none at home
 - Chili oil, 1 jar
-- Mayonnaise, 1 jar, if none at home
-- Jasmine rice, about 2 pounds
 
 ## Juice aisle
 - Apple cider, the drink not the vinegar, 1 quart
@@ -80,9 +75,11 @@ Wed 28, tom kha, her recipe (40 Aprons Slow Cooker Tom Kha Soup), Instant Pot on
 - Then, High about 1 hour to 165°F: 2 cans full-fat coconut milk, 1 lb boneless skinless chicken breast in bite-sized pieces, 8 oz sliced white mushrooms.
 - Finish: 2 tbsp brown sugar, 2 tbsp fish sauce, 2 tbsp lime juice, to taste. Garnish sliced green onions, cilantro.
 - Mild: the half red jalapeno or 1 to 2 Thai chiles come out of the pot and go on the side for him, sliced, with chili oil.
-- 1.5 cups jasmine rice for the boys. Start about 2:15 pm for 6:30.
+- 1.5 cups jasmine rice for the boys. Start about 2:00 pm for 6:30.
 
 Thu 29, cast iron pork chops, caramelized onion and pear pan sauce, mashed potatoes
 - 4 bone-in pork chops about 1 inch thick, 2 tsp kosher salt, 1 tsp black pepper, 1 tbsp canola. To 145°F on a probe, 3 minute rest.
 - Sauce: 2 large yellow onions sliced, 1 tbsp butter plus 2 tbsp to finish, 2 pears, 1 cup apple cider, 1/2 cup chicken stock, 4 sprigs fresh thyme, 1 tsp Dijon, 1 tsp cider vinegar, 1/2 tsp kosher salt.
 - Mash from the site's mash steps at 3 lb: gold potatoes, 4 tbsp butter, 2 tbsp olive oil, 2 garlic cloves, 2 rosemary sprigs, 1 cup heavy cream, 1/2 tsp MSG, 1/2 cup Parmesan, kosher salt, bay leaf.
+
+Stock on every page is made up at home: beef bouillon paste or chicken stock powder, 1 teaspoon to each cup of hot water.

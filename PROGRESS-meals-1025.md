@@ -24,3 +24,8 @@ Waiting for the go from Nigel.
 - Pork chops: sauce simmer has a probe number; chops rest 5 to 6 minutes and go out fresh off the heat.
 - Records: week_of follows the Monday-start convention.
 - Headless check 67 of 67. Grocery list unchanged: no ingredient or amount changed.
+
+## Pantry notes, job 1024-1213-a28, 24 Oct
+- Stock is made up from beef bouillon paste or chicken stock powder, 1 tsp per cup of hot water (ingredient notes and a Stock note on three pages). Rosemary from the garden.
+- Beef stock, chicken stock, mayonnaise, jasmine rice and rosemary taken off the grocery list.
+- Headless check 67 of 67.
