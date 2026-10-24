@@ -9,3 +9,8 @@ Worktree C:\NIGEL-scratch\wt-hzw-1025, branch meals-1025 cut from site-release-1
 
 ## Stage 2
 Waiting for the go from Nigel.
+
+## Stage 2, in progress 24 Oct
+- Four pages, index, recipes.json and sw.js (kitchen-v18) built and committed. Plain-name fixes applied to the list.
+- Rotation records: branch meals-records-1025, worktree C:\NIGEL-scratch\wt-hzw-records-1025, commit e4f4482.
+- Headless check running (tools-check-meals-1025.ts).
