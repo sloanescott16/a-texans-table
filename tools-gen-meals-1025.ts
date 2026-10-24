@@ -127,10 +127,10 @@ R.push({
   slug: "tom-kha", name: "Slow cooker tom kha",
   sub: "Her recipe: the 40 Aprons Slow Cooker Tom Kha Soup. Onion, garlic, galangal, lemongrass, lime leaves and red curry paste steep in chicken stock on High for 3 hours, the aromatics come out, then coconut milk, chicken and mushrooms go in for about an hour more. Sugar, fish sauce and lime to finish. In the Instant Pot on Slow Cook. Mild for the boys over rice; the chile and chili oil are on the side for him.",
   notes: [
-    `<b>Her recipe:</b> 40 Aprons, Slow Cooker Tom Kha Soup, quantities as published for about 4. The one change: the chile comes out of the pot and goes on the side, so the base is mild for the boys.`,
+    `<b>Her recipe:</b> 40 Aprons, Slow Cooker Tom Kha Soup, quantities as published for about 4. Two changes, both ours: the chile comes out of the pot and goes on the side, so the base is mild for the boys; and the coconut broth is warmed on Saute to about 180°F before the chicken goes in, for safety.`,
     `<b>Curry paste:</b> the 1 tablespoon stays as the recipe has it. If the boys find it warm, halve it next time.`,
     `<b>The pot:</b> clean the Instant Pot insert and the lid seal on Tuesday, after Monday's guisada, so the soup does not pick up the beef.`,
-    `<b>Slow cook safety, our addition:</b> straining and two cans of cold coconut milk drop the broth to about 105 to 115°F, too cool to put raw chicken into on a slow cooker setting. So the coconut broth is brought back up on Saute to about 180°F on a probe before the chicken goes in. That warm-up is the only change to her method; her ingredients and their order are as she has them. Chicken to 165°F on a probe in the biggest piece; if it is short, Saute 5 minutes and probe again. Leftovers into the fridge within 2 hours. Lid: the Instant Pot lid with the valve on Venting, or a glass lid.`,
+    `<b>Slow cook safety, our addition:</b> straining and two cans of cold coconut milk drop the broth to about 105 to 115°F, too cool to put raw chicken into on a slow cooker setting. So the coconut broth is brought back up on Saute to about 180°F on a probe before the chicken goes in. Her ingredients and their order are as she has them. Chicken to 165°F on a probe in the biggest piece; if it is short, Saute 5 minutes and probe again. Leftovers into the fridge within 2 hours. Lid: the Instant Pot lid with the valve on Venting, or a glass lid.`,
     `Lime leaves are optional; they add a lime flavour juice cannot. If galangal is missing, ginger does the job.`,
   ],
   ing: [
