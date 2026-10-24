@@ -17,3 +17,10 @@ Waiting for the go from Nigel.
 - Infrared readings note added to the grilled chicken page.
 
 ## Stage 2 done 24 Oct. Handoff in HANDOFF-meals-1025.md.
+
+## Fix round 1, 24 Oct
+- Tom kha: coconut broth warmed on Saute to about 180F before the chicken, safety note rewritten, start 2:00 pm.
+- Guisada: note times match the steps (7:25 am to 5:25 pm, then Keep Warm; morning 35 minutes); thin-gravy simmer has a probe number.
+- Pork chops: sauce simmer has a probe number; chops rest 5 to 6 minutes and go out fresh off the heat.
+- Records: week_of follows the Monday-start convention.
+- Headless check 67 of 67. Grocery list unchanged: no ingredient or amount changed.

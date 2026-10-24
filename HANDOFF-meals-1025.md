@@ -15,11 +15,11 @@ Local only. Nothing pushed, published or merged.
 ## How to test
     cd C:\NIGEL-scratch\1024-1130-hzw
     bun check-meals-1025.ts C:\NIGEL-scratch\wt-hzw-1025 C:\NIGEL-scratch\1024-1130-hzw\out C:\NIGEL-scratch\1024-1130-hzw\edge-profile
-Last run: 65 of 65 passed. Headless Edge, 390 px, speech stubbed, audio muted, service worker blocked, clock pinned. Results in out\results.json, screenshots in out\.
+Last run: 67 of 67 passed (fix round 1). Headless Edge, 390 px, speech stubbed, audio muted, service worker blocked, clock pinned. Results in out\results.json, screenshots in out\.
 
 ## Unsure or worth a look
 - Per-side timers: each side of every sear is its own timed row (the scampi pattern), not the pot roast's start and finish timer buttons.
 - Monday's clock starts at 6:50 am for a 6:30 pm dinner: Slow Cook Normal 10 hours, then Keep Warm.
-- Wednesday starts about 2:05 pm for 6:30, which assumes she is home by 2.
+- Wednesday starts about 2:00 pm for 6:30, which assumes she is home by 2. Fix round 1 added a Saute warm-up of the coconut broth to about 180°F before the raw chicken goes in (our safety step, noted on the page).
 - Instant Pot "More" taken as High and "Normal" as Low, as the Instant Pot manual says.
 - The meal-planner branch tacos-1022 is still unmerged, so meals-records-1025 sits on top of it.

@@ -83,7 +83,7 @@ const BANNED = /diamond crystal|morton|low-sodium|low sodium|yukon|unsalted|bost
 const PAGES: Record<string, { n4: Record<string, string>; n8: Record<string, string>; first: string; last: string }> = {
   "peruvian-grilled-chicken": { n4: { chicken: "8", soy: "3 tbsp", cumin: "2 tsp", msalt: "2 tsp", cilantro: "2 cups", jalapeno: "1", voil: "6 tbsp", rice: "1 cup" }, n8: { chicken: "16", soy: "6 tbsp", msalt: "4 tsp", cilantro: "4 cups", rice: "2 cups" }, first: "2:00 pm", last: "6:30 pm" },
   "carne-guisada": { n4: { beef: "2 1/2 lb", salt: "2 tsp", chili: "1 tbsp", tsauce: "1 cup", stock: "1 1/2 cups", bay: "2", rice: "2 cups", tortillas: "8" }, n8: { beef: "5 lb", salt: "4 tsp", stock: "3 cups", tortillas: "16" }, first: "6:50 am", last: "6:30 pm" },
-  "tom-kha": { n4: { onion: "1 cup", galangal: "3", lemongrass: "1", leaves: "10", paste: "1 tbsp", stock: "4 cups", coconut: "2", chicken: "1 lb", mushrooms: "8 oz", sugar: "2 tbsp", fish: "2 tbsp", lime: "2 tbsp", chile: "1/2" }, n8: { stock: "8 cups", coconut: "4", chicken: "2 lb", mushrooms: "16 oz", paste: "2 tbsp" }, first: "2:05 pm", last: "6:30 pm" },
+  "tom-kha": { n4: { onion: "1 cup", galangal: "3", lemongrass: "1", leaves: "10", paste: "1 tbsp", stock: "4 cups", coconut: "2", chicken: "1 lb", mushrooms: "8 oz", sugar: "2 tbsp", fish: "2 tbsp", lime: "2 tbsp", chile: "1/2" }, n8: { stock: "8 cups", coconut: "4", chicken: "2 lb", mushrooms: "16 oz", paste: "2 tbsp" }, first: "2:00 pm", last: "6:30 pm" },
   "pork-chops-onion-pear": { n4: { chops: "4", csalt: "2 tsp", onions: "2", pears: "2", cider: "1 cup", stock: "1/2 cup", fbutter: "2 tbsp", potatoes: "3 lb", mbutter: "4 tbsp", cream: "1 cup", parm: "1/2 cup" }, n8: { chops: "8", potatoes: "6 lb", cider: "2 cups", cream: "2 cups" }, first: "5:08 pm", last: "6:30 pm" },
 };
 const timeline: string[] = [];
@@ -131,6 +131,8 @@ for (const slug of Object.keys(PAGES)) {
   check(slug + " reset clears ticks", await ev(`document.querySelectorAll('#steps .row.on, #ing .item.on').length===1`) || await ev(`document.querySelectorAll('#steps .row.on').length===0`), "reset");
   check(slug + " no console errors or failed requests", errors.length === 0, errors.join(" || "));
   check(slug + " no speech", (await ev(`window.__spoke`)) === 0, "spoke");
+  if (slug === "tom-kha") { const rr = await rows(); const w = rr.find((x: any) => x.id === "s3b"), c = rr.find((x: any) => x.id === "s4"); check("tom-kha coconut broth warmed to 180F on Saute before the chicken", !!w && /180°F on a probe/.test(w.txt) && w.at > c.at && !/chicken/i.test(rr.find((x: any) => x.id === "s3b").uses.join(" ")), JSON.stringify(w)); }
+  if (slug === "pork-chops-onion-pear") { const rr = await rows(); const p = rr.find((x: any) => x.id === "c9"); check("pork chops rest 5 to 6 minutes, off the heat at 145F", p.at >= 5 && p.at <= 6 && /145°F/.test(p.txt), "at " + p.at); }
   console.log("page done " + slug);
   timeline.push(slug + ": " + (await rows()).map((x: any) => x.clock).join(", "));
 }

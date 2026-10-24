@@ -874,10 +874,10 @@
    "heat": [
     "stovetop"
    ],
-   "total": 265,
-   "active": 30,
+   "total": 270,
+   "active": 35,
    "band": "afternoon",
-   "time": "4 hr 25",
+   "time": "4 hr 30",
    "effort": 1,
    "ahead": false,
    "kid": true,
@@ -908,7 +908,7 @@
     "chili oil",
     "jasmine rice (water to the rice cooker's line)"
    ],
-   "steps": 10
+   "steps": 11
   },
   {
    "slug": "pork-chops-onion-pear",
@@ -971,7 +971,7 @@
     "MSG",
     "Parmesan, finely grated (not too much)"
    ],
-   "steps": 26
+   "steps": 25
   },
   {
    "slug": "peppercorn-mushroom-sauce",

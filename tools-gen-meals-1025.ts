@@ -76,8 +76,8 @@ R.push({
   slug: "carne-guisada", name: "Carne guisada",
   sub: "Office night. Chuck browned in the Instant Pot in the morning, cumin, chili powder and tomato in, then Slow Cook all day. Home at 5:00, rice cooker on, dinner at 6:30. The boys get it over rice with flour tortillas, he eats it as a bowl. Mild in the pot, jalapeno on the side. Set the time you want to eat and every step runs itself backward.",
   notes: [
-    `The morning is about 25 minutes. Cutting the beef and dicing the onion and pepper the night before saves 10 of them: keep the beef covered in the fridge.`,
-    `<b>Slow cook safety:</b> the beef is browned and the pot is brought to a lively simmer, 195 to 205°F on a probe, before Slow Cook starts, so it never sits lukewarm. Normal on the Instant Pot's Slow Cook runs like low on a slow cooker. The 10 hours end about 6:15 and the pot drops to Keep Warm, which holds it safely. Leftovers into the fridge within 2 hours.`,
+    `The morning is about 35 minutes, 6:50 to 7:25. Cutting the beef and dicing the onion and pepper the night before saves 10 of them: keep the beef covered in the fridge.`,
+    `<b>Slow cook safety:</b> the beef is browned and the pot is brought to a lively simmer, 195 to 205°F on a probe, before Slow Cook starts, so it never sits lukewarm. Normal on the Instant Pot's Slow Cook runs like low on a slow cooker. Slow Cook starts about 7:25 am and the 10 hours end about 5:25 pm. The pot then drops to Keep Warm by itself, which holds it safely above 140°F for the hour or so before 6:30. Leftovers into the fridge within 2 hours.`,
     `Lid: the Instant Pot lid with the valve on Venting, or a glass lid.`,
     SALT,
     IR,
@@ -114,7 +114,7 @@ R.push({
     { id: "s7", at: 671, lane: "pot", txt: "Tomato sauce and beef stock in. Scrape the bottom completely clean so nothing sticks. Bay leaves in. Bring it to a lively simmer, 195 to 205°F on a probe, about 5 minutes.", uses: ["tsauce", "stock", "bay"] },
     { id: "s8", at: 665, lane: "pot", txt: "Cancel Saute. Lid on, valve to Venting. Slow Cook, Normal, 10 hours. It goes to Keep Warm by itself at the end. Go to work." },
     { id: "s9", at: 90, lane: "pot", txt: "Home. Rice cooker: rinse the rice, water to the line, start it.", uses: ["rice"] },
-    { id: "s10", at: 20, lane: "pot", txt: "Lid off. The beef should break with a spoon. Bay leaves out. If the gravy is thin, Saute on Normal, lid off, 5 to 10 minutes at a lively simmer, then back to Keep Warm. Taste for salt." },
+    { id: "s10", at: 20, lane: "pot", txt: "Lid off. The beef should break with a spoon. Bay leaves out. If the gravy is thin, Saute on Normal, lid off, 5 to 10 minutes at a lively simmer, 195 to 205°F on a probe, until it coats the back of a spoon, then back to Keep Warm. Taste for salt." },
     { id: "s11", at: 14, lane: "prep", txt: "Chop the cilantro, dice the red onion, slice his jalapeno.", uses: ["cilantro", "ronion", "jalapeno"] },
     { id: "s12", at: 8, lane: "pan", txt: "Tortillas: dry cast iron on medium, 400 to 450°F on the infrared. About 30 seconds a side each, stacked in a towel to stay soft.", uses: ["tortillas"] },
     { id: "s13", at: 0, lane: "serve", txt: "Boys: guisada over rice, tortillas on the side. His bowl: guisada and rice topped with cilantro, red onion and the jalapeno." },
@@ -130,7 +130,7 @@ R.push({
     `<b>Her recipe:</b> 40 Aprons, Slow Cooker Tom Kha Soup, quantities as published for about 4. The one change: the chile comes out of the pot and goes on the side, so the base is mild for the boys.`,
     `<b>Curry paste:</b> the 1 tablespoon stays as the recipe has it. If the boys find it warm, halve it next time.`,
     `<b>The pot:</b> clean the Instant Pot insert and the lid seal on Tuesday, after Monday's guisada, so the soup does not pick up the beef.`,
-    `<b>Slow cook safety:</b> the raw chicken goes into broth that has been on High for 3 hours, well above 140°F, so it heats fast. Chicken to 165°F on a probe in the thickest piece. Leftovers into the fridge within 2 hours. Lid: the Instant Pot lid with the valve on Venting, or a glass lid.`,
+    `<b>Slow cook safety, our addition:</b> straining and two cans of cold coconut milk drop the broth to about 105 to 115°F, too cool to put raw chicken into on a slow cooker setting. So the coconut broth is brought back up on Saute to about 180°F on a probe before the chicken goes in. That warm-up is the only change to her method; her ingredients and their order are as she has them. Chicken to 165°F on a probe in the biggest piece; if it is short, Saute 5 minutes and probe again. Leftovers into the fridge within 2 hours. Lid: the Instant Pot lid with the valve on Venting, or a glass lid.`,
     `Lime leaves are optional; they add a lime flavour juice cannot. If galangal is missing, ginger does the job.`,
   ],
   ing: [
@@ -154,18 +154,19 @@ R.push({
     { id: "rice", g: "Rice for the boys", per: 0.375, step: 0.25, unit: "cup", name: "jasmine rice", note: "water to the rice cooker's line" },
   ],
   steps: [
-    { id: "s0", at: 265, lane: "prep", txt: "Slice the onion. Cut 3 slices of galangal. Trim the lemongrass, cut it into 3 inch lengths and bruise them with the back of a knife. Tear the lime leaves. Slice his chile into a small bowl for the table and put it in the fridge.", uses: ["onion", "galangal", "lemongrass", "leaves", "chile"] },
-    { id: "s1", at: 255, lane: "pot", txt: "Into the Instant Pot: onion, garlic, galangal, lemongrass, lime leaves, curry paste and chicken stock. Stir until the paste dissolves. Lid on, valve to Venting. Slow Cook, More (that is High), 3 hours.", uses: ["onion", "garlic", "galangal", "lemongrass", "leaves", "paste", "stock"] },
-    { id: "s2", at: 85, lane: "prep", txt: "Cut the chicken into bite-sized pieces and slice the mushrooms. Keep the chicken cold. Wash your hands and the board.", uses: ["chicken", "mushrooms"] },
-    { id: "s3", at: 75, lane: "pot", txt: "Pot off. Strain out the aromatics: lift them out with a slotted spoon, or pour the broth through a sieve into a big bowl and back into the pot.", uses: [] },
-    { id: "s4", at: 70, lane: "pot", txt: "Coconut milk, chicken and mushrooms in, stirred. Lid on. Slow Cook, More, 1 hour.", uses: ["coconut", "chicken", "mushrooms"] },
+    { id: "s0", at: 270, lane: "prep", txt: "Slice the onion. Cut 3 slices of galangal. Trim the lemongrass, cut it into 3 inch lengths and bruise them with the back of a knife. Tear the lime leaves. Slice his chile into a small bowl for the table and put it in the fridge.", uses: ["onion", "galangal", "lemongrass", "leaves", "chile"] },
+    { id: "s1", at: 260, lane: "pot", txt: "Into the Instant Pot: onion, garlic, galangal, lemongrass, lime leaves, curry paste and chicken stock. Stir until the paste dissolves. Lid on, valve to Venting. Slow Cook, More (that is High), 3 hours.", uses: ["onion", "garlic", "galangal", "lemongrass", "leaves", "paste", "stock"] },
+    { id: "s2", at: 90, lane: "prep", txt: "Cut the chicken into bite-sized pieces and slice the mushrooms. Keep the chicken cold. Wash your hands and the board.", uses: ["chicken", "mushrooms"] },
+    { id: "s3", at: 80, lane: "pot", txt: "Pot off. Strain out the aromatics: lift them out with a slotted spoon, or pour the broth through a sieve into a big bowl and back into the pot.", uses: [] },
+    { id: "s3b", at: 75, lane: "pot", txt: "Coconut milk into the broth. Saute, More, lid off, stirring, until it steams at about 180°F on a probe, about 8 minutes. Our safety step: the cold coconut milk drops the broth too low for raw chicken.", uses: ["coconut"] },
+    { id: "s4", at: 66, lane: "pot", txt: "Cancel Saute. Chicken and mushrooms in, stirred. Lid on, valve to Venting. Slow Cook, More, 1 hour.", uses: ["chicken", "mushrooms"] },
     { id: "s5", at: 55, lane: "pot", txt: "Rice cooker: rinse the rice, water to the line, start it.", uses: ["rice"] },
-    { id: "s6", at: 12, lane: "pot", txt: "Probe the biggest piece of chicken: 165°F. If it is short, 10 more minutes and probe again.", uses: [] },
-    { id: "s7", at: 8, lane: "pot", txt: "Stir in the brown sugar, fish sauce and lime juice. Taste: more fish sauce for salt, lime for sour, sugar to round it. Pot to Keep Warm.", uses: ["sugar", "fish", "lime"] },
-    { id: "s8", at: 4, lane: "prep", txt: "Slice the green onions and chop the cilantro. Chili oil and his chile on the table. Lime leaves and any lemongrass left are not for eating: fish them out.", uses: ["gonion", "cilantro", "chilioil"] },
+    { id: "s6", at: 6, lane: "pot", txt: "Probe the biggest piece of chicken: 165°F. If it is short, Saute 5 minutes and probe again.", uses: [] },
+    { id: "s7", at: 4, lane: "pot", txt: "Stir in the brown sugar, fish sauce and lime juice. Taste: more fish sauce for salt, lime for sour, sugar to round it. Pot to Keep Warm.", uses: ["sugar", "fish", "lime"] },
+    { id: "s8", at: 2, lane: "prep", txt: "Slice the green onions and chop the cilantro. Chili oil and his chile on the table. Lime leaves and any lemongrass left are not for eating: fish them out.", uses: ["gonion", "cilantro", "chilioil"] },
     { id: "s9", at: 0, lane: "serve", txt: "Boys: rice in the bowl, soup over. Green onions and cilantro on top. His bowl: the chile and chili oil." },
   ],
-  entry: { chapter: "mains", label: "POT", blurb: "her recipe, 40 Aprons · Instant Pot slow cook · mild, heat on the side", meal: ["dinner"], protein: ["chicken"], heat: ["stovetop"], total: 265, active: 30, band: "afternoon", time: "4 hr 25", effort: 1, ahead: false, kid: true, serves: 4, occasion: ["weeknight"], timed: true, scales: true, test: false },
+  entry: { chapter: "mains", label: "POT", blurb: "her recipe, 40 Aprons · Instant Pot slow cook · mild, heat on the side", meal: ["dinner"], protein: ["chicken"], heat: ["stovetop"], total: 270, active: 35, band: "afternoon", time: "4 hr 30", effort: 1, ahead: false, kid: true, serves: 4, occasion: ["weeknight"], timed: true, scales: true, test: false },
 });
 
 // ---------- Thursday: pork chops, onion and pear pan sauce, mash ----------
@@ -174,7 +175,7 @@ R.push({
   sub: "Bone-in chops seared hard in cast iron after the onions have gone slowly golden in the same pan with butter. Pears in with the onions, the fond lifted with apple cider, a knob of butter to finish, over the house mash on the burner next door. Fresh off the heat at 6:30. Set the time you want to eat and everything runs itself backward.",
   notes: [
     `The mash is the site's mashed potatoes, the same amounts and steps at 3 lb, on its own two burners beside the skillet.`,
-    `<b>Food safety:</b> pork chops to 145°F on a probe in the centre, not touching bone, then at least a 3 minute rest. They rest longer here while the sauce is made, then go back in the sauce for a minute.`,
+    `<b>Food safety:</b> pork chops to 145°F on a probe in the centre, not touching bone, then at least a 3 minute rest. They rest 5 to 6 minutes while the sauce finishes and go out fresh off the heat.`,
     `Apple cider here is the drink, not the vinegar. The teaspoon of cider vinegar at the end sharpens the sauce.`,
     SALT,
     IR,
@@ -211,35 +212,35 @@ R.push({
   steps: [
     { id: "s0", at: 82, lane: "prep", txt: "Chops out of the fridge, patted dry, salt and pepper on both sides. Slice the onions thin. Strip the thyme leaves. Wash your hands and the board.", uses: ["chops", "csalt", "cpepper", "onions", "thyme"] },
     { id: "m1", at: 74, lane: "pot", txt: "Mash: peel the potatoes, dropping each one whole into the potato pot, about half full of cold water.", uses: ["potatoes", "water"] },
-    { id: "c1", at: 72, lane: "pan", txt: "Cast iron on medium-low until it reads 275 to 300°F on the infrared. Butter in; it should foam, not brown.", uses: ["obutter"] },
-    { id: "c2", at: 70, lane: "pan", txt: "Onions in with the salt. Stir every few minutes for 30 minutes, the pan held at 250 to 300°F, until soft and deep golden. A splash of water if they catch.", uses: ["onions", "osalt"] },
+    { id: "c1", at: 57, lane: "pan", txt: "Cast iron on medium-low until it reads 275 to 300°F on the infrared. Butter in; it should foam, not brown.", uses: ["obutter"] },
+    { id: "c2", at: 55, lane: "pan", txt: "Onions in with the salt. Stir every few minutes for 30 minutes, the pan held at 250 to 300°F, until soft and deep golden. A splash of water if they catch.", uses: ["onions", "osalt"] },
     { id: "mb1", at: 66, lane: "pot", txt: "Mash: butter and olive oil in the small saucepan, burner on low, about 225 to 250°F on the infrared. Let it melt.", uses: ["mbutter", "moil"] },
     { id: "mb2", at: 62, lane: "pot", txt: "Mash: smash the garlic into whole crushed pieces, skins off, into the melted butter. It stays on low.", uses: ["mgarlic"] },
     { id: "m1b", at: 60, lane: "pot", txt: "Mash: take the whole potatoes out, cut them into 1.5 inch chunks and put them back in the pot." },
     { id: "m1c", at: 52, lane: "pot", txt: "Mash: pour off water to about an inch over the potatoes. Salt the water, and add the bay leaf if you like.", uses: ["wsalt", "bayp"] },
     { id: "m2", at: 50, lane: "pot", txt: "Mash: high heat to a boil, 212°F on a probe, about 15 minutes." },
-    { id: "c3", at: 42, lane: "prep", txt: "Core the pears and cut them into 1/2 inch wedges.", uses: ["pears"] },
-    { id: "c4", at: 40, lane: "pan", txt: "Pears in with the onions, 5 minutes, until they take a little colour.", uses: ["pears"] },
+    { id: "c3", at: 27, lane: "prep", txt: "Core the pears and cut them into 1/2 inch wedges.", uses: ["pears"] },
+    { id: "c4", at: 24, lane: "pan", txt: "Pears in with the onions, 5 minutes, until they take a little colour.", uses: ["pears"] },
     { id: "m3", at: 35, lane: "pot", txt: "Mash: once it boils, lid on ajar, down to medium, a lively simmer at 195 to 205°F on a probe, until fork tender, 15 to 20 minutes." },
     { id: "mb3", at: 34, lane: "pot", txt: "Mash: rosemary into the butter, same low heat. Fry until a little crispy.", uses: ["rosemary"] },
-    { id: "c5", at: 33, lane: "pan", txt: "Onions and pears out into a bowl. Skillet stays on the burner, unwashed.", uses: [] },
+    { id: "c5", at: 19, lane: "pan", txt: "Onions and pears out into a bowl. Skillet stays on the burner, unwashed.", uses: [] },
     { id: "mb4", at: 32, lane: "pot", txt: "Mash: cold cream into the butter and stir. Burner to its lowest, 160 to 180°F on a probe, never boiling.", uses: ["cream"] },
-    { id: "c6", at: 31, lane: "pan", txt: "Skillet to medium-high with the canola, about 3 minutes, until it reads 400 to 425°F on the infrared, oil shimmering.", uses: ["canola"] },
-    { id: "c7", at: 28, lane: "pan", txt: "Chops in, first side: 4 minutes, do not move them.", uses: ["chops"] },
-    { id: "c8", at: 24, lane: "pan", txt: "Flip, second side: 4 minutes." },
-    { id: "c9", at: 20, lane: "pan", txt: "Probe the centre of the thickest chop, not touching bone: 145°F. If short, flip every minute until it is there. Onto a plate, loosely tented, to rest." },
-    { id: "c10", at: 18, lane: "pan", txt: "Heat to medium, pan down to 300 to 350°F. Thyme in for 30 seconds, then the cider. Scrape up every bit of fond and let it bubble hard until reduced by about half, 6 minutes.", uses: ["thyme", "cider"] },
+    { id: "c6", at: 17, lane: "pan", txt: "Skillet to medium-high with the canola, about 3 minutes, until it reads 400 to 425°F on the infrared, oil shimmering.", uses: ["canola"] },
+    { id: "c7", at: 14, lane: "pan", txt: "Chops in, first side: 4 minutes, do not move them.", uses: ["chops"] },
+    { id: "c8", at: 10, lane: "pan", txt: "Flip, second side: 4 minutes." },
+    { id: "c9", at: 6, lane: "pan", txt: "Probe the centre of the thickest chop, not touching bone: 145°F. If short, flip every minute until it is there. Onto a warm plate, loosely tented, to rest 5 to 6 minutes while the sauce finishes." },
+    { id: "c10", at: 5, lane: "pan", txt: "Heat to medium, pan down to 300 to 350°F. Thyme in for 30 seconds, then the cider. Scrape up every bit of fond and let it bubble hard, 2 minutes, until reduced by about a third.", uses: ["thyme", "cider"] },
     { id: "m4", at: 15, lane: "pot", txt: "Mash: scoop out some of the cooking water to keep, drain in a colander, pass through the ricer back into the pot.", uses: ["resw"] },
-    { id: "c11", at: 12, lane: "pan", txt: "Chicken stock and Dijon in, onions and pears back with any juice from the chop plate. Simmer 4 minutes until it coats a spoon.", uses: ["stock", "dijon"] },
+    { id: "c11", at: 3, lane: "pan", txt: "Chicken stock and Dijon in, onions and pears back in. Simmer 2 minutes at a lively 195 to 205°F on a probe, until it coats a spoon.", uses: ["stock", "dijon"] },
     { id: "m6", at: 9, lane: "pot", txt: "Mash: strain the garlic and rosemary out of the cream and pour it into the potatoes. Add the kept water until the texture is right, then the Parmesan, salt and MSG. Mix, taste, lid on to hold.", uses: ["parm", "msalt", "msg"] },
-    { id: "c12", at: 5, lane: "pan", txt: "Pan off the heat. Cider vinegar in, then swirl in the cold butter until glossy. Taste for salt.", uses: ["vinegar", "fbutter"] },
-    { id: "c13", at: 3, lane: "pan", txt: "Chops back into the sauce, spooned over, 1 minute off the heat." },
-    { id: "c14", at: 0, lane: "serve", txt: "Mash on the plate, a chop on top, onions, pears and sauce over." },
+    { id: "c12", at: 1, lane: "pan", txt: "Pan off the heat. Cider vinegar in, then swirl in the cold butter until glossy. Pour in the juice from the chop plate. Taste for salt.", uses: ["vinegar", "fbutter"] },
+    { id: "c14", at: 0, lane: "serve", txt: "Mash on the plate, a rested chop on top, onions, pears and sauce over." },
   ],
   entry: { chapter: "mains", label: "PAN", blurb: "cast iron · onion and pear cider pan sauce · house mash", meal: ["dinner"], protein: ["pork"], heat: ["stovetop"], total: 82, active: 70, band: "hour", time: "1 hr 22", effort: 2, ahead: false, kid: true, serves: 4, occasion: ["weeknight", "special"], timed: true, scales: true, test: false },
 });
 
 function page(r: R) {
+  r.steps.sort((a: any, b: any) => b.at - a.at);
   let h = tpl;
   const rep = (a: string | RegExp, b: string) => { const n = h.replace(a as any, () => b); if (n === h) throw new Error("no match in " + r.slug + ": " + a); h = n; };
   rep("<title>Shrimp scampi</title>", `<title>${r.name}</title>`);
@@ -263,7 +264,7 @@ const after = rj.recipes.findIndex((x: any) => x.slug === "red-beans-and-rice");
 const plainIng = (r: R) => r.ing.map((i: any) => i.name + (i.note ? " (" + i.note + ")" : ""));
 const add: any[] = [];
 for (const r of R) {
-  if (rj.recipes.some((x: any) => x.slug === r.slug)) continue;
+  rj.recipes = rj.recipes.filter((x: any) => x.slug !== r.slug);
   add.push(Object.assign({ slug: r.slug, name: r.name, file: r.slug + ".html", sub: r.sub }, r.entry, { ingredients: plainIng(r), steps: r.steps.length }));
 }
 // key order like the others
@@ -271,7 +272,7 @@ const order = ["slug","name","file","sub","chapter","label","blurb","meal","prot
 const ordered = add.map(a => { const o: any = {}; for (const k of order) o[k] = a[k]; return o; });
 // grill chicken goes in the smoker chapter after the last smoker recipe; the rest after red beans
 const grill = ordered.filter(o => o.chapter === "smoker"), mains = ordered.filter(o => o.chapter !== "smoker");
-rj.recipes.splice(after + 1, 0, ...mains);
+rj.recipes.splice(rj.recipes.findIndex((x: any) => x.slug === "red-beans-and-rice") + 1, 0, ...mains);
 const lastSmoker = rj.recipes.map((x: any) => x.chapter).lastIndexOf("smoker");
 rj.recipes.splice(lastSmoker + 1, 0, ...grill);
 writeFileSync(W + "/recipes.json", JSON.stringify(rj, null, 1) + "\n");
