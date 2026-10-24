@@ -31,6 +31,6 @@ Waiting for the go from Nigel.
 - Headless check 67 of 67.
 
 ## Job 1024-1230-vk7, 24 Oct
-- Sunday: boneless, skinless thighs, 2.5 lb for 4. Grill lit 5:40, thighs on 6:12, flip 6:18, probe and pull at 175F 6:24, rest 5 minutes, dinner 6:30.
+- Sunday: boneless, skinless thighs, 2.5 lb for 4. Marinade on at 3:00 (about 3 hours). Grill lit 5:40, thighs on 6:12, flip 6:18, probe and pull at 175F 6:24, rest 5 minutes, dinner 6:30.
 - Tortillas, heavy cream and Parmesan at home: off the list, "at home" on the pages.
 - Preview folder preview-1025-1tc9hi rebuilt from these pages (tools-preview-1025.ts).

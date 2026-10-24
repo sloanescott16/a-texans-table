@@ -55,7 +55,7 @@ R.push({
     { id: "rice", g: "Rice for the boys", per: 0.25, step: 0.25, unit: "cup", name: "jasmine rice", note: "water to the rice cooker's line" },
   ],
   steps: [
-    { id: "s0", at: 270, lane: "fridge", txt: "Marinade: whisk the soy sauce, lime juice, olive oil, garlic, cumin, smoked paprika, oregano, brown sugar, salt and pepper in a big bowl or zip bag. Thighs in, turned to coat. Into the fridge, 2 to 4 hours. Wash your hands and the board.", uses: ["chicken", "soy", "limej", "moil", "mgarlic", "cumin", "paprika", "oregano", "bsugar", "msalt", "mpepper"] },
+    { id: "s0", at: 210, lane: "fridge", txt: "Marinade: whisk the soy sauce, lime juice, olive oil, garlic, cumin, smoked paprika, oregano, brown sugar, salt and pepper in a big bowl or zip bag. Thighs in, turned to coat. Into the fridge, 2 to 4 hours. Wash your hands and the board.", uses: ["chicken", "soy", "limej", "moil", "mgarlic", "cumin", "paprika", "oregano", "bsugar", "msalt", "mpepper"] },
     { id: "s1", at: 120, lane: "prep", txt: "Green sauce in the blender: cilantro, mayonnaise, cotija, lime juice, garlic, olive oil and salt, until smooth, about 1 minute. Pour two thirds into a bowl for the table, the mild one. Blend the jalapeno into the last third for his bowl. Both into the fridge.", uses: ["cilantro", "mayo", "cotija", "slime", "sgarlic", "soil", "ssalt", "jalapeno"] },
     { id: "s2", at: 50, lane: "fire", txt: "Light the grill for two zones: charcoal banked on one side (or gas, one side on high, the other low). Lid on, vents open, about 20 minutes until the hot side's grate reads 400 to 450°F on the infrared, aimed at a grate bar." },
     { id: "s3", at: 18, lane: "fire", txt: "First side: thighs out of the marinade, smooth side down over the hot side, grate 400 to 450°F. Marinade down the drain. Lid on, 6 minutes, no moving. Flare-ups: slide that piece to the cool side for a moment.", uses: ["chicken"] },
@@ -66,7 +66,7 @@ R.push({
     { id: "s10", at: 4, lane: "prep", txt: "Slice the avocado onto the salad, dress it and toss.", uses: ["avocado"] },
     { id: "s11", at: 0, lane: "serve", txt: "Chicken on the table with the mild green sauce and the salad. Rice for the boys. His jalapeno sauce on his plate." },
   ],
-  entry: { chapter: "smoker", label: "FIRE", blurb: "two-zone grill · mild green sauce · big salad", meal: ["dinner"], protein: ["chicken"], heat: ["grill"], total: 270, active: 50, band: "afternoon", time: "4 hr 30 with the marinade", effort: 2, ahead: false, kid: true, serves: 4, occasion: ["weekend"], timed: true, scales: true, test: false },
+  entry: { chapter: "smoker", label: "FIRE", blurb: "two-zone grill · mild green sauce · big salad", meal: ["dinner"], protein: ["chicken"], heat: ["grill"], total: 210, active: 50, band: "afternoon", time: "3 hr 30 with the marinade", effort: 2, ahead: false, kid: true, serves: 4, occasion: ["weekend"], timed: true, scales: true, test: false },
 });
 
 // ---------- Monday: carne guisada ----------
