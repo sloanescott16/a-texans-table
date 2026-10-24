@@ -245,6 +245,71 @@
    "steps": 10
   },
   {
+   "slug": "peruvian-grilled-chicken",
+   "name": "Peruvian-style grilled chicken",
+   "file": "peruvian-grilled-chicken.html",
+   "sub": "Bone-in thighs in a soy, lime, cumin and smoked paprika marinade, cooked through on the cool side of a two-zone grill, then the skin crisped over the coals. A mild green herb sauce in the aji verde style, a big salad on the house vinaigrette, rice for the boys. Set the time you want to eat and everything runs itself backward.",
+   "chapter": "smoker",
+   "label": "FIRE",
+   "blurb": "two-zone grill · mild green sauce · big salad",
+   "meal": [
+    "dinner"
+   ],
+   "protein": [
+    "chicken"
+   ],
+   "heat": [
+    "grill"
+   ],
+   "total": 270,
+   "active": 60,
+   "band": "afternoon",
+   "time": "4 hr 30 with the marinade",
+   "effort": 2,
+   "ahead": false,
+   "kid": true,
+   "serves": 4,
+   "occasion": [
+    "weekend"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "bone-in, skin-on chicken thigh (about 3 and a half pounds at 4 servings)",
+    "soy sauce",
+    "lime juice",
+    "olive oil",
+    "jarred minced garlic",
+    "ground cumin",
+    "smoked paprika",
+    "dried oregano",
+    "brown sugar",
+    "kosher salt",
+    "black pepper",
+    "cilantro, packed (leaves and tender stems, about 1 bunch at 4 servings)",
+    "mayonnaise",
+    "cotija cheese, crumbled",
+    "lime juice",
+    "jarred minced garlic",
+    "olive oil",
+    "kosher salt",
+    "jalapeno (his side only, stem off)",
+    "romaine heart",
+    "cherry tomatoes (halved; a pint is about 2 cups)",
+    "cucumber",
+    "red onion (sliced thin)",
+    "avocado",
+    "cider vinegar",
+    "Dijon mustard",
+    "olive oil",
+    "kosher salt",
+    "black pepper",
+    "jasmine rice (water to the rice cooker's line)"
+   ],
+   "steps": 12
+  },
+  {
    "slug": "shrimp-scampi",
    "name": "Shrimp scampi",
    "file": "shrimp-scampi.html",
@@ -737,6 +802,176 @@
     "bay leaf"
    ],
    "steps": 18
+  },
+  {
+   "slug": "carne-guisada",
+   "name": "Carne guisada",
+   "file": "carne-guisada.html",
+   "sub": "Office night. Chuck browned in the Instant Pot in the morning, cumin, chili powder and tomato in, then Slow Cook all day. Home at 5:00, rice cooker on, dinner at 6:30. The boys get it over rice with flour tortillas, he eats it as a bowl. Mild in the pot, jalapeno on the side. Set the time you want to eat and every step runs itself backward.",
+   "chapter": "mains",
+   "label": "POT",
+   "blurb": "Instant Pot brown in the morning · slow cook all day · rice at 5",
+   "meal": [
+    "dinner"
+   ],
+   "protein": [
+    "beef"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 700,
+   "active": 50,
+   "band": "day",
+   "time": "morning set-up, all-day slow cook",
+   "effort": 2,
+   "ahead": true,
+   "kid": true,
+   "serves": 4,
+   "occasion": [
+    "weeknight"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "beef chuck roast (trimmed of hard fat, in 1.5 inch cubes)",
+    "kosher salt",
+    "black pepper",
+    "beef tallow (for the sear)",
+    "all-purpose flour",
+    "yellow onion (diced)",
+    "green bell pepper (diced)",
+    "jarred minced garlic",
+    "chili powder (the mild kind)",
+    "ground cumin",
+    "dried oregano",
+    "tomato sauce",
+    "beef stock",
+    "bay leaf",
+    "jasmine rice (water to the rice cooker's line)",
+    "flour tortilla",
+    "cilantro, chopped",
+    "red onion, diced",
+    "jalapeno (sliced, his bowl only)"
+   ],
+   "steps": 14
+  },
+  {
+   "slug": "tom-kha",
+   "name": "Slow cooker tom kha",
+   "file": "tom-kha.html",
+   "sub": "Her recipe: the 40 Aprons Slow Cooker Tom Kha Soup. Onion, garlic, galangal, lemongrass, lime leaves and red curry paste steep in chicken stock on High for 3 hours, the aromatics come out, then coconut milk, chicken and mushrooms go in for about an hour more. Sugar, fish sauce and lime to finish. In the Instant Pot on Slow Cook. Mild for the boys over rice; the chile and chili oil are on the side for him.",
+   "chapter": "mains",
+   "label": "POT",
+   "blurb": "her recipe, 40 Aprons · Instant Pot slow cook · mild, heat on the side",
+   "meal": [
+    "dinner"
+   ],
+   "protein": [
+    "chicken"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 265,
+   "active": 30,
+   "band": "afternoon",
+   "time": "4 hr 25",
+   "effort": 1,
+   "ahead": false,
+   "kid": true,
+   "serves": 4,
+   "occasion": [
+    "weeknight"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "white onion, sliced",
+    "jarred minced garlic",
+    "slice galangal (or ginger)",
+    "stalk lemongrass (cut in 3 inch lengths and bruised)",
+    "lime leaf, torn (optional)",
+    "red Thai curry paste (can be halved if the boys find it warm)",
+    "chicken stock",
+    "can full-fat coconut milk",
+    "boneless, skinless chicken breast (bite-sized pieces)",
+    "white mushrooms, sliced",
+    "brown sugar",
+    "fish sauce",
+    "lime juice",
+    "green onion, sliced",
+    "cilantro, chopped (optional)",
+    "red jalapeno (or 1 to 2 Thai chiles; sliced, out of the pot)",
+    "chili oil",
+    "jasmine rice (water to the rice cooker's line)"
+   ],
+   "steps": 10
+  },
+  {
+   "slug": "pork-chops-onion-pear",
+   "name": "Cast iron pork chops, onion and pear pan sauce",
+   "file": "pork-chops-onion-pear.html",
+   "sub": "Bone-in chops seared hard in cast iron after the onions have gone slowly golden in the same pan with butter. Pears in with the onions, the fond lifted with apple cider, a knob of butter to finish, over the house mash on the burner next door. Fresh off the heat at 6:30. Set the time you want to eat and everything runs itself backward.",
+   "chapter": "mains",
+   "label": "PAN",
+   "blurb": "cast iron · onion and pear cider pan sauce · house mash",
+   "meal": [
+    "dinner"
+   ],
+   "protein": [
+    "pork"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 82,
+   "active": 70,
+   "band": "hour",
+   "time": "1 hr 22",
+   "effort": 2,
+   "ahead": false,
+   "kid": true,
+   "serves": 4,
+   "occasion": [
+    "weeknight",
+    "special"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "bone-in pork chop (about 1 inch thick)",
+    "kosher salt",
+    "black pepper",
+    "canola oil",
+    "large yellow onion (halved and sliced thin)",
+    "butter (for the onions)",
+    "kosher salt",
+    "pear (cored, in 1/2 inch wedges)",
+    "sprig fresh thyme (leaves stripped)",
+    "apple cider (the drink, not the vinegar)",
+    "chicken stock",
+    "Dijon mustard",
+    "cider vinegar",
+    "butter, cold (the knob to finish)",
+    "gold potatoes (peeled, in 1.5 inch chunks)",
+    "cold water, for the potatoes",
+    "kosher salt, for the potato water",
+    "bay leaf, optional",
+    "butter",
+    "extra virgin olive oil",
+    "garlic clove, smashed",
+    "sprig fresh rosemary",
+    "heavy cream",
+    "potato cooking water, kept back",
+    "kosher salt, for the mash (taste, then up to half as much again)",
+    "MSG",
+    "Parmesan, finely grated (not too much)"
+   ],
+   "steps": 26
   },
   {
    "slug": "peppercorn-mushroom-sauce",

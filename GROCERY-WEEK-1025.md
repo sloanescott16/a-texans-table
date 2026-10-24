@@ -20,8 +20,8 @@ Skipped because they are in the house: soy sauce, Dijon, cider vinegar, brown su
 - Galangal, a small piece, or fresh ginger if they have none
 - Lime leaves, a small pack, optional
 - White mushrooms, about half a pound
-- Pears, 2, ripe but still firm
-- Yukon Gold potatoes, 3 pounds
+- Pears, 2
+- Gold potatoes, 3 pounds
 - Garlic, 1 head
 - Fresh thyme, 1 small pack
 - Fresh rosemary, 1 small pack
@@ -33,7 +33,7 @@ Skipped because they are in the house: soy sauce, Dijon, cider vinegar, brown su
 - Bone-in pork chops, about 1 inch thick, 4
 
 ## Dairy and cheese
-- Unsalted butter, 2 sticks
+- Butter, 2 sticks
 - Heavy cream, 1 pint
 - Cotija cheese, a small piece
 - Parmesan, a small wedge
@@ -84,5 +84,5 @@ Wed 28, tom kha, her recipe (40 Aprons Slow Cooker Tom Kha Soup), Instant Pot on
 
 Thu 29, cast iron pork chops, caramelized onion and pear pan sauce, mashed potatoes
 - 4 bone-in pork chops about 1 inch thick, 2 tsp kosher salt, 1 tsp black pepper, 1 tbsp canola. To 145°F on a probe, 3 minute rest.
-- Sauce: 2 large yellow onions sliced, 1 tbsp unsalted butter plus 2 tbsp to finish, 2 pears, 1 cup apple cider, 1/2 cup chicken stock, 4 sprigs fresh thyme, 1 tsp Dijon, 1 tsp cider vinegar, 1/2 tsp kosher salt.
-- Mash from the site's mash steps at 3 lb: Yukon Gold potatoes, 4 tbsp unsalted butter, 2 tbsp olive oil, 2 garlic cloves, 2 rosemary sprigs, 1 cup heavy cream, 1/2 tsp MSG, 1/2 cup Parmesan, kosher salt, bay leaf.
+- Sauce: 2 large yellow onions sliced, 1 tbsp butter plus 2 tbsp to finish, 2 pears, 1 cup apple cider, 1/2 cup chicken stock, 4 sprigs fresh thyme, 1 tsp Dijon, 1 tsp cider vinegar, 1/2 tsp kosher salt.
+- Mash from the site's mash steps at 3 lb: gold potatoes, 4 tbsp butter, 2 tbsp olive oil, 2 garlic cloves, 2 rosemary sprigs, 1 cup heavy cream, 1/2 tsp MSG, 1/2 cup Parmesan, kosher salt, bay leaf.
