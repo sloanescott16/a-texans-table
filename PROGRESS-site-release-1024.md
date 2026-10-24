@@ -15,4 +15,8 @@ One integration branch so a single publish yes covers the waiting recipe pages. 
 - All-pages smoke check (every page loads with no errors or failed requests, ingredients render, no brand or buying words on the page, index links both pages): 118/118.
 - Scripts, logs and screenshots in C:NIGEL-scratchB4-1050-rcp.
 
-Status: ready for the checker, then one publish yes. Not pushed, not merged into main.
+## Stage 3, checker follow-up (24 Oct)
+- Checker passed the branch, then asked for plain "hot sauce" instead of "Louisiana hot sauce" on the red beans page and in recipes.json; index data line rebuilt; cache stays kitchen-v17.
+- Rerun headless: red beans 53/53, all pages 118/118 (now also flags "Louisiana hot sauce"). Logs log-*-r2.txt in C:NIGEL-scratchB4-1050-rcp.
+
+Status: pending recheck. Not pushed, not merged into main.
