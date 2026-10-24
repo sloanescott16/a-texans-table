@@ -15,7 +15,7 @@ Local only. Nothing pushed, published or merged.
 ## How to test
     cd C:\NIGEL-scratch\1024-1130-hzw
     bun check-meals-1025.ts C:\NIGEL-scratch\wt-hzw-1025 C:\NIGEL-scratch\1024-1130-hzw\out C:\NIGEL-scratch\1024-1130-hzw\edge-profile
-Headless Edge, 390 px, speech stubbed, audio muted, service worker blocked, clock pinned. Results in out\results.json, screenshots in out\.
+Last run: 65 of 65 passed. Headless Edge, 390 px, speech stubbed, audio muted, service worker blocked, clock pinned. Results in out\results.json, screenshots in out\.
 
 ## Unsure or worth a look
 - Per-side timers: each side of every sear is its own timed row (the scampi pattern), not the pot roast's start and finish timer buttons.

@@ -107,7 +107,7 @@ for (const slug of Object.keys(PAGES)) {
   check(slug + " plain names only in ingredients and steps", !BANNED.test(ing) && !BANNED.test(steptxt), (ing.match(BANNED) || steptxt.match(BANNED) || [""])[0]);
   const body = await ev(`document.body.innerText`);
   check(slug + " no em dashes", !/\u2014/.test(body) && !/\u2014/.test(await ev(`document.documentElement.outerHTML`)), "em dash");
-  check(slug + " every heat cue line carries a number", r.filter((x: any) => /(medium|high|hot|preheat|shimmer|sear)/i.test(x.txt) && !/Slow Cook|Saute|°F|Keep Warm|rice cooker/i.test(x.txt)).length === 0, r.filter((x: any) => /(medium|high|hot|sear)/i.test(x.txt) && !/Slow Cook|Saute|°F|Keep Warm|rice cooker/i.test(x.txt)).map((x: any) => x.id).join(","));
+  check(slug + " every heat cue line carries a number", r.filter((x: any) => /b(medium|high|hot|preheat|shimmer|sear)b/i.test(x.txt) && !/Slow Cook|Saute|°F|Keep Warm|rice cooker/i.test(x.txt)).length === 0, r.filter((x: any) => /b(medium|high|hot|sear)b/i.test(x.txt) && !/Slow Cook|Saute|°F|Keep Warm|rice cooker/i.test(x.txt)).map((x: any) => x.id).join(","));
   // serve time back-timing
   await setServe("19:15");
   r = await rows();

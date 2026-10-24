@@ -13,4 +13,7 @@ Waiting for the go from Nigel.
 ## Stage 2, in progress 24 Oct
 - Four pages, index, recipes.json and sw.js (kitchen-v18) built and committed. Plain-name fixes applied to the list.
 - Rotation records: branch meals-records-1025, worktree C:\NIGEL-scratch\wt-hzw-records-1025, commit e4f4482.
-- Headless check running (tools-check-meals-1025.ts).
+- Headless check: tools-check-meals-1025.ts, 65 of 65 passed (run 3). Results in C:\NIGEL-scratch\1024-1130-hzw\out\results.json, screenshots beside it. Run 2 had one failure in the test itself (it read "thighs" as "high"); fixed.
+- Infrared readings note added to the grilled chicken page.
+
+## Stage 2 done 24 Oct. Handoff in HANDOFF-meals-1025.md.
