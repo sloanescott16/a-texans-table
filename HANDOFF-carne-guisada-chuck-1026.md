@@ -20,3 +20,9 @@ Last run 26 Oct: 46 of 46 passed (re-timing at 6:30, 7:15, 5:45; scaling at 3, 5
 - Sodium (about 2,900 mg at 4 servings) uses typical label values; tomato sauce brands vary a lot.
 - The week plan file in morning-rag-meals still lists the older 4:30 to 6:10 times (browning on Saute); not touched, as it is another project.
 - carne-asada-1026 also bumps sw.js to v19; whichever merges second needs v20.
+
+## Fix round 1 (26 Oct, checker)
+- Morton note back ("the kosher salt amounts are sized for Diamond Crystal. Morton is about twice as salty by volume: use half."), and the Salt, counted note says the same.
+- Water floor: hot water never under 1 cup (new min field in the amount code), so 3 servings still has 1 cup of thin liquid.
+- g19 tortillas: medium-high for 400 to 450°F.
+- Headless 375 px: 49 of 49 (new: water 1 cup at 3 servings, Morton lines, g19 wording).

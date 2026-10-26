@@ -14,7 +14,8 @@ rep(/<h1>Carne asada from chuck, Instant Pot<\/h1>\n  <p class="sub">.*<\/p>\n  
 
 rep(/  <p class="note"><b>Why chunks[\s\S]*?(?=\n<\/div>\n\n<script>)/, `  <p class="note"><b>Why the cast iron, not Saute:</b> the cast iron holds 400 to 425°F through a batch of cold beef and reads true on the infrared; the Instant Pot's thin steel drops when the meat goes in, reads low, and steams more than it sears. The drippings and the deglaze carry every brown bit into the pot.</p>
   <p class="note"><b>Bite, not mush:</b> 1.5 inch cubes, 25 minutes on High and a 15 minute natural release leaves them tender but whole. The flour goes in at the end as a slurry, not before, so nothing scorches on the bottom under pressure and the gravy thickens in 5 minutes without stewing the beef further. Stir the slurry in gently.</p>
-  <p class="note"><b>Salt, counted:</b> the last pressure cook was a touch salty, so this one carries 3/4 tsp of kosher salt on the beef at 4 servings, 1 tsp of beef bouillon paste in 1 cup of water (the usual 1 to 1, just less of it), and the salt already in the tomato sauce. That is about 2,900 mg of sodium for a 2.27 lb roast, on the gentle side. The last 1/4 tsp is only for a gravy that tastes flat after thickening.</p>
+  <p class="note"><b>Salt, counted:</b> the last pressure cook was a touch salty, so this one carries 3/4 tsp of kosher salt on the beef at 4 servings, 1 tsp of beef bouillon paste in 1 cup of water (the usual 1 to 1, just less of it), and the salt already in the tomato sauce. That is about 2,900 mg of sodium for a 2.27 lb roast, on the gentle side. The last 1/4 tsp is only for a gravy that tastes flat after thickening. Both salt amounts are for Diamond Crystal kosher salt; with Morton use half.</p>
+  <p class="note"><b>Salt:</b> the kosher salt amounts are sized for Diamond Crystal. Morton is about twice as salty by volume: use half.</p>
   <p class="note"><b>Pepper:</b> never before a sear. Each cube is peppered only on a face that has already seared and is facing up, after each turn, and again as it comes off.</p>
   <p class="note"><b>Mild for the boys:</b> ordinary mild chili powder, no cayenne. The jalapeno is for his bowl.</p>
   <p class="note"><b>Burn warning:</b> stock first, beef on it, tomato sauce poured over the top and not stirred in: thick tomato on the bottom is what throws a Burn warning. If it shows, Cancel, valve to Venting, scrape the bottom, add 1/4 cup water and start the 25 minutes again.</p>
@@ -35,7 +36,7 @@ const ING = [
   { id: "cumin", g: "The pot", per: 0.5, step: 0.25, unit: "tsp", name: "ground cumin" },
   { id: "oregano", g: "The pot", per: 0.25, step: 0.25, unit: "tsp", name: "dried oregano" },
   { id: "paste", g: "The pot", per: 0.25, step: 0.25, unit: "tsp", name: "beef bouillon paste" },
-  { id: "water", g: "The pot", per: 0.25, step: 0.125, unit: "cup", name: "hot water", note: "the paste whisked into it makes the stock" },
+  { id: "water", g: "The pot", per: 0.25, step: 0.125, min: 1, unit: "cup", name: "hot water", note: "the paste whisked into it makes the stock; never under 1 cup, so the Instant Pot comes to pressure" },
   { id: "tsauce", g: "The pot", per: 0.25, step: 0.125, unit: "cup", name: "tomato sauce", note: "one small can at 4 servings" },
   { id: "bay", g: "The pot", per: 0.5, step: 1, unit: "", name: "bay leaf", plural: "bay leaves" },
   { id: "flour", g: "Gravy", per: 0.5, step: 0.5, unit: "tbsp", name: "all-purpose flour" },
@@ -67,13 +68,14 @@ const STEPS = [
   { id: "g16", at: 32, lane: "cooker", short: "Vent, bay out, spoon test", txt: "At L0:15, push the valve to Venting with a long spoon, hand and face clear of the steam. When the pin drops, lid off, tilted away from you. Bay leaves out. Spoon test: a cube should break under a spoon with a little push and hold its shape. If it fights, lid on, Sealing, 5 more minutes on High, quick release, and set Eating at 10 minutes later." },
   { id: "g17", at: 30, lane: "cooker", short: "Slurry in, thicken 5 min", txt: "Thicken, 6 minutes. Whisk the flour into the cold water in a cup until smooth. Saute on Normal, lid off. When the gravy reaches a lively simmer, 195 to 205°F on a probe, stir the slurry in gently with a spoon, folding so the cubes stay whole. 5 minutes at that simmer, until it coats the back of a spoon. Cancel, then Keep Warm.", uses: ["flour", "cold"] },
   { id: "g18", at: 24, lane: "cooker", short: "Taste the gravy", txt: "Taste, 1 minute. Only if the gravy tastes flat, stir in the finishing salt. Lid resting on top, Keep Warm on.", uses: ["salt2"] },
-  { id: "g19", at: 16, lane: "pan", short: "Warm the tortillas", txt: "Tortillas, 10 minutes. Dry cast iron at medium, 400 to 450°F on the infrared. About 30 seconds a side each, stacked in a towel to stay soft.", uses: ["tortillas"] },
+  { id: "g19", at: 16, lane: "pan", short: "Warm the tortillas", txt: "Tortillas, 10 minutes. Dry cast iron at medium-high, 400 to 450°F on the infrared. About 30 seconds a side each, stacked in a towel to stay soft.", uses: ["tortillas"] },
   { id: "g20", at: 5, lane: "prep", short: "Fluff rice, toppings out", txt: "Set out, 5 minutes. Fluff the rice. Toppings out of the fridge. His jalapeno on the side; nothing hot goes in the pot." },
   { id: "g21", at: 0, lane: "serve", short: "Eat", txt: "Boys: guisada over rice, tortillas on the side. His bowl: guisada and rice topped with cilantro, red onion and the jalapeno." },
 ];
 
 rep(/var ING = .*;\n/, "var ING = " + JSON.stringify(ING) + ";\n");
 rep(/var STEPS = .*;\n/, "var STEPS = " + JSON.stringify(STEPS) + ";\n");
+rep(`  var v = part ? Math.round(raw * 1000) / 1000 : Math.max(s, Math.round(raw / s) * s);`, `  var v = part ? Math.round(raw * 1000) / 1000 : Math.max(s, it.min || 0, Math.round(raw / s) * s);`);
 rep('var KEY = "kitchen:carne-asada-chuck:pressure";', 'var KEY = "kitchen:carne-guisada:pressure";');
 if (/—/.test(h)) throw new Error("em dash found");
 if (/asada/i.test(h)) throw new Error("asada left in page");

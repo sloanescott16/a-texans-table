@@ -114,12 +114,13 @@ for (const [hm, mins] of [["19:15", 19 * 60 + 15], ["17:45", 17 * 60 + 45], ["18
 const baseQ = await qtys();
 for (const n of [3, 5, 6, 7, 8]) {
   await setServings(n); q = await qtys(); r = await rows();
-  const off = ING.filter((it: any) => Math.abs(inTsp(q[it.id], it.unit) - it.per * n * (TSP[it.unit] || 1)) > ((it.step || 0.25) / 2) * (TSP[it.unit] || 1) + 1e-6).map((it: any) => `${it.id}=${q[it.id]}`);
+  const off = ING.filter((it: any) => Math.abs(inTsp(q[it.id], it.unit) - Math.max(it.min || 0, it.per * n) * (TSP[it.unit] || 1)) > ((it.step || 0.25) / 2) * (TSP[it.unit] || 1) + 1e-6).map((it: any) => `${it.id}=${q[it.id]}`);
   check(`servings ${n}: every ingredient scales (within its rounding step)`, off.length === 0, off.join(", "));
   if (n >= 6) { const same = ING.filter((it: any) => q[it.id] === baseQ[it.id]).map((it: any) => it.id); check(`servings ${n}: every amount changed from 4`, same.length === 0, same.join(",")); }
   const mism: string[] = [];
   for (const x of r) for (const u of x.uses) { const half = /, half$/.test(u.t); const full = inTsp(q[u.ing], ''); const want = half ? full / 2 : full; if (Math.abs(inTsp(u.q, '') - want) > 1e-6) mism.push(`${x.id}:${u.ing} ${u.q} vs ${q[u.ing]}`); }
   check(`servings ${n}: step ingredient lines match the list`, mism.length === 0, mism.join("; "));
+  if (n === 3) { check("servings 3: water stays at 1 cup so the pot comes to pressure", q.water === "1 cup", q.water); }
   if (n === 3) { const untidy = Object.entries(q).filter(([k, v]) => /(^|\s)(1\/8|3\/8|5\/8|7\/8) cup|(1\/4|3\/4) tbsp/.test(v as string)).map(([k, v]) => k + "=" + v); check("servings 3: no awkward eighth-cup or quarter-tbsp amounts", untidy.length === 0, untidy.join(", ")); }
   if (n === 8) { check("amounts at 8 servings", cmp(q, want8).length === 0, cmp(q, want8).join("; ")); await shot("375-8-servings", true); }
 }
@@ -149,6 +150,8 @@ check("checklist fits a 375 x 667 phone under the sticky bar", fit.top >= fit.ba
 await shot("375x667-checklist", false);
 await S("Emulation.setDeviceMetricsOverride", { width: 375, height: 844, deviceScaleFactor: 2, mobile: true }); await sleep(200);
 check("no sideways scroll at 375 px", await ev(`document.documentElement.scrollWidth <= 375`), String(await ev(`document.documentElement.scrollWidth`)));
+check("Morton note on the page and in the salt note", await ev(`/Morton is about twice as salty by volume: use half/.test(document.body.innerText) && /with Morton use half/.test(document.body.innerText)`), "missing");
+check("tortilla step says medium-high for 400 to 450", await ev(`/medium-high, 400 to 450/.test(document.querySelector('#steps .row[data-id="g19"]').textContent)`), "g19");
 check("no em dashes", !/—/.test(await ev(`document.documentElement.outerHTML`)), "");
 await go(base + "carne-guisada.html#t=2026-10-26T16:50"); await sleep(300);
 check("at 4:50 pm the first sear row is marked now in both lists", await ev(`document.querySelector('#steps .row.now').getAttribute('data-id')==='g5' && document.querySelector('#checklist .ck.now').getAttribute('data-id')==='g5'`), await ev(`(document.querySelector('#steps .row.now')||{}).getAttribute&&document.querySelector('#steps .row.now').getAttribute('data-id')||'none'`));
