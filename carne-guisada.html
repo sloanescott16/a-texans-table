@@ -71,6 +71,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 .row input{width:21px;height:21px;margin:2px 0 0;accent-color:var(--citrus);flex:0 0 auto}
 .clock{font-family:var(--mono);font-size:14px;min-width:62px;flex:0 0 auto;color:var(--ink);padding-top:2px}
 .body{flex:1;min-width:0}
+.clock .day{display:block;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--citrus)}
 .tag{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;padding:2px 6px;border-radius:2px;margin-right:7px;vertical-align:1px}
 .t-pot{background:var(--brine-bg);color:var(--brine)}
 .t-pan{background:var(--shell-bg);color:var(--shell)}
@@ -102,6 +103,13 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 #notes{display:block;width:100%;min-height:132px;resize:vertical;background:transparent;border:0;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;padding:0}
 #notes:focus{outline:none}
 #notes::placeholder{color:var(--muted)}
+.card.check{padding:2px 12px}
+.ck{display:flex;gap:8px;align-items:center;padding:1px 0;border-bottom:1px solid var(--rule);cursor:pointer;font-size:13px;line-height:1.25}
+.ck:last-child{border-bottom:0}
+.ck input{width:17px;height:17px;margin:0;accent-color:var(--citrus);flex:0 0 auto}
+.ck .ct{font-family:var(--mono);font-size:12px;min-width:58px;flex:0 0 auto}
+.ck.on .cs,.ck.on .ct{color:var(--muted);text-decoration:line-through}
+.ck.now{background:var(--brine-bg);margin:0 -12px;padding:1px 12px}
 .saved{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);align-self:center}
 
 /* Desktop: ingredients in a sticky left column, steps on the right. Below 1024px nothing changes. */
@@ -117,7 +125,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 <div class="wrap">
   <a class='back' href='./'>&lsaquo; A Texan&rsquo;s Table</a>
   <h1>Carne guisada</h1>
-  <p class="sub">Office night. Chuck browned in the Instant Pot in the morning, cumin, chili powder and tomato in, then Slow Cook all day. Home at 5:00, rice cooker on, dinner at 6:30. The boys get it over rice with flour tortillas, he eats it as a bowl. Mild in the pot, jalapeno on the side. Set the time you want to eat and every step runs itself backward.</p>
+  <p class="sub">Monday night, Instant Pot. One chuck pot roast in 1.5 inch cubes, seared hard in the cast iron, onion and bell pepper softened in the drippings with garlic, chili powder, cumin and oregano, then 25 minutes under pressure in tomato and beef stock. The gravy is thickened with a flour slurry at the end, so the cubes hold their shape and keep some bite. Rice cooker at 5:05, tortillas off the cast iron at the end. Mild in the pot, jalapeno on the side. Set the time you want to eat and every step runs itself backward.</p>
 
   <div class="bar">
     <div class="controls">
@@ -138,6 +146,9 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
     <div id="nowline"></div>
     <div class="moved" id="moved"></div>
   </div>
+
+  <h2>Checklist</h2>
+  <div class="card check" id="checklist"></div>
 
   <div class="layout">
   <div class="side">
@@ -167,24 +178,27 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
   </div>
   </div>
 
-  <p class="note">The morning is about 35 minutes, 6:50 to 7:25. Cutting the beef and dicing the onion and pepper the night before saves 10 of them: keep the beef covered in the fridge.</p>
-  <p class="note"><b>Stock:</b> the beef stock is made up from beef bouillon paste, 1 teaspoon to each cup of hot water. The paste is salty, so taste before adding any more salt at the end.</p>
-  <p class="note"><b>Slow cook safety:</b> the beef is browned and the pot is brought to a lively simmer, 195 to 205°F on a probe, before Slow Cook starts, so it never sits lukewarm. Normal on the Instant Pot's Slow Cook runs like low on a slow cooker. Slow Cook starts about 7:25 am and the 10 hours end about 5:25 pm. The pot then drops to Keep Warm by itself, which holds it safely above 140°F for the hour or so before 6:30. Leftovers into the fridge within 2 hours.</p>
-  <p class="note">Lid: the Instant Pot lid with the valve on Venting, or a glass lid.</p>
-  <p class="note"><b>Salt:</b> the kosher salt amounts are sized for Diamond Crystal. Morton is about twice as salty by volume: use half.</p>
-  <p class="note"><b>Infrared readings:</b> the gun reads only the surface it points at, never the inside of the food or the depth of a liquid. Cast iron and dark, seasoned pans read true; shiny stainless and aluminum read low, so aim at the oil, the fat or a dark spot. Aim close, since the spot it reads grows with distance, and read two or three spots: pans vary a lot from edge to centre. On a grill, aim at a grate bar, not the coals. Simmering water, brine and deep oil get a probe thermometer instead. Oven and smoker numbers are the dial settings.</p>
+  <p class="note"><b>Why the cast iron, not Saute:</b> the cast iron holds 400 to 425°F through a batch of cold beef and reads true on the infrared; the Instant Pot's thin steel drops when the meat goes in, reads low, and steams more than it sears. The drippings and the deglaze carry every brown bit into the pot.</p>
+  <p class="note"><b>Bite, not mush:</b> 1.5 inch cubes, 25 minutes on High and a 15 minute natural release leaves them tender but whole. The flour goes in at the end as a slurry, not before, so nothing scorches on the bottom under pressure and the gravy thickens in 5 minutes without stewing the beef further. Stir the slurry in gently.</p>
+  <p class="note"><b>Salt, counted:</b> the last pressure cook was a touch salty, so this one carries 3/4 tsp of kosher salt on the beef at 4 servings, 1 tsp of beef bouillon paste in 1 cup of water (the usual 1 to 1, just less of it), and the salt already in the tomato sauce. That is about 2,900 mg of sodium for a 2.27 lb roast, on the gentle side. The last 1/4 tsp is only for a gravy that tastes flat after thickening.</p>
+  <p class="note"><b>Pepper:</b> never before a sear. Each cube is peppered only on a face that has already seared and is facing up, after each turn, and again as it comes off.</p>
+  <p class="note"><b>Mild for the boys:</b> ordinary mild chili powder, no cayenne. The jalapeno is for his bowl.</p>
+  <p class="note"><b>Burn warning:</b> stock first, beef on it, tomato sauce poured over the top and not stirred in: thick tomato on the bottom is what throws a Burn warning. If it shows, Cancel, valve to Venting, scrape the bottom, add 1/4 cup water and start the 25 minutes again.</p>
+  <p class="note"><b>Size:</b> the clock is set for 4 servings, about 2 1/4 lb, seared in two batches. At 6 to 8 sear in three batches and set Eating at 10 minutes later; the 25 minutes stay the same, as cube size sets the time. The servings stop at 3 to keep enough liquid in the Instant Pot.</p>
+  <p class="note"><b>Done temperature:</b> pressure cooking takes the beef far past the 145°F safe point; the spoon test is the cue for tenderness. Leftovers into the fridge within 2 hours.</p>
+  <p class="note"><b>Infrared readings:</b> infrared reads the surface only. Cast iron reads true. Aim close, straight down, and read two or three spots, as pans vary from edge to centre. Liquids, like the gravy, go by a probe.</p>
 </div>
 
 <script>
-var ING = [{"id":"beef","g":"Meat","per":0.625,"step":0.25,"unit":"lb","name":"beef chuck roast","note":"trimmed of hard fat, in 1.5 inch cubes"},{"id":"salt","g":"Meat","per":0.5,"step":0.25,"unit":"tsp","name":"kosher salt"},{"id":"pepper","g":"Meat","per":0.25,"step":0.25,"unit":"tsp","name":"black pepper"},{"id":"tallow","g":"Meat","per":0.25,"step":0.5,"unit":"tbsp","name":"beef tallow","note":"for the sear"},{"id":"flour","g":"The pot","per":0.5,"step":0.5,"unit":"tbsp","name":"all-purpose flour"},{"id":"onion","g":"The pot","per":0.25,"step":0.5,"unit":"","name":"yellow onion","plural":"yellow onions","note":"diced"},{"id":"bell","g":"The pot","per":0.25,"step":0.5,"unit":"","name":"green bell pepper","plural":"green bell peppers","note":"diced"},{"id":"garlic","g":"The pot","per":0.25,"step":0.25,"unit":"tbsp","name":"jarred minced garlic"},{"id":"chili","g":"The pot","per":0.25,"step":0.25,"unit":"tbsp","name":"chili powder","note":"the mild kind"},{"id":"cumin","g":"The pot","per":0.5,"step":0.25,"unit":"tsp","name":"ground cumin"},{"id":"oregano","g":"The pot","per":0.25,"step":0.25,"unit":"tsp","name":"dried oregano"},{"id":"tsauce","g":"The pot","per":0.25,"step":0.25,"unit":"cup","name":"tomato sauce"},{"id":"stock","g":"The pot","per":0.375,"step":0.25,"unit":"cup","name":"beef stock","note":"made up from beef bouillon paste: 1 tsp paste to each cup of hot water"},{"id":"bay","g":"The pot","per":0.5,"step":1,"unit":"","name":"bay leaf","plural":"bay leaves"},{"id":"rice","g":"To serve","per":0.5,"step":0.25,"unit":"cup","name":"jasmine rice","note":"water to the rice cooker's line"},{"id":"tortillas","g":"To serve","per":2,"step":1,"unit":"","name":"flour tortilla","plural":"flour tortillas","note":"at home"},{"id":"cilantro","g":"To serve","per":1,"step":1,"unit":"tbsp","name":"cilantro, chopped"},{"id":"ronion","g":"To serve","per":1,"step":1,"unit":"tbsp","name":"red onion, diced"},{"id":"jalapeno","g":"To serve","per":0.25,"step":1,"unit":"","name":"jalapeno","plural":"jalapenos","note":"sliced, his bowl only"}];
+var ING = [{"id":"beef","g":"Meat","per":0.5675,"step":0.25,"unit":"lb","name":"beef chuck roast","note":"one 2.27 lb chuck pot roast at 4 servings, in 1.5 inch cubes"},{"id":"salt","g":"Meat","per":0.1875,"step":0.25,"unit":"tsp","name":"kosher salt","note":"on the cubes before the sear"},{"id":"pepper","g":"Meat","per":0.25,"step":0.25,"unit":"tsp","name":"ground black pepper","note":"after the sear, never before"},{"id":"tallow","g":"Meat","per":0.25,"step":0.5,"unit":"tbsp","name":"beef tallow","note":"half for each batch"},{"id":"onion","g":"The pot","per":0.25,"step":0.5,"unit":"","name":"yellow onion","plural":"yellow onions","note":"diced"},{"id":"bell","g":"The pot","per":0.25,"step":0.5,"unit":"","name":"green bell pepper","plural":"green bell peppers","note":"diced"},{"id":"garlic","g":"The pot","per":0.25,"step":0.25,"unit":"tbsp","name":"jarred minced garlic"},{"id":"chili","g":"The pot","per":0.25,"step":0.25,"unit":"tbsp","name":"chili powder","note":"the ordinary mild blend"},{"id":"cumin","g":"The pot","per":0.5,"step":0.25,"unit":"tsp","name":"ground cumin"},{"id":"oregano","g":"The pot","per":0.25,"step":0.25,"unit":"tsp","name":"dried oregano"},{"id":"paste","g":"The pot","per":0.25,"step":0.25,"unit":"tsp","name":"beef bouillon paste"},{"id":"water","g":"The pot","per":0.25,"step":0.125,"unit":"cup","name":"hot water","note":"the paste whisked into it makes the stock"},{"id":"tsauce","g":"The pot","per":0.25,"step":0.125,"unit":"cup","name":"tomato sauce","note":"one small can at 4 servings"},{"id":"bay","g":"The pot","per":0.5,"step":1,"unit":"","name":"bay leaf","plural":"bay leaves"},{"id":"flour","g":"Gravy","per":0.5,"step":0.5,"unit":"tbsp","name":"all-purpose flour"},{"id":"cold","g":"Gravy","per":0.0625,"step":0.125,"unit":"cup","name":"cold water","note":"for the slurry"},{"id":"salt2","g":"Gravy","per":0.0625,"step":0.125,"unit":"tsp","name":"kosher salt, to finish","note":"only if the gravy tastes flat"},{"id":"rice","g":"To serve","per":0.5,"step":0.25,"unit":"cup","name":"jasmine rice","note":"water to the rice cooker's line"},{"id":"tortillas","g":"To serve","per":2,"step":1,"unit":"","name":"flour tortilla","plural":"flour tortillas"},{"id":"cilantro","g":"To serve","per":1,"step":1,"unit":"tbsp","name":"cilantro","note":"chopped; the rest of the bunch is Wednesday's"},{"id":"ronion","g":"To serve","per":1,"step":1,"unit":"tbsp","name":"red onion","note":"diced, the half left from Sunday"},{"id":"jalap","g":"To serve","per":0.25,"step":1,"unit":"","name":"jalapeno","plural":"jalapenos","note":"sliced, his bowl only"}];
 var PRE = [];
-var STEPS = [{"id":"s0","at":700,"lane":"prep","txt":"Cube the chuck, pat it dry, season with the salt and pepper. Dice the onion and bell pepper. Wash your hands and the board.","uses":["beef","salt","pepper","onion","bell"]},{"id":"s1","at":690,"lane":"pot","txt":"Instant Pot on Saute, More. Tallow in. About 4 minutes, until the fat reads 375 to 400°F on the infrared (aim at the fat; the steel reads low).","uses":["tallow"]},{"id":"s2","at":686,"lane":"pot","txt":"First batch, first side: half the beef in one layer, 3 minutes, do not move it.","uses":["beef"]},{"id":"s3","at":683,"lane":"pot","txt":"First batch, second side: turn the cubes, 3 minutes more, then onto a plate."},{"id":"s4","at":680,"lane":"pot","txt":"Second batch, first side: the rest of the beef, 3 minutes, do not move it."},{"id":"s5","at":677,"lane":"pot","txt":"Second batch, second side: turn, 3 minutes. Leave it in the pot."},{"id":"s6","at":674,"lane":"pot","txt":"All the beef back in. Flour over and stir 1 minute. Onion, bell pepper, garlic, chili powder, cumin and oregano in, stir 2 minutes.","uses":["flour","onion","bell","garlic","chili","cumin","oregano"]},{"id":"s7","at":671,"lane":"pot","txt":"Tomato sauce and beef stock in. Scrape the bottom completely clean so nothing sticks. Bay leaves in. Bring it to a lively simmer, 195 to 205°F on a probe, about 5 minutes.","uses":["tsauce","stock","bay"]},{"id":"s8","at":665,"lane":"pot","txt":"Cancel Saute. Lid on, valve to Venting. Slow Cook, Normal, 10 hours. It goes to Keep Warm by itself at the end. Go to work."},{"id":"s9","at":90,"lane":"pot","txt":"Home. Rice cooker: rinse the rice, water to the line, start it.","uses":["rice"]},{"id":"s10","at":20,"lane":"pot","txt":"Lid off. The beef should break with a spoon. Bay leaves out. If the gravy is thin, Saute on Normal, lid off, 5 to 10 minutes at a lively simmer, 195 to 205°F on a probe, until it coats the back of a spoon, then back to Keep Warm. Taste for salt."},{"id":"s11","at":14,"lane":"prep","txt":"Chop the cilantro, dice the red onion, slice his jalapeno.","uses":["cilantro","ronion","jalapeno"]},{"id":"s12","at":8,"lane":"pan","txt":"Tortillas: dry cast iron on medium, 400 to 450°F on the infrared. About 30 seconds a side each, stacked in a towel to stay soft.","uses":["tortillas"]},{"id":"s13","at":0,"lane":"serve","txt":"Boys: guisada over rice, tortillas on the side. His bowl: guisada and rice topped with cilantro, red onion and the jalapeno."}];
+var STEPS = [{"id":"g1","at":130,"lane":"prep","short":"Cube the chuck, 1.5 inch","txt":"Cut the beef, 12 minutes. Cold from the fridge, on the board. Cut into 1.5 inch cubes along the seams; trim off only hard, thick fat and silver skin, keep the marbling. Even cubes cook evenly. Spread them on a tray.","uses":["beef"]},{"id":"g2","at":118,"lane":"prep","short":"Dice onion and pepper, make stock","txt":"Veg and stock, 7 minutes. Dice the onion and the bell pepper, together in one bowl. Whisk the bouillon paste into the hot water in a jug. Wash the board and your hands.","uses":["onion","bell","paste","water"]},{"id":"g3","at":111,"lane":"pan","short":"Cast iron on to heat","txt":"Cast iron on the burner, empty, at medium-high. 10 minutes to come up evenly. Target 400 to 425°F on the infrared at the centre."},{"id":"g4","at":109,"lane":"prep","short":"Pat dry, salt, rest","txt":"Pat dry and salt, then rest, 10 minutes in all. Pat every cube dry with paper towels, really dry, or it steams instead of searing. Sprinkle the salt over all sides. No pepper. Let them sit on the tray while the pan finishes heating.","uses":["salt"]},{"id":"g5","at":101,"lane":"pan","short":"Sear batch 1, first side, 3 min","txt":"Sear, batch 1, first side, 3 minutes. Cast iron reading 400 to 425°F. Half the tallow in and swirl. Half the cubes in, a finger's gap between them. Do not move them for 3 minutes, until a dark crust lets go of the pan on its own.","uses":["tallow@0.5","beef@0.5"]},{"id":"g6","at":98,"lane":"pan","short":"Batch 1, second side, pepper, out","txt":"Batch 1, second side, 3 minutes. Turn each cube so the seared face is up, pepper it (a quarter of the pepper), 3 minutes untouched. Lift out and pepper the second seared face as it comes off (another quarter), into the Instant Pot inner pot. The Instant Pot stays off for now.","uses":["pepper@0.5"]},{"id":"g7","at":95,"lane":"pan","short":"Sear batch 2, first side, 3 min","txt":"Sear, batch 2, first side, 3 minutes. Back to 400°F first if the pan dropped, about a minute. The rest of the tallow, the rest of the cubes, a finger's gap. 3 minutes untouched.","uses":["tallow@0.5","beef@0.5"]},{"id":"g8","at":92,"lane":"pan","short":"Batch 2, second side, pepper, out","txt":"Batch 2, second side, 3 minutes. Turn each cube so the seared face is up, pepper it (a quarter of the pepper), 3 minutes untouched. Lift out and pepper the second seared face as it comes off (the last quarter), into the Instant Pot with the rest.","uses":["pepper@0.5"]},{"id":"g9","at":89,"lane":"pan","short":"Onion and pepper, then spices","txt":"Veg in the drippings, 5 minutes. Heat to medium; let the pan fall to 325 to 350°F on the infrared. Onion and bell pepper in, stir 4 minutes until soft at the edges. Garlic, chili powder, cumin and oregano in, stir 1 minute until fragrant, not dark.","uses":["onion","bell","garlic","chili","cumin","oregano"]},{"id":"g10","at":84,"lane":"pan","short":"Deglaze into the Instant Pot","txt":"Deglaze, 2 minutes. Cast iron off the heat. Pour in the stock; it will hiss. Scrape every brown bit off with a flat wooden spatula, then tip the lot, veg and all, over the beef in the Instant Pot."},{"id":"g11","at":82,"lane":"cooker","short":"Tomato on top, seal, High 25 min","txt":"Load and seal, 2 minutes. Bay leaves in. Pour the tomato sauce over the top and do not stir it in. Lid on, valve to Sealing, Pressure Cook on High, 25 minutes. About 10 minutes to come to pressure; the count starts on its own, about {t:72}.","uses":["bay","tsauce"]},{"id":"g12","at":80,"lane":"rice","short":"Rice cooker on","txt":"Rice cooker, 3 minutes. Rinse the rice, water to the line, start it. It holds on warm.","uses":["rice"]},{"id":"g13","at":77,"lane":"pan","short":"Wipe the cast iron, leave it out","txt":"Wipe the cast iron with a paper towel, 2 minutes. No wash: it does the tortillas later. Back burner."},{"id":"g14","at":75,"lane":"prep","short":"Toppings into the fridge","txt":"Toppings, 8 minutes. Chop the cilantro, dice the red onion, slice the jalapeno into its own small bowl. Cover and into the fridge. Wash the board.","uses":["cilantro","ronion","jalap"]},{"id":"g15","at":47,"lane":"cooker","short":"Beep: natural release 15 min","txt":"Beep: the 25 minutes are done. Leave the valve on Sealing for a 15 minute natural release. The screen counts up from L0:00."},{"id":"g16","at":32,"lane":"cooker","short":"Vent, bay out, spoon test","txt":"At L0:15, push the valve to Venting with a long spoon, hand and face clear of the steam. When the pin drops, lid off, tilted away from you. Bay leaves out. Spoon test: a cube should break under a spoon with a little push and hold its shape. If it fights, lid on, Sealing, 5 more minutes on High, quick release, and set Eating at 10 minutes later."},{"id":"g17","at":30,"lane":"cooker","short":"Slurry in, thicken 5 min","txt":"Thicken, 6 minutes. Whisk the flour into the cold water in a cup until smooth. Saute on Normal, lid off. When the gravy reaches a lively simmer, 195 to 205°F on a probe, stir the slurry in gently with a spoon, folding so the cubes stay whole. 5 minutes at that simmer, until it coats the back of a spoon. Cancel, then Keep Warm.","uses":["flour","cold"]},{"id":"g18","at":24,"lane":"cooker","short":"Taste the gravy","txt":"Taste, 1 minute. Only if the gravy tastes flat, stir in the finishing salt. Lid resting on top, Keep Warm on.","uses":["salt2"]},{"id":"g19","at":16,"lane":"pan","short":"Warm the tortillas","txt":"Tortillas, 10 minutes. Dry cast iron at medium, 400 to 450°F on the infrared. About 30 seconds a side each, stacked in a towel to stay soft.","uses":["tortillas"]},{"id":"g20","at":5,"lane":"prep","short":"Fluff rice, toppings out","txt":"Set out, 5 minutes. Fluff the rice. Toppings out of the fridge. His jalapeno on the side; nothing hot goes in the pot."},{"id":"g21","at":0,"lane":"serve","short":"Eat","txt":"Boys: guisada over rice, tortillas on the side. His bowl: guisada and rice topped with cilantro, red onion and the jalapeno."}];
 var TIMED = true;
-var SERV = {"base": 4, "min": 2, "max": 12};
-var KEY = "kitchen:carne-guisada";
+var SERV = {"base":4,"min":3,"max":8};
+var KEY = "kitchen:carne-guisada:pressure";
 
 var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
-            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"]};
+            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], rice:["RICE COOKER","t-jar"], away:["AWAY","t-prep"], store:["STORE","t-prep"]};
 var state = {servings: SERV ? SERV.base : 0, serve: "18:30", checked:{}, notes:"", planned:null};
 
 function frac(n){
@@ -197,30 +211,48 @@ function frac(n){
   if(!best) return String(w);
   return w ? w + " " + best : best;
 }
-function amount(it){
+function amount(it, part){
   if(it.fixed) return it.fixed;
   var raw = it.per * state.servings;
+  if(part){
+    var whole = Math.max(it.step || 0.25, Math.round(raw / (it.step || 0.25)) * (it.step || 0.25));
+    raw = whole * part;
+  }
   var s = it.step || 0.25;
-  var v = Math.max(s, Math.round(raw / s) * s);
+  var v = part ? Math.round(raw * 1000) / 1000 : Math.max(s, Math.round(raw / s) * s);
   v = Math.round(v * 1000) / 1000;
   var txt = it.metric ? String(v) : frac(v);
   if(it.unit){
     var u = it.unit;
+    if(u === "tbsp" && v >= 4 && Math.abs(v/4 - Math.round(v/4)) < 1e-6){ v = v/16; txt = frac(v); u = "cup"; }
+    else if(u === "tbsp" && Math.abs(v*2 - Math.round(v*2)) > 1e-6){ v = v*3; txt = frac(v); u = "tsp"; }
+    else if(u === "cup" && v < 0.5 && Math.abs(v*4 - Math.round(v*4)) > 1e-6){ v = v*16; txt = frac(v); u = "tbsp"; }
     if(u === "cup" && v > 1) u = "cups";
     return txt + " " + u;
   }
   var nm = (v > 1 && it.plural) ? it.plural : it.name;
   return txt + "|" + nm;
 }
-function label(it){
-  var a = amount(it);
+function label(it, part){
+  var a = amount(it, part);
   if(a.indexOf("|") > -1){ var p = a.split("|"); return {qty:p[0], name:p[1]}; }
   return {qty:a, name:it.name};
 }
 function byId(id){ for(var i=0;i<ING.length;i++){ if(ING[i].id === id) return ING[i]; } return null; }
 
 function pad2(n){ return (n < 10 ? "0" : "") + n; }
-function serveDate(){ return dateOfHM(state.serve); }
+/* This cook starts the day before, so once today's dinner time has passed by
+   25 minutes, Eating at means tomorrow and the night-before steps are tonight. */
+var LONG = STEPS.length && STEPS[0].at > 720;
+function serveDate(){
+  var d = dateOfHM(state.serve);
+  if(LONG && Date.now() > d.getTime() + 25*60000) d = new Date(d.getTime() + 86400000);
+  return d;
+}
+function dayOf(off){
+  var c = clockOf(off), s = serveDate();
+  return c.toDateString() === s.toDateString() ? "" : '<span class="day">day before</span>';
+}
 function dateOfHM(hm){
   var p = (hm || "18:30").split(":");
   var d = new Date();
@@ -266,28 +298,45 @@ function renderSteps(){
     var s = STEPS[i], lane = LANE[s.lane] || LANE.prep, u = "";
     var uses = s.uses || [];
     for(var j=0;j<uses.length;j++){
-      var it = byId(uses[j]); if(!it) continue;
-      var l = label(it);
-      u += '<span class="ui"><b>' + l.qty + '</b> ' + l.name + '</span>';
+      var pp = String(uses[j]).split("@"), part = pp[1] ? parseFloat(pp[1]) : 0;
+      var it = byId(pp[0]); if(!it) continue;
+      var l = label(it, part);
+      u += '<span class="ui" data-ing="' + it.id + '"><b>' + l.qty + '</b> ' + l.name + (part === 0.5 ? ', half' : '') + '</span>';
     }
     html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '"' +
       (TIMED ? ' data-at="' + s.at + '"' : '') + '>' +
       '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
-      (TIMED ? '<span class="clock">' + hhmm(clockOf(s.at)) + '</span>' : '') +
-      '<span class="body">' + (u ? '<span class="usehd"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>You\x27ll use</span><span class="uses">' + u + '</span><span class="txt">' : '<span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>') + s.txt + '</span>' +
+      (TIMED ? '<span class="clock">' + hhmm(clockOf(s.at)) + dayOf(s.at) + '</span>' : '') +
+      '<span class="body">' + (u ? '<span class="usehd"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>You\x27ll use</span><span class="uses">' + u + '</span><span class="txt">' : '<span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>') + fillT(s.txt) + '</span>' +
       (s.gap ? '<span class="gap">' + s.gap + '</span>' : '') +
       '</span></label>';
   }
   host.innerHTML = html;
+  renderChecklist();
   if(TIMED) markNow();
+}
+function fillT(t){ return t.replace(/\{t:(\d+)\}/g, function(m, n){ return '<b class="tt">' + hhmm(clockOf(parseInt(n,10))) + '</b>'; }); }
+function renderChecklist(){
+  var host = document.getElementById("checklist"), html = "";
+  if(!host) return;
+  for(var i=0;i<STEPS.length;i++){
+    var s = STEPS[i];
+    html += '<label class="ck' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '"' + (TIMED ? ' data-at="' + s.at + '"' : '') + '>' +
+      '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
+      (TIMED ? '<span class="ct">' + hhmm(clockOf(s.at)) + '</span>' : '') +
+      '<span class="cs">' + s.short + '</span></label>';
+  }
+  host.innerHTML = html;
 }
 function markNow(){
   if(!TIMED) return;
   var now = new Date(), start = clockOf(STEPS[0].at), end = serveDate(), line = document.getElementById("nowline");
   var rows = document.querySelectorAll("#steps .row"), i;
   for(i=0;i<rows.length;i++){ rows[i].classList.remove("now"); }
+  var cks = document.querySelectorAll("#checklist .ck");
+  for(i=0;i<cks.length;i++){ cks[i].classList.remove("now"); }
   if(now < new Date(start.getTime() - 45*60000)){
-    line.innerHTML = 'First move at <b>' + hhmm(start) + '</b>';
+    line.innerHTML = 'First move at <b>' + hhmm(start) + '</b>' + (start.toDateString() !== end.toDateString() ? ' the day before' : '');
     return;
   }
   if(now > new Date(end.getTime() + 25*60000)){
@@ -303,6 +352,7 @@ function markNow(){
     return;
   }
   if(rows[cur]) rows[cur].classList.add("now");
+  if(cks[cur]) cks[cur].classList.add("now");
   if(cur < STEPS.length - 1){
     var nxt = Math.max(0, Math.round((clockOf(STEPS[cur+1].at) - now) / 60000));
     line.innerHTML = 'Now: <b>' + LANE[STEPS[cur].lane][0].toLowerCase() + '</b> · next move in <b>' + nxt + ' min</b>';
@@ -376,7 +426,11 @@ document.addEventListener("change", function(e){
   if(!host || e.target.type !== "checkbox") return;
   var id = host.getAttribute("data-id");
   state.checked[id] = e.target.checked;
-  host.classList.toggle("on", e.target.checked);
+  var twins = document.querySelectorAll('[data-id="' + id + '"]');
+  for(var k=0;k<twins.length;k++){
+    twins[k].classList.toggle("on", e.target.checked);
+    var box = twins[k].querySelector("input"); if(box) box.checked = e.target.checked;
+  }
   save();
 });
 var serveEl = document.getElementById("serve");
