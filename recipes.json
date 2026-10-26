@@ -807,10 +807,10 @@
    "slug": "carne-guisada",
    "name": "Carne guisada",
    "file": "carne-guisada.html",
-   "sub": "Office night. Chuck browned in the Instant Pot in the morning, cumin, chili powder and tomato in, then Slow Cook all day. Home at 5:00, rice cooker on, dinner at 6:30. The boys get it over rice with flour tortillas, he eats it as a bowl. Mild in the pot, jalapeno on the side. Set the time you want to eat and every step runs itself backward.",
+   "sub": "Monday night, Instant Pot. One chuck pot roast in 1.5 inch cubes, seared hard in the cast iron, onion and bell pepper in the drippings with garlic, chili powder, cumin and oregano, then 25 minutes under pressure in tomato and beef stock, gravy thickened with a flour slurry at the end. Rice and tortillas. Mild in the pot, jalapeno on the side. Set the time you want to eat and every step runs itself backward.",
    "chapter": "mains",
    "label": "POT",
-   "blurb": "Instant Pot brown in the morning · slow cook all day · rice at 5",
+   "blurb": "Cast iron sear · Instant Pot 25 minutes · slurry gravy · rice at 5:10",
    "meal": [
     "dinner"
    ],
@@ -820,12 +820,12 @@
    "heat": [
     "stovetop"
    ],
-   "total": 700,
-   "active": 50,
-   "band": "day",
-   "time": "morning set-up, all-day slow cook",
+   "total": 130,
+   "active": 75,
+   "band": "hour",
+   "time": "cut at 4:20, eat at 6:30",
    "effort": 2,
-   "ahead": true,
+   "ahead": false,
    "kid": true,
    "serves": 4,
    "occasion": [
@@ -835,27 +835,27 @@
    "scales": true,
    "test": false,
    "ingredients": [
-    "beef chuck roast (trimmed of hard fat, in 1.5 inch cubes)",
+    "beef chuck roast (1.5 inch cubes)",
     "kosher salt",
-    "black pepper",
-    "beef tallow (for the sear)",
-    "all-purpose flour",
-    "yellow onion (diced)",
-    "green bell pepper (diced)",
+    "ground black pepper",
+    "beef tallow",
+    "yellow onion",
+    "green bell pepper",
     "jarred minced garlic",
-    "chili powder (the mild kind)",
+    "chili powder",
     "ground cumin",
     "dried oregano",
+    "beef bouillon paste",
     "tomato sauce",
-    "beef stock (made up from beef bouillon paste: 1 tsp paste to each cup of hot water)",
     "bay leaf",
-    "jasmine rice (water to the rice cooker's line)",
-    "flour tortilla (at home)",
-    "cilantro, chopped",
-    "red onion, diced",
-    "jalapeno (sliced, his bowl only)"
+    "all-purpose flour",
+    "jasmine rice",
+    "flour tortillas",
+    "cilantro",
+    "red onion",
+    "jalapeno"
    ],
-   "steps": 14
+   "steps": 21
   },
   {
    "slug": "tom-kha",
