@@ -532,5 +532,20 @@ load();
 })();
 if("serviceWorker" in navigator){ navigator.serviceWorker.register("./sw.js").catch(function(){}); }
 </script>
+<script>
+/* Step player settings: the steps where the pot does the work and you wait. */
+var STEP_PLAYER = {
+  passive: {g14: "under pressure, 25 min on High after it comes up. Toppings meanwhile, then wait for the beep.", g15: "natural release, valve stays on Sealing."},
+  phases: [
+    {name: "Mise en place", from: "g1"},
+    {name: "Fire", from: "g5"},
+    {name: "Hands-off", from: "g11", wait: ["g12", "g13", "g14"]},
+    {name: "Finish", from: "g16"},
+    {name: "Plate", from: "g19"}
+  ]
+};
+</script>
+<script src="./step-player.js">
+</script>
 </body>
 </html>
