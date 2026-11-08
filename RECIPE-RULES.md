@@ -45,3 +45,7 @@ These are the ranges used so far, checked by the researcher on 16 Oct 2026 (rese
 - Full measurements stay. Where an amount depends on a brand (Diamond Crystal kosher salt is about half as salty by volume as Morton), keep the amount, call it "kosher salt", and leave the "Morton: use half" note in the page notes.
 - Shopping lists: the item and roughly how much to buy, no "need X tsp" notes.
 - Meat on shopping lists (8 Nov 2026): only what every ordinary grocery store stocks, written loosely with swaps built in (chicken thighs, boneless if they have them but any are fine; ground pork, ground beef or breakfast sausage), never a specific cut. Cut-dependent handling lives in the recipe as a short branch per option.
+
+## Roux (the Captain, 8 Nov 2026)
+
+- Roux is never made in the cast iron skillet, always in the Dutch oven. The cast iron sears, then is deglazed with some of the stock, which goes back into the stock jug with the fond.
