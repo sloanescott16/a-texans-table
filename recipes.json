@@ -807,7 +807,7 @@
    "slug": "grillades-and-grits",
    "name": "Grillades and grits",
    "file": "grillades-and-grits.html",
-   "sub": "Sunday, Louisiana week. Round steak pounded thin, seared hard in the cast iron, then braised 90 minutes in a dark roux gravy with the trinity, tomatoes and beef stock, over cheese grits made with stock and butter, green beans on the side. While it braises, the week's prep: a double dark roux (half for tonight, half for Monday), the trinity chopped and bagged for all four nights, a second pot of grits set in a dish for Wednesday, and Monday's gumbo loaded into the Instant Pot inner pot and into the fridge. First move at 3:00 for 6:30.",
+   "sub": "Sunday, Louisiana week. A beef chuck tender roast sliced across the grain into medallions and pounded thin, seared hard in the cast iron, then braised 2 hours in a dark roux gravy with the trinity, tomatoes and beef stock, over cheese grits made with stock and butter, green beans on the side. While it braises, the week's prep: a double dark roux (half for tonight, half for Monday), the trinity chopped and bagged for all four nights, a second pot of grits set in a dish for Wednesday, and Monday's gumbo loaded into the Instant Pot inner pot and into the fridge. First move at 2:24 for 6:30.",
    "chapter": "mains",
    "label": "PAN",
    "blurb": "Cast iron sear · dark roux gravy · cheese grits · the week's prep",
@@ -820,10 +820,10 @@
    "heat": [
     "stovetop"
    ],
-   "total": 210,
-   "active": 150,
+   "total": 246,
+   "active": 160,
    "band": "afternoon",
-   "time": "first move at 3:00, eat at 6:30",
+   "time": "first move at 2:24, eat at 6:30",
    "effort": 3,
    "ahead": false,
    "kid": true,
@@ -835,7 +835,7 @@
    "scales": true,
    "test": false,
    "ingredients": [
-    "beef round steak",
+    "beef chuck tender roast",
     "kosher salt",
     "ground black pepper",
     "canola oil",
@@ -866,7 +866,7 @@
     "parsley",
     "hot sauce"
    ],
-   "steps": 38
+   "steps": 41
   },
   {
    "slug": "chicken-andouille-gumbo",

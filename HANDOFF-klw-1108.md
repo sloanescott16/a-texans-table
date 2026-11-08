@@ -33,3 +33,8 @@ Last run: 25 of 25 on each page. Headless Edge at 390 x 844, own profile, speech
 - Wednesday: 9 squares from the square pan.
 - All pages: plain names (parsley, chicken thighs, andouille), no salt brand names.
 - Rerun: 25 of 25 on each page at 390 px.
+
+## Change 2 (job 1108-1229-sp4): chuck tender roast
+- Sunday's beef is one beef chuck tender roast, 2.77 lb (use or freeze by 10 Nov): silver skin off, 1/2 inch medallions across the grain, pounded to 1/4 inch, seared in three batches with pepper on each seared face, braised 2 hours with two stir checks, fork test plus 195 to 205°F inside.
+- First move now 2:24 for 6:30. Scaled to 2.75 lb: salt 1 1/2 tsp, pepper 1 tsp, sear oil 3 tbsp, roux 1 1/4 cups oil and flour (half each night), beef stock 3 tsp base in 3 1/2 cups water, Cajun 3 tsp, thyme 3/4 tsp, smoked paprika 1 1/2 tsp, garlic and tomato paste 1 1/2 tbsp. Week totals still fit: the tomato paste is 2 1/2 tbsp in all, everything else changed is from the house.
+- Checklist rows tightened (no row padding) so Sunday's 41 rows fit one 390 x 844 screen. All four pages 25/25 again.
