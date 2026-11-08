@@ -49,3 +49,19 @@ These are the ranges used so far, checked by the researcher on 16 Oct 2026 (rese
 ## Roux (the Captain, 8 Nov 2026)
 
 - Roux is never made in the cast iron skillet, always in the Dutch oven. The cast iron sears, then is deglazed with some of the stock, which goes back into the stock jug with the fond.
+
+## Pages and the cook's evening (the Captain, 8 Nov 2026)
+
+"This page is like 6 recipes on one. And does it have me cooking for 4 hours straight." "Step one is its own thing. Not part of this recipe."
+
+- One dinner per page. Nothing for other nights goes on a dinner's page.
+- A side cook like stock or broth always gets its own recipe page, never folded into a dinner's page.
+- Prep for another night is its own short optional page or nothing. The plan never front-loads a night. Overlap between nights means one shop and zero-cost components (half a roux into a bowl, extra rice in the same cooker), never extra chopping or bagging for later nights. Each night dices its own trinity.
+- On his cook nights he is a solo parent with two young boys. Active time is capped at about an hour on Sunday and 20 to 30 minutes on a weeknight, the rest hands off. Never a 4 hour block.
+- Every dinner page states its active time at the top, honestly.
+
+## One line per ingredient (the Captain, 8 Nov 2026)
+
+- An ingredient appears once in a step's list: one line with the total for that step, never one line per night's share or use.
+- The same in the page's main ingredient list: one line per ingredient with the total, and the split in words (for example "Sunday 1, Monday 1 1/2, Wednesday 1/2, Thursday 1").
+- The shared page code merges lines with the same ingredient name into one scaled total, so this holds on every page.
