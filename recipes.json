@@ -873,10 +873,10 @@
    "slug": "chicken-andouille-gumbo",
    "name": "Chicken and andouille gumbo",
    "file": "chicken-andouille-gumbo.html",
-   "sub": "Monday, Louisiana week. Loaded on Sunday: Sunday's dark roux whisked into chicken stock with the trinity, andouille, chicken thighs, garlic and Cajun spice, in the Instant Pot inner pot in the fridge. One step at 7:00 am: inner pot in, Slow Cook on High 6 hours, then it holds on Keep Warm. Rice cooker on at 5:00 with a double batch, half kept for Thursday's dirty rice. Back to a simmer, chicken shredded, green onion and parsley on top.",
+   "sub": "Monday, Louisiana week. The Captain's own gumbo, written lean: run it his way. Dutch oven on the stove from 4:45 at a normal afternoon pace. Sunday's dark roux from the fridge, Monday's bag of trinity, Sunday's homemade broth, chicken thighs and half the andouille, simmered about an hour. Rice cooker at 5:15 with Thursday's share.",
    "chapter": "mains",
    "label": "POT",
-   "blurb": "Sunday's roux · Instant Pot Slow Cook High 6 hours · rice at 5:00",
+   "blurb": "His own gumbo · Sunday's roux and broth · Dutch oven from 4:45",
    "meal": [
     "dinner"
    ],
@@ -887,11 +887,11 @@
    "heat": [
     "stovetop"
    ],
-   "total": 690,
-   "active": 25,
-   "band": "day",
-   "time": "7:00 am start, eat at 6:30",
-   "effort": 1,
+   "total": 105,
+   "active": 50,
+   "band": "hour",
+   "time": "4:45 to 6:30",
+   "effort": 2,
    "ahead": true,
    "kid": true,
    "serves": 3,
@@ -902,15 +902,24 @@
    "scales": true,
    "test": false,
    "ingredients": [
-    "loaded Instant Pot inner pot",
+    "Sunday's dark roux",
+    "Monday's trinity",
+    "homemade chicken broth",
+    "powdered chicken stock",
     "chicken thighs",
+    "andouille or smoked sausage",
+    "jarred minced garlic",
+    "Cajun seasoning",
+    "dried thyme",
+    "smoked paprika",
+    "bay leaf",
     "rice",
     "green onions",
     "parsley",
     "kosher salt, to finish",
     "hot sauce"
    ],
-   "steps": 10
+   "steps": 15
   },
   {
    "slug": "fried-grits-andouille-creole",

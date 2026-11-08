@@ -50,3 +50,11 @@ Last run: 25 of 25 on each page. Headless Edge at 390 x 844, own profile, speech
 - New chicken-broth.html (Mon, stovetop): two frozen carcasses, bare simmer 190 to 200°F from about 8:50 to 1:30, ice bath to under 70°F, jars in the fridge by 2:40 (the time box reads "In the fridge by"; the scaler reads Carcasses, 1 or 2). Ice from the freezer is assumed.
 - Wednesday and Thursday: homemade chicken broth cup for cup, water plus powdered chicken stock kept as the fallback with its amount.
 - Check script reads each page's default time and servings range. 390 px check: 25/25 on all five.
+
+## Change 6 (job 1108-1418-lkf): broth on Sunday, lean Monday
+- Sunday: broth into the Instant Pot at 2:20 (two frozen carcasses, spare onion, 2 celery ribs, bay, cold water to PC MAX, High 90, natural release), up-to-pressure glance 2:50, strain 4:50, jars into the fridge 5:32. Monday's gumbo prep is off Sunday; Monday's half of the roux goes covered into the fridge at 4:44. Dutch oven roux and the batch 3 timing kept.
+- chicken-broth.html is retired: the file stays in the folder, but it is out of recipes.json, index.html and sw.js (cache v24).
+- Monday's gumbo rewritten lean as the Captain's own recipe: Dutch oven on the stove from 4:45, Sunday's roux and 5 cups of broth (fallback 5 cups water plus 5 tsp powdered chicken stock), rice at 5:15 with Thursday's share, bone-in branch at 6:10. No Instant Pot, no 7 am step.
+- Broth use: 5 cups Monday, 1/2 cup Wednesday, 1/2 cup Thursday, 6 cups against an estimated 8 to 10.
+- Morning Report meals data: Monday has no 7 am load any more. Monday's first move is 4:45 pm (Dutch oven gumbo, serve 6:30).
+- 390 px check: 25/25 on the four live pages.
