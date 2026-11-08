@@ -853,8 +853,8 @@
     "can diced tomatoes",
     "bay leaf",
     "kosher salt, to finish",
-    "boneless, skinless chicken thighs",
-    "andouille or smoked sausage",
+    "chicken thighs",
+    "andouille",
     "cold water",
     "powdered chicken stock",
     "water",
@@ -863,7 +863,7 @@
     "sharp cheddar",
     "green beans",
     "green onions",
-    "flat-leaf parsley",
+    "parsley",
     "hot sauce"
    ],
    "steps": 38
@@ -902,9 +902,10 @@
    "test": false,
    "ingredients": [
     "loaded Instant Pot inner pot",
+    "chicken thighs",
     "rice",
     "green onions",
-    "flat-leaf parsley",
+    "parsley",
     "kosher salt, to finish",
     "hot sauce"
    ],
@@ -946,7 +947,7 @@
     "all-purpose flour",
     "canola oil",
     "olive oil",
-    "andouille or smoked sausage",
+    "andouille",
     "Wednesday's trinity",
     "jarred minced garlic",
     "tomato paste",
@@ -959,7 +960,7 @@
     "bay leaf",
     "kosher salt, to finish",
     "green onions",
-    "flat-leaf parsley",
+    "parsley",
     "hot sauce"
    ],
    "steps": 13
@@ -1013,7 +1014,7 @@
     "green beans",
     "butter",
     "green onions",
-    "flat-leaf parsley",
+    "parsley",
     "hot sauce"
    ],
    "steps": 14

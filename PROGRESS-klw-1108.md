@@ -10,3 +10,4 @@ Built on the Captain's final shopping list (11:20 AM update): no milk (grits wit
 - Thursday dirty-rice.html: done d4e3d6f, 25/25. Handoff in HANDOFF-klw-1108.md.
 
 Missing from the shop: nothing. Uses from the house: canola, flour, jarred garlic, beef bouillon base, powdered chicken stock, smoked paprika, soy sauce (Thursday), olive oil (Wednesday), salt, pepper.
+- Fix round 1 done, all four pages 25/25 again.

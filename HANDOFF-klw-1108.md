@@ -26,3 +26,10 @@ Last run: 25 of 25 on each page. Headless Edge at 390 x 844, own profile, speech
 - Thursday's trinity is cut on Sunday, four days ahead. Fine for onion, pepper and celery, a little less crisp.
 - The step player (play and pause) on carne guisada is not on these pages.
 - The unmerged tom-kha-retime-1027 branch also bumps sw.js to v21; this branch goes to v22, so merge order does not matter for the cache, but sw.js and recipes.json will need a hand merge.
+
+## Fix round 1 (checker's CHECK-ALL.md)
+- Sunday: roux step says to set Eating at later if the roux is not dark by its time; sear bits no longer read as "start again"; raw chicken sealed in its own bag on top of the inner pot overnight; grits keep 3 to 4 days; beef stock, Monday's trinity and sausage, and the beans listed on their steps; 14 inch or deep braiser note for 5 or 6 servings; leftovers out of the cast iron before the fridge; 8 by 8 or 9 by 9 pan for Wednesday's grits.
+- Monday: 7 am step tips in the bagged chicken and stirs from the bottom; rice lines are tonight and Thursday amounts; time to 140°F note and probe 165°F before serving; Keep Warm about 4 hours.
+- Wednesday: 9 squares from the square pan.
+- All pages: plain names (parsley, chicken thighs, andouille), no salt brand names.
+- Rerun: 25 of 25 on each page at 390 px.
