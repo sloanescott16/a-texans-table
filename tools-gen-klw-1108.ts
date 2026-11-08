@@ -282,7 +282,7 @@ R.push({
     { id: "onion", g: "Instant Pot", per: 0.5, step: 0.5, unit: "", name: "yellow onion", plural: "yellow onions", note: "the spare one, quartered, skin on" },
     { id: "celery", g: "Instant Pot", per: 1, step: 1, unit: "", name: "celery rib", plural: "celery ribs", note: "in thirds" },
     { id: "bay", g: "Instant Pot", by: { 1: "1|bay leaf", 2: "1|bay leaf", 3: "2|bay leaves" }, name: "bay leaf" },
-    { id: "water", g: "Instant Pot", by: { 1: "about 7 cups", 2: "about 10 cups, to the PC MAX line", 3: "to the PC MAX line, about 9 cups" }, name: "cold water", note: "never past the PC MAX line, two thirds full" },
+    { id: "water", g: "Instant Pot", by: { 1: "about 7 cups", 2: "about 10 cups", 3: "about 9 cups" }, name: "cold water", note: "up to the PC MAX line, two thirds full, never past it" },
     { id: "ice", g: "Cooling", fixed: "about 2 trays", name: "ice", note: "from the freezer, with cold water in the sink" },
     { id: "jars", g: "Cooling", fixed: "enough for 10 cups", name: "jars with lids" },
   ],

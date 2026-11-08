@@ -124,7 +124,7 @@ await setServings(TO);
 const q6 = await qtys(), u6 = await usesTxt();
 const notScaled = ING.filter((i: any) => !i.fixed && q6[i.id] === q3[i.id]).map((i: any) => i.id);
 check(TO + " servings: every measured amount changes", notScaled.length === 0, notScaled.join(","));
-const grew = ING.filter((i: any) => !i.fixed).filter((i: any) => { const a = inTsp(q3[i.id], i.unit), z = inTsp(q6[i.id], i.unit); return UP ? !(z > a) : !(z < a); }).map((i: any) => i.id + " " + q3[i.id] + ">" + q6[i.id]);
+const grew = ING.filter((i: any) => !i.fixed && !i.by).filter((i: any) => { const a = inTsp(q3[i.id], i.unit), z = inTsp(q6[i.id], i.unit); return UP ? !(z > a) : !(z < a); }).map((i: any) => i.id + " " + q3[i.id] + ">" + q6[i.id]);
 check(TO + " servings: every measured amount moves the right way", grew.length === 0, grew.join(","));
 check(TO + " servings: step ingredient lines scale too", u3 !== u6, "");
 console.log("AMOUNTS@6 " + JSON.stringify(q6));

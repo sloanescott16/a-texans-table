@@ -39,6 +39,11 @@
    "line": "Jars that keep"
   },
   {
+   "id": "stocks",
+   "name": "Stocks & Bases",
+   "line": "Broth and the bases the dinners lean on, each on its own page"
+  },
+  {
    "id": "drinks",
    "name": "Drinks",
    "line": "Cold, clear, and ratioed"
@@ -916,6 +921,48 @@
     "hot sauce"
    ],
    "steps": 15
+  },
+  {
+   "slug": "chicken-broth",
+   "name": "Rotisserie chicken broth",
+   "file": "chicken-broth.html",
+   "sub": "Instant Pot, pressure cooked. Frozen rotisserie chicken carcasses go straight in with the spare onion, celery, a bay leaf and cold water to the PC MAX line, then Pressure Cook High 90 minutes and a natural release. Strained into an ice bath, into jars and the fridge. Set the time you start and every step counts forward from it: a 2:47 start strains about 5:10 and is in the fridge by 6:20. The come-up and release times are estimates.",
+   "chapter": "stocks",
+   "label": "POT",
+   "blurb": "Instant Pot · frozen carcasses · High 90 · natural release · strained about 5:10",
+   "meal": [
+    "side"
+   ],
+   "protein": [
+    "chicken"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 213,
+   "active": 35,
+   "band": "afternoon",
+   "time": "start 2:47 pm, strained about 5:10, in the fridge by 6:20",
+   "effort": 1,
+   "ahead": true,
+   "kid": true,
+   "serves": 2,
+   "occasion": [
+    "weekend"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "rotisserie chicken carcass",
+    "yellow onion",
+    "celery rib",
+    "bay leaf",
+    "cold water",
+    "ice",
+    "jars with lids"
+   ],
+   "steps": 11
   },
   {
    "slug": "fried-grits-andouille-creole",
