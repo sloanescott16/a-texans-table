@@ -65,3 +65,9 @@ These are the ranges used so far, checked by the researcher on 16 Oct 2026 (rese
 - An ingredient appears once in a step's list: one line with the total for that step, never one line per night's share or use.
 - The same in the page's main ingredient list: one line per ingredient with the total, and the split in words (for example "Sunday 1, Monday 1 1/2, Wednesday 1/2, Thursday 1").
 - The shared page code merges lines with the same ingredient name into one scaled total, so this holds on every page.
+
+## Cooking fat (the Captain, 8 Nov 2026)
+
+- He keeps a large supply of beef tallow. Where a recipe calls for canola or another neutral oil for searing or browning, beef tallow is the default and canola is the alternative. Ingredient lists read "beef tallow (or canola oil)" with the same amount, one line per ingredient.
+- A roux can be made with tallow too: fine at 325 to 350°F. A tallow roux sets hard when chilled and melts straight back in when warmed.
+- Tallow smokes from about 400 to 420°F: sear at 400°F, not above, when using it. Canola can go to 425°F.
