@@ -807,7 +807,7 @@
    "slug": "grillades-and-grits",
    "name": "Grillades and grits",
    "file": "grillades-and-grits.html",
-   "sub": "Sunday, Louisiana week. A beef chuck tender roast sliced across the grain into medallions and pounded thin, seared hard in the cast iron, then braised 2 hours in the Dutch oven in a dark roux gravy with the trinity, tomatoes and beef stock, over cheese grits made with stock and butter, green beans on the side. While it braises, the week's prep: a double dark roux (half for tonight, half for Monday), the trinity chopped and bagged for all four nights, a second pot of grits set in a dish for Wednesday, and Monday's gumbo loaded into the Instant Pot inner pot and into the fridge. First move at 2:24 for 6:30.",
+   "sub": "Sunday, Louisiana week. A beef chuck tender roast sliced across the grain into medallions and pounded thin, seared hard in the cast iron, then braised 2 hours in the Dutch oven in a dark roux gravy with the trinity, tomatoes and beef stock, over cheese grits made with stock and butter, green beans on the side. While it braises, the week's prep: a double dark roux (half for tonight, half for Monday), the trinity chopped and bagged for all four nights, a second pot of grits set in a dish for Wednesday, and the week's chicken broth made in the Instant Pot from two frozen carcasses. First move at 2:20 for 6:30.",
    "chapter": "mains",
    "label": "PAN",
    "blurb": "Cast iron sear · dark roux gravy · cheese grits · the week's prep",
@@ -820,10 +820,10 @@
    "heat": [
     "stovetop"
    ],
-   "total": 246,
-   "active": 160,
+   "total": 250,
+   "active": 170,
    "band": "afternoon",
-   "time": "first move at 2:24, eat at 6:30",
+   "time": "first move at 2:20, eat at 6:30",
    "effort": 3,
    "ahead": false,
    "kid": true,
@@ -853,11 +853,12 @@
     "can diced tomatoes",
     "bay leaf",
     "kosher salt, to finish",
-    "chicken thighs",
-    "andouille or smoked sausage",
+    "rotisserie chicken carcasses",
+    "celery ribs",
     "cold water",
-    "powdered chicken stock",
+    "ice",
     "water",
+    "powdered chicken stock",
     "grits",
     "butter",
     "sharp cheddar",
@@ -866,7 +867,7 @@
     "parsley",
     "hot sauce"
    ],
-   "steps": 43
+   "steps": 42
   },
   {
    "slug": "chicken-andouille-gumbo",
@@ -910,49 +911,6 @@
     "hot sauce"
    ],
    "steps": 10
-  },
-  {
-   "slug": "chicken-broth",
-   "name": "Chicken broth",
-   "file": "chicken-broth.html",
-   "sub": "Monday, Louisiana week, on the stove while he works from home (the Instant Pot has the gumbo all day). Two frozen rotisserie chicken carcasses go in frozen with cold water, the spare onion, two spare celery ribs and a bay leaf. Up to a bare simmer, skimmed, then held 4 hours 40 minutes at 190 to 200°F. Strained about 1:30, cooled fast in an ice bath, in jars and in the fridge by 2:40. No salt: season it in the recipes. It goes into Wednesday's Creole sauce and Thursday's dirty rice.",
-   "chapter": "pantry",
-   "label": "POT",
-   "blurb": "Two frozen carcasses · bare simmer 4 hours 40 · ice bath · in the fridge by 2:40",
-   "meal": [
-    "dinner"
-   ],
-   "protein": [
-    "chicken"
-   ],
-   "heat": [
-    "stovetop"
-   ],
-   "total": 400,
-   "active": 70,
-   "band": "day",
-   "time": "start 8:00 am, in the fridge by 2:40",
-   "effort": 1,
-   "ahead": true,
-   "kid": true,
-   "serves": 2,
-   "occasion": [
-    "weeknight"
-   ],
-   "timed": true,
-   "scales": true,
-   "test": false,
-   "ingredients": [
-    "rotisserie chicken carcass",
-    "cold water",
-    "yellow onion",
-    "celery rib",
-    "bay leaf",
-    "water, to top up",
-    "ice",
-    "jars with lids"
-   ],
-   "steps": 15
   },
   {
    "slug": "fried-grits-andouille-creole",
