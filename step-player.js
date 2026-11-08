@@ -131,7 +131,7 @@
     if(typeof serveDate === "function") return serveDate();
     var d = new Date(); d.setHours(18, 30, 0, 0); return d;
   }
-  function planned(i){ return typeof clockOf === "function" ? fmtClock(clockOf(STEPS[i].at)) : ""; }
+  function planned(i){ if(typeof whenOf === "function") return whenOf(STEPS[i].at); return typeof clockOf === "function" ? fmtClock(clockOf(STEPS[i].at)) : ""; }
   function usesHtml(s){
     var out = "", uses = s.uses || [];
     if(typeof byId !== "function" || typeof label !== "function") return "";

@@ -108,6 +108,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 .ck:last-child{border-bottom:0}
 .ck input{width:17px;height:17px;margin:0;accent-color:var(--citrus);flex:0 0 auto}
 .ck .ct{font-family:var(--mono);font-size:12px;min-width:58px;flex:0 0 auto}
+.ck .ct .cday{font-size:9px;margin-right:4px;letter-spacing:0.06em;text-transform:uppercase;color:var(--citrus)}
 .ck.on .cs,.ck.on .ct{color:var(--muted);text-decoration:line-through}
 .ck.now{background:var(--brine-bg);margin:0 -12px;padding:1px 12px}
 .saved{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);align-self:center}
@@ -258,8 +259,24 @@ function serveDate(){
   return d;
 }
 function dayOf(off){
+  var w = dayWord(off);
+  return w ? '<span class="day">' + w + '</span>' : "";
+}
+/* Any step more than 12 hours before serving, or on another day, says which day, counted back from the serve time. */
+function dayWord(off){
   var c = clockOf(off), s = serveDate();
-  return c.toDateString() === s.toDateString() ? "" : '<span class="day">day before</span>';
+  if(off < 720 && c.toDateString() === s.toDateString()) return "";
+  var a = new Date(c.getTime()), b = new Date(s.getTime());
+  a.setHours(0,0,0,0); b.setHours(0,0,0,0);
+  var n = Math.round((b - a) / 86400000), h = c.getHours();
+  var part = h < 12 ? "morning" : (h < 17 ? "afternoon" : "night");
+  if(n <= 0) return part === "night" ? "tonight" : "this " + part;
+  if(n === 1) return part === "afternoon" ? "day before" : part + " before";
+  return n + " days before";
+}
+function whenOf(off){
+  var w = dayWord(off);
+  return (w ? w.charAt(0).toUpperCase() + w.slice(1) + ", " : "") + hhmm(clockOf(off));
 }
 function dateOfHM(hm){
   var p = (hm || "18:30").split(":");
@@ -323,7 +340,7 @@ function renderSteps(){
   renderChecklist();
   if(TIMED) markNow();
 }
-function fillT(t){ return t.replace(/\{t:(\d+)\}/g, function(m, n){ return '<b class="tt">' + hhmm(clockOf(parseInt(n,10))) + '</b>'; }); }
+function fillT(t){ return t.replace(/\{t:(\d+)\}/g, function(m, n){ return '<b class="tt">' + whenOf(parseInt(n,10)) + '</b>'; }); }
 function renderChecklist(){
   var host = document.getElementById("checklist"), html = "";
   if(!host) return;
@@ -331,7 +348,7 @@ function renderChecklist(){
     var s = STEPS[i];
     html += '<label class="ck' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '"' + (TIMED ? ' data-at="' + s.at + '"' : '') + '>' +
       '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
-      (TIMED ? '<span class="ct">' + hhmm(clockOf(s.at)) + '</span>' : '') +
+      (TIMED ? '<span class="ct">' + (dayWord(s.at) ? '<span class="cday">' + dayWord(s.at) + '</span>' : '') + hhmm(clockOf(s.at)) + '</span>' : '') +
       '<span class="cs">' + s.short + '</span></label>';
   }
   host.innerHTML = html;
