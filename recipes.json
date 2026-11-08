@@ -804,6 +804,71 @@
    "steps": 18
   },
   {
+   "slug": "grillades-and-grits",
+   "name": "Grillades and grits",
+   "file": "grillades-and-grits.html",
+   "sub": "Sunday, Louisiana week. Round steak pounded thin, seared hard in the cast iron, then braised 90 minutes in a dark roux gravy with the trinity, tomatoes and beef stock, over cheese grits made with stock and butter, green beans on the side. While it braises, the week's prep: a double dark roux (half for tonight, half for Monday), the trinity chopped and bagged for all four nights, a second pot of grits set in a dish for Wednesday, and Monday's gumbo loaded into the Instant Pot inner pot and into the fridge. First move at 3:00 for 6:30.",
+   "chapter": "mains",
+   "label": "PAN",
+   "blurb": "Cast iron sear · dark roux gravy · cheese grits · the week's prep",
+   "meal": [
+    "dinner"
+   ],
+   "protein": [
+    "beef"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 210,
+   "active": 150,
+   "band": "afternoon",
+   "time": "first move at 3:00, eat at 6:30",
+   "effort": 3,
+   "ahead": false,
+   "kid": true,
+   "serves": 3,
+   "occasion": [
+    "weekend"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "beef round steak",
+    "kosher salt",
+    "ground black pepper",
+    "canola oil",
+    "all-purpose flour",
+    "yellow onion",
+    "green bell pepper",
+    "celery rib",
+    "jarred minced garlic",
+    "tomato paste",
+    "Cajun seasoning",
+    "dried thyme",
+    "smoked paprika",
+    "beef bouillon base",
+    "hot water",
+    "can diced tomatoes",
+    "bay leaf",
+    "kosher salt, to finish",
+    "boneless, skinless chicken thighs",
+    "andouille or smoked sausage",
+    "cold water",
+    "powdered chicken stock",
+    "water",
+    "grits",
+    "butter",
+    "sharp cheddar",
+    "green beans",
+    "green onions",
+    "flat-leaf parsley",
+    "hot sauce"
+   ],
+   "steps": 38
+  },
+  {
    "slug": "carne-guisada",
    "name": "Carne guisada",
    "file": "carne-guisada.html",
