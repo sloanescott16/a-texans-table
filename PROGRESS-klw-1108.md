@@ -13,3 +13,4 @@ Missing from the shop: nothing. Uses from the house: canola, flour, jarred garli
 - Fix round 1 done, all four pages 25/25 again.
 - Change 2, chuck tender roast: done, all four pages 25/25.
 - Change 3, meat as bought: done, all four 25/25.
+- Changes 4 and 5: broth page and Dutch oven, all five 25/25.

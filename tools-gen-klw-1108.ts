@@ -15,24 +15,24 @@ const THYME = `<b>No thyme?</b> Use the same amount of dried oregano.`;
 const HOT = `<b>No hot sauce?</b> A pinch of chili powder over his bowl, or a pinch of chili powder stirred into a spoon of cider vinegar.`;
 const MILD = `<b>Mild for the boys:</b> the Cajun seasoning amount keeps it gentle and nothing else hot goes in the pot. Hot sauce stays on the table for the Captain.`;
 
-type R = { slug: string; name: string; sub: string; notes: string[]; ing: any[]; steps: any[]; entry: any; serve: string; end?: number };
+type R = { slug: string; name: string; sub: string; notes: string[]; ing: any[]; steps: any[]; entry: any; serve: string; end?: number; anchorLabel?: string; unitLabel?: string; serv?: any };
 const R: R[] = [];
 
 // ---------------- Sunday 8 Nov: grillades and grits, plus the week's prep ----------------
 // Steps are written in forward minutes (f) from the first move; at = END - f.
 R.push({
   slug: "grillades-and-grits", name: "Grillades and grits", serve: "18:30", end: 246,
-  sub: "Sunday, Louisiana week. A beef chuck tender roast sliced across the grain into medallions and pounded thin, seared hard in the cast iron, then braised 2 hours in a dark roux gravy with the trinity, tomatoes and beef stock, over cheese grits made with stock and butter, green beans on the side. While it braises, the week's prep: a double dark roux (half for tonight, half for Monday), the trinity chopped and bagged for all four nights, a second pot of grits set in a dish for Wednesday, and Monday's gumbo loaded into the Instant Pot inner pot and into the fridge. First move at 2:24 for 6:30.",
+  sub: "Sunday, Louisiana week. A beef chuck tender roast sliced across the grain into medallions and pounded thin, seared hard in the cast iron, then braised 2 hours in the Dutch oven in a dark roux gravy with the trinity, tomatoes and beef stock, over cheese grits made with stock and butter, green beans on the side. While it braises, the week's prep: a double dark roux (half for tonight, half for Monday), the trinity chopped and bagged for all four nights, a second pot of grits set in a dish for Wednesday, and Monday's gumbo loaded into the Instant Pot inner pot and into the fridge. First move at 2:24 for 6:30.",
   notes: [
-    `<b>Equipment:</b> 12 inch cast iron skillet with a lid or foil &middot; big pot, 5 to 6 quart, for the grits &middot; small saucepan for the beans &middot; Instant Pot inner pot (filled tonight, cooked Monday) &middot; heatproof steel or glass bowl for the hot roux &middot; 8 by 8 or 9 by 9 inch square pan, so Wednesday's squares cut evenly &middot; three zip bags &middot; meat mallet or rolling pin &middot; infrared thermometer &middot; probe thermometer.`,
+    `<b>Equipment:</b> 12 inch cast iron skillet for the sear &middot; Dutch oven with its lid, for the roux and the braise &middot; big pot, 5 to 6 quart, for the grits &middot; small saucepan for the beans &middot; Instant Pot inner pot (filled tonight, cooked Monday) &middot; heatproof steel or glass bowl for the hot roux &middot; 8 by 8 or 9 by 9 inch square pan, so Wednesday's squares cut evenly &middot; three zip bags &middot; meat mallet or rolling pin &middot; infrared thermometer &middot; probe thermometer.`,
     `<b>The week from tonight:</b> Monday's gumbo is in the inner pot in the fridge, so Monday morning is one step. Wednesday's grits are set in the dish. The trinity bags are Monday (already in the pot), Wednesday and Thursday. The second half of the sausage stays whole and sealed for Wednesday.`,
     `<b>Ground meat for Thursday:</b> raw ground meat keeps only 1 to 2 days in the fridge, so it goes in the freezer tonight, pressed flat in its bag. Wednesday's page moves it to the fridge after dinner.`,
-    `<b>Roux safety:</b> a dark roux is near 350°F and sticks to skin. Long sleeves, no water near the pan, and stir with a flat wooden spatula. The dark sear bits from the beef are expected and fine. A sharp, acrid burnt smell means start again; a scorched roux cannot be saved.`,
-    `<b>Roux heat:</b> hold the roux at 325 to 350°F on the infrared, read on the roux itself. Canola smokes from about 400°F, so never let it pass 375°F. About 40 minutes takes it to dark chocolate. If it darkens faster than the slots, lower the burner and keep stirring: colour is the cue, the clock is the guide.`,
+    `<b>Roux safety:</b> a dark roux is near 350°F and sticks to skin. Long sleeves, no water near the pan, and stir with a flat wooden spatula. Black specks or a sharp, acrid burnt smell mean start again; a scorched roux cannot be saved.`,
+    `<b>Roux heat:</b> hold the roux at 325 to 350°F on the infrared, read on the roux itself. Canola smokes from about 400°F, so never let it pass 375°F. About 40 minutes takes it to dark chocolate. If it darkens faster than the slots, lower the burner and keep stirring: colour is the cue, the clock is the guide. The roux is always made in the Dutch oven, never the cast iron skillet; the cast iron sears, then is deglazed into the stock.`,
     `<b>Gumbo in the fridge overnight:</b> the stock is made with cold water and the roux goes in only once it reads under 150°F, so the pot goes into the fridge cool. The raw chicken rides in its own sealed bag on top, so nothing raw touches the rest overnight; it is tipped in at 7 am Monday. Monday's page starts it on High, the USDA advice for a slow cooker start.`,
-    `<b>Food safety:</b> chuck tender braised 2 hours is far past the 145°F safe point; the fork test and 195 to 205°F inside are the cues for tender. Wednesday's grits go into the fridge in a shallow dish within 30 minutes and keep 3 to 4 days. Leftovers into the fridge within 2 hours, moved out of the cast iron into a container first: the tomato gravy should not sit in the pan overnight.`,
+    `<b>Food safety:</b> chuck tender braised 2 hours is far past the 145°F safe point; the fork test and 195 to 205°F inside are the cues for tender. Wednesday's grits go into the fridge in a shallow dish within 30 minutes and keep 3 to 4 days. Leftovers into the fridge within 2 hours, moved out of the Dutch oven into a container first.`,
     `<b>Grits:</b> water with powdered chicken stock, then butter and sharp cheddar at the end. Use regular or quick grits, not instant; if the bag says longer than 25 minutes, go by the bag and set Eating at later.`,
-    `<b>Size:</b> set for 3 servings, one beef chuck tender roast of about 2.75 lb (this one is 2.77 lb; use or freeze by 10 Nov) in three sear batches. At 5 or 6, the double roux and the braise fill a 12 inch skillet to the rim: use a 14 inch cast iron or a deep 5 quart cast iron braiser instead, sear in four batches, and set Eating at 6 minutes later. The servings scale the week's trinity and Monday's gumbo too.`,
+    `<b>Size:</b> set for 3 servings, one beef chuck tender roast of about 2.75 lb (this one is 2.77 lb; use or freeze by 10 Nov) in three sear batches. At 5 or 6, sear in four batches and set Eating at 6 minutes later; the Dutch oven needs to be 5 quart or larger for the braise. The servings scale the week's trinity and Monday's gumbo too.`,
     MILD, PEPPER, CAJUN, THYME, HOT, SALT, IR,
   ],
   ing: [
@@ -100,36 +100,38 @@ R.push({
     { id: "c4", f: 51, lane: "iron", short: "Sear batch 2, first side, 3 min", txt: "Sear, batch 2, first side, 3 minutes. Back to 400°F first if the pan dropped, about a minute. A third of the sear oil, a third of the medallions, a finger's gap. 3 minutes untouched.", uses: ["soil@0.333", "beef@0.333"] },
     { id: "c5", f: 54, lane: "iron", short: "Batch 2, flip, pepper, out", txt: "Batch 2, second side, 3 minutes. Turn, pepper the seared face that is up (a sixth), 3 minutes. Onto the plate and pepper the second seared face as it comes off (a sixth).", uses: ["pepper@0.333"] },
     { id: "c6", f: 57, lane: "iron", short: "Sear batch 3, first side, 3 min", txt: "Sear, batch 3, first side, 3 minutes. Back to 400°F first if the pan dropped. The last of the sear oil and the last of the medallions, a finger's gap. 3 minutes untouched.", uses: ["soil@0.333", "beef@0.333"] },
-    { id: "c7", f: 60, lane: "iron", short: "Batch 3, flip, pepper, out", txt: "Batch 3, second side, 3 minutes. Turn, pepper the seared face that is up (a sixth), 3 minutes. Onto the plate and pepper the last seared face as it comes off (the last sixth).", uses: ["pepper@0.333"] },
-    { id: "r1", f: 63, lane: "iron", short: "Roux: oil and flour in", txt: "Double dark roux, 40 minutes of steady stirring. Burner to medium-low and let the pan fall to about 300°F on the infrared, 1 to 2 minutes; scrape the sear bits loose. Canola in, then the flour, stirred smooth. Stir across the whole bottom with a flat wooden spatula and never leave it long. Hold the roux at 325 to 350°F on the infrared, never past 375°F. If the roux runs slow and is not dark chocolate by {t:143}, set Eating at later by the same number of minutes.", uses: ["roil", "rflour"] },
-    { id: "r2", f: 76, lane: "iron", short: "Roux: peanut butter colour", txt: "Roux check, keep stirring. Peanut butter colour by now. Still 325 to 350°F on the infrared; lower the burner if it climbs." },
-    { id: "r3", f: 91, lane: "iron", short: "Roux: copper penny colour", txt: "Roux check, keep stirring. Copper penny colour and a toasty smell. Stir faster now: it darkens quickly from here. Still 325 to 350°F." },
-    { id: "r4", f: 103, lane: "iron", short: "Dark roux: half into a bowl", txt: "Half out, 2 minutes. At dark chocolate colour, burner off for a moment. Carefully ladle half the roux into the heatproof bowl for Monday's gumbo and set it on the back of the stove to cool. It is near 350°F: no splashes, no water near it." },
-    { id: "g1", f: 105, lane: "iron", short: "Sunday's trinity into the roux", txt: "Trinity in, 5 minutes. Burner back to medium. Sunday's bowl of onion, pepper and celery into the roux left in the pan; it hisses and stops the roux darkening. Stir until soft, the pan at 300 to 325°F on the infrared.", uses: ["onS", "bpS", "ceS"] },
-    { id: "g2", f: 110, lane: "iron", short: "Garlic, paste, spices, 2 min", txt: "Garlic, tomato paste, Cajun seasoning, thyme and smoked paprika in. Stir 2 minutes until the paste darkens a shade.", uses: ["garlic", "tpaste", "cajun", "thyme", "paprika"] },
-    { id: "g3", f: 112, lane: "iron", short: "Stock and tomatoes in", txt: "Liquid, 4 minutes. Beef stock in a little at a time, stirring smooth after each pour, then the tomatoes with their juice and the bay leaves. Bring to a lively simmer, 195 to 205°F on a probe.", uses: ["bbase", "bwater", "tom", "bay"] },
-    { id: "g4", f: 116, lane: "iron", short: "Beef back, lid on, braise 2 h", txt: "Medallions and their plate juices back in, pushed under the gravy. Lid on, or foil crimped over the rim. Burner to low. Braise 2 hours at a gentle simmer, 180 to 190°F on a probe; chuck tender is lean and sinewy and needs the time. The fork test is about {t:12}." },
-    { id: "g5", f: 122, lane: "iron", short: "Check the simmer", txt: "Simmer check, 1 minute. Probe the gravy: 180 to 190°F. Bubbling hard, lower the burner; still, up a touch. Lid back." },
+    { id: "c7", f: 60, lane: "iron", short: "Batch 3, flip, pepper, out", txt: "Batch 3, second side, 1 minute: the thin medallions need only a short second sear before the braise. Turn, pepper the seared face that is up (a sixth), 1 minute. Onto the plate and pepper the last seared face as it comes off (the last sixth).", uses: ["pepper@0.333"] },
+    { id: "d1", f: 57, lane: "dutch", short: "Dutch oven on to warm", txt: "Dutch oven, empty and dry, on a second burner at medium-low, about 6 minutes, to 300°F on the infrared at the centre of the bottom. Never past 325°F while empty." },
+    { id: "c8", f: 61, lane: "iron", short: "Deglaze the cast iron", txt: "Deglaze, 2 minutes. Burner off under the cast iron. Pour in 1/2 cup of the beef stock from the jug; it hisses. Scrape every sear bit loose with a flat wooden spatula, then pour it all back into the stock jug. The jug holds the same amount, now with the fond. Cast iron is done for the night." },
+    { id: "r1", f: 63, lane: "dutch", short: "Roux: oil and flour in", txt: "Double dark roux in the Dutch oven, 40 minutes of steady stirring. Dutch oven at 300°F on the infrared. Canola in, then the flour, stirred smooth. Stir across the whole bottom with a flat wooden spatula and never leave it long. Hold the roux at 325 to 350°F on the infrared, never past 375°F. A Dutch oven holds heat longer than a skillet: if it creeps past 350°F, lift it off the burner for 30 seconds and lower the heat. If the roux runs slow and is not dark chocolate by {t:143}, set Eating at later by the same number of minutes.", uses: ["roil", "rflour"] },
+    { id: "r2", f: 76, lane: "dutch", short: "Roux: peanut butter colour", txt: "Roux check, keep stirring. Peanut butter colour by now. Still 325 to 350°F on the infrared; lower the burner if it climbs." },
+    { id: "r3", f: 91, lane: "dutch", short: "Roux: copper penny colour", txt: "Roux check, keep stirring. Copper penny colour and a toasty smell. Stir faster now: it darkens quickly from here. Still 325 to 350°F." },
+    { id: "r4", f: 103, lane: "dutch", short: "Dark roux: half into a bowl", txt: "Half out, 2 minutes. At dark chocolate colour, burner off for a moment. Carefully ladle half the roux into the heatproof bowl for Monday's gumbo and set it on the back of the stove to cool. It is near 350°F: no splashes, no water near it." },
+    { id: "g1", f: 105, lane: "dutch", short: "Sunday's trinity into the roux", txt: "Trinity in, 5 minutes. Burner back to medium. Sunday's bowl of onion, pepper and celery into the roux left in the Dutch oven; it hisses and stops the roux darkening. Stir until soft, the pan at 300 to 325°F on the infrared.", uses: ["onS", "bpS", "ceS"] },
+    { id: "g2", f: 110, lane: "dutch", short: "Garlic, paste, spices, 2 min", txt: "Garlic, tomato paste, Cajun seasoning, thyme and smoked paprika in. Stir 2 minutes until the paste darkens a shade.", uses: ["garlic", "tpaste", "cajun", "thyme", "paprika"] },
+    { id: "g3", f: 112, lane: "dutch", short: "Stock and tomatoes in", txt: "Liquid, 4 minutes. The stock jug, fond and all, in a little at a time, stirring smooth after each pour, then the tomatoes with their juice and the bay leaves. Bring to a lively simmer, 195 to 205°F on a probe.", uses: ["bbase", "bwater", "tom", "bay"] },
+    { id: "g4", f: 116, lane: "dutch", short: "Beef back, lid on, braise 2 h", txt: "Medallions and their plate juices back in, pushed under the gravy. The Dutch oven's own lid on. Burner to low. Braise 2 hours at a gentle simmer, 180 to 190°F on a probe; chuck tender is lean and sinewy and needs the time. The fork test is about {t:12}." },
+    { id: "g5", f: 122, lane: "dutch", short: "Check the simmer", txt: "Simmer check, 1 minute. Probe the gravy: 180 to 190°F. Bubbling hard, lower the burner; still, up a touch. Lid back." },
     { id: "m1", f: 126, lane: "prep", short: "Slice Monday's sausage", txt: "Sausage, 5 minutes. Half the andouille into 1/4 inch coins, into a bowl. The other half stays whole and sealed in the fridge for Wednesday.", uses: ["sausM"] },
     { id: "m2", f: 131, lane: "cooker", short: "Gumbo stock in the inner pot", txt: "Stock, 3 minutes. Instant Pot inner pot on the counter, not in the base. Cold water in, powdered chicken stock whisked in until it dissolves.", uses: ["cwater", "cpowder"] },
     { id: "m3", f: 134, lane: "cooker", short: "Cooled roux and spices in", txt: "Roux in, 4 minutes. Check the roux in its bowl: under 150°F on the infrared. Still hotter, give it 5 minutes. Scrape it all into the cold stock and whisk until no lumps remain. Garlic, Cajun seasoning, thyme, smoked paprika and bay leaves in.", uses: ["mgarlic", "mcajun", "mthyme", "mpaprika", "mbay"] },
     { id: "m4", f: 138, lane: "cooker", short: "Monday's trinity and sausage in", txt: "2 minutes. Tip in Monday's bag of trinity and the sausage coins. Stir.", uses: ["onM", "bpM", "ceM", "sausM"] },
     { id: "m5", f: 140, lane: "prep", short: "Chicken cut, bagged, on top", txt: "Chicken, 10 minutes. Cold from the fridge, pull off any skin. Boneless: cut into 1.5 inch pieces into a zip bag. Bone-in: leave them whole on the bone, into the zip bag. Press the air out, seal it, and set the bag on top in the inner pot; it goes in at 7 am Monday. No salt: the stock powder and Cajun seasoning carry it.", uses: ["chicken"] },
     { id: "m6", f: 150, lane: "fridge", short: "Gumbo pot covered, to the fridge", txt: "3 minutes. Cover the inner pot with its glass lid, a plate or foil and into the fridge on the bottom shelf. Wash the board, knife and your hands in hot soapy water." },
-    { id: "g6", f: 156, lane: "iron", short: "Braise: stir and turn", txt: "Braise check, 2 minutes. Lift the lid, stir and turn the medallions. Thicker than heavy cream, add 1/4 cup water. Probe 180 to 190°F. Lid back." },
-    { id: "g9", f: 186, lane: "iron", short: "Braise: second stir and turn", txt: "Braise check, 2 minutes. Stir, turn the medallions, keep them under the gravy. Thicker than heavy cream, add 1/4 cup water. Probe 180 to 190°F. Lid back." },
+    { id: "g6", f: 156, lane: "dutch", short: "Braise: stir and turn", txt: "Braise check, 2 minutes. Lift the lid, stir and turn the medallions. Thicker than heavy cream, add 1/4 cup water. Probe 180 to 190°F. Lid back." },
+    { id: "g9", f: 186, lane: "dutch", short: "Braise: second stir and turn", txt: "Braise check, 2 minutes. Stir, turn the medallions, keep them under the gravy. Thicker than heavy cream, add 1/4 cup water. Probe 180 to 190°F. Lid back." },
     { id: "v1", f: 191, lane: "prep", short: "Trim beans, slice greens", txt: "8 minutes. Snap the stem ends off tonight's green beans. Slice tonight's green onions and chop the parsley; the rest of both bunches stays whole in the fridge for the week.", uses: ["beans", "gonion", "parsley"] },
     { id: "v2", f: 199, lane: "prep", short: "Butter the dish for Wednesday", txt: "1 minute. Rub the butter over the inside of the 8 by 8 or 9 by 9 inch square pan.", uses: ["dbutter"] },
     { id: "q1", f: 201, lane: "bigpot", short: "Grits water on to boil", txt: "Big pot: water, powdered chicken stock and salt, lid on, high heat. To a boil, 212°F on a probe, about 10 minutes.", uses: ["gwater", "gpowder", "gsalt"] },
     { id: "q2", f: 211, lane: "bigpot", short: "Grits in, low, stir every 5 min", txt: "Grits, 25 minutes. Whisk the grits into the boil in a slow stream so no lumps form. Burner to low, lid ajar: a lazy bubble, 185 to 195°F on a probe. Stir every 5 minutes, scraping the bottom, until thick and soft.", uses: ["grits"] },
     { id: "v3", f: 226, lane: "sauce", short: "Green beans: boil, steam 7 min", txt: "Beans, 10 minutes. Small saucepan: the water and salt, lid on, high to a boil, 212°F on a probe, about 3 minutes. Beans in, lid on, steam 7 minutes, shaking the pan once, until bright and just tender.", uses: ["beans", "vwater", "vsalt"] },
-    { id: "g7", f: 234, lane: "iron", short: "Fork test, bay leaves out", txt: "2 minutes. Fork test: a fork slides into the thickest medallion and pulls out with no grip, and a probe in its centre reads 195 to 205°F, where the sinew in chuck tender softens. If it fights, 15 more minutes and set Eating at 15 minutes later. Fish out the bay leaves." },
+    { id: "g7", f: 234, lane: "dutch", short: "Fork test, bay leaves out", txt: "2 minutes. Fork test: a fork slides into the thickest medallion and pulls out with no grip, and a probe in its centre reads 195 to 205°F, where the sinew in chuck tender softens. If it fights, 15 more minutes and set Eating at 15 minutes later. Fish out the bay leaves." },
     { id: "q3", f: 236, lane: "bigpot", short: "Butter and cheddar into grits", txt: "Off the heat, 2 minutes. Butter and cheddar in, stir until melted. Taste; salt only if flat.", uses: ["gbutter", "cheddar"] },
     { id: "q4", f: 238, lane: "bigpot", short: "Half the grits into the dish", txt: "2 minutes. Spoon half the grits into the buttered dish and smooth the top. Leave it uncovered on the counter. Lid on the rest; it holds off the heat." },
     { id: "v4", f: 240, lane: "sauce", short: "Drain beans, butter", txt: "1 minute. Drain the beans, back in the pan, butter in, toss. Lid on." , uses: ["vbutter"] },
-    { id: "g8", f: 241, lane: "iron", short: "Taste the gravy, greens in", txt: "2 minutes. Taste the gravy; only if it tastes flat, the finishing salt. Half the green onion and parsley stirred in, the rest kept for the top.", uses: ["fsalt"] },
+    { id: "g8", f: 241, lane: "dutch", short: "Taste the gravy, greens in", txt: "2 minutes. Taste the gravy; only if it tastes flat, the finishing salt. Half the green onion and parsley stirred in, the rest kept for the top.", uses: ["fsalt"] },
     { id: "q5", f: 244, lane: "fridge", short: "Wednesday's grits to the fridge", txt: "1 minute. The dish of grits into the fridge, uncovered so it cools fast. Cover it with foil after dinner." },
-    { id: "e1", f: 246, lane: "serve", short: "Eat", txt: "Grits in the bowl, grillades and gravy over, green onion and parsley on top, green beans on the side. Hot sauce on the table for the Captain; the boys' plates stay mild. After dinner, leftovers out of the cast iron into a container before the fridge, and foil over Wednesday's grits." },
+    { id: "e1", f: 246, lane: "serve", short: "Eat", txt: "Grits in the bowl, grillades and gravy over, green onion and parsley on top, green beans on the side. Hot sauce on the table for the Captain; the boys' plates stay mild. After dinner, leftovers out of the Dutch oven into a container before the fridge, and foil over Wednesday's grits." },
   ],
   entry: { chapter: "mains", label: "PAN", blurb: "Cast iron sear · dark roux gravy · cheese grits · the week's prep", meal: ["dinner"], protein: ["beef"], heat: ["stovetop"], total: 246, active: 160, band: "afternoon", time: "first move at 2:24, eat at 6:30", effort: 3, ahead: false, kid: true, serves: 3, occasion: ["weekend"], timed: true, scales: true, test: false },
 });
@@ -196,8 +198,8 @@ R.push({
     { id: "thyme", g: "Creole sauce", per: 0.083, step: 0.125, unit: "tsp", name: "dried thyme" },
     { id: "paprika", g: "Creole sauce", per: 0.167, step: 0.25, unit: "tsp", name: "smoked paprika" },
     { id: "tom", g: "Creole sauce", per: 0.333, step: 1, unit: "", name: "can diced tomatoes", plural: "cans diced tomatoes", note: "14.5 oz, with the juice" },
-    { id: "water", g: "Creole sauce", per: 0.167, step: 0.25, unit: "cup", name: "water" },
-    { id: "powder", g: "Creole sauce", per: 0.167, step: 0.25, unit: "tsp", name: "powdered chicken stock" },
+    { id: "broth", g: "Creole sauce", per: 0.167, step: 0.25, unit: "cup", name: "homemade chicken broth", note: "from Monday; or the same amount of water plus the powdered chicken stock below" },
+    { id: "powder", g: "Creole sauce", per: 0.167, step: 0.25, unit: "tsp", name: "powdered chicken stock", note: "only if using water instead of broth" },
     { id: "bay", g: "Creole sauce", per: 0.333, step: 1, unit: "", name: "bay leaf", plural: "bay leaves" },
     { id: "fsalt", g: "Creole sauce", per: 0.083, step: 0.125, unit: "tsp", name: "kosher salt, to finish", note: "only if flat" },
     { id: "gonion", g: "To serve", per: 1, step: 1, unit: "tbsp", name: "green onions", note: "sliced" },
@@ -211,7 +213,7 @@ R.push({
     { id: "w4", at: 20, lane: "sauce", short: "Wednesday's trinity in", txt: "Trinity, 4 minutes. Tip in Wednesday's bag. Burner to medium-low, pan at 300 to 325°F. Stir until soft.", uses: ["bag"] },
     { id: "w5", at: 18, lane: "iron", short: "Oil in, grits in, side 1, 5 min", txt: "Grits, first side, 5 minutes. Cast iron at 375 to 400°F. Canola in and swirl. Grits squares in, a finger's gap apart. Do not move them for 5 minutes, until deep golden and they let go on their own.", uses: ["foil"] },
     { id: "w6", at: 16, lane: "sauce", short: "Garlic, paste, spices, 1 min", txt: "1 minute. Garlic, tomato paste, Cajun seasoning, thyme and smoked paprika into the saucepan, stirred until the paste darkens a shade.", uses: ["garlic", "tpaste", "cajun", "thyme", "paprika"] },
-    { id: "w7", at: 15, lane: "sauce", short: "Tomatoes and stock, simmer", txt: "Sauce, 10 minutes. Tomatoes with their juice, the water, the stock powder and the bay leaf in. Bring to a lively simmer, 195 to 205°F on a probe, then lower to a gentle 180 to 190°F and let it thicken, stirring now and then.", uses: ["tom", "water", "powder", "bay"] },
+    { id: "w7", at: 15, lane: "sauce", short: "Tomatoes and stock, simmer", txt: "Sauce, 10 minutes. Tomatoes with their juice, the broth (or the same amount of water with the stock powder stirred in) and the bay leaf in. Bring to a lively simmer, 195 to 205°F on a probe, then lower to a gentle 180 to 190°F and let it thicken, stirring now and then.", uses: ["tom", "broth", "powder", "bay"] },
     { id: "w8", at: 13, lane: "iron", short: "Flip grits, side 2, 5 min", txt: "Grits, second side, 5 minutes. Turn each square with a thin metal spatula. Back to 375°F if the pan dropped. 5 minutes untouched." },
     { id: "w9", at: 8, lane: "iron", short: "Grits out onto plates", txt: "1 minute. Both sides crisp and golden: lift onto the plates, two squares each." },
     { id: "w10", at: 6, lane: "sauce", short: "Probe 165, taste, bay out", txt: "2 minutes. Sauce at 165°F or more on a probe. Bay leaf out. Taste; only if flat, the finishing salt.", uses: ["fsalt"] },
@@ -244,8 +246,8 @@ R.push({
     { id: "cajun", g: "Dirty rice", per: 0.667, step: 0.5, unit: "tsp", name: "Cajun seasoning", note: "half with breakfast sausage" },
     { id: "paprika", g: "Dirty rice", per: 0.333, step: 0.25, unit: "tsp", name: "smoked paprika" },
     { id: "thyme", g: "Dirty rice", per: 0.167, step: 0.25, unit: "tsp", name: "dried thyme" },
-    { id: "water", g: "Dirty rice", per: 0.167, step: 0.25, unit: "cup", name: "water" },
-    { id: "powder", g: "Dirty rice", per: 0.333, step: 0.5, unit: "tsp", name: "powdered chicken stock" },
+    { id: "broth", g: "Dirty rice", per: 0.167, step: 0.25, unit: "cup", name: "homemade chicken broth", note: "from Monday; or the same amount of water plus the powdered chicken stock below" },
+    { id: "powder", g: "Dirty rice", per: 0.333, step: 0.5, unit: "tsp", name: "powdered chicken stock", note: "only if using water instead of broth" },
     { id: "soy", g: "Dirty rice", per: 0.333, step: 0.5, unit: "tsp", name: "soy sauce" },
     { id: "rice", g: "Dirty rice", fixed: "all of it", name: "Monday's cooked rice", note: "cold, clumps broken up" },
     { id: "fsalt", g: "Dirty rice", per: 0.083, step: 0.125, unit: "tsp", name: "kosher salt, to finish", note: "only if flat" },
@@ -266,7 +268,7 @@ R.push({
     { id: "d5", at: 19, lane: "iron", short: "Pepper, trinity in, 5 min", txt: "Trinity, 5 minutes. Ground beef with a lot of fat in the pan: spoon off all but about 1 tbsp first. Pepper over the browned meat. Tip in Thursday's bag. Burner to medium, pan at 300 to 325°F. Stir until soft.", uses: ["pepper", "bag"] },
     { id: "d6", at: 18, lane: "sauce", short: "Beans in, steam 7 min", txt: "Beans in, lid on, steam 7 minutes, shaking the pan once, until bright and just tender.", uses: ["beans"] },
     { id: "d7", at: 14, lane: "iron", short: "Garlic and spices, 1 min", txt: "1 minute. Garlic, Cajun seasoning, smoked paprika and thyme in (breakfast sausage: half the Cajun seasoning, taste first). Stir until fragrant.", uses: ["garlic", "cajun", "paprika", "thyme"] },
-    { id: "d8", at: 13, lane: "iron", short: "Stock and soy, scrape", txt: "1 minute. Stir the stock powder into the water, pour it in with the soy sauce and scrape up every brown bit.", uses: ["water", "powder", "soy"] },
+    { id: "d8", at: 13, lane: "iron", short: "Broth and soy, scrape", txt: "1 minute. Pour in the broth (or the same amount of water with the stock powder stirred in) with the soy sauce and scrape up every brown bit.", uses: ["broth", "powder", "soy"] },
     { id: "d9", at: 12, lane: "iron", short: "Rice in, fry 6 min", txt: "Rice, 6 minutes. Burner to medium-high, pan back up to 350 to 375°F. Monday's rice in, folded through until every grain is coated. Spread it flat, 1 minute untouched to toast, then fold again; repeat.", uses: ["rice"] },
     { id: "d10", at: 11, lane: "sauce", short: "Drain beans, butter", txt: "1 minute. Drain the beans, back in the pan, butter in, toss. Lid on.", uses: ["vbutter"] },
     { id: "d11", at: 6, lane: "iron", short: "Probe 165, taste", txt: "2 minutes. Probe the rice in the centre of the pan: 165°F or more. Taste; only if flat, the finishing salt.", uses: ["fsalt"] },
@@ -276,8 +278,52 @@ R.push({
   entry: { chapter: "mains", label: "PAN", blurb: "Monday's rice · ground meat and trinity · 30 minutes", meal: ["dinner"], protein: ["pork", "beef"], heat: ["stovetop"], total: 30, active: 30, band: "quick", time: "30 minutes, 6:00 to 6:30", effort: 1, ahead: true, kid: true, serves: 3, occasion: ["weeknight"], timed: true, scales: true, test: false },
 });
 
+// ---------------- Monday 9 Nov: chicken broth, stovetop, while he works from home ----------------
+R.push({
+  slug: "chicken-broth", name: "Chicken broth", serve: "14:40", end: 400,
+  anchorLabel: "In the fridge by", unitLabel: "Carcasses", serv: { base: 2, min: 1, max: 2 },
+  sub: "Monday, Louisiana week, on the stove while he works from home (the Instant Pot has the gumbo all day). Two frozen rotisserie chicken carcasses go in frozen with cold water, the spare onion, two spare celery ribs and a bay leaf. Up to a bare simmer, skimmed, then held 4 hours 40 minutes at 190 to 200°F. Strained about 1:30, cooled fast in an ice bath, in jars and in the fridge by 2:40. No salt: season it in the recipes. It goes into Wednesday's Creole sauce and Thursday's dirty rice.",
+  notes: [
+    `<b>Equipment:</b> stockpot, 8 quart if you have one (the big 5 to 6 quart pot holds two carcasses with a little less water) &middot; fine mesh strainer &middot; large metal bowl or a second pot that fits in the sink &middot; ice from the freezer &middot; ladle and tongs &middot; jars with lids &middot; probe thermometer.`,
+    `<b>Yield:</b> about 8 to 10 cups from two carcasses, about 4 to 5 from one. An estimate: it depends on the pot and how hard it simmers.`,
+    `<b>Bare simmer:</b> 190 to 200°F on a probe, a bubble or two breaking now and then, never a boil. A boil clouds the broth and drives off water. The lid sits ajar.`,
+    `<b>Do not use the trinity bags:</b> they are Wednesday's and Thursday's. The broth gets the fifth onion and two loose celery ribs from the bunch.`,
+    `<b>Cooling, the food safety rule:</b> under 70°F within 2 hours of the heat going off, then under 40°F within the next 4 hours. The ice bath does the first part in about an hour; the fridge does the rest, so leave space around the jars.`,
+    `<b>Keeps:</b> about 4 days in the fridge, so Wednesday and Thursday are fine, or about 3 months in the freezer (leave 1 inch at the top of the jar). The fat cap on top is optional: leave it as a seal, or lift it off cold.`,
+    `<b>No broth?</b> Wednesday's and Thursday's pages carry water plus powdered chicken stock as the fallback, cup for cup.`,
+  ],
+  ing: [
+    { id: "carcass", g: "Pot", per: 1, step: 1, unit: "", name: "rotisserie chicken carcass", plural: "rotisserie chicken carcasses", note: "frozen, straight in" },
+    { id: "water", g: "Pot", per: 7, step: 1, unit: "cup", name: "cold water", note: "to cover by about 2 inches" },
+    { id: "onion", g: "Pot", per: 0.5, step: 0.5, unit: "", name: "yellow onion", plural: "yellow onions", note: "the spare one, quartered, skin on" },
+    { id: "celery", g: "Pot", per: 1, step: 1, unit: "", name: "celery rib", plural: "celery ribs", note: "spare ribs, in thirds" },
+    { id: "bay", g: "Pot", fixed: "1", name: "bay leaf", note: "one for the pot, 1 or 2 carcasses" },
+    { id: "topup", g: "Pot", per: 1, step: 0.5, unit: "cup", name: "water, to top up", note: "only if the level drops below the bones" },
+    { id: "ice", g: "Cooling", fixed: "about 2 trays", name: "ice", note: "from the freezer, with cold water in the sink" },
+    { id: "jars", g: "Cooling", fixed: "enough for 10 cups", name: "jars with lids" },
+  ],
+  steps: [
+    { id: "b1", f: 0, lane: "pot", short: "Carcasses, veg, cold water in", txt: "Load, 5 minutes. Frozen carcasses into the stockpot. Quarter the onion with its skin on, cut the celery into thirds, in with the bay leaf. Cold water to cover by about 2 inches.", uses: ["carcass", "water", "onion", "celery", "bay"] },
+    { id: "b2", f: 5, lane: "pot", short: "Burner medium-high, lid on", txt: "Heat, 1 minute. Burner to medium-high, lid on, to bring it up to a bare simmer, 190 to 200°F on a probe. From frozen this takes about 45 minutes. Never a boil, 212°F." },
+    { id: "b3", f: 30, lane: "pot", short: "First skim", txt: "Skim, 5 minutes. Grey foam is rising: lift it off with a ladle or spoon into a bowl. Probe the water: if it reads over 180°F already, burner to low now." },
+    { id: "b4", f: 50, lane: "pot", short: "Bare simmer: 190 to 200, low", txt: "Simmer set, 5 minutes. When it reads 190 to 200°F on a probe, a bubble or two breaking now and then, burner to low and the lid ajar. Skim the foam again." },
+    { id: "b5", f: 65, lane: "pot", short: "Skim again", txt: "Skim, 3 minutes. Lift off the foam. Probe: 190 to 200°F. Too lively, lower the burner; still, up a touch." },
+    { id: "b6", f: 80, lane: "pot", short: "Last skim, check the simmer", txt: "Skim, 3 minutes. The last of the foam off. From here it simmers on its own. Probe 190 to 200°F." },
+    { id: "b7", f: 150, lane: "pot", short: "Check level and simmer", txt: "Check, 2 minutes. Probe 190 to 200°F. If the water has dropped below the bones, top up with water until they are covered." , uses: ["topup@0.5"] },
+    { id: "b8", f: 240, lane: "pot", short: "Check level and simmer", txt: "Check, 2 minutes. Probe 190 to 200°F. Top up with water if the bones show." , uses: ["topup@0.5"] },
+    { id: "b9", f: 320, lane: "prep", short: "Set up the ice bath", txt: "Ice bath, 8 minutes. Plug the sink. The large metal bowl or second pot in it, strainer on top. Ice and cold water around the bowl, up to about two thirds of its height, none inside.", uses: ["ice"] },
+    { id: "b10", f: 330, lane: "pot", short: "Strain into the bowl", txt: "Strain, 10 minutes. Burner off. Lift out the big bones with tongs into a bin bag. Ladle the rest through the strainer into the bowl in the ice bath, then pour the last of it. Bones and veg in the bin." },
+    { id: "b11", f: 340, lane: "prep", short: "Stir, probe the broth", txt: "Cool, 2 minutes. Stir the broth so the warm middle meets the cold sides. Probe and note the reading." },
+    { id: "b12", f: 355, lane: "prep", short: "Stir, add ice outside", txt: "Cool, 2 minutes. Stir. Add more ice to the sink around the bowl as it melts." },
+    { id: "b13", f: 370, lane: "prep", short: "Stir, probe under 100", txt: "Cool, 2 minutes. Stir and probe: it should be under 100°F by now. If not, drain some warm sink water and add ice." },
+    { id: "b14", f: 385, lane: "prep", short: "Under 70°F: into jars", txt: "Jars, 10 minutes. Probe: under 70°F, inside 2 hours of the heat going off. Ladle into the jars, 1 inch from the top for any that go to the freezer. Lids on, write the date: use by Fri 13 Nov.", uses: ["jars"] },
+    { id: "b15", f: 400, lane: "fridge", short: "Jars into the fridge", txt: "Into the fridge, spaced apart so the cold air gets round them, to reach under 40°F within the next 4 hours. Any jar beyond Thursday's needs goes in the freezer." },
+  ],
+  entry: { chapter: "pantry", label: "POT", blurb: "Two frozen carcasses · bare simmer 4 hours 40 · ice bath · in the fridge by 2:40", meal: ["dinner"], protein: ["chicken"], heat: ["stovetop"], total: 400, active: 70, band: "day", time: "start 8:00 am, in the fridge by 2:40", effort: 1, ahead: true, kid: true, serves: 2, occasion: ["weeknight"], timed: true, scales: true, test: false },
+});
+
 const LANES = `var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
-            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], rice:["RICE COOKER","t-jar"], away:["AWAY","t-prep"], store:["STORE","t-prep"], iron:["CAST IRON","t-pan"], bigpot:["BIG POT","t-pot"], sauce:["SAUCEPAN","t-pan"]};`;
+            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], rice:["RICE COOKER","t-jar"], away:["AWAY","t-prep"], store:["STORE","t-prep"], iron:["CAST IRON","t-pan"], dutch:["DUTCH OVEN","t-pot"], bigpot:["BIG POT","t-pot"], sauce:["SAUCEPAN","t-pan"]};`;
 
 function page(r: R) {
   if (r.end != null) for (const s of r.steps) { s.at = r.end - s.f; delete s.f; }
@@ -293,10 +339,14 @@ function page(r: R) {
   rep(/  <p class="note"><b>Why the cast iron, not Saute:[\s\S]*?<\/p>\n<\/div>\n/, r.notes.map(n => `  <p class="note">${n}</p>\n`).join("") + "</div>\n");
   rep(/var ING = .*;\n/, "var ING = " + JSON.stringify(r.ing) + ";\n");
   rep(/var STEPS = .*;\n/, "var STEPS = " + JSON.stringify(r.steps) + ";\n");
-  rep(/var SERV = .*;\n/, 'var SERV = {"base":3,"min":2,"max":6};\n');
+  const sv = r.serv || { base: 3, min: 2, max: 6 };
+  rep(/var SERV = .*;\n/, "var SERV = " + JSON.stringify(sv) + ";\n");
+  if (r.serve !== "18:30") { rep('value="18:30"', 'value="' + r.serve + '"'); rep('serve: "18:30"', 'serve: "' + r.serve + '"'); }
+  if (r.anchorLabel) { rep('Eating at</label>', r.anchorLabel + '</label>'); rep("'Dinner was at <b>'", "'Due in the fridge at <b>'"); rep("'<b>Eat.</b>'", "'<b>Into the fridge.</b>'"); rep("'Dinner is now <b>'", "'Fridge time is now <b>'"); }
+  if (r.unitLabel) rep('for="dec">Servings', 'for="dec">' + r.unitLabel);
   rep('var KEY = "kitchen:carne-guisada:pressure";', `var KEY = "kitchen:${r.slug}";`);
   rep(/var LANE = \{[^;]*;/, LANES);
-  rep(/<span id="sv">4<\/span>/, '<span id="sv">3</span>');
+  rep(/<span id="sv">4<\/span>/, '<span id="sv">' + sv.base + '</span>');
   rep("</style>", "/* Louisiana week: tighter checklist rows so the longest day fits one phone screen. */\n.ck{font-size:12px;line-height:1.15;padding:0}\n.ck.now{padding:0 12px}\n.ck input{width:14px;height:14px}\n.ck .ct{font-size:11px;min-width:52px}\n</style>");
   rep(/<script>\n\/\* Step player settings[\s\S]*?<script src="\.\/step-player\.js">\n<\/script>\n/, "");
   if (/guisada|tortilla/i.test(h)) throw new Error("template text left in " + r.slug);
@@ -320,7 +370,7 @@ for (const a of add) {
   else rj.recipes.splice(rj.recipes.findIndex((x: any) => x.slug === "red-beans-and-rice") + 1, 0, a);
 }
 // keep the four in week order after red beans
-const week = ["grillades-and-grits", "chicken-andouille-gumbo", "fried-grits-andouille-creole", "dirty-rice"];
+const week = ["grillades-and-grits", "chicken-andouille-gumbo", "chicken-broth", "fried-grits-andouille-creole", "dirty-rice"];
 const mine = rj.recipes.filter((x: any) => week.includes(x.slug)).sort((a: any, b: any) => week.indexOf(a.slug) - week.indexOf(b.slug));
 rj.recipes = rj.recipes.filter((x: any) => !week.includes(x.slug));
 rj.recipes.splice(rj.recipes.findIndex((x: any) => x.slug === "red-beans-and-rice") + 1, 0, ...mine);

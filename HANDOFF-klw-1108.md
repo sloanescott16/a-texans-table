@@ -44,3 +44,9 @@ Last run: 25 of 25 on each page. Headless Edge at 390 x 844, own profile, speech
 - Dirty rice: ground pork, ground beef or breakfast sausage, with a branch for each (beef: drain if fatty; breakfast sausage: half the salt and Cajun seasoning, taste first). The thaw slots say ground meat.
 - Names are loose: andouille or smoked sausage, chicken thighs. RECIPE-RULES.md has the shopping list meat rule.
 - 390 px check: 25/25 on all four.
+
+## Change 4 and 5 (jobs 1108-1414-3y1 and 1108-1415-2ql)
+- Sunday: roux and braise in the Dutch oven (warmed empty to 300°F at 3:21), cast iron deglazed into the stock jug at 3:25, batch 3 second side cut to 1 minute so the deglaze fits; rule in RECIPE-RULES.md.
+- New chicken-broth.html (Mon, stovetop): two frozen carcasses, bare simmer 190 to 200°F from about 8:50 to 1:30, ice bath to under 70°F, jars in the fridge by 2:40 (the time box reads "In the fridge by"; the scaler reads Carcasses, 1 or 2). Ice from the freezer is assumed.
+- Wednesday and Thursday: homemade chicken broth cup for cup, water plus powdered chicken stock kept as the fallback with its amount.
+- Check script reads each page's default time and servings range. 390 px check: 25/25 on all five.
