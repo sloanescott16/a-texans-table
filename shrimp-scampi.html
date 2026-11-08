@@ -232,17 +232,63 @@ function hhmm(d){
   return h + ":" + (m < 10 ? "0" + m : m) + " " + ap;
 }
 
+/* One line per ingredient: lines with the same name merge into one total, still scaled (RECIPE-RULES.md). */
+function qParse(q){
+  var m = /^(?:(\d+) )?(?:(\d+)\/(\d+)|(\d+(?:\.\d+)?))(?: (tsp|tbsp|cups?|lb|oz))?$/.exec(String(q).replace(/^about /, ""));
+  if(!m) return null;
+  return {n: (m[1] ? +m[1] : 0) + (m[2] ? m[2] / m[3] : 0) + (m[4] ? +m[4] : 0), u: m[5] || ""};
+}
+function qFrac(v){
+  var w = Math.floor(v + 1e-9), r = v - w, map = [[0.125,"1/8"],[0.25,"1/4"],[0.333,"1/3"],[0.375,"3/8"],[0.5,"1/2"],[0.625,"5/8"],[0.667,"2/3"],[0.75,"3/4"],[0.875,"7/8"],[1,""]], best = "", d = 1;
+  if(r < 0.03) return String(w);
+  for(var i=0;i<map.length;i++){ var x = Math.abs(r - map[i][0]); if(x < d){ d = x; best = map[i][1]; } }
+  if(best === ""){ w += 1; return String(w); }
+  return w ? w + " " + best : best;
+}
+function mergeParts(parts){
+  var V = {tsp:1, tbsp:3, cup:48, cups:48}, sum = 0, kind = null, bigU = "", big = -1, i;
+  for(i=0;i<parts.length;i++){
+    var p = qParse(parts[i].l.qty);
+    if(!p){ kind = "x"; break; }
+    var k = V[p.u] ? "vol" : p.u, base = V[p.u] ? p.n * V[p.u] : p.n;
+    if(kind === null) kind = k; else if(kind !== k){ kind = "x"; break; }
+    if(base > big){ big = base; bigU = p.u; }
+    sum += base;
+  }
+  var it = parts[0].it;
+  if(kind === "x"){
+    var q = []; for(i=0;i<parts.length;i++) q.push(parts[i].l.qty);
+    return {qty: q.join(" + "), name: parts[0].l.name};
+  }
+  if(kind === "vol"){
+    var v = sum / V[bigU], u = bigU === "cups" ? "cup" : bigU, r8 = Math.abs(v * 8 - Math.round(v * 8)) / 8, r3 = Math.abs(v * 3 - Math.round(v * 3)) / 3;
+    if(Math.min(r8, r3) > 0.02){ var q2 = []; for(i=0;i<parts.length;i++) q2.push(parts[i].l.qty); return {qty: q2.join(" + "), name: it.name}; }
+    if(u === "cup" && v > 1) u = "cups";
+    return {qty: qFrac(v) + " " + u, name: it.name};
+  }
+  return {qty: qFrac(sum) + (kind ? " " + kind : ""), name: (sum > 1 && it.plural) ? it.plural : it.name};
+}
+function splitWords(parts){
+  var w = [];
+  for(var i=0;i<parts.length;i++){ var it = parts[i].it; w.push(parts[i].l.qty + " " + (it.note ? it.note : "for the " + String(it.g).toLowerCase())); }
+  return w.join(", ");
+}
 function renderIngredients(){
   var host = document.getElementById("ing");
   if(!host) return;
-  var html = "", last = "";
+  var html = "", last = "", seen = {};
   for(var i=0;i<ING.length;i++){
-    var it = ING[i], l = label(it);
+    var it = ING[i];
+    if(seen[it.name]) continue;
+    seen[it.name] = 1;
+    var parts = [];
+    for(var j=i;j<ING.length;j++){ if(ING[j].name === it.name) parts.push({it: ING[j], l: label(ING[j])}); }
+    var l = parts.length > 1 ? mergeParts(parts) : parts[0].l, note = parts.length > 1 ? splitWords(parts) : it.note;
     if(it.g !== last){ html += '<div class="grp">' + it.g + '</div>'; last = it.g; }
     html += '<label class="item' + (state.checked[it.id] ? ' on' : '') + '" data-id="' + it.id + '">' +
       '<input type="checkbox"' + (state.checked[it.id] ? ' checked' : '') + '>' +
       '<span class="qty">' + l.qty + '</span>' +
-      '<span class="nm">' + l.name + (it.note ? '<em>' + it.note + '</em>' : '') + '</span></label>';
+      '<span class="nm">' + l.name + (note ? '<em>' + note + '</em>' : '') + '</span></label>';
   }
   host.innerHTML = html;
 }
