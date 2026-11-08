@@ -222,6 +222,8 @@ function frac(n){
 }
 function amount(it, part){
   if(it.fixed) return it.fixed;
+  /* An amount that does not scale in a straight line (water held under a pot's MAX line) reads from a table by count. */
+  if(it.by) return it.by[state.servings] || it.by[SERV.base];
   var raw = it.per * state.servings;
   if(part){
     var whole = Math.max(it.step || 0.25, Math.round(raw / (it.step || 0.25)) * (it.step || 0.25));
@@ -355,7 +357,8 @@ function renderChecklist(){
 }
 function markNow(){
   if(!TIMED) return;
-  var now = new Date(), start = clockOf(STEPS[0].at), end = serveDate(), line = document.getElementById("nowline");
+  /* The finish is the later of the time box and the last step, so a page timed forward from a start time ends at its last step. */
+  var now = new Date(), start = clockOf(STEPS[0].at), end = new Date(Math.max(serveDate().getTime(), clockOf(STEPS[STEPS.length-1].at).getTime())), line = document.getElementById("nowline");
   var rows = document.querySelectorAll("#steps .row"), i;
   for(i=0;i<rows.length;i++){ rows[i].classList.remove("now"); }
   var cks = document.querySelectorAll("#checklist .ck");

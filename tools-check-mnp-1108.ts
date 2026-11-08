@@ -111,7 +111,7 @@ check("steps over 12 hours out show their day in the step and the checklist", da
 console.log("DAYS " + c.filter((x: any) => x.day).map((x: any) => x.id + " " + x.day + " " + x.clock).join("; "));
 console.log("TIMES@6:30 " + r.map((x: any) => x.id + " " + x.clock).join("; "));
 const tt0 = await ev(`[].map.call(document.querySelectorAll('#steps .tt'),function(e){return e.textContent;})`);
-for (const [hm, mins] of [[45, 0], [-45, 0]].map(([d]) => { const m = DEFM + d; return [String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0"), m]; }) as [string, number][]) {
+for (const [hm, mins] of [[45, 0], [-45, 0], [26, 0]].map(([d]) => { const m = DEFM + d; return [String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0"), m]; }) as [string, number][]) {
   await setServe(hm); r = await rows(); c = await cks(); b = timesOk(mins);
   check(`Eating at ${hm}: every step and checklist row re-times`, b.length === 0, b.join(","));
   check(`Eating at ${hm}: day labels hold`, dayOk(r, c).length === 0, dayOk(r, c).join(","));
