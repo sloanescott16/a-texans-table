@@ -854,7 +854,7 @@
     "bay leaf",
     "kosher salt, to finish",
     "chicken thighs",
-    "andouille",
+    "andouille or smoked sausage",
     "cold water",
     "powdered chicken stock",
     "water",
@@ -909,7 +909,7 @@
     "kosher salt, to finish",
     "hot sauce"
    ],
-   "steps": 9
+   "steps": 10
   },
   {
    "slug": "fried-grits-andouille-creole",
@@ -947,7 +947,7 @@
     "all-purpose flour",
     "canola oil",
     "olive oil",
-    "andouille",
+    "andouille or smoked sausage",
     "Wednesday's trinity",
     "jarred minced garlic",
     "tomato paste",
@@ -969,15 +969,16 @@
    "slug": "dirty-rice",
    "name": "Dirty rice",
    "file": "dirty-rice.html",
-   "sub": "Thursday, Louisiana week, stove only, 30 minutes from 6:00. Ground pork browned hard in the cast iron with Thursday's bag of trinity, garlic and Cajun spice, then Monday's cold rice fried through it with a splash of stock and soy. Green beans on the side. The pork moves from the freezer to the fridge after Wednesday's dinner.",
+   "sub": "Thursday, Louisiana week, stove only, 30 minutes from 6:00. Ground pork, ground beef or breakfast sausage browned hard in the cast iron with Thursday's bag of trinity, garlic and Cajun spice, then Monday's cold rice fried through it with a splash of stock and soy. Green beans on the side. The meat moves from the freezer to the fridge after Wednesday's dinner.",
    "chapter": "mains",
    "label": "PAN",
-   "blurb": "Monday's rice · ground pork and trinity · 30 minutes",
+   "blurb": "Monday's rice · ground meat and trinity · 30 minutes",
    "meal": [
     "dinner"
    ],
    "protein": [
-    "pork"
+    "pork",
+    "beef"
    ],
    "heat": [
     "stovetop"
@@ -997,7 +998,7 @@
    "scales": true,
    "test": false,
    "ingredients": [
-    "ground pork",
+    "ground pork, ground beef or breakfast sausage",
     "canola oil",
     "kosher salt",
     "ground black pepper",

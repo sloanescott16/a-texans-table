@@ -12,3 +12,4 @@ Built on the Captain's final shopping list (11:20 AM update): no milk (grits wit
 Missing from the shop: nothing. Uses from the house: canola, flour, jarred garlic, beef bouillon base, powdered chicken stock, smoked paprika, soy sauce (Thursday), olive oil (Wednesday), salt, pepper.
 - Fix round 1 done, all four pages 25/25 again.
 - Change 2, chuck tender roast: done, all four pages 25/25.
+- Change 3, meat as bought: done, all four 25/25.

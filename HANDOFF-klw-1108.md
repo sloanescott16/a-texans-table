@@ -38,3 +38,9 @@ Last run: 25 of 25 on each page. Headless Edge at 390 x 844, own profile, speech
 - Sunday's beef is one beef chuck tender roast, 2.77 lb (use or freeze by 10 Nov): silver skin off, 1/2 inch medallions across the grain, pounded to 1/4 inch, seared in three batches with pepper on each seared face, braised 2 hours with two stir checks, fork test plus 195 to 205°F inside.
 - First move now 2:24 for 6:30. Scaled to 2.75 lb: salt 1 1/2 tsp, pepper 1 tsp, sear oil 3 tbsp, roux 1 1/4 cups oil and flour (half each night), beef stock 3 tsp base in 3 1/2 cups water, Cajun 3 tsp, thyme 3/4 tsp, smoked paprika 1 1/2 tsp, garlic and tomato paste 1 1/2 tbsp. Week totals still fit: the tomato paste is 2 1/2 tbsp in all, everything else changed is from the house.
 - Checklist rows tightened (no row padding) so Sunday's 41 rows fit one 390 x 844 screen. All four pages 25/25 again.
+
+## Change 3 (job 1108-1234-1e0): meat as bought
+- Gumbo: thighs boneless or bone-in, skin on or off. Sunday pulls the skin off and bags boneless pieces or bone-in thighs whole (about 2 1/4 lb bone-in). Monday probes near the bone and has a 6:12 slot to pull the meat off the bones.
+- Dirty rice: ground pork, ground beef or breakfast sausage, with a branch for each (beef: drain if fatty; breakfast sausage: half the salt and Cajun seasoning, taste first). The thaw slots say ground meat.
+- Names are loose: andouille or smoked sausage, chicken thighs. RECIPE-RULES.md has the shopping list meat rule.
+- 390 px check: 25/25 on all four.
