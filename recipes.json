@@ -869,6 +869,156 @@
    "steps": 38
   },
   {
+   "slug": "chicken-andouille-gumbo",
+   "name": "Chicken and andouille gumbo",
+   "file": "chicken-andouille-gumbo.html",
+   "sub": "Monday, Louisiana week. Loaded on Sunday: Sunday's dark roux whisked into chicken stock with the trinity, andouille, chicken thighs, garlic and Cajun spice, in the Instant Pot inner pot in the fridge. One step at 7:00 am: inner pot in, Slow Cook on High 6 hours, then it holds on Keep Warm. Rice cooker on at 5:00 with a double batch, half kept for Thursday's dirty rice. Back to a simmer, chicken shredded, green onion and parsley on top.",
+   "chapter": "mains",
+   "label": "POT",
+   "blurb": "Sunday's roux · Instant Pot Slow Cook High 6 hours · rice at 5:00",
+   "meal": [
+    "dinner"
+   ],
+   "protein": [
+    "chicken",
+    "pork"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 690,
+   "active": 25,
+   "band": "day",
+   "time": "7:00 am start, eat at 6:30",
+   "effort": 1,
+   "ahead": true,
+   "kid": true,
+   "serves": 3,
+   "occasion": [
+    "weeknight"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "loaded Instant Pot inner pot",
+    "rice",
+    "green onions",
+    "flat-leaf parsley",
+    "kosher salt, to finish",
+    "hot sauce"
+   ],
+   "steps": 9
+  },
+  {
+   "slug": "fried-grits-andouille-creole",
+   "name": "Fried grits with andouille Creole sauce",
+   "file": "fried-grits-andouille-creole.html",
+   "sub": "Wednesday, Louisiana week, stove only, 30 minutes from 6:00. Sunday's set cheese grits cut into squares and fried crisp in the cast iron, topped with andouille in a quick Creole tomato sauce made from Wednesday's bag of trinity.",
+   "chapter": "mains",
+   "label": "PAN",
+   "blurb": "Sunday's set grits fried crisp · andouille Creole sauce · 30 minutes",
+   "meal": [
+    "dinner"
+   ],
+   "protein": [
+    "pork"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 30,
+   "active": 30,
+   "band": "quick",
+   "time": "30 minutes, 6:00 to 6:30",
+   "effort": 2,
+   "ahead": true,
+   "kid": true,
+   "serves": 3,
+   "occasion": [
+    "weeknight"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "Sunday's set grits",
+    "all-purpose flour",
+    "canola oil",
+    "olive oil",
+    "andouille or smoked sausage",
+    "Wednesday's trinity",
+    "jarred minced garlic",
+    "tomato paste",
+    "Cajun seasoning",
+    "dried thyme",
+    "smoked paprika",
+    "can diced tomatoes",
+    "water",
+    "powdered chicken stock",
+    "bay leaf",
+    "kosher salt, to finish",
+    "green onions",
+    "flat-leaf parsley",
+    "hot sauce"
+   ],
+   "steps": 13
+  },
+  {
+   "slug": "dirty-rice",
+   "name": "Dirty rice",
+   "file": "dirty-rice.html",
+   "sub": "Thursday, Louisiana week, stove only, 30 minutes from 6:00. Ground pork browned hard in the cast iron with Thursday's bag of trinity, garlic and Cajun spice, then Monday's cold rice fried through it with a splash of stock and soy. Green beans on the side. The pork moves from the freezer to the fridge after Wednesday's dinner.",
+   "chapter": "mains",
+   "label": "PAN",
+   "blurb": "Monday's rice · ground pork and trinity · 30 minutes",
+   "meal": [
+    "dinner"
+   ],
+   "protein": [
+    "pork"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 30,
+   "active": 30,
+   "band": "quick",
+   "time": "30 minutes, 6:00 to 6:30",
+   "effort": 1,
+   "ahead": true,
+   "kid": true,
+   "serves": 3,
+   "occasion": [
+    "weeknight"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "ground pork",
+    "canola oil",
+    "kosher salt",
+    "ground black pepper",
+    "Thursday's trinity",
+    "jarred minced garlic",
+    "Cajun seasoning",
+    "smoked paprika",
+    "dried thyme",
+    "water",
+    "powdered chicken stock",
+    "soy sauce",
+    "Monday's cooked rice",
+    "kosher salt, to finish",
+    "green beans",
+    "butter",
+    "green onions",
+    "flat-leaf parsley",
+    "hot sauce"
+   ],
+   "steps": 14
+  },
+  {
    "slug": "carne-guisada",
    "name": "Carne guisada",
    "file": "carne-guisada.html",

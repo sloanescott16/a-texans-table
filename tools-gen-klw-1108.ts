@@ -153,7 +153,7 @@ R.push({
     { id: "hot", g: "To finish", fixed: "at the table", name: "hot sauce", note: "his bowl only" },
   ],
   steps: [
-    { id: "k1", at: 690, lane: "cooker", short: "Pot in, Slow Cook High 6 h", txt: "The one morning step, 2 minutes. Inner pot from the fridge into the Instant Pot base, cover off. Glass lid on, or the sealing lid with the valve on Venting. Slow Cook, More (High), 6 hours. It drops to Keep Warm on its own about {t:330} and holds there until you are home." },
+    { id: "k1", at: 690, lane: "cooker", short: "Pot in, Slow Cook High 6 h", txt: "The one morning step, 2 minutes. Inner pot from the fridge into the Instant Pot base, the plate or foil off. Glass lid on, or the sealing lid with the valve on Venting. Slow Cook, More (High), 6 hours. It drops to Keep Warm on its own about {t:330} and holds there until you are home." },
     { id: "k2", at: 90, lane: "rice", short: "Rice cooker on, double batch", txt: "Rice, 5 minutes. Rinse all the rice until the water runs nearly clear, water to the cooker's line for the full amount, start it. Half is tonight's, half is Thursday's.", uses: ["riceM", "riceT"] },
     { id: "k3", at: 85, lane: "cooker", short: "Saute: simmer 20 min, lid off", txt: "Back to a simmer, 20 minutes. Lid off. Cancel Keep Warm, then Saute on Normal. Bring it to a lively simmer, 195 to 205°F on a probe, and hold it there, stirring the bottom now and then. Skim the oil off the top with a ladle into a cup." },
     { id: "k4", at: 80, lane: "prep", short: "Slice green onion, parsley", txt: "Greens, 5 minutes. Slice the green onions and chop the parsley into a small bowl.", uses: ["gonion", "parsley"] },
