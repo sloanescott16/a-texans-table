@@ -812,10 +812,10 @@
    "slug": "grillades-and-grits",
    "name": "Grillades and grits",
    "file": "grillades-and-grits.html",
-   "sub": "Sunday, Louisiana week, tonight's dinner only. Active time: about 1 hour 40 minutes up front (the medallions, tonight's trinity, the stock jug, three sear batches and 40 minutes stirring the roux), then a 2 hour hands-off braise with a stir at the hour and the hour and a half, then about 30 minutes at the end for the grits and the beans. A beef chuck tender roast sliced across the grain into medallions and pounded thin, seared hard in the cast iron, then braised in the Dutch oven in a dark roux gravy with the trinity, tomatoes and beef stock, over cheese grits, green beans on the side. Half the roux goes into a bowl for Monday's gumbo at no extra work. First move at 2:41 for 6:30.",
+   "sub": "Sunday, Louisiana week, tonight's dinner only. Active time: about 2 hours, from 4:26 for 6:30, with no real hands-off stretch. The roux is the long pole: a fat-heavy roux takes about 70 minutes to reach copper at 325 to 345°F and wants a stir every minute or two, and the medallions, the sear, the Instant Pot and the grits fit around it. With a jar of copper roux already in the fridge it drops to about 1 hour. A beef chuck tender roast sliced across the grain into medallions and pounded thin, seared hard in the cast iron, pressure cooked with its juices, beef stock and tomatoes, then married into a copper roux gravy with the trinity, over cheddar grits. Half the roux goes into a pint jar for Monday's gumbo at no extra work.",
    "chapter": "mains",
    "label": "PAN",
-   "blurb": "Cast iron sear · dark roux gravy · cheese grits · active about 2 hours 15, mostly up front",
+   "blurb": "Cast iron sear · Instant Pot braise · copper roux gravy · cheddar grits · active about 2 hours",
    "meal": [
     "dinner"
    ],
@@ -825,10 +825,10 @@
    "heat": [
     "stovetop"
    ],
-   "total": 229,
-   "active": 135,
+   "total": 124,
+   "active": 115,
    "band": "afternoon",
-   "time": "first move at 2:41, eat at 6:30",
+   "time": "first move at 4:26, eat at 6:30",
    "effort": 3,
    "ahead": false,
    "kid": true,
@@ -863,21 +863,20 @@
     "grits",
     "butter",
     "sharp cheddar",
-    "green beans",
     "green onions",
     "parsley",
     "hot sauce"
    ],
-   "steps": 33
+   "steps": 28
   },
   {
    "slug": "chicken-andouille-gumbo",
    "name": "Chicken and andouille gumbo",
    "file": "chicken-andouille-gumbo.html",
-   "sub": "Monday, Louisiana week. The Captain's own gumbo, written lean: run it his way. Active time: about 1 hour, from 4:37 at a normal afternoon pace, the rest a hands-off simmer. Tonight's trinity diced fresh, Sunday's dark roux from the fridge, the homemade broth, chicken thighs and half the andouille, simmered about an hour. Rice cooker at 5:15 with Thursday's share.",
+   "sub": "Monday, Louisiana week, dinner at 6:30. The Captain's own gumbo, written lean: run it his way. Active time: about 50 minutes, 40 of them in one go from 5:05 (the jar roux darkened 10 minutes, the trinity, the broth, the chicken and sausage), then about 10 in short checks while it simmers hands off. Sunday's pint jar of copper roux, the 5 cups of homemade chicken broth from the fridge, chicken thighs and andouille, rice in the rice cooker.",
    "chapter": "mains",
    "label": "POT",
-   "blurb": "His own gumbo · Sunday's roux · trinity diced tonight · from 4:37",
+   "blurb": "His own gumbo · Sunday's jar of copper roux · trinity diced tonight · from 5:05",
    "meal": [
     "dinner"
    ],
@@ -888,10 +887,10 @@
    "heat": [
     "stovetop"
    ],
-   "total": 113,
-   "active": 58,
+   "total": 85,
+   "active": 50,
    "band": "hour",
-   "time": "4:37 to 6:30",
+   "time": "5:05 to 6:30",
    "effort": 2,
    "ahead": true,
    "kid": true,
@@ -903,26 +902,26 @@
    "scales": true,
    "test": false,
    "ingredients": [
-    "Sunday's dark roux",
+    "copper roux",
     "yellow onion",
     "green bell pepper",
     "celery rib",
-    "homemade chicken broth",
-    "powdered chicken stock",
-    "chicken thighs",
-    "andouille or smoked sausage",
     "jarred minced garlic",
     "Cajun seasoning",
     "dried thyme",
     "smoked paprika",
+    "homemade chicken broth",
+    "powdered chicken stock",
     "bay leaf",
+    "chicken thighs",
+    "andouille or smoked sausage",
     "rice",
     "green onions",
     "parsley",
     "kosher salt, to finish",
     "hot sauce"
    ],
-   "steps": 16
+   "steps": 13
   },
   {
    "slug": "chicken-broth",
@@ -1028,10 +1027,10 @@
    "slug": "dirty-rice",
    "name": "Dirty rice",
    "file": "dirty-rice.html",
-   "sub": "Thursday, Louisiana week, stove only. Active time: about 35 minutes, 5:55 to 6:30. Ground pork, ground beef or breakfast sausage browned hard in the cast iron with tonight's trinity, diced fresh, garlic and Cajun spice, then Monday's cold rice fried through it with a splash of stock and soy. Green beans on the side. The ground meat thaws in the fridge the night before.",
+   "sub": "Thursday, Louisiana week. Active time: about 40 minutes: 3 at 5:15 to start the rice cooker, then 35 from 5:55 to 6:30. Ground pork, ground beef or breakfast sausage browned hard in the cast iron with tonight's trinity, diced fresh, garlic and Cajun spice, then tonight's rice, steamed dry on a sheet pan, fried through it with a splash of stock and soy. Frozen green beans steamed on the side. The ground meat thaws in the fridge the night before.",
    "chapter": "mains",
    "label": "PAN",
-   "blurb": "Monday's rice · ground meat and trinity · 35 minutes",
+   "blurb": "Tonight's rice · ground meat and trinity · about 40 minutes active",
    "meal": [
     "dinner"
    ],
@@ -1042,10 +1041,10 @@
    "heat": [
     "stovetop"
    ],
-   "total": 35,
-   "active": 35,
-   "band": "quick",
-   "time": "35 minutes, 5:55 to 6:30",
+   "total": 75,
+   "active": 40,
+   "band": "hour",
+   "time": "rice cooker at 5:15, then 5:55 to 6:30",
    "effort": 1,
    "ahead": true,
    "kid": true,
@@ -1071,16 +1070,16 @@
     "homemade chicken broth",
     "powdered chicken stock",
     "soy sauce",
-    "Monday's cooked rice",
+    "rice",
     "kosher salt, to finish",
-    "green beans",
+    "frozen green beans",
     "water",
     "butter",
     "green onions",
     "parsley",
     "hot sauce"
    ],
-   "steps": 15
+   "steps": 16
   },
   {
    "slug": "carne-guisada",
