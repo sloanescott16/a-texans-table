@@ -102,7 +102,7 @@ R.push({
 // ---------------- Monday 9 Nov: chicken and andouille gumbo, one pot, built at lunch and simmered all afternoon (job 1108-1938-7ii, plans 1108-2022-kl2 and 1108-2022-jpt) ----------------
 R.push({
   slug: "chicken-andouille-gumbo", name: "Chicken and andouille gumbo", serve: "18:30",
-  sub: "About 35 minutes at lunch, then it simmers all afternoon. Monday, Louisiana week, home all day: one pot, the Dutch oven, built from 12:30 to about 1:10, then a bare simmer on the lowest setting until dinner at 6:30, with a stir about every hour. Andouille and chicken thighs browned in the pot, Sunday's jar of copper roux darkened in their fat, the trinity, the homemade broth. Rice into the rice cooker at 5:45.",
+  sub: "About 40 minutes at lunch, then it simmers all afternoon. Monday, Louisiana week, home all day: one pot, the Dutch oven, built from 12:30 to about 1:10, then a bare simmer on the lowest setting until dinner at 6:30, with a stir about every hour. Andouille and chicken thighs browned in the pot, Sunday's jar of copper roux darkened in their fat, the trinity, the homemade broth. Rice into the rice cooker at 5:45.",
   notes: [
     `<b>Equipment:</b> Dutch oven with its lid &middot; rice cooker &middot; bowl for the browned meat &middot; sturdy spoon for the jar &middot; whisk &middot; two forks &middot; tongs &middot; infrared thermometer &middot; probe thermometer.`,
     `<b>The jar roux:</b> Sunday's copper roux, made with tallow, so it is set hard from the fridge. Scrape it out with a sturdy spoon; it melts in the pot. It has olive oil in it: 360°F on the infrared is the warning, never past it. Black specks or an acrid smell mean it has scorched.`,
