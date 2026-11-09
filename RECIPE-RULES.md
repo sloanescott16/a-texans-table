@@ -81,3 +81,10 @@ These are the ranges used so far, checked by the researcher on 16 Oct 2026 (rese
 - Exact ingredient names. Say "fresh green beans" or "frozen green beans", never a bare "green beans". The same for anything sold more than one way where the handling differs. Frozen green beans are steamed from frozen, no trimming.
 - Roux, real numbers. Working band 325 to 350°F on the infrared, 375°F is the red line, and 360°F is the warning when olive oil is in the mix. A fat-heavy Cajun roux (equal cups of fat and flour, not equal grams) reads lighter than it is: Sunday's took about 70 minutes to reach copper at 325 to 345°F. Pages give colour cues with realistic times at those temperatures, never a dark chocolate roux in 40 minutes. Grillades are fine on a copper roux.
 - Grits, real numbers. About 35 minutes all in: about 10 to come to the boil, 25 to cook. His batch is 240 g grits to 6 cups water.
+
+## One plan, and his rice cooker (the Captain, 8 Nov 2026)
+
+"Either you're explaining it poorly or it's a shit recipe. Either way, you need to fix it."
+
+- When he asks how a cook looks, give him one finished plan, never a choice of two. Plans are decided at planning time, not the night before. Pages carry no options or alternatives for the evening.
+- His rice cooker takes 45 minutes. On every page the rice goes in 45 minutes before it is needed.
