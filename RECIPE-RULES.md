@@ -71,3 +71,13 @@ These are the ranges used so far, checked by the researcher on 16 Oct 2026 (rese
 - He keeps a large supply of beef tallow. Where a recipe calls for canola or another neutral oil for searing or browning, beef tallow is the default and canola is the alternative. Ingredient lists read "beef tallow (or canola oil)" with the same amount, one line per ingredient.
 - A roux can be made with tallow too: fine at 325 to 350°F. A tallow roux sets hard when chilled and melts straight back in when warmed.
 - Tallow smokes from about 400 to 420°F: sear at 400°F, not above, when using it. Canola can go to 425°F.
+
+## Lessons from Sunday's grillades (the Captain, 8 Nov 2026)
+
+"While tonight tastes good execution wasn't. From the onset you had me destined for failure and I needed to make multiple corrections to get a good meal on the table on time."
+
+- Tight clock, braise in the Instant Pot. When the clock is tight, the pressure route is the default for a braise: the seared meat, its plate juices, the stock and the canned tomatoes go in and are poured on top, not stirred; 20 minutes at high pressure, 10 minutes natural release. Meanwhile the roux base (roux, trinity, garlic, tomato paste, spices) waits in the Dutch oven. Then the hot liquid is whisked into the roux base a cup at a time, the meat goes in, and it gets a 5 to 10 minute lazy simmer. Never pressure cook a roux-thickened liquid: it scorches on the bottom. The long Dutch oven braise stays on the page as the alternative.
+- Active time against his real evening. Every dinner page states its active time at the top, and before he gets it the page is sanity checked against his real evening: solo with two young boys, dinner on the table by the stated time. If it does not fit, it is changed before he sees it, not during the cook.
+- Exact ingredient names. Say "fresh green beans" or "frozen green beans", never a bare "green beans". The same for anything sold more than one way where the handling differs. Frozen green beans are steamed from frozen, no trimming.
+- Roux, real numbers. Working band 325 to 350°F on the infrared, 375°F is the red line, and 360°F is the warning when olive oil is in the mix. A fat-heavy Cajun roux (equal cups of fat and flour, not equal grams) reads lighter than it is: Sunday's took about 70 minutes to reach copper at 325 to 345°F. Pages give colour cues with realistic times at those temperatures, never a dark chocolate roux in 40 minutes. Grillades are fine on a copper roux.
+- Grits, real numbers. About 35 minutes all in: about 10 to come to the boil, 25 to cook. His batch is 240 g grits to 6 cups water.
