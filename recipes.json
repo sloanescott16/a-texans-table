@@ -965,12 +965,12 @@
   },
   {
    "slug": "fried-grits-andouille-creole",
-   "name": "Andouille Creole over creamy grits",
+   "name": "Fried grit cakes with andouille Creole sauce",
    "file": "fried-grits-andouille-creole.html",
-   "sub": "Wednesday, Louisiana week, stove only. Active time: about 30 minutes, 6:00 to 6:30, all of it at the stove. Andouille browned in the cast iron and simmered in a quick Creole tomato sauce with tonight's trinity, spooned over creamy cheese grits made tonight. This used to be fried grits cakes, but those need grits set in the fridge for hours, so tonight the grits are simply made fresh.",
+   "sub": "Wednesday, Louisiana week, stove only. Sunday's leftover cheese grits cut into squares and fried crisp in the cast iron, topped with andouille in a quick Creole tomato sauce made in the Dutch oven with tonight's trinity. Active time: about 15 minutes of knife work from 5:35, then 40 minutes at the stove, 5:50 to 6:30. Longer than a usual weeknight because the cakes fry in two batches. The knife work can be done earlier in the day.",
    "chapter": "mains",
    "label": "PAN",
-   "blurb": "Andouille Creole sauce · creamy cheese grits made tonight · 30 minutes",
+   "blurb": "Sunday's cheese grits fried crisp · andouille Creole sauce · 40 minutes at the stove",
    "meal": [
     "dinner"
    ],
@@ -980,12 +980,12 @@
    "heat": [
     "stovetop"
    ],
-   "total": 30,
-   "active": 30,
-   "band": "quick",
-   "time": "30 minutes, 6:00 to 6:30",
+   "total": 55,
+   "active": 40,
+   "band": "hour",
+   "time": "knife work at 5:35, stove 5:50 to 6:30",
    "effort": 2,
-   "ahead": false,
+   "ahead": true,
    "kid": true,
    "serves": 3,
    "occasion": [
@@ -995,12 +995,8 @@
    "scales": true,
    "test": false,
    "ingredients": [
-    "water",
-    "powdered chicken stock",
-    "kosher salt",
-    "grits",
-    "butter",
-    "sharp cheddar",
+    "Sunday's leftover cheese grits",
+    "all-purpose flour",
     "beef tallow (or canola oil)",
     "andouille or smoked sausage",
     "yellow onion",
@@ -1013,13 +1009,14 @@
     "smoked paprika",
     "can diced tomatoes",
     "homemade chicken broth",
+    "powdered chicken stock",
     "bay leaf",
     "kosher salt, to finish",
     "green onions",
     "parsley",
     "hot sauce"
    ],
-   "steps": 11
+   "steps": 15
   },
   {
    "slug": "dirty-rice",

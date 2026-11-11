@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>This week</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./favicon.ico">
+<link rel="preload" href="./special-elite-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./cutive-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./karla-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./fonts.css">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="A Texan&rsquo;s Table">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F3EBDA">
+<style>
+:root{
+  --ground:#F3EBDA; --card:#FAF4E7; --ink:#33291F; --muted:#7A6A56; --rule:#D9C9AF;
+  --citrus:#A85C34; --citrus-bg:#F0DFD1; --brine:#7E7047; --brine-bg:#E8E3D0;
+  --shell:#6E4A2E; --shell-bg:#EADCC9; --field:#FFFCF5;
+  --sans:Karla,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"Cutive Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --stamp:"Special Elite","Courier New",Courier,monospace;
+}
+@media (prefers-color-scheme:dark){
+ :root{
+  --ground:#17130F; --card:#211C15; --ink:#F1E3CE; --muted:#A2937C; --rule:#3A3026;
+  --citrus:#D3814F; --citrus-bg:#2E2018; --brine:#A99A63; --brine-bg:#222014;
+  --shell:#C89B6E; --shell-bg:#2A2018; --field:#1B1610;
+ }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.45;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+.wrap{max-width:620px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left))}
+.back{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin:22px 0 0}
+h1{font-family:var(--stamp);font-size:clamp(23px,7.2vw,30px);line-height:1.16;letter-spacing:0.03em;text-transform:uppercase;font-weight:400;margin:10px 0 10px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 14px;max-width:34em}
+h2{font-family:var(--stamp);font-size:13px;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:22px 0 10px}
+h3{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:16px 0 6px}
+.ghost{display:inline-block;border:1px solid var(--rule);background:transparent;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 11px;border-radius:3px;cursor:pointer;text-decoration:none;line-height:1.2}
+.ghost:active{background:var(--rule)}
+.ghost.on{background:var(--citrus-bg);border-color:var(--citrus);color:var(--citrus)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 4px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:2px 12px;margin-bottom:8px}
+.stale{border:1px solid var(--citrus);background:var(--citrus-bg);color:var(--ink);border-radius:3px;padding:10px 12px;font-size:14px;margin:0 0 12px}
+.wait{color:var(--muted);font-size:14px;padding:14px 0}
+
+/* the week at a glance */
+a.g{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit}
+a.g:last-child{border-bottom:0}
+.g .gd{font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);min-width:62px;flex:0 0 auto}
+.g .gn{font-size:15px;line-height:1.3;flex:1;min-width:0}
+.g .gt{font-family:var(--mono);font-size:12px;color:var(--muted);flex:0 0 auto;white-space:nowrap}
+.g.plain .gn,.g.past .gn{color:var(--muted)}
+.g.today .gd{color:var(--citrus)}
+.g.today .gn{font-weight:700}
+
+/* one day */
+.day{border-top:2px solid var(--ink);margin-top:26px;padding-top:2px;scroll-margin-top:8px}
+.day.plain{border-top:1px solid var(--rule);margin-top:18px}
+.dhead{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:transparent;border:0;padding:12px 0 6px;color:inherit;font:inherit}
+button.dhead{cursor:pointer}
+.dd{flex:0 0 auto;min-width:52px;font-family:var(--mono);text-transform:uppercase;line-height:1.2}
+.dd b{display:block;font-weight:400;font-size:15px;letter-spacing:0.1em}
+.dd i{display:block;font-style:normal;font-size:11px;letter-spacing:0.06em;color:var(--muted);margin-top:2px}
+.dn{flex:1;min-width:0}
+.dn .nm{display:block;font-family:var(--stamp);font-size:19px;letter-spacing:0.02em;line-height:1.22}
+.dn .meta{display:block;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px}
+.day.plain .dn .nm{font-family:var(--sans);font-size:15px;color:var(--muted);padding-top:1px}
+.badge{flex:0 0 auto;font-family:var(--mono);font-size:10px;letter-spacing:0.13em;background:var(--citrus-bg);color:var(--citrus);padding:3px 6px;border-radius:2px;margin-top:2px}
+.dhead .tog{flex:0 0 auto;font-family:var(--mono);font-size:17px;color:var(--muted);transition:transform .15s;margin-top:-1px}
+.day.open .dhead .tog{transform:rotate(90deg);color:var(--citrus)}
+.day.today .dd b{color:var(--citrus)}
+.day.past{border-top-color:var(--rule)}
+.day.past .dn .nm{color:var(--muted)}
+.dbody{display:none;padding-bottom:4px}
+.day.open .dbody{display:block}
+.dsub{color:var(--muted);font-size:14px;margin:2px 0 10px}
+.lean,.also{font-size:14px;line-height:1.4;border-left:3px solid var(--citrus);background:var(--citrus-bg);padding:8px 10px;margin:0 0 8px;border-radius:0 3px 3px 0}
+.also{border-left-color:var(--brine);background:var(--brine-bg)}
+.lean b,.also b{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:400;display:block;margin-bottom:2px;color:var(--citrus)}
+.also b{color:var(--brine)}
+.also span{display:block}
+.also .t{font-family:var(--mono);font-size:12px;margin-right:6px}
+.fail{color:var(--muted);font-size:14px;margin:4px 0 10px}
+
+/* the clock */
+.st{display:block;padding:5px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.st:last-child{border-bottom:0}
+.st .l1{display:flex;gap:8px;align-items:baseline}
+.st .t{font-family:var(--mono);font-size:12px;min-width:60px;flex:0 0 auto;white-space:nowrap}
+.st .t .cd{display:block;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--citrus)}
+.st .s{font-size:14px;line-height:1.3;flex:1;min-width:0}
+.st .n{font-family:var(--mono);font-size:12px;min-width:22px;flex:0 0 auto;color:var(--muted)}
+.st .tx{display:none;font-size:14px;line-height:1.45;color:var(--ink);margin:6px 0 6px 68px}
+.st.untimed .tx{margin-left:30px}
+.full .st .tx,.st.open .tx{display:block}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;padding:2px 6px;border-radius:2px;margin-right:7px;vertical-align:1px;white-space:nowrap}
+.t-pot,.t-jar,.t-fridge{background:var(--brine-bg);color:var(--brine)}
+.t-pan,.t-oven{background:var(--shell-bg);color:var(--shell)}
+.t-prep{background:var(--rule);color:var(--muted)}
+.t-serve,.t-fire{background:var(--citrus-bg);color:var(--citrus)}
+.us{display:block;margin:6px 0 6px;padding:3px 0 3px 10px;border-left:3px solid var(--citrus)}
+.us span{display:block;font-size:14px;line-height:1.35}
+.us b{font-weight:700}
+.tt{font-weight:700}
+
+/* ingredients */
+.noing .ingwrap{display:none}
+.grp{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);padding:10px 0 5px;border-bottom:1px solid var(--rule)}
+.it{display:flex;gap:10px;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--rule)}
+.it:last-child{border-bottom:0}
+.it .q{font-family:var(--mono);font-size:13px;color:var(--citrus);min-width:66px;flex:0 0 auto}
+.it .nm{font-size:14px;line-height:1.3;flex:1;min-width:0}
+.it .nm em{font-style:normal;color:var(--muted);font-size:12px;display:block}
+.it.flag .nm{font-weight:700}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px}
+.note{color:var(--muted);font-size:13px;line-height:1.5;margin:22px 0 0;border-top:1px solid var(--rule);padding-top:14px}
+:focus-visible{outline:2px solid var(--brine);outline-offset:2px}
+@media (min-width:1024px){ .wrap{max-width:760px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="./">&lsaquo; A Texan&rsquo;s Table</a>
+  <h1>This week</h1>
+  <p class="sub" id="sub"></p>
+  <div id="stale"></div>
+  <div class="tools">
+    <button class="ghost" id="tFull" aria-pressed="false">Full steps</button>
+    <button class="ghost" id="tIng" aria-pressed="true">Ingredients</button>
+  </div>
+  <h2>The week</h2>
+  <div class="card" id="glance"></div>
+  <div id="days"><p class="wait">Reading the week&rsquo;s pages.</p></div>
+  <p class="note">Every night here is read straight from its recipe page, so this is what the page will tell you on the night. Spot something to change? Say so before the night. The change goes on the recipe page and shows here at once.</p>
+</div>
+
+<script>
+var WEEK = {"title":"Louisiana week","days":[{"date":"2026-11-08","slug":"grillades-and-grits","also":["chicken-broth"],"name":"Grillades and grits"},{"date":"2026-11-09","slug":"chicken-andouille-gumbo","name":"Chicken and andouille gumbo"},{"date":"2026-11-10","label":"Eating out"},{"date":"2026-11-11","slug":"fried-grits-andouille-creole","name":"Fried grit cakes with andouille Creole sauce"},{"date":"2026-11-12","slug":"dirty-rice","name":"Dirty rice"},{"date":"2026-11-13","label":"Off duty"}]};
+
+var DAYS3 = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+var DAYSL = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+var MONS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
+            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], rice:["RICE COOKER","t-jar"], away:["AWAY","t-prep"], store:["STORE","t-prep"], iron:["CAST IRON","t-pan"], dutch:["DUTCH OVEN","t-pot"], bigpot:["BIG POT","t-pot"], sauce:["SAUCEPAN","t-pan"], grill:["GRILL","t-fire"], smoker:["SMOKER","t-fire"]};
+/* An ingredient that leans on another night: a weekday's something, a leftover, the other half of a pack. */
+var LEAN = /\b(sunday|monday|tuesday|wednesday|thursday|friday|saturday|last night|yesterday)(?:'s|’s)\b|\bleftover|\bother half\b|\bsaved\b/i;
+
+var view = {full:false, ing:true, open:{}};
+try{ var rawV = window.localStorage.getItem("kitchen:week"); if(rawV){ var v0 = JSON.parse(rawV); if(typeof v0.full === "boolean") view.full = v0.full; if(typeof v0.ing === "boolean") view.ing = v0.ing; if(v0.open && v0.week === WEEK.days.map(function(d){ return d.date; }).join()) view.open = v0.open; } }catch(e){}
+function saveView(){ try{ window.localStorage.setItem("kitchen:week", JSON.stringify({full:view.full, ing:view.ing, open:view.open, week:WEEK.days.map(function(d){ return d.date; }).join()})); }catch(e){} }
+
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function plain(html){ var t = document.createElement("textarea"); t.innerHTML = String(html).replace(/<[^>]*>/g, ""); return t.value.replace(/\s+/g, " ").trim(); }
+function pd(iso){ var p = String(iso).split("-"); return new Date(+p[0], +p[1]-1, +p[2]); }
+function sameDay(a, b){ return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
+function day0(d){ var x = new Date(d.getTime()); x.setHours(0,0,0,0); return x; }
+function hhmm(d){
+  var h = d.getHours(), m = d.getMinutes(), ap = h >= 12 ? "pm" : "am";
+  h = h % 12; if(h === 0) h = 12;
+  return h + ":" + (m < 10 ? "0" + m : m) + " " + ap;
+}
+function dlabel(d){ return DAYS3[d.getDay()] + " " + d.getDate() + " " + MONS[d.getMonth()]; }
+
+/* ---------- reading a recipe page ---------- */
+function parsePage(html){
+  var o = {}, m;
+  m = /<h1>([\s\S]*?)<\/h1>/.exec(html); o.name = m ? plain(m[1]) : "";
+  m = /<p class="sub">([\s\S]*?)<\/p>/.exec(html); o.sub = m ? plain(m[1]) : "";
+  m = /var ING = (\[[\s\S]*?\]);\r?\n/.exec(html); o.ING = JSON.parse(m[1]);
+  m = /var STEPS = (\[[\s\S]*?\]);\r?\n/.exec(html); o.STEPS = JSON.parse(m[1]);
+  m = /var SERV = (.*?);\r?\n/.exec(html); o.SERV = m ? JSON.parse(m[1]) : null;
+  m = /var TIMED = (true|false);/.exec(html); o.TIMED = m ? m[1] === "true" : false;
+  m = /var KEY = "([^"]+)";/.exec(html); o.KEY = m ? m[1] : null;
+  m = /id="serve" value="([^"]+)"/.exec(html); o.serve = m ? m[1] : "18:30";
+  m = /<label for="serve">([^<]*)<\/label>/.exec(html); o.anchor = m ? plain(m[1]) : "Eating at";
+  if(!o.ING.length && !o.STEPS.length) throw new Error("empty page");
+  return o;
+}
+/* What he has set on the page itself (servings, eating time) carries over to this view. */
+function savedState(key){
+  try{ var raw = key ? window.localStorage.getItem(key) : null; return raw ? JSON.parse(raw) : {}; }catch(e){ return {}; }
+}
+
+/* ---------- amounts: the same arithmetic as the recipe pages ---------- */
+function amounts(R){
+  var SERV = R.SERV, servings = R.servings;
+  function frac(n){
+    if(n === 0) return "0";
+    var w = Math.floor(n), r = n - w, best = "", d = 1;
+    var map = [[0.125,"1/8"],[0.25,"1/4"],[0.333,"1/3"],[0.375,"3/8"],[0.5,"1/2"],[0.625,"5/8"],[0.667,"2/3"],[0.75,"3/4"],[0.875,"7/8"]];
+    if(r > 0.02){ for(var i=0;i<map.length;i++){ var diff = Math.abs(r-map[i][0]); if(diff < d){ d = diff; best = map[i][1]; } } }
+    if(!best) return String(w);
+    return w ? w + " " + best : best;
+  }
+  function amount(it, part){
+    if(it.fixed) return it.fixed;
+    if(it.by) return it.by[servings] || it.by[SERV.base];
+    var raw = it.per * servings;
+    if(part){
+      var whole = Math.max(it.step || 0.25, Math.round(raw / (it.step || 0.25)) * (it.step || 0.25));
+      raw = whole * part;
+    }
+    var s = it.step || 0.25;
+    var v = part ? Math.round(raw * 1000) / 1000 : Math.max(s, it.min || 0, Math.round(raw / s) * s);
+    v = Math.round(v * 1000) / 1000;
+    var txt = it.metric ? String(v) : frac(v);
+    if(it.unit){
+      var u = it.unit;
+      if(u === "tbsp" && v >= 4 && Math.abs(v/4 - Math.round(v/4)) < 1e-6){ v = v/16; txt = frac(v); u = "cup"; }
+      else if(u === "tbsp" && Math.abs(v*2 - Math.round(v*2)) > 1e-6){ v = v*3; txt = frac(v); u = "tsp"; }
+      else if(u === "cup" && v < 0.5 && Math.abs(v*4 - Math.round(v*4)) > 1e-6){ v = v*16; txt = frac(v); u = "tbsp"; }
+      if(u === "cup" && v > 1) u = "cups";
+      return txt + " " + u;
+    }
+    var nm = (v > 1 && it.plural) ? it.plural : it.name;
+    return txt + "|" + nm;
+  }
+  function label(it, part){
+    var a = String(amount(it, part));
+    if(a.indexOf("|") > -1){ var p = a.split("|"); return {qty:p[0], name:p[1]}; }
+    return {qty:a, name:it.name};
+  }
+  function qParse(q){
+    var m = /^(?:(\d+) )?(?:(\d+)\/(\d+)|(\d+(?:\.\d+)?))(?: (tsp|tbsp|cups?|lb|oz))?$/.exec(String(q).replace(/^about /, ""));
+    if(!m) return null;
+    return {n: (m[1] ? +m[1] : 0) + (m[2] ? m[2] / m[3] : 0) + (m[4] ? +m[4] : 0), u: m[5] || ""};
+  }
+  function qFrac(v){
+    var w = Math.floor(v + 1e-9), r = v - w, map = [[0.125,"1/8"],[0.25,"1/4"],[0.333,"1/3"],[0.375,"3/8"],[0.5,"1/2"],[0.625,"5/8"],[0.667,"2/3"],[0.75,"3/4"],[0.875,"7/8"],[1,""]], best = "", d = 1;
+    if(r < 0.03) return String(w);
+    for(var i=0;i<map.length;i++){ var x = Math.abs(r - map[i][0]); if(x < d){ d = x; best = map[i][1]; } }
+    if(best === ""){ w += 1; return String(w); }
+    return w ? w + " " + best : best;
+  }
+  function mergeParts(parts){
+    var V = {tsp:1, tbsp:3, cup:48, cups:48}, sum = 0, kind = null, bigU = "", big = -1, i;
+    for(i=0;i<parts.length;i++){
+      var p = qParse(parts[i].l.qty);
+      if(!p){ kind = "x"; break; }
+      var k = V[p.u] ? "vol" : p.u, base = V[p.u] ? p.n * V[p.u] : p.n;
+      if(kind === null) kind = k; else if(kind !== k){ kind = "x"; break; }
+      if(base > big){ big = base; bigU = p.u; }
+      sum += base;
+    }
+    var it = parts[0].it;
+    if(kind === "x"){
+      var q = []; for(i=0;i<parts.length;i++) q.push(parts[i].l.qty);
+      return {qty: q.join(" + "), name: parts[0].l.name};
+    }
+    if(kind === "vol"){
+      var v = sum / V[bigU], u = bigU === "cups" ? "cup" : bigU, r8 = Math.abs(v * 8 - Math.round(v * 8)) / 8, r3 = Math.abs(v * 3 - Math.round(v * 3)) / 3;
+      if(Math.min(r8, r3) > 0.02){ var q2 = []; for(i=0;i<parts.length;i++) q2.push(parts[i].l.qty); return {qty: q2.join(" + "), name: it.name}; }
+      if(u === "cup" && v > 1) u = "cups";
+      return {qty: qFrac(v) + " " + u, name: it.name};
+    }
+    return {qty: qFrac(sum) + (kind ? " " + kind : ""), name: (sum > 1 && it.plural) ? it.plural : it.name};
+  }
+  function splitWords(parts){
+    var w = [];
+    for(var i=0;i<parts.length;i++){ var it = parts[i].it; w.push(parts[i].l.qty + " " + (it.note ? it.note : "for the " + String(it.g).toLowerCase())); }
+    return w.join(", ");
+  }
+  function byId(id){ for(var i=0;i<R.ING.length;i++){ if(R.ING[i].id === id) return R.ING[i]; } return null; }
+  /* The list as the page shows it: one line per ingredient, same names merged. */
+  function list(){
+    var out = [], seen = {};
+    for(var i=0;i<R.ING.length;i++){
+      var it = R.ING[i];
+      if(seen[it.name]) continue;
+      seen[it.name] = 1;
+      var parts = [];
+      for(var j=i;j<R.ING.length;j++){ if(R.ING[j].name === it.name) parts.push({it: R.ING[j], l: label(R.ING[j])}); }
+      var l = parts.length > 1 ? mergeParts(parts) : parts[0].l, note = parts.length > 1 ? splitWords(parts) : it.note;
+      var byName = LEAN.test(l.name), byNote = !byName && LEAN.test(it.note || "");
+      out.push({g: it.g, qty: l.qty, name: l.name, note: note || "", lean: byName || byNote, why: byNote ? String(it.note).split(",")[0] : ""});
+    }
+    return out;
+  }
+  function uses(s){
+    var u = s.uses || [], got = [], byName = {}, out = [];
+    for(var j=0;j<u.length;j++){
+      var pp = String(u[j]).split("@"), part = pp[1] ? parseFloat(pp[1]) : 0;
+      var it = byId(pp[0]); if(!it) continue;
+      var e = {it: it, l: label(it, part), part: part};
+      if(byName[it.name]){ byName[it.name].push(e); continue; }
+      byName[it.name] = [e]; got.push(byName[it.name]);
+    }
+    for(var k=0;k<got.length;k++){
+      var g0 = got[k][0], l = got[k].length > 1 ? mergeParts(got[k]) : g0.l;
+      out.push({qty: l.qty, name: l.name + (got[k].length === 1 && g0.part === 0.5 ? ", half" : "")});
+    }
+    return out;
+  }
+  return {list: list, uses: uses};
+}
+
+/* ---------- one night, worked out ---------- */
+function shortOf(s){
+  if(s.short) return s.short;
+  var t = plain(s.txt || ""), cut = t.search(/[.:;]\s/);
+  if(cut > 12 && cut < 70) return t.slice(0, cut);
+  return t.length > 64 ? t.slice(0, 61).replace(/\s+\S*$/, "") + "..." : t;
+}
+function atOf(s, servings){
+  var at = s.at;
+  if(s.atBy){ for(var i=0;i<s.atBy.length;i++){ if(servings >= s.atBy[i][0]) at = s.atBy[i][1]; } }
+  return at;
+}
+function work(day, P){
+  var st = savedState(P.KEY);
+  var R = {ING: P.ING, SERV: P.SERV, servings: st.servings || (P.SERV ? P.SERV.base : 0)};
+  var hm = String(st.planned || st.serve || P.serve || "18:30").split(":");
+  var anchor = pd(day.date); anchor.setHours(parseInt(hm[0],10), parseInt(hm[1],10), 0, 0);
+  var A = amounts(R), steps = [], first = null, last = null;
+  for(var i=0;i<P.STEPS.length;i++){
+    var s = P.STEPS[i], at = atOf(s, R.servings), when = (P.TIMED && typeof at === "number") ? new Date(anchor.getTime() - at*60000) : null;
+    if(when){ if(!first || when < first) first = when; if(!last || when > last) last = when; }
+    steps.push({s: s, when: when, short: shortOf(s), uses: A.uses(s), lane: LANE[s.lane] || [String(s.lane || "prep").toUpperCase(), "t-prep"]});
+  }
+  var timeOf = function(off){ var d = new Date(anchor.getTime() - off*60000); return (sameDay(d, anchor) ? "" : DAYS3[d.getDay()] + " ") + hhmm(d); };
+  return {P: P, R: R, anchor: anchor, steps: steps, first: first, last: last, ing: A.list(), timeOf: timeOf, startBased: /start/i.test(P.anchor)};
+}
+
+/* ---------- rendering ---------- */
+var BUILT = {};  /* slug -> worked night, or {fail:true} */
+function whenHTML(when, anchorDay){
+  if(!when) return "";
+  var other = !sameDay(when, anchorDay);
+  return (other ? '<span class="cd">' + DAYS3[when.getDay()] + '</span>' : "") + hhmm(when);
+}
+function stepsHTML(W, dayDate){
+  var h = "";
+  for(var i=0;i<W.steps.length;i++){
+    var x = W.steps[i], u = "";
+    for(var j=0;j<x.uses.length;j++) u += '<span><b>' + esc(x.uses[j].qty) + '</b> ' + esc(x.uses[j].name) + '</span>';
+    var txt = String(x.s.txt || "").replace(/\{t:(\d+)\}/g, function(m, n){ return '<b class="tt">' + W.timeOf(parseInt(n,10)) + '</b>'; });
+    h += '<div class="st' + (x.when ? "" : " untimed") + '" data-st="1"><div class="l1">' +
+      (x.when ? '<span class="t">' + whenHTML(x.when, dayDate) + '</span>' : '<span class="n">' + (i+1) + '</span>') +
+      '<span class="s">' + esc(x.short) + '</span></div>' +
+      '<div class="tx"><span class="tag ' + x.lane[1] + '">' + esc(x.lane[0]) + '</span>' + txt + (u ? '<span class="us">' + u + '</span>' : "") + '</div></div>';
+  }
+  return h;
+}
+function ingHTML(W){
+  var h = "", last = null;
+  for(var i=0;i<W.ing.length;i++){
+    var it = W.ing[i];
+    if(it.g !== last){ h += '<div class="grp">' + esc(it.g) + '</div>'; last = it.g; }
+    h += '<div class="it' + (it.lean ? " flag" : "") + '"><span class="q">' + esc(it.qty) + '</span><span class="nm">' + esc(it.name) + (it.note ? '<em>' + esc(it.note) + '</em>' : "") + '</span></div>';
+  }
+  return h;
+}
+function metaOf(W){
+  var bits = [];
+  if(W.first && W.last){
+    var fd = sameDay(W.first, W.anchor) ? "" : DAYS3[W.first.getDay()] + " ";
+    if(W.startBased) bits.push("Start " + hhmm(W.first), "done " + hhmm(W.last));
+    else bits.push("First move " + fd + hhmm(W.first), "eat " + hhmm(W.anchor));
+  }
+  if(W.P.SERV) bits.push("serves " + W.R.servings);
+  bits.push(W.steps.length + " steps");
+  return bits.join(" · ");
+}
+function tweakHref(d, name){
+  return "claude://code/new?q=" + encodeURIComponent("Kitchen tweak for " + DAYSL[d.getDay()] + " " + d.getDate() + " " + MONS[d.getMonth()] + ", " + name + ": ");
+}
+function recipeBlock(slug, d, title){
+  var W = BUILT[slug], th = title ? '<h3>' + esc(title) + '</h3>' : "";
+  if(!W) return th + '<p class="wait">Reading the page.</p>';
+  if(W.fail){
+    return th + '<p class="fail">' + (W.why === "shape" ? "This older page does not show in the weekly view." : "Could not read this page just now.") + ' <a href="./' + esc(slug) + '.html">Open it directly</a>.</p>';
+  }
+  var leans = W.ing.filter(function(x){ return x.lean; }).map(function(x){ return esc(x.name) + (x.why ? " (" + esc(x.why) + ")" : ""); });
+  return (title ? '<h3>' + esc(title) + '</h3>' : "") +
+    (W.P.sub ? '<p class="dsub">' + esc(W.P.sub) + '</p>' : "") +
+    (leans.length ? '<div class="lean"><b>Leans on another night</b>' + leans.join("; ") + '</div>' : "") +
+    '<h3>The clock</h3><div class="card">' + stepsHTML(W, d) + '</div>' +
+    '<div class="ingwrap"><h3>Ingredients</h3><div class="card">' + ingHTML(W) + '</div></div>' +
+    '<div class="acts"><a class="ghost" href="./' + esc(slug) + '.html">Open the page</a><a class="ghost" href="' + esc(tweakHref(d, W.P.name)) + '">Tweak this night</a></div>';
+}
+function render(){
+  var today = day0(new Date()), days = WEEK.days, i;
+  var firstD = days.length ? pd(days[0].date) : today, lastD = days.length ? pd(days[days.length-1].date) : today;
+  document.title = "This week";
+  document.getElementById("sub").textContent = (WEEK.title ? WEEK.title + ", " : "") + dlabel(firstD) + " to " + dlabel(lastD) + ". Every cook night’s clock and ingredients on one page.";
+  var stale = document.getElementById("stale");
+  if(today > lastD) stale.innerHTML = '<div class="stale">This is an old menu, ' + esc(dlabel(firstD)) + ' to ' + esc(dlabel(lastD)) + '. The new week is not on the page yet.</div>';
+  else if(today < firstD) stale.innerHTML = '<div class="stale">This menu starts ' + esc(dlabel(firstD)) + '.</div>';
+  else stale.innerHTML = "";
+
+  /* steps that fall on another day than their dinner show up under the day they happen */
+  var carry = {};
+  for(i=0;i<days.length;i++){
+    var slugs = (days[i].slug ? [days[i].slug] : []).concat(days[i].also || []);
+    for(var k=0;k<slugs.length;k++){
+      var W = BUILT[slugs[k]]; if(!W || W.fail) continue;
+      for(var j=0;j<W.steps.length;j++){
+        var x = W.steps[j];
+        if(x.when && !sameDay(x.when, W.anchor)){
+          var key = day0(x.when).getTime();
+          (carry[key] = carry[key] || []).push({t: hhmm(x.when), short: x.short, name: W.P.name, forDay: DAYSL[W.anchor.getDay()]});
+        }
+      }
+    }
+  }
+
+  var g = "", h = "";
+  for(i=0;i<days.length;i++){
+    var day = days[i], d = pd(day.date), isToday = sameDay(d, today), isPast = d < today, cook = !!day.slug;
+    var W0 = cook ? BUILT[day.slug] : null, ok = W0 && !W0.fail;
+    var name = cook ? (ok ? W0.P.name : (day.name || day.slug)) : (day.label || "Nothing planned");
+    var dd = DAYS3[d.getDay()] + " " + d.getDate();
+    g += '<a class="g' + (isToday ? " today" : "") + (isPast ? " past" : "") + (cook ? "" : " plain") + '" href="#d-' + esc(day.date) + '"><span class="gd">' + dd + '</span><span class="gn">' + esc(name) + '</span>' + (ok && W0.first ? '<span class="gt">' + (W0.startBased ? hhmm(W0.first) : hhmm(W0.anchor)) + '</span>' : "") + '</a>';
+
+    var also = carry[d.getTime()] || [], alsoH = "";
+    if(also.length){
+      alsoH = '<div class="also"><b>Also ' + (isToday ? "today" : "this day") + ', for another night</b>';
+      /* one line per step, or one line for the lot when a night-before cook has more than three */
+      var byDish = {}, order = [];
+      for(var a=0;a<also.length;a++){ var kd = also[a].forDay + "|" + also[a].name; if(!byDish[kd]){ byDish[kd] = []; order.push(kd); } byDish[kd].push(also[a]); }
+      for(var o=0;o<order.length;o++){
+        var L = byDish[order[o]], who = ' (for ' + esc(L[0].forDay) + '’s ' + esc(L[0].name) + ')';
+        if(L.length > 3) alsoH += '<span><span class="t">' + L[0].t + ' to ' + L[L.length-1].t + '</span>' + L.length + ' steps, starting with: ' + esc(L[0].short) + who + '</span>';
+        else for(var b=0;b<L.length;b++) alsoH += '<span><span class="t">' + L[b].t + '</span>' + esc(L[b].short) + who + '</span>';
+      }
+      alsoH += '</div>';
+    }
+    if(!cook){
+      h += '<section class="day plain' + (isToday ? " today" : "") + '" id="d-' + esc(day.date) + '"><div class="dhead"><span class="dd"><b>' + DAYS3[d.getDay()] + '</b><i>' + d.getDate() + " " + MONS[d.getMonth()] + '</i></span><span class="dn"><span class="nm">' + esc(name) + '</span></span>' + (isToday ? '<span class="badge">TODAY</span>' : "") + '</div>' + alsoH + '</section>';
+      continue;
+    }
+    var open = view.open[day.date] != null ? view.open[day.date] : !isPast;
+    var body = alsoH + recipeBlock(day.slug, d, "");
+    var extra = day.also || [];
+    for(var e=0;e<extra.length;e++){
+      var We = BUILT[extra[e]];
+      body += recipeBlock(extra[e], d, "Also this day: " + (We && !We.fail ? We.P.name : extra[e]));
+    }
+    h += '<section class="day' + (isToday ? " today" : "") + (isPast ? " past" : "") + (open ? " open" : "") + '" id="d-' + esc(day.date) + '">' +
+      '<button class="dhead" data-date="' + esc(day.date) + '" aria-expanded="' + (open ? "true" : "false") + '"><span class="dd"><b>' + DAYS3[d.getDay()] + '</b><i>' + d.getDate() + " " + MONS[d.getMonth()] + '</i></span>' +
+      '<span class="dn"><span class="nm">' + esc(name) + '</span>' + (ok ? '<span class="meta">' + esc(metaOf(W0)) + '</span>' : "") + '</span>' +
+      (isToday ? '<span class="badge">TONIGHT</span>' : "") +
+      '<span class="tog" aria-hidden="true">&rsaquo;</span></button><div class="dbody">' + body + '</div></section>';
+  }
+  document.getElementById("glance").innerHTML = g || '<p class="wait">No week on the page yet.</p>';
+  document.getElementById("days").innerHTML = h;
+  applyView();
+}
+function applyView(){
+  document.body.classList.toggle("full", view.full);
+  document.body.classList.toggle("noing", !view.ing);
+  var f = document.getElementById("tFull"), n = document.getElementById("tIng");
+  f.classList.toggle("on", view.full); f.setAttribute("aria-pressed", view.full ? "true" : "false");
+  n.classList.toggle("on", view.ing); n.setAttribute("aria-pressed", view.ing ? "true" : "false");
+}
+
+/* ---------- loading ---------- */
+function slugsOfWeek(){
+  var out = [], seen = {};
+  WEEK.days.forEach(function(d){ (d.slug ? [d.slug] : []).concat(d.also || []).forEach(function(s){ if(!seen[s]){ seen[s] = 1; out.push({slug: s, day: d}); } }); });
+  return out;
+}
+function loadAll(){
+  var list = slugsOfWeek();
+  return Promise.all(list.map(function(x){
+    /* Asked for as a page, so the service worker goes to the network first and a fresh publish shows at once. */
+    return fetch("./" + x.slug + ".html", {cache: "no-store", headers: {"accept": "text/html"}})
+      .then(function(r){ if(!r.ok) throw new Error("http " + r.status); return r.text(); })
+      .then(function(html){
+        try{ BUILT[x.slug] = work(x.day, parsePage(html)); }
+        catch(e){ BUILT[x.slug] = {fail: true, why: "shape"}; }
+      })
+      .catch(function(){ BUILT[x.slug] = {fail: true, why: "read"}; });
+  })).then(render);
+}
+var lastLoad = 0;
+function refresh(){ lastLoad = Date.now(); return loadAll(); }
+
+document.addEventListener("click", function(e){
+  var head = e.target.closest ? e.target.closest("button.dhead") : null;
+  if(head){
+    var sec = head.parentNode, on = !sec.classList.contains("open");
+    sec.classList.toggle("open", on); head.setAttribute("aria-expanded", on ? "true" : "false");
+    view.open[head.getAttribute("data-date")] = on; saveView();
+    return;
+  }
+  var st = e.target.closest ? e.target.closest(".st") : null;
+  if(st && !view.full){ st.classList.toggle("open"); return; }
+  if(e.target.id === "tFull"){ view.full = !view.full; saveView(); applyView(); return; }
+  if(e.target.id === "tIng"){ view.ing = !view.ing; saveView(); applyView(); return; }
+});
+document.addEventListener("visibilitychange", function(){ if(!document.hidden && Date.now() - lastLoad > 60000) refresh(); });
+window.addEventListener("pageshow", function(e){ if(e.persisted) refresh(); });
+
+render();
+refresh();
+if("serviceWorker" in navigator){ navigator.serviceWorker.register("./sw.js").catch(function(){}); }
+</script>
+</body>
+</html>

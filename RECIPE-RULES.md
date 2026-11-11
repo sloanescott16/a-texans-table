@@ -88,3 +88,19 @@ These are the ranges used so far, checked by the researcher on 16 Oct 2026 (rese
 
 - When he asks how a cook looks, give him one finished plan, never a choice of two. Plans are decided at planning time, not the night before. Pages carry no options or alternatives for the evening.
 - His rice cooker takes 45 minutes. On every page the rice goes in 45 minutes before it is needed.
+
+## The weekly menu (the Captain, 11 Nov 2026)
+
+"I think we need to also add a like weekly menu to the kitchen page where I can see all the recipes for the week at once. So I can like proactively make tweaks and I'm not trying to change things on day of."
+
+- week.html ("This week", the first section on the front page) shows every night of the current plan on one page: each cook night's clock and ingredients, read live from its recipe page. Nothing about a recipe is copied into it.
+- week.json is the plan: one entry per day, a slug for a cook night, a label for a night with no cooking, "also" for side cooks made that day. Whenever a week is planned or a night changes, update week.json and run `bun tools-gen-week.ts .` so week.html and the front page carry the new week. A week's pages are not finished until the weekly menu shows them.
+- Labels for nights with no cooking stay plain ("Eating out", "Off duty"). Nothing about who is home or away goes on the site.
+- The weekly menu is where he checks ahead. When he asks for a tweak to a night, change that night's recipe page through its generator, never the weekly menu itself.
+
+## Leftovers he saved (the Captain, 11 Nov 2026)
+
+"I thought it was like fried grit cakes with the leftover grits. I have leftover grits."
+
+- When he saves a leftover for a later night, that night keeps using it. A later rewrite never drops it or swaps the dish without asking him first.
+- A question to him that decides what a later page says (is the leftover in the fridge?) stays open until he answers it. No page is rewritten on a guess, and the question goes back to him before the night, not on it.

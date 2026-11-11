@@ -1,0 +1,11 @@
+{
+ "title": "Louisiana week",
+ "days": [
+  { "date": "2026-11-08", "slug": "grillades-and-grits", "also": ["chicken-broth"] },
+  { "date": "2026-11-09", "slug": "chicken-andouille-gumbo" },
+  { "date": "2026-11-10", "label": "Eating out" },
+  { "date": "2026-11-11", "slug": "fried-grits-andouille-creole" },
+  { "date": "2026-11-12", "slug": "dirty-rice" },
+  { "date": "2026-11-13", "label": "Off duty" }
+ ]
+}
