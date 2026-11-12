@@ -20,8 +20,13 @@
   },
   {
    "id": "mains",
-   "name": "Mains & Pasta",
+   "name": "Mains",
    "line": "Dinner on the stove and in the oven"
+  },
+  {
+   "id": "pasta",
+   "name": "Pasta",
+   "line": "Salted water and sauces that hold"
   },
   {
    "id": "sauces",
@@ -319,7 +324,7 @@
    "name": "Shrimp scampi",
    "file": "shrimp-scampi.html",
    "sub": "Thirty minutes from water on, and the last fifteen are hands-on. Frozen shrimp need thawing before any of that, and the clock covers it. Set the time you want to eat and everything runs itself backward.",
-   "chapter": "mains",
+   "chapter": "pasta",
    "label": "PAN",
    "blurb": "30 min · linguine, wine, lemon",
    "meal": [
@@ -364,7 +369,7 @@
    "name": "Carbonara",
    "file": "carbonara.html",
    "sub": "Restaurant-silky Roman carbonara. The blender dissolves the cheese into the eggs before heat ever touches them, so the sauce cannot go gritty.",
-   "chapter": "mains",
+   "chapter": "pasta",
    "label": "PAN",
    "blurb": "25 min · blender emulsion · mayo method inside",
    "meal": [
@@ -407,7 +412,7 @@
    "name": "Sausage and antipasto pasta",
    "file": "sausage-antipasto-pasta.html",
    "sub": "Mild sausage, blistered artichokes and roasted red peppers, capers, and a sauce that physically cannot break. The pot that became a house method.",
-   "chapter": "mains",
+   "chapter": "pasta",
    "label": "PAN",
    "blurb": "aioli method · make-ahead sauce",
    "meal": [
@@ -454,7 +459,7 @@
    "name": "Baked bacon mac and cheese",
    "file": "baked-bacon-mac-and-cheese.html",
    "sub": "Velveeta does the stability, block cheese does the flavor. Built the night before; the clock below runs the reheat.",
-   "chapter": "mains",
+   "chapter": "pasta",
    "label": "OVEN",
    "blurb": "make-ahead · reheat clock · serves 8",
    "meal": [
