@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Build a cook</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./favicon.ico">
+<link rel="preload" href="./special-elite-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./cutive-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./karla-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./fonts.css">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="A Texan&rsquo;s Table">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F3EBDA">
+<style>
+:root{
+  --ground:#F3EBDA; --card:#FAF4E7; --ink:#33291F; --muted:#7A6A56; --rule:#D9C9AF;
+  --citrus:#A85C34; --citrus-bg:#F0DFD1; --brine:#7E7047; --brine-bg:#E8E3D0;
+  --shell:#6E4A2E; --shell-bg:#EADCC9; --field:#FFFCF5;
+  --sans:Karla,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"Cutive Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --stamp:"Special Elite","Courier New",Courier,monospace;
+}
+@media (prefers-color-scheme:dark){
+ :root{
+  --ground:#17130F; --card:#211C15; --ink:#F1E3CE; --muted:#A2937C; --rule:#3A3026;
+  --citrus:#D3814F; --citrus-bg:#2E2018; --brine:#A99A63; --brine-bg:#222014;
+  --shell:#C89B6E; --shell-bg:#2A2018; --field:#1B1610;
+ }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.45;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+.wrap{max-width:620px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left))}
+.back{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin:22px 0 0}
+h1{font-family:var(--stamp);font-size:clamp(23px,7.2vw,30px);line-height:1.16;letter-spacing:0.03em;text-transform:uppercase;font-weight:400;margin:10px 0 10px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 18px;max-width:34em}
+h2{font-family:var(--stamp);font-size:13px;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:26px 0 10px}
+
+.bar{position:sticky;top:0;z-index:5;background:var(--ground);border-bottom:1px solid var(--rule);padding:10px 0 12px;margin-bottom:4px}
+.controls{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.ctl{display:flex;flex-direction:column;gap:4px}
+.ctl label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-family:var(--mono)}
+input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:3px;padding:7px 9px;min-width:124px}
+.step{display:flex;align-items:center;gap:2px;background:var(--field);border:1px solid var(--rule);border-radius:3px;padding:3px}
+.step button{width:34px;height:34px;font-size:19px;line-height:1;border:0;background:transparent;color:var(--ink);border-radius:2px;cursor:pointer;font-family:var(--mono)}
+.step button:active{background:var(--rule)}
+.step span{min-width:26px;text-align:center;font-family:var(--mono);font-size:19px}
+.ghost{display:inline-block;border:1px solid var(--rule);background:transparent;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 11px;border-radius:3px;cursor:pointer;text-decoration:none;line-height:1.2}
+.ghost:active{background:var(--rule)}
+.ghost.go{border-color:var(--citrus);color:var(--citrus);background:var(--citrus-bg)}
+:focus-visible{outline:2px solid var(--brine);outline-offset:2px}
+
+#nowline{font-family:var(--mono);font-size:12.5px;line-height:1.5;color:var(--muted);margin-top:9px}
+#nowline b{color:var(--ink);font-weight:600}
+
+.card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:4px 14px;margin-bottom:8px}
+.grp{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);padding:14px 0 6px;border-bottom:1px solid var(--rule)}
+.item{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.item:last-child{border-bottom:0}
+.item input{width:21px;height:21px;margin:1px 0 0;accent-color:var(--citrus);flex:0 0 auto}
+.qty{font-family:var(--mono);font-size:14px;color:var(--citrus);min-width:64px;flex:0 0 auto;padding-top:1px}
+.nm{font-size:15px;line-height:1.35}
+.nm em{font-style:normal;color:var(--muted);font-size:13px;display:block}
+.on .nm,.on .qty{color:var(--muted);text-decoration:line-through}
+
+.row{display:flex;gap:11px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.row:last-child{border-bottom:0}
+.row input{width:21px;height:21px;margin:2px 0 0;accent-color:var(--citrus);flex:0 0 auto}
+.clock{font-family:var(--mono);font-size:14px;min-width:62px;flex:0 0 auto;color:var(--ink);padding-top:2px}
+.body{flex:1;min-width:0}
+.clock .day{display:block;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--citrus)}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;padding:2px 6px;border-radius:2px;margin-right:7px;vertical-align:1px;white-space:nowrap}
+.t-pot{background:var(--brine-bg);color:var(--brine)}
+.t-pan{background:var(--shell-bg);color:var(--shell)}
+.t-prep{background:var(--rule);color:var(--muted)}
+.t-serve{background:var(--citrus-bg);color:var(--citrus)}
+.t-fire{background:var(--citrus-bg);color:var(--citrus)}
+.t-oven{background:var(--shell-bg);color:var(--shell)}
+.t-jar{background:var(--brine-bg);color:var(--brine)}
+.t-fridge{background:var(--brine-bg);color:var(--brine)}
+.txt{font-size:15px;line-height:1.4}
+.usehd{display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--muted);margin:0 0 5px;line-height:1.9}
+.usehd .yu{white-space:nowrap}
+.uses{display:block;margin:0 0 8px;padding:5px 0 5px 10px;border-left:3px solid var(--citrus)}
+.ui{display:block;font-size:15px;line-height:1.35;padding:1px 0}
+.ui b{font-weight:700}
+.row.now{background:var(--brine-bg);margin:0 -14px;padding:13px 14px;border-radius:3px;border-bottom-color:transparent}
+.row.on .txt,.row.on .clock,.row.on .uses{color:var(--muted);text-decoration:line-through}
+.foot{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 8px}
+.note{color:var(--muted);font-size:13px;line-height:1.5;margin:18px 0 0}
+.note b{color:var(--ink)}
+.gap{display:block;font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--citrus);background:transparent;border:1px dashed var(--citrus);border-radius:2px;padding:9px 10px;margin-top:8px}
+.moved{display:none}
+.moved.on{display:block;font-family:var(--mono);font-size:12px;line-height:1.45;color:var(--brine);background:var(--brine-bg);border-radius:2px;padding:8px 10px;margin-top:9px}
+.moved b{color:var(--brine);font-weight:700}
+.card.notes{padding:13px 14px}
+#notes{display:block;width:100%;min-height:132px;resize:vertical;background:transparent;border:0;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;padding:0}
+#notes:focus{outline:none}
+#notes::placeholder{color:var(--muted)}
+.card.check{padding:2px 12px}
+.ck{display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--rule);cursor:pointer;font-size:12px;line-height:1.15;padding:0}
+.ck:last-child{border-bottom:0}
+.ck input{width:14px;height:14px;margin:0;accent-color:var(--citrus);flex:0 0 auto}
+.ck .ct{font-family:var(--mono);font-size:11px;min-width:52px;flex:0 0 auto}
+.ck .ct .cday{display:block;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--citrus);padding-top:2px}
+.ck .cd{font-family:var(--mono);font-size:9px;letter-spacing:0.08em;min-width:36px;flex:0 0 auto}
+.ck.on .cs,.ck.on .ct,.ck.on .cd{color:var(--muted);text-decoration:line-through}
+.ck.now{background:var(--brine-bg);margin:0 -12px;padding:0 12px}
+.saved{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);align-self:center}
+
+/* the dishes in this cook, and the list to pick from */
+.dish{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:0.13em;padding:1px 5px;border-radius:2px;border:1px solid currentColor;margin-right:7px;vertical-align:1px;white-space:nowrap}
+.k0{color:var(--citrus)} .k1{color:var(--brine)} .k2{color:var(--shell)} .k3{color:var(--ink)} .k4{color:var(--muted)} .k5{color:var(--citrus)}
+.drow{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--rule)}
+.drow:last-child{border-bottom:0}
+.drow .dish{flex:0 0 auto;margin:3px 0 0;min-width:50px;text-align:center}
+.drow .dn{flex:1;min-width:0}
+.drow .dnm{display:block;font-family:var(--stamp);font-size:16px;letter-spacing:0.02em;line-height:1.25}
+.drow .meta{display:block;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:3px}
+.drow .hint{display:block;font-size:13px;line-height:1.4;margin-top:7px}
+.drow .acts{display:flex;flex-direction:column;gap:6px;flex:0 0 auto}
+.mini{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:transparent;border:1px solid var(--rule);border-radius:2px;padding:6px 8px;cursor:pointer;text-decoration:none;line-height:1;text-align:center}
+.mini:active{background:var(--rule)}
+.hint .mini{display:inline-block;margin-top:6px;border-color:var(--citrus);color:var(--citrus)}
+.pick{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--rule);padding:13px 2px;color:inherit;font:inherit;min-height:56px;cursor:pointer;text-decoration:none}
+.pick:active{background:var(--card)}
+.pick .pn{display:block;font-family:var(--stamp);font-size:16px;letter-spacing:0.02em;line-height:1.25}
+.pick .meta{display:block;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:3px}
+.pick .arw{margin-left:auto;color:var(--muted);font-family:var(--mono);font-size:17px}
+.dot{flex:0 0 auto;align-self:flex-start;margin-top:2px;display:inline-flex;align-items:center;justify-content:center;min-width:50px;padding:4px 6px;border-radius:2px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;background:var(--rule);color:var(--muted)}
+.dot.rd{background:var(--citrus-bg);color:var(--citrus)}
+.empty{color:var(--muted);font-size:14px;padding:12px 0}
+
+/* the plan: when the work falls and how much of it is hands-on */
+.card.plan{padding:4px 14px}
+.pl{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--rule);line-height:1.3}
+.pl:last-child{border-bottom:0}
+.pl .pw{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--citrus);min-width:104px;flex:0 0 auto}
+.pl .pt{flex:1;min-width:0;font-family:var(--mono);font-size:14px}
+.pl .ph{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.cap{font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--muted);margin:0 0 8px}
+.warn,.info{font-size:14px;line-height:1.4;border-left:3px solid var(--citrus);background:var(--citrus-bg);padding:8px 10px;margin:8px 0;border-radius:0 3px 3px 0}
+.info{border-left-color:var(--brine);background:var(--brine-bg)}
+.info .ghost{margin-top:8px}
+details.dnotes{border-top:1px solid var(--rule);padding:12px 0 2px}
+details.dnotes summary{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);cursor:pointer}
+details.dnotes .note{margin:10px 0 0}
+details.dnotes .mini{display:inline-block;margin-top:12px}
+[hidden]{display:none !important}
+
+/* Desktop: ingredients in a sticky left column, steps on the right. Below 1024px nothing changes. */
+@media (min-width:1024px){
+ .wrap{max-width:1180px;padding:0 32px}
+ .top{max-width:620px}
+ .layout{display:grid;grid-template-columns:minmax(330px,400px) minmax(0,1fr);gap:0 44px;align-items:start}
+ .side{position:sticky;top:calc(var(--barh,8px) + 8px);max-height:calc(100vh - var(--barh,8px) - 16px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding-bottom:8px}
+ .side h2:first-child,.main h2:first-child{margin-top:20px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="./">&lsaquo; A Texan&rsquo;s Table</a>
+  <h1 id="title">Build a cook</h1>
+  <p class="sub" id="sub"></p>
+
+  <div class="top">
+  <div id="dishwrap" hidden>
+    <h2>In this cook</h2>
+    <div class="card" id="dishes"></div>
+    <div class="foot">
+      <button class="ghost" id="addBtn" aria-expanded="false">Add a dish</button>
+      <button class="ghost" id="newBtn">New cook</button>
+    </div>
+  </div>
+  <div id="picker"></div>
+  </div>
+
+  <div id="cook" hidden>
+  <div class="bar">
+    <div class="controls">
+      <div class="ctl">
+        <label for="serve">Eating at</label>
+        <input type="time" id="serve" value="18:30">
+      </div>
+      <div class="ctl" id="svctl">
+        <label for="dec">Servings</label>
+        <div class="step">
+          <button id="dec" aria-label="Fewer servings">&minus;</button>
+          <span id="sv">3</span>
+          <button id="inc" aria-label="More servings">+</button>
+        </div>
+      </div>
+      <button class="ghost" id="now">Start now</button>
+    </div>
+    <div id="nowline"></div>
+    <div class="moved" id="moved"></div>
+  </div>
+
+  <h2>The plan</h2>
+  <div class="card plan" id="plan"></div>
+  <div id="planmsg"></div>
+
+  <h2>Checklist</h2>
+  <div class="card check" id="checklist"></div>
+
+  <div class="layout">
+  <div class="side">
+  <h2>Ingredients</h2>
+  <div class="card" id="ing"></div>
+  <div class="foot">
+    <button class="ghost" id="allIng">Check all</button>
+    <button class="ghost" id="clrIng">Clear</button>
+  </div>
+  </div>
+  <div class="main">
+
+  <h2>The cook</h2>
+  <div class="card" id="steps"></div>
+  <div class="foot">
+    <button class="ghost" id="clrAll">Reset everything</button>
+  </div>
+
+  <h2>Notes</h2>
+  <div class="card notes">
+    <textarea id="notes" placeholder="What happened this cook. Times, changes, what to fix next time."></textarea>
+  </div>
+  <div class="foot">
+    <button class="ghost" id="clrNotes">Clear notes</button>
+    <span class="saved" id="notesSaved"></span>
+  </div>
+
+  <h2>Each dish&rsquo;s own notes</h2>
+  <div id="dishnotes"></div>
+  </div>
+  </div>
+  </div>
+
+  <p class="note" id="about">Every dish in a cook is read straight from its own recipe page, so a change to a recipe shows here at once. All the steps go on one clock, timed at an easy pace, and no two hands-on steps are ever set for the same minute.</p>
+</div>
+
+<script>
+var COOK = {"parts":[{"slug":"rice-cooker-rice","name":"Rice cooker rice","mid":"rice","role":"side","tag":"RICE","goes":["andouille-creole-sauce","steamed-green-beans"],"line":"Rice cooker · washed, water to the line · 45 minutes"},{"slug":"fried-grit-cakes","name":"Fried grit cakes","mid":"fried grit cakes","role":"main","tag":"CAKES","goes":["andouille-creole-sauce","steamed-green-beans"],"line":"Leftover cheese grits · cast iron · 5 minutes a side at 375°F"},{"slug":"andouille-creole-sauce","name":"Andouille Creole sauce","mid":"andouille Creole sauce","role":"sauce","tag":"SAUCE","goes":["fried-grit-cakes","rice-cooker-rice","cheese-grits","steamed-green-beans"],"line":"Slow cooked all day in the Instant Pot · over grit cakes, rice or cheese grits"},{"slug":"steamed-green-beans","name":"Steamed green beans","mid":"green beans","role":"side","tag":"BEANS","goes":["fried-grit-cakes","andouille-creole-sauce","rice-cooker-rice","cheese-grits"],"line":"Frozen green beans · steamed from frozen, 7 minutes · butter"},{"slug":"cheese-grits","name":"Cheese grits","mid":"cheese grits","role":"side","tag":"GRITS","goes":["andouille-creole-sauce","fried-grit-cakes","steamed-green-beans"],"line":"Water and powdered chicken stock · butter and sharp cheddar · sets firm for grit cakes"}],"ready":[{"r":["fried-grit-cakes","andouille-creole-sauce"],"name":"Fried grit cakes with andouille Creole sauce","line":"The sauce on all day, one pan of cakes from 6:00"},{"r":["andouille-creole-sauce","rice-cooker-rice","steamed-green-beans"],"name":"Andouille Creole sauce with rice and green beans","line":"The same sauce over rice, green beans on the side"},{"r":["andouille-creole-sauce","cheese-grits"],"name":"Andouille Creole sauce with cheese grits","line":"The same sauce over cheese grits made that night"}]};
+
+var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
+            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], rice:["RICE COOKER","t-jar"], away:["AWAY","t-prep"], store:["STORE","t-prep"], iron:["CAST IRON","t-pan"], dutch:["DUTCH OVEN","t-pot"], bigpot:["BIG POT","t-pot"], sauce:["SAUCEPAN","t-pan"], grill:["GRILL","t-fire"], smoker:["SMOKER","t-fire"]};
+var ROLES = [["main","Mains"],["sauce","Sauces"],["side","Sides"]];
+var NAMEORDER = {main:0, sauce:1, side:2}, PLATEORDER = {main:0, side:1, sauce:2};
+var BY = {}; COOK.parts.forEach(function(p){ BY[p.slug] = p; });
+var EVE = "18:00";       /* the first evening step is at 6:00 or later (RECIPE-RULES.md, weeknights on his real clock) */
+var CAP = 30;            /* hands-on minutes a weeknight evening has room for */
+
+var sel = [];            /* the dishes in this cook, in the order they were picked */
+var PAGES = {};          /* slug -> that dish's page as read, or {fail: why} */
+var KEY = "";            /* where this set of dishes keeps its ticks, times and notes */
+var PARTS = [], ING = [], STEPS = [], TIMED = true, LONG = false, FITS = true, MSG = {warn: [], info: []};
+var state = {servings: 0, serve: "18:30", checked: {}, notes: "", planned: null};
+var pickerOpen = false, lastLoad = 0;
+
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function plain(html){ var t = document.createElement("textarea"); t.innerHTML = String(html).replace(/<[^>]*>/g, ""); return t.value.replace(/\s+/g, " ").trim(); }
+function listOf(a){ return a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]; }
+function mins(n){ return n + (n === 1 ? " minute" : " minutes"); }
+
+/* ==== PLAN ENGINE: several dishes on one clock, one pair of hands ====
+   Every dish ("part") comes with its own steps, timed back from the moment it is ready:
+     at    minutes before the dish is ready that the step starts
+     d     minutes of hands-on work the step takes, at an easy pace (0 for a step that is only a marker)
+     flex  the wait after this step may run up to this many minutes longer (water kept at the boil, a pan kept hot)
+     loose the step is a free-standing job (a stir, chopping the garnish) that may move this many minutes either way
+   A dish also says how long it can sit once it is ready (hold). The engine lines the dishes up on one eating time so
+   that no two hands-on steps overlap and no single pan or pot is asked for twice, keeping the evening as short as it can. */
+var EXCL = {iron: "the cast iron", dutch: "the Dutch oven", cooker: "the Instant Pot", rice: "the rice cooker", bigpot: "the big pot"};
+var KEEPS = {cooker: 1, rice: 1};   /* these hold the food until dinner, so they stay taken until then */
+var EVENING = 300;                  /* steps inside this many minutes of eating count as the evening's work */
+var REACH = 30;                     /* how far a dish is slid toward its hold limit while looking for a fit */
+var BREATH = 0;                     /* minutes kept clear between hands-on steps of two different dishes. 0 is back to back, which is how
+                                       the hand-built pages run. Raising it also needs the loose windows widened, or the last jobs before
+                                       the plate stop fitting and a dish is made to wait. */
+
+function hit(a, b){ return a[0] > b[1] && b[0] > a[1]; }   /* [start, end] in minutes before eating, start > end */
+/* two hands-on steps: steps of different dishes also keep BREATH minutes between them */
+function busyHit(a, b){ var g = (a[2] !== b[2]) ? BREATH : 0; return a[0] + g > b[1] && b[0] + g > a[1]; }
+
+function partInfo(p, pi){
+  var st = p.steps.slice().sort(function(a, b){ return b.at - a.at; });
+  var chain = [], loose = [], vars = [], k;
+  for(k = 0; k < st.length; k++){ if(st[k].loose) loose.push(st[k]); else chain.push(st[k]); }
+  for(k = 0; k < chain.length - 1; k++){ if(chain[k].flex > 0) vars.push(k); }
+  /* each loose step rides with the next fixed step after it (or with the dish's finish) */
+  for(k = 0; k < loose.length; k++){
+    var L = loose[k], nx = -1, pv = -1;
+    for(var c = 0; c < chain.length; c++){ if(chain[c].at < L.at && nx < 0) nx = c; if(chain[c].at > L.at) pv = c; }
+    L._nx = nx; L._pv = pv;
+  }
+  return {p: p, pi: pi, chain: chain, loose: loose, vars: vars, hold: p.hold || 0, forced: (typeof p.forced === "number") ? p.forced : null};
+}
+
+/* every way of stretching the dish's flexible waits, cheapest first */
+function stretches(I){
+  var out = [[]], v, n, i, j;
+  for(v = 0; v < I.vars.length; v++){
+    var max = Math.round(I.chain[I.vars[v]].flex), next = [];
+    for(i = 0; i < out.length; i++){ for(j = 0; j <= max; j++) next.push(out[i].concat([j])); }
+    out = next;
+  }
+  return out.map(function(x){ n = 0; for(i = 0; i < x.length; i++) n += x[i]; return {x: x, sum: n}; }).sort(function(a, b){ return a.sum - b.sum; });
+}
+
+/* where every fixed step of a dish lands for one choice of slide (s) and stretches (x) */
+function place(I, s, x){
+  var pos = [], k, v, add;
+  for(k = 0; k < I.chain.length; k++){
+    add = 0;
+    for(v = 0; v < I.vars.length; v++){ if(I.vars[v] >= k) add += x[v]; }
+    pos.push(I.chain[k].at + s + add);
+  }
+  var busy = [], lanes = {}, E = 0;
+  for(k = 0; k < I.chain.length; k++){
+    var c = I.chain[k], d = c.d || 0;
+    if(d > 0) busy.push([pos[k], pos[k] - d, I.pi, c.id]);
+    if(c.at < EVENING && pos[k] > E) E = pos[k];
+    span(lanes, c.lane, pos[k], pos[k] - d);
+  }
+  for(k = 0; k < I.loose.length; k++){
+    var L = I.loose[k], n = nominal(I, L, s, pos);
+    span(lanes, L.lane, n, n - (L.d || 0));
+  }
+  for(var ln in lanes){ if(KEEPS[ln]) lanes[ln][1] = I.forced !== null ? Math.min(lanes[ln][1], s) : 0; }
+  return {s: s, x: x, pos: pos, busy: busy, lanes: lanes, E: E};
+}
+function span(lanes, lane, hi, lo){
+  if(!EXCL[lane]) return;
+  if(!lanes[lane]) lanes[lane] = [hi, lo];
+  else { if(hi > lanes[lane][0]) lanes[lane][0] = hi; if(lo < lanes[lane][1]) lanes[lane][1] = lo; }
+}
+function nominal(I, L, s, pos){
+  if(L._nx >= 0) return L.at + (pos[L._nx] - I.chain[L._nx].at);
+  return L.at + s;
+}
+
+function clashes(cfg, placed){
+  var i, j, b;
+  for(i = 0; i < placed.length; i++){
+    var q = placed[i];
+    for(j = 0; j < cfg.busy.length; j++){ for(b = 0; b < q.busy.length; b++){ if(busyHit(cfg.busy[j], q.busy[b])) return true; } }
+    for(var ln in cfg.lanes){ if(q.lanes[ln] && hit(cfg.lanes[ln], q.lanes[ln])) return true; }
+  }
+  return false;
+}
+
+/* the free-standing jobs go in last, each as near its own time as the gaps allow */
+function placeLoose(infos, cfgs){
+  var base = [], jobs = [], i, k;
+  for(i = 0; i < cfgs.length; i++){ for(k = 0; k < cfgs[i].busy.length; k++) base.push(cfgs[i].busy[k]); }
+  for(i = 0; i < infos.length; i++){
+    var I = infos[i], cfg = cfgs[i];
+    for(k = 0; k < I.loose.length; k++){
+      var L = I.loose[k];
+      jobs.push({I: I, L: L, cfg: cfg, nom: nominal(I, L, cfg.s, cfg.pos),
+        top: L._pv >= 0 ? cfg.pos[L._pv] - (I.chain[L._pv].d || 0) : Infinity,
+        bot: L._nx >= 0 ? cfg.pos[L._nx] : cfg.s});
+    }
+  }
+  if(!jobs.length) return {at: [], E: 0, drift: 0};
+  /* two orders: the jobs with the least room first, or the longest jobs first; whichever lands the shorter evening */
+  var tight = jobs.slice().sort(function(a, b){ return (a.L.loose - b.L.loose) || ((b.L.d || 0) - (a.L.d || 0)) || (a.nom - b.nom); });
+  var big = jobs.slice().sort(function(a, b){ return ((b.L.d || 0) - (a.L.d || 0)) || (a.L.loose - b.L.loose) || (a.nom - b.nom); });
+  var A = fitLoose(tight, base), B = fitLoose(big, base);
+  if(!A) return B;
+  if(!B) return A;
+  return (B.E < A.E || (B.E === A.E && B.drift < A.drift)) ? B : A;
+}
+function fitLoose(jobs, base){
+  var busy = base.slice(), out = [], E = 0, drift = 0, i, k;
+  for(i = 0; i < jobs.length; i++){
+    var J = jobs[i], d = J.L.d || 0, got = null, reach = Math.round(J.L.loose);
+    for(var step = 0; step <= reach && got === null; step++){
+      var tries = step === 0 ? [J.nom] : [J.nom - step, J.nom + step];   /* later first, then earlier */
+      for(var t = 0; t < tries.length && got === null; t++){
+        var at = tries[t];
+        if(at > J.top || at - d < J.bot) continue;
+        var iv = [at, at - d, J.I.pi], free = true;
+        if(d > 0){ for(k = 0; k < busy.length; k++){ if(busyHit(iv, busy[k])){ free = false; break; } } }
+        if(free) got = at;
+      }
+    }
+    if(got === null) return null;
+    if(d > 0) busy.push([got, got - d, J.I.pi, J.L.id]);
+    out.push({pi: J.I.pi, id: J.L.id, at: got});
+    if(J.L.at < EVENING && got > E) E = got;
+    drift += Math.abs(got - J.nom);
+  }
+  return {at: out, E: E, drift: drift};
+}
+
+function better(a, b){   /* a beats b: less waiting past the hold, then the shorter evening, then the least sliding about */
+  if(!b) return true;
+  if(a.over !== b.over) return a.over < b.over;
+  if(a.E !== b.E) return a.E < b.E;
+  if(a.cost !== b.cost) return a.cost < b.cost;
+  return a.drift < b.drift;
+}
+
+function planCook(parts){
+  var infos = parts.map(partInfo);
+  /* the dish that waits worst goes on the clock first and keeps its own timing */
+  var order = infos.slice().sort(function(a, b){
+    var fa = a.forced !== null ? 1 : 0, fb = b.forced !== null ? 1 : 0;
+    return (fa - fb) || (a.hold - b.hold) || (a.pi - b.pi);
+  });
+  var best = null, nodes = 0, LIMIT = 40000;
+
+  function search(extra){
+    var sx = order.map(stretches);
+    function walk(level, placed, over, cost, E){
+      if(++nodes > LIMIT) return false;
+      if(level === order.length){
+        var byPi = [], cf = [], i;
+        for(i = 0; i < order.length; i++){ byPi[order[i].pi] = placed[i]; }
+        for(i = 0; i < infos.length; i++) cf.push(byPi[i]);
+        var lo = placeLoose(infos, cf);
+        if(!lo) return false;
+        var cand = {over: over, E: Math.max(E, lo.E), cost: cost, drift: lo.drift, cfgs: cf, loose: lo.at};
+        if(better(cand, best)) best = cand;
+        return true;
+      }
+      var I = order[level], any = false, far = true, k;
+      for(k = 0; k < I.chain.length; k++){ if(I.chain[k].at < EVENING) far = false; }
+      var sMin = I.forced !== null ? I.forced : 0;
+      var sMax = I.forced !== null ? I.forced : Math.min(I.hold, REACH) + extra;
+      for(var xi = 0; xi < sx[level].length; xi++){
+        var X = sx[level][xi];
+        for(var s = sMin; s <= sMax; s++){
+          var ov = I.forced !== null ? 0 : Math.max(0, s - I.hold);
+          var c2 = cost + (s - sMin) + X.sum;
+          var cfg = place(I, s, X.x);
+          var E2 = Math.max(E, cfg.E);
+          if(best && (over + ov > best.over || (over + ov === best.over && (E2 > best.E || (E2 === best.E && c2 >= best.cost))))) break;
+          if(clashes(cfg, placed)) continue;
+          if(walk(level + 1, placed.concat([cfg]), over + ov, c2, E2)) any = true;
+          if(far) break;   /* a dish with no evening work gains nothing from sliding */
+        }
+      }
+      return any;
+    }
+    walk(0, [], 0, 0, 0);
+  }
+
+  search(0);
+  var pass = 1;
+  if(!best){ search(45); pass = 2; }
+  var res = {ok: !!best, pass: pass, pos: [], shift: [], over: [], clash: [], lane: [], E: 0};
+  var i, k;
+  if(best){
+    for(i = 0; i < infos.length; i++){
+      var m = {}, cfg = best.cfgs[i];
+      for(k = 0; k < infos[i].chain.length; k++) m[infos[i].chain[k].id] = cfg.pos[k];
+      res.pos.push(m); res.shift.push(cfg.s);
+      if(infos[i].forced === null && cfg.s > infos[i].hold) res.over.push({pi: i, by: cfg.s - infos[i].hold, wait: cfg.s});
+    }
+    for(k = 0; k < best.loose.length; k++) res.pos[best.loose[k].pi][best.loose[k].id] = best.loose[k].at;
+    res.E = best.E;
+    return res;
+  }
+  /* nothing fits: every dish keeps its own timing and the page says where two things land at once */
+  res.pass = 3;
+  var all = [], cfgs = [];
+  for(i = 0; i < infos.length; i++){
+    var I = infos[i], s0 = I.forced !== null ? I.forced : 0, c0 = place(I, s0, I.vars.map(function(){ return 0; })), mm = {};
+    for(k = 0; k < I.chain.length; k++){ mm[I.chain[k].id] = c0.pos[k]; all.push({pi: i, id: I.chain[k].id, iv: [c0.pos[k], c0.pos[k] - (I.chain[k].d || 0)], d: I.chain[k].d || 0}); }
+    for(k = 0; k < I.loose.length; k++){ var n = nominal(I, I.loose[k], s0, c0.pos); mm[I.loose[k].id] = n; all.push({pi: i, id: I.loose[k].id, iv: [n, n - (I.loose[k].d || 0)], d: I.loose[k].d || 0}); }
+    res.pos.push(mm); res.shift.push(s0); cfgs.push(c0);
+  }
+  for(i = 0; i < all.length; i++){ for(k = i + 1; k < all.length; k++){
+    if(all[i].pi !== all[k].pi && all[i].d > 0 && all[k].d > 0 && hit(all[i].iv, all[k].iv)) res.clash.push({a: all[i], b: all[k]});
+  } }
+  for(i = 0; i < cfgs.length; i++){ for(k = i + 1; k < cfgs.length; k++){
+    for(var ln in cfgs[i].lanes){ if(cfgs[k].lanes[ln] && hit(cfgs[i].lanes[ln], cfgs[k].lanes[ln])) res.lane.push({lane: ln, a: i, b: k}); }
+  } }
+  for(i = 0; i < all.length; i++){ if(all[i].iv[0] < EVENING && all[i].iv[0] > res.E) res.E = all[i].iv[0]; }
+  return res;
+}
+/* ==== END PLAN ENGINE ==== */
+
+/* ---------- reading a dish's page ---------- */
+function parsePage(html){
+  var o = {}, m;
+  m = /<h1>([\s\S]*?)<\/h1>/.exec(html); o.name = m ? plain(m[1]) : "";
+  m = /var ING = (\[[\s\S]*?\]);\r?\n/.exec(html); o.ING = JSON.parse(m[1]);
+  m = /var STEPS = (\[[\s\S]*?\]);\r?\n/.exec(html); o.STEPS = JSON.parse(m[1]);
+  m = /var SERV = (.*?);\r?\n/.exec(html); o.SERV = m ? JSON.parse(m[1]) : null;
+  m = /var COMBO = (\{.*\});\r?\n/.exec(html); o.COMBO = m ? JSON.parse(m[1]) : null;
+  m = /<label for="dec">([^<]*)<\/label>/.exec(html); o.unit = m ? plain(m[1]) : "Servings";
+  o.notes = []; var re = /<p class="note">([\s\S]*?)<\/p>/g; while((m = re.exec(html))) o.notes.push(m[1]);
+  /* a page can join a cook when it says how it combines and every step says how long the hands are busy */
+  var n = o.STEPS.length, last = o.STEPS[n - 1];
+  if(!o.COMBO || !n || !last || last.lane !== "serve" || last.at !== 0) throw new Error("shape");
+  for(var i = 0; i < n - 1; i++){ if(typeof o.STEPS[i].at !== "number" || typeof o.STEPS[i].d !== "number") throw new Error("shape"); }
+  return o;
+}
+function fetchPage(slug){
+  /* Asked for as a page, so the service worker goes to the network first and a fresh publish shows at once. */
+  return fetch("./" + slug + ".html", {cache: "no-store", headers: {"accept": "text/html"}})
+    .then(function(r){ if(!r.ok) throw new Error("http " + r.status); return r.text(); })
+    .then(function(html){
+      try{ PAGES[slug] = parsePage(html); }
+      catch(e){ PAGES[slug] = {fail: "shape"}; }
+    })
+    .catch(function(){ PAGES[slug] = {fail: "read"}; });
+}
+
+/* ---------- which dishes, and where their ticks live ---------- */
+function readHash(){
+  var m = /(?:^|[#&])r=([^&]*)/.exec(location.hash || ""), out = [], seen = {};
+  if(m) decodeURIComponent(m[1]).split(",").forEach(function(s){ if(/^[a-z0-9-]+$/.test(s) && !seen[s] && out.length < 6){ seen[s] = 1; out.push(s); } });
+  return out;
+}
+function hashOf(list){ return list.length ? "#r=" + list.join(",") : "#"; }
+function keyOf(list){ return "kitchen:cook:" + list.slice().sort().join("+"); }
+function setDishes(list, viaHash){
+  var before = state, had = sel.length;
+  sel = list;
+  KEY = keyOf(sel);
+  if(!viaHash){ try{ history.replaceState(null, "", hashOf(sel)); }catch(e){ location.hash = hashOf(sel); } }
+  /* a new set of dishes starts from what was set on the last one: same eating time, same servings, same ticks */
+  state = {servings: had ? before.servings : 0, serve: had ? before.serve : "18:30", checked: {}, notes: "", planned: null};
+  if(had){ for(var k in before.checked){ if(before.checked[k]) state.checked[k] = true; } }
+  try{
+    var raw = sel.length ? window.localStorage.getItem(KEY) : null;
+    if(raw){
+      var v = JSON.parse(raw);
+      state = {servings: v.servings || 0, serve: v.serve || "18:30", checked: v.checked || {}, notes: typeof v.notes === "string" ? v.notes : "", planned: v.planned || null};
+    }
+    if(sel.length) window.localStorage.setItem("kitchen:cook:last", sel.join(","));
+  }catch(e){}
+  pickerOpen = false;
+  sync();
+}
+function save(){
+  if(!sel.length) return;
+  try{ window.localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+}
+function sync(){
+  var need = sel.filter(function(s){ return !PAGES[s]; });
+  renderDishes(); renderPicker();
+  if(!need.length){ build(); return; }
+  lastLoad = Date.now();
+  var want = sel.join(",");
+  Promise.all(need.map(fetchPage)).then(function(){ if(sel.join(",") === want) build(); });
+}
+
+/* ---------- names ---------- */
+function nameOf(list){
+  /* the main first, then the sauce, then the sides: "Fried grit cakes with andouille Creole sauce and green beans" */
+  var ps = list.filter(function(x){ return x && x.name; }).slice().sort(function(a, b){ return (NAMEORDER[a.role] || 0) - (NAMEORDER[b.role] || 0); });
+  if(!ps.length) return "Build a cook";
+  var rest = ps.slice(1).map(function(x){ return x.mid || x.name; });
+  return ps[0].name + (rest.length ? " with " + listOf(rest) : "");
+}
+function metaOf(slug){ var p = BY[slug]; return p ? p : {slug: slug, name: slug, mid: slug, role: "side", tag: "DISH", goes: []}; }
+
+/* ---------- amounts: the same arithmetic as the recipe pages, with each dish at its own servings ---------- */
+function frac(n){
+  if(n === 0) return "0";
+  var w = Math.floor(n), r = n - w, best = "", d = 1;
+  var map = [[0.125,"1/8"],[0.25,"1/4"],[0.333,"1/3"],[0.375,"3/8"],[0.5,"1/2"],[0.625,"5/8"],[0.667,"2/3"],[0.75,"3/4"],[0.875,"7/8"]];
+  if(r > 0.02){
+    for(var i=0;i<map.length;i++){ var diff = Math.abs(r-map[i][0]); if(diff < d){ d = diff; best = map[i][1]; } }
+  }
+  if(!best) return String(w);
+  return w ? w + " " + best : best;
+}
+function amount(it, part){
+  if(it.fixed) return it.fixed;
+  if(it.by) return it.by[it._sv] || it.by[it._base];
+  var raw = it.per * it._sv;
+  if(part){
+    var whole = Math.max(it.step || 0.25, Math.round(raw / (it.step || 0.25)) * (it.step || 0.25));
+    raw = whole * part;
+  }
+  var s = it.step || 0.25;
+  var v = part ? Math.round(raw * 1000) / 1000 : Math.max(s, it.min || 0, Math.round(raw / s) * s);
+  v = Math.round(v * 1000) / 1000;
+  var txt = it.metric ? String(v) : frac(v);
+  if(it.unit){
+    var u = it.unit;
+    if(u === "tbsp" && v >= 4 && Math.abs(v/4 - Math.round(v/4)) < 1e-6){ v = v/16; txt = frac(v); u = "cup"; }
+    else if(u === "tbsp" && Math.abs(v*2 - Math.round(v*2)) > 1e-6){ v = v*3; txt = frac(v); u = "tsp"; }
+    else if(u === "cup" && v < 0.5 && Math.abs(v*4 - Math.round(v*4)) > 1e-6){ v = v*16; txt = frac(v); u = "tbsp"; }
+    if(u === "cup" && v > 1) u = "cups";
+    return txt + " " + u;
+  }
+  var nm = (v > 1 && it.plural) ? it.plural : it.name;
+  return txt + "|" + nm;
+}
+function label(it, part){
+  var a = String(amount(it, part));
+  if(a.indexOf("|") > -1){ var p = a.split("|"); return {qty:p[0], name:p[1]}; }
+  return {qty:a, name:it.name};
+}
+function byId(id){ for(var i=0;i<ING.length;i++){ if(ING[i].id === id) return ING[i]; } return null; }
+
+function pad2(n){ return (n < 10 ? "0" : "") + n; }
+/* A cook that starts the day before: once today's dinner time has passed by
+   25 minutes, Eating at means tomorrow and the night-before steps are tonight. */
+function serveDate(){
+  var d = dateOfHM(state.serve);
+  if(LONG && Date.now() > d.getTime() + 25*60000) d = new Date(d.getTime() + 86400000);
+  return d;
+}
+function dayOf(off){
+  var w = dayWord(off);
+  return w ? '<span class="day">' + w + '</span>' : "";
+}
+/* Any step more than 12 hours before serving, or on another day, says which day, counted back from the serve time. */
+function dayWord(off){
+  var c = clockOf(off), s = serveDate();
+  if(off < 720 && c.toDateString() === s.toDateString()) return "";
+  var a = new Date(c.getTime()), b = new Date(s.getTime());
+  a.setHours(0,0,0,0); b.setHours(0,0,0,0);
+  var n = Math.round((b - a) / 86400000), h = c.getHours();
+  var part = h < 12 ? "morning" : (h < 17 ? "afternoon" : "night");
+  if(n <= 0) return part === "night" ? "tonight" : "this " + part;
+  if(n === 1) return part === "afternoon" ? "day before" : part + " before";
+  return n + " days before";
+}
+function whenOf(off){
+  var w = dayWord(off);
+  return (w ? w.charAt(0).toUpperCase() + w.slice(1) + ", " : "") + hhmm(clockOf(off));
+}
+function dateOfHM(hm){
+  var p = (hm || "18:30").split(":");
+  var d = new Date();
+  d.setHours(parseInt(p[0],10), parseInt(p[1],10), 0, 0);
+  return d;
+}
+function clockOf(off){ return new Date(serveDate().getTime() - off*60000); }
+function hhmm(d){
+  var h = d.getHours(), m = d.getMinutes(), ap = h >= 12 ? "pm" : "am";
+  h = h % 12; if(h === 0) h = 12;
+  return h + ":" + (m < 10 ? "0" + m : m) + " " + ap;
+}
+
+/* One line per ingredient: lines with the same name merge into one total, still scaled (RECIPE-RULES.md).
+   Across dishes the split says which dish each share is for. */
+function qParse(q){
+  var m = /^(?:(\d+) )?(?:(\d+)\/(\d+)|(\d+(?:\.\d+)?))(?: (tsp|tbsp|cups?|lb|oz))?$/.exec(String(q).replace(/^about /, ""));
+  if(!m) return null;
+  return {n: (m[1] ? +m[1] : 0) + (m[2] ? m[2] / m[3] : 0) + (m[4] ? +m[4] : 0), u: m[5] || ""};
+}
+function qFrac(v){
+  var w = Math.floor(v + 1e-9), r = v - w, map = [[0.125,"1/8"],[0.25,"1/4"],[0.333,"1/3"],[0.375,"3/8"],[0.5,"1/2"],[0.625,"5/8"],[0.667,"2/3"],[0.75,"3/4"],[0.875,"7/8"],[1,""]], best = "", d = 1;
+  if(r < 0.03) return String(w);
+  for(var i=0;i<map.length;i++){ var x = Math.abs(r - map[i][0]); if(x < d){ d = x; best = map[i][1]; } }
+  if(best === ""){ w += 1; return String(w); }
+  return w ? w + " " + best : best;
+}
+function mergeParts(parts){
+  var V = {tsp:1, tbsp:3, cup:48, cups:48}, sum = 0, kind = null, bigU = "", big = -1, i;
+  for(i=0;i<parts.length;i++){
+    var p = qParse(parts[i].l.qty);
+    if(!p){ kind = "x"; break; }
+    var k = V[p.u] ? "vol" : p.u, base = V[p.u] ? p.n * V[p.u] : p.n;
+    if(kind === null) kind = k; else if(kind !== k){ kind = "x"; break; }
+    if(base > big){ big = base; bigU = p.u; }
+    sum += base;
+  }
+  var it = parts[0].it;
+  if(kind === "x"){
+    var q = []; for(i=0;i<parts.length;i++) q.push(parts[i].l.qty);
+    return {qty: q.join(" + "), name: parts[0].l.name};
+  }
+  if(kind === "vol"){
+    var v = sum / V[bigU], u = bigU === "cups" ? "cup" : bigU, r8 = Math.abs(v * 8 - Math.round(v * 8)) / 8, r3 = Math.abs(v * 3 - Math.round(v * 3)) / 3;
+    if(Math.min(r8, r3) > 0.02){ var q2 = []; for(i=0;i<parts.length;i++) q2.push(parts[i].l.qty); return {qty: q2.join(" + "), name: it.name}; }
+    if(u === "cup" && v > 1) u = "cups";
+    return {qty: qFrac(v) + " " + u, name: it.name};
+  }
+  return {qty: qFrac(sum) + (kind ? " " + kind : ""), name: (sum > 1 && it.plural) ? it.plural : it.name};
+}
+function splitWords(parts){
+  var w = [], dishes = {}, n = 0, i;
+  for(i=0;i<parts.length;i++){ if(!dishes[parts[i].it._pi]){ dishes[parts[i].it._pi] = 1; n++; } }
+  for(i=0;i<parts.length;i++){
+    var it = parts[i].it;
+    w.push(parts[i].l.qty + " " + (n > 1 ? "for the " + it._dish : (it.note ? it.note : "for the " + String(it.g).toLowerCase())));
+  }
+  return w.join(", ");
+}
+/* which lines add up: the same name, and an amount that is a number (not "at the table" or "to the line") */
+function mates(i){
+  var it = ING[i], out = [{it: it, l: label(it)}];
+  if(!qParse(out[0].l.qty)) return out;
+  for(var j=i+1;j<ING.length;j++){
+    if(ING[j].name !== it.name) continue;
+    var l = label(ING[j]);
+    if(qParse(l.qty)) out.push({it: ING[j], l: l});
+  }
+  return out;
+}
+
+/* ---------- working the cook out ---------- */
+function atOf(s, servings){
+  var at = s.at;
+  if(s.atBy){ for(var i=0;i<s.atBy.length;i++){ if(servings >= s.atBy[i][0]) at = s.atBy[i][1]; } }
+  return at;
+}
+function servRange(){
+  var lo = null, hi = null;
+  sel.forEach(function(slug){
+    var P = PAGES[slug];
+    if(!P || P.fail || !P.SERV || P.unit !== "Servings") return;
+    lo = lo === null ? P.SERV.min : Math.min(lo, P.SERV.min);
+    hi = hi === null ? P.SERV.max : Math.max(hi, P.SERV.max);
+  });
+  return lo === null ? null : {min: lo, max: hi};
+}
+function build(){
+  var live = sel.filter(function(s){ return PAGES[s] && !PAGES[s].fail; });
+  MSG = {warn: [], info: []};
+  /* servings: one number for the cook, and each dish keeps inside its own range */
+  var range = servRange();
+  if(range){
+    if(!state.servings){
+      var first = live.filter(function(s){ return PAGES[s].COMBO.role === "main" && PAGES[s].SERV; })[0] || live.filter(function(s){ return PAGES[s].SERV; })[0];
+      state.servings = PAGES[first].SERV.base;
+    }
+    state.servings = Math.max(range.min, Math.min(range.max, state.servings));
+  }
+  PARTS = live.map(function(slug){
+    var P = PAGES[slug], sv = 0;
+    if(P.SERV) sv = P.unit === "Servings" ? Math.max(P.SERV.min, Math.min(P.SERV.max, state.servings)) : P.SERV.base;
+    return {slug: slug, P: P, C: P.COMBO, name: P.name, mid: P.COMBO.mid || P.name, role: P.COMBO.role || "side", tag: P.COMBO.tag || "DISH", sv: sv, k: sel.indexOf(slug) % 6, forced: null, serveTxt: ""};
+  });
+  /* a dish that another one needs made ahead (cheese grits for the grit cakes) goes on the clock that far ahead */
+  PARTS.forEach(function(A){
+    (A.C.needs || []).forEach(function(n){
+      PARTS.forEach(function(B){ if(B.slug === n.slug && B !== A){ B.forced = n.ahead; B.aheadWord = n.word || "ahead"; B.forWhom = A; } });
+    });
+  });
+  var input = PARTS.map(function(A){
+    var st = [], S = A.P.STEPS;
+    S.forEach(function(s, i){
+      if(i === S.length - 1){ if(A.forced === null) A.serveTxt = s.txt || ""; return; }
+      st.push({id: s.id, at: atOf(s, A.sv), d: s.d || 0, flex: s.flex || 0, loose: s.loose || 0, lane: s.lane, src: s});
+    });
+    if(A.forced !== null && A.C.ahead) st.push({id: "set", at: 0, d: A.C.ahead.d || 0, flex: 0, loose: 0, lane: A.C.ahead.lane || "fridge", src: A.C.ahead});
+    A.steps = st;
+    return {hold: A.C.hold || 0, forced: A.forced, steps: st};
+  });
+  var R = input.length ? planCook(input) : {ok: true, pass: 1, pos: [], shift: [], over: [], clash: [], lane: []};
+  FITS = R.pass !== 3;
+
+  var all = [];
+  PARTS.forEach(function(A, pi){
+    A.shift = R.shift[pi] || 0;
+    A.steps.forEach(function(s, n){
+      var src = s.src;
+      all.push({id: A.slug + "~" + s.id, at: R.pos[pi][s.id], d: s.d, lane: s.lane, short: src.short || "", pi: pi, n: n, gap: src.gap,
+        txt: String(src.txt || "").replace(/\{t:(\d+)\}/g, function(m, x){ return "{t:" + (parseInt(x, 10) + A.shift) + "}"; }),
+        uses: (src.uses || []).map(function(u){ return A.slug + "~" + u; })});
+    });
+  });
+  all.sort(function(a, b){ return (b.at - a.at) || (a.pi - b.pi) || (a.n - b.n); });
+  if(all.length){
+    var eats = PARTS.filter(function(A){ return A.serveTxt; }).sort(function(a, b){ return (PLATEORDER[a.role] || 0) - (PLATEORDER[b.role] || 0); });
+    var etxt = eats.length === 1 ? eats[0].serveTxt : eats.map(function(A){ return '<span class="dish k' + A.k + '">' + esc(A.tag) + '</span>' + A.serveTxt; }).join("<br>");
+    all.push({id: "eat", at: 0, d: 0, lane: "serve", short: "Eat", txt: etxt, uses: [], pi: -1});
+  }
+  STEPS = all;
+  LONG = STEPS.length > 0 && STEPS[0].at > 720;
+
+  ING = [];
+  PARTS.forEach(function(A, pi){
+    var groups = {}, many = 0;
+    A.P.ING.forEach(function(it){ if(!groups[it.g]){ groups[it.g] = 1; many++; } });
+    A.P.ING.forEach(function(it){
+      var c = {}; for(var k in it) c[k] = it[k];
+      c.id = A.slug + "~" + it.id; c._sv = A.sv; c._base = A.P.SERV ? A.P.SERV.base : 0; c._pi = pi; c._dish = A.mid;
+      c._g = A.name + (many > 1 && it.g ? " · " + it.g : "");
+      if(it.from){
+        var B = PARTS.filter(function(x){ return x.slug === it.from && x.forced !== null; })[0];
+        if(B) c.note = "from the " + B.mid + " made " + B.aheadWord;
+      }
+      ING.push(c);
+    });
+  });
+
+  /* what the page has to own up to */
+  PARTS.forEach(function(A, pi){
+    if(A.forced !== null) return;
+    var hold = A.C.hold || 0;
+    if(A.shift > hold) MSG.warn.push(esc(A.name) + ": ready " + mins(A.shift) + " before dinner, " + (hold ? "and good for about " + hold : "and best eaten straight away") + ". Another dish here needs the same minutes. Take a dish out, or accept the wait.");
+    else if(A.shift > 0) MSG.info.push(esc(A.name) + ": ready " + mins(A.shift) + " early" + (A.C.wait ? ", " + esc(A.C.wait) : "") + ".");
+    if(A.P.SERV && A.P.unit === "Servings" && A.sv !== state.servings) MSG.info.push(esc(A.name) + ": " + A.sv + " servings, " + (A.sv > state.servings ? "the fewest the recipe is written for" : (A.C.most ? esc(A.C.most) : "the most the recipe is written for")) + ".");
+  });
+  if(R.pass === 3){
+    R.lane.forEach(function(x){ MSG.warn.push(esc(PARTS[x.a].name) + " and " + esc(PARTS[x.b].mid) + " both need " + EXCL[x.lane] + " at the same time. They cannot share one cook as written."); });
+    var seen = {};
+    R.clash.forEach(function(x){
+      var key = Math.min(x.a.pi, x.b.pi) + "-" + Math.max(x.a.pi, x.b.pi);
+      if(seen[key]) return; seen[key] = 1;
+      MSG.warn.push("Two hands-on steps land together at " + hhmm(clockOf(Math.min(x.a.iv[0], x.b.iv[0]))) + ": " + esc(PARTS[x.a.pi].mid) + " and " + esc(PARTS[x.b.pi].mid) + ". These dishes do not fit one pair of hands as written.");
+    });
+  }
+  sel.forEach(function(slug){
+    var A = PARTS.filter(function(x){ return x.slug === slug; })[0];
+    if(A) (A.C.needs || []).forEach(function(n){ if(sel.indexOf(n.slug) < 0) A.needHint = n; else A.needHint = null; });
+  });
+  renderAll();
+}
+
+/* the spells of work: night before, morning, evening; a gap of more than 90 minutes starts a new one */
+function spells(){
+  var out = [], cur = null;
+  for(var i=0;i<STEPS.length;i++){
+    var s = STEPS[i];
+    if(!cur || cur.end - s.at > 90){ cur = {first: s.at, end: s.at - s.d, hands: 0, n: 0}; out.push(cur); }
+    cur.hands += s.d; cur.n++; cur.end = Math.min(cur.end, s.at - s.d);
+  }
+  return out;
+}
+
+/* ---------- rendering ---------- */
+function renderDishes(){
+  var wrap = document.getElementById("dishwrap"), host = document.getElementById("dishes"), h = "";
+  wrap.hidden = !sel.length;
+  sel.forEach(function(slug, i){
+    var P = PAGES[slug], m = metaOf(slug), A = PARTS.filter(function(x){ return x.slug === slug; })[0];
+    var meta = "", hint = "";
+    if(!P) meta = "Reading the page.";
+    else if(P.fail) meta = P.fail === "shape" ? "This page cannot join a cook yet." : "Could not read this page just now.";
+    else if(A){
+      var bits = [];
+      if(A.P.SERV) bits.push(A.P.unit === "Servings" ? "serves " + A.sv : A.P.unit.toLowerCase() + " " + A.sv);
+      if(A.forced !== null) bits.push("made " + A.aheadWord + " for the " + A.forWhom.mid);
+      else if(A.shift > 0) bits.push("ready " + A.shift + " min early");
+      meta = bits.join(" · ");
+      if(A.needHint && BY[A.needHint.slug]) hint = '<span class="hint">' + esc(A.needHint.hint || "") + ' <button class="mini" data-add="' + esc(A.needHint.slug) + '">Add ' + esc(BY[A.needHint.slug].mid) + ', made ' + esc(A.needHint.word || "ahead") + '</button></span>';
+    }
+    h += '<div class="drow" data-slug="' + esc(slug) + '"><span class="dish k' + (i % 6) + '">' + esc((P && !P.fail && P.COMBO.tag) || m.tag || "DISH") + '</span>' +
+      '<span class="dn"><span class="dnm">' + esc((P && !P.fail && P.name) || m.name) + '</span><span class="meta">' + esc(meta) + '</span>' + hint + '</span>' +
+      '<span class="acts"><a class="mini" href="./' + esc(slug) + '.html">Page</a><button class="mini" data-rm="' + esc(slug) + '">Remove</button></span></div>';
+  });
+  host.innerHTML = h;
+  var add = document.getElementById("addBtn");
+  add.textContent = pickerOpen ? "Done adding" : "Add a dish";
+  add.setAttribute("aria-expanded", pickerOpen ? "true" : "false");
+}
+function pickRow(p){
+  return '<button class="pick" data-add="' + esc(p.slug) + '"><span class="dot">' + esc(p.tag || "DISH") + '</span><span><span class="pn">' + esc(p.name) + '</span><span class="meta">' + esc(p.line || "") + '</span></span><span class="arw" aria-hidden="true">+</span></button>';
+}
+function renderPicker(){
+  var el = document.getElementById("picker"), h = "";
+  if(sel.length && !pickerOpen){ el.innerHTML = ""; return; }
+  var left = COOK.parts.filter(function(p){ return sel.indexOf(p.slug) < 0; });
+  if(!sel.length){
+    var last = ""; try{ last = window.localStorage.getItem("kitchen:cook:last") || ""; }catch(e){}
+    var lastList = last ? last.split(",").filter(function(s){ return BY[s]; }) : [];
+    var ready = COOK.ready.slice();
+    var same = function(x, y){ return x.slice().sort().join(",") === y.slice().sort().join(","); };
+    if(lastList.length > 1 && !ready.some(function(r){ return same(r.r, lastList); })) ready.unshift({r: lastList, last: true});
+    if(ready.length){
+      h += '<h2>Ready-made cooks</h2>';
+      ready.forEach(function(r){
+        var ps = r.r.map(function(s){ return BY[s]; }).filter(Boolean);
+        if(ps.length !== r.r.length) return;
+        h += '<a class="pick" href="' + hashOf(r.r) + '"><span class="dot rd">' + (r.last ? "LAST" : ps.length + " IN 1") + '</span><span><span class="pn">' + esc(nameOf(ps)) + '</span><span class="meta">' + esc(r.last ? "The cook you had open last" : (r.line || "")) + '</span></span><span class="arw" aria-hidden="true">&rsaquo;</span></a>';
+      });
+    }
+    ROLES.forEach(function(ro, n){
+      var ps = left.filter(function(p){ return p.role === ro[0]; });
+      if(!ps.length) return;
+      h += '<h2>' + (n === 0 ? "Or start with one dish: " : "") + ro[1] + '</h2>' + ps.map(pickRow).join("");
+    });
+  } else {
+    var fits = function(p){ return sel.some(function(s){ var q = BY[s]; return (q && (q.goes || []).indexOf(p.slug) > -1) || (p.goes || []).indexOf(s) > -1; }); };
+    var a = left.filter(fits), b = left.filter(function(p){ return !fits(p); });
+    if(a.length) h += '<h2>Goes with what is in the cook</h2>' + a.map(pickRow).join("");
+    if(b.length) h += '<h2>' + (a.length ? "Everything else" : "Add a dish") + '</h2>' + b.map(pickRow).join("");
+    if(!left.length) h += '<p class="empty">Every dish that can join a cook is already in this one.</p>';
+  }
+  el.innerHTML = h;
+}
+function renderHead(){
+  var real = PARTS.filter(function(A){ return A.forced === null; });
+  var name = PARTS.length ? nameOf(real.length ? real : PARTS) : "Build a cook";
+  document.getElementById("title").textContent = name;
+  document.title = name;
+  var sub = document.getElementById("sub");
+  if(!sel.length) sub.textContent = "Pick a main, then add what goes with it: a side, a sauce. The site adds the recipes together into one whole cook, with one clock and one ingredient list.";
+  else if(PARTS.length > 1) sub.textContent = listOf(PARTS.map(function(A, i){ return i ? A.mid : A.name; })) + ", added together into one cook: one eating time, one ingredient list, every step in the order you do it. " + (FITS ? "Nothing here asks for two hands-on jobs at once." : "As written these dishes do not fit one pair of hands: The plan says where.");
+  else if(PARTS.length === 1) sub.textContent = "Only " + PARTS[0].mid + " so far. Add a dish and the site works them into one cook.";
+  else sub.textContent = "";
+}
+function renderPlan(){
+  var host = document.getElementById("plan"), msg = document.getElementById("planmsg"), h = "", m = "";
+  var S = spells();
+  for(var i=0;i<S.length;i++){
+    var c = S[i], hr = clockOf(c.first).getHours();
+    var w = dayWord(c.first) || (hr < 12 ? "morning" : (hr < 17 ? "afternoon" : "evening"));
+    var t = hhmm(clockOf(c.first)) + (c.n > 1 ? " to " + hhmm(clockOf(i === S.length - 1 ? 0 : c.end)) : "");
+    h += '<div class="pl"><span class="pw">' + esc(w) + '</span><span class="pt">' + t + '<span class="ph">' + c.hands + ' min hands-on</span></span></div>';
+  }
+  host.innerHTML = h;
+  m += '<p class="cap">Hands-on minutes are at an easy pace. Waiting on a pan or a pot is not counted.</p>';
+  var lastS = S[S.length - 1];
+  if(lastS){
+    var start = clockOf(lastS.first), eve = dateOfHM(EVE), sm = start.getHours()*60 + start.getMinutes(), em = eve.getHours()*60 + eve.getMinutes();
+    /* the weeknight rules are about the evening: a cook that starts in the afternoon is a weekend cook */
+    if(lastS.hands > CAP && start.getHours() >= 17) m += '<div class="warn">' + lastS.hands + ' minutes of hands-on work in the evening. A weeknight has room for about ' + CAP + '. This is one for a night with more time, or with a dish taken out.</div>';
+    if(sm < em && sm >= em - 60){
+      var eat = new Date(eve.getTime() + lastS.first*60000);
+      m += '<div class="info">The evening&rsquo;s work starts at ' + hhmm(start) + '. Not in the kitchen until ' + hhmm(eve).replace(":00", "") + '? <br><button class="ghost go" id="eveBtn" data-serve="' + pad2(eat.getHours()) + ":" + pad2(eat.getMinutes()) + '">Start at ' + hhmm(eve) + ', eat at ' + hhmm(eat) + '</button></div>';
+    }
+  }
+  MSG.warn.forEach(function(x){ m += '<div class="warn">' + x + '</div>'; });
+  MSG.info.forEach(function(x){ m += '<div class="info">' + x + '</div>'; });
+  msg.innerHTML = m;
+}
+function renderIngredients(){
+  var host = document.getElementById("ing");
+  if(!host) return;
+  var html = "", last = "", seen = {};
+  for(var i=0;i<ING.length;i++){
+    var it = ING[i];
+    if(seen[it.id]) continue;
+    var parts = mates(i);
+    for(var j=0;j<parts.length;j++) seen[parts[j].it.id] = 1;
+    var l = parts.length > 1 ? mergeParts(parts) : parts[0].l, note = parts.length > 1 ? splitWords(parts) : it.note;
+    if(it._g !== last){ html += '<div class="grp">' + esc(it._g) + '</div>'; last = it._g; }
+    html += '<label class="item' + (state.checked[it.id] ? ' on' : '') + '" data-id="' + it.id + '">' +
+      '<input type="checkbox"' + (state.checked[it.id] ? ' checked' : '') + '>' +
+      '<span class="qty">' + l.qty + '</span>' +
+      '<span class="nm">' + l.name + (note ? '<em>' + note + '</em>' : '') + '</span></label>';
+  }
+  host.innerHTML = html;
+}
+function chipOf(s){ var A = PARTS[s.pi]; return A ? '<span class="dish k' + A.k + '">' + esc(A.tag) + '</span>' : ""; }
+function renderSteps(){
+  var host = document.getElementById("steps"), html = "";
+  for(var i=0;i<STEPS.length;i++){
+    var s = STEPS[i], lane = LANE[s.lane] || LANE.prep, u = "";
+    var uses = s.uses || [];
+    var got = [], byName = {};
+    for(var j=0;j<uses.length;j++){
+      var pp = String(uses[j]).split("@"), part = pp[1] ? parseFloat(pp[1]) : 0;
+      var it = byId(pp[0]); if(!it) continue;
+      var e = {it: it, l: label(it, part), part: part};
+      if(byName[it.name]){ byName[it.name].push(e); continue; }
+      byName[it.name] = [e]; got.push(byName[it.name]);
+    }
+    for(var j=0;j<got.length;j++){
+      var g0 = got[j][0], l = got[j].length > 1 ? mergeParts(got[j]) : g0.l;
+      u += '<span class="ui" data-ing="' + g0.it.id + '"><b>' + l.qty + '</b> ' + l.name + (got[j].length === 1 && g0.part === 0.5 ? ', half' : '') + '</span>';
+    }
+    var tags = (PARTS.length > 1 ? chipOf(s) : "") + '<span class="tag ' + lane[1] + '">' + lane[0] + '</span>';
+    html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '" data-at="' + s.at + '">' +
+      '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
+      '<span class="clock">' + hhmm(clockOf(s.at)) + dayOf(s.at) + '</span>' +
+      '<span class="body">' + (u ? '<span class="usehd">' + tags + '<span class="yu">You\x27ll use</span></span><span class="uses">' + u + '</span><span class="txt">' : '<span class="txt">' + tags) + fillT(s.txt) + '</span>' +
+      (s.gap ? '<span class="gap">' + s.gap + '</span>' : '') +
+      '</span></label>';
+  }
+  host.innerHTML = html;
+  renderChecklist();
+  markNow();
+}
+function fillT(t){ return String(t).replace(/\{t:(\d+)\}/g, function(m, n){ return '<b class="tt">' + whenOf(parseInt(n,10)) + '</b>'; }); }
+function renderChecklist(){
+  var host = document.getElementById("checklist"), html = "";
+  if(!host) return;
+  for(var i=0;i<STEPS.length;i++){
+    var s = STEPS[i], A = PARTS[s.pi];
+    html += '<label class="ck' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '" data-at="' + s.at + '">' +
+      '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
+      '<span class="ct">' + (dayWord(s.at) ? '<span class="cday">' + dayWord(s.at) + '</span>' : '') + hhmm(clockOf(s.at)) + '</span>' +
+      (PARTS.length > 1 ? '<span class="cd' + (A ? ' k' + A.k : '') + '">' + (A ? esc(A.tag) : '') + '</span>' : '') +
+      '<span class="cs">' + s.short + '</span></label>';
+  }
+  host.innerHTML = html;
+}
+function markNow(){
+  var line = document.getElementById("nowline");
+  if(!STEPS.length){ line.innerHTML = ""; return; }
+  var now = new Date(), start = clockOf(STEPS[0].at), end = serveDate();
+  var rows = document.querySelectorAll("#steps .row"), i;
+  for(i=0;i<rows.length;i++){ rows[i].classList.remove("now"); }
+  var cks = document.querySelectorAll("#checklist .ck");
+  for(i=0;i<cks.length;i++){ cks[i].classList.remove("now"); }
+  if(now < new Date(start.getTime() - 45*60000)){
+    line.innerHTML = 'First move at <b>' + hhmm(start) + '</b>' + (start.toDateString() !== end.toDateString() ? ' the day before' : '');
+    return;
+  }
+  if(now > new Date(end.getTime() + 25*60000)){
+    line.innerHTML = 'Dinner was at <b>' + hhmm(end) + '</b>';
+    return;
+  }
+  var cur = -1;
+  for(i=0;i<STEPS.length;i++){ if(clockOf(STEPS[i].at) <= now) cur = i; }
+  if(cur < 0){
+    var mn = Math.round((start - now) / 60000);
+    line.innerHTML = '<b>' + mn + ' min</b> until the first move';
+    if(rows[0]) rows[0].classList.add("now");
+    return;
+  }
+  if(rows[cur]) rows[cur].classList.add("now");
+  if(cks[cur]) cks[cur].classList.add("now");
+  if(cur < STEPS.length - 1){
+    var nxt = Math.max(0, Math.round((clockOf(STEPS[cur+1].at) - now) / 60000)), A = PARTS[STEPS[cur].pi];
+    line.innerHTML = 'Now: <b>' + (A && PARTS.length > 1 ? esc(A.mid) + ', ' : '') + (LANE[STEPS[cur].lane] || LANE.prep)[0].toLowerCase() + '</b> · next move in <b>' + nxt + ' min</b>';
+  } else {
+    line.innerHTML = '<b>Eat.</b>';
+  }
+}
+function renderDishNotes(){
+  var h = "";
+  PARTS.forEach(function(A){
+    if(!A.P.notes.length) return;
+    h += '<details class="dnotes"><summary>' + esc(A.name) + '</summary>' + A.P.notes.map(function(n){ return '<p class="note">' + n + '</p>'; }).join("") + '<a class="mini" href="./' + esc(A.slug) + '.html">Open the ' + esc(A.mid) + ' page</a></details>';
+  });
+  document.getElementById("dishnotes").innerHTML = h;
+}
+
+/* Pin one step to right now and let every other step keep its own gap.
+   Reached through "Start now", which picks the step for you: the first one you have not ticked off. */
+function startFrom(i){
+  var s = STEPS[i];
+  if(!s) return;
+  if(!state.planned) state.planned = state.serve;
+  var d = new Date(Date.now() + s.at*60000);
+  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  document.getElementById("serve").value = state.serve;
+  renderTimes(); renderShift(); save();
+}
+function renderShift(){
+  var el = document.getElementById("moved");
+  if(!state.planned || state.planned === state.serve){
+    el.className = "moved"; el.innerHTML = ""; return;
+  }
+  el.className = "moved on";
+  el.innerHTML = 'Dinner is now <b>' + hhmm(serveDate()) + '</b>, moved from ' + hhmm(dateOfHM(state.planned)) + '.';
+}
+function clearShift(){ state.planned = null; renderShift(); }
+function renderNotes(){
+  var el = document.getElementById("notes");
+  if(el && el.value !== (state.notes || "")) el.value = state.notes || "";
+}
+function renderTimes(){ renderSteps(); renderPlan(); }
+function renderAll(){
+  var has = PARTS.length > 0;
+  document.getElementById("cook").hidden = !has;
+  renderHead(); renderDishes(); renderPicker();
+  if(!has) return;
+  var range = servRange();
+  document.getElementById("svctl").hidden = !range;
+  document.getElementById("serve").value = state.serve;
+  document.getElementById("sv").textContent = state.servings;
+  renderIngredients(); renderSteps(); renderPlan(); renderNotes(); renderShift(); renderDishNotes();
+  setBarH();
+}
+
+/* ---------- events ---------- */
+document.addEventListener("change", function(e){
+  var host = e.target.closest ? e.target.closest("[data-id]") : null;
+  if(!host || e.target.type !== "checkbox") return;
+  var id = host.getAttribute("data-id");
+  state.checked[id] = e.target.checked;
+  var twins = document.querySelectorAll('[data-id="' + id + '"]');
+  for(var k=0;k<twins.length;k++){
+    twins[k].classList.toggle("on", e.target.checked);
+    var box = twins[k].querySelector("input"); if(box) box.checked = e.target.checked;
+  }
+  save();
+});
+document.addEventListener("click", function(e){
+  var t = e.target.closest ? e.target.closest("[data-add],[data-rm],#addBtn,#newBtn,#eveBtn") : null;
+  if(!t) return;
+  if(t.id === "addBtn"){ pickerOpen = !pickerOpen; renderDishes(); renderPicker(); if(pickerOpen) document.getElementById("picker").scrollIntoView({block: "nearest"}); return; }
+  if(t.id === "newBtn"){ setDishes([]); return; }
+  if(t.id === "eveBtn"){
+    state.serve = t.getAttribute("data-serve");
+    document.getElementById("serve").value = state.serve;
+    clearShift(); renderTimes(); save(); return;
+  }
+  if(t.hasAttribute("data-add")){ e.preventDefault(); var s = t.getAttribute("data-add"); if(sel.indexOf(s) < 0 && sel.length < 6) setDishes(sel.concat([s])); return; }
+  if(t.hasAttribute("data-rm")){ var r = t.getAttribute("data-rm"); setDishes(sel.filter(function(x){ return x !== r; })); return; }
+});
+window.addEventListener("hashchange", function(){
+  var list = readHash();
+  if(list.join(",") !== sel.join(",")) setDishes(list, true);
+});
+document.getElementById("serve").addEventListener("change", function(e){
+  state.serve = e.target.value || "18:30";
+  clearShift();
+  renderTimes(); save();
+});
+document.getElementById("inc").addEventListener("click", function(){
+  var r = servRange(); if(!r) return;
+  state.servings = Math.min(r.max, state.servings + 1);
+  build(); save();
+});
+document.getElementById("dec").addEventListener("click", function(){
+  var r = servRange(); if(!r) return;
+  state.servings = Math.max(r.min, state.servings - 1);
+  build(); save();
+});
+/* The first step still unticked. Ticking is how you say where you are, so
+   this is the step "now" refers to once a cook is underway. */
+function firstOpenStep(){
+  for(var i=0;i<STEPS.length;i++){ if(!state.checked[STEPS[i].id]) return i; }
+  return STEPS.length - 1;
+}
+function anyStepTicked(){
+  for(var i=0;i<STEPS.length;i++){ if(state.checked[STEPS[i].id]) return true; }
+  return false;
+}
+document.getElementById("now").addEventListener("click", function(){
+  if(!STEPS.length) return;
+  var i = firstOpenStep();
+  /* Mid-cook this is a stall, not a fresh plan: the clock moves and the banner says so.
+     Nothing ticked means you are setting the plan, so there is no move to report. */
+  if(anyStepTicked()){ startFrom(i); return; }
+  var d = new Date(Date.now() + STEPS[i].at*60000);
+  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  document.getElementById("serve").value = state.serve;
+  clearShift();
+  renderTimes(); save();
+});
+document.getElementById("allIng").addEventListener("click", function(){
+  for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = true; }
+  renderIngredients(); save();
+});
+document.getElementById("clrIng").addEventListener("click", function(){
+  for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = false; }
+  renderIngredients(); save();
+});
+var notesTimer = null;
+var notesEl = document.getElementById("notes");
+notesEl.addEventListener("input", function(){
+  state.notes = notesEl.value;
+  var st = document.getElementById("notesSaved");
+  if(st) st.textContent = "Saving";
+  clearTimeout(notesTimer);
+  notesTimer = setTimeout(function(){
+    save();
+    if(st){ st.textContent = "Saved"; setTimeout(function(){ st.textContent = ""; }, 1800); }
+  }, 400);
+});
+document.getElementById("clrNotes").addEventListener("click", function(){
+  state.notes = "";
+  notesEl.value = "";
+  save();
+});
+/* Reset returns the cook to clean: ticks off, the clock back to what was
+   planned before any "Start now" shift. Notes are kept; they have their own Clear. */
+document.getElementById("clrAll").addEventListener("click", function(){
+  state.checked = {};
+  if(state.planned){
+    state.serve = state.planned;
+    state.planned = null;
+    document.getElementById("serve").value = state.serve;
+  }
+  renderIngredients(); renderTimes(); renderShift(); save();
+});
+/* a dish's page may have changed while this was in the background: read them again */
+function reread(){
+  if(!sel.length) return;
+  lastLoad = Date.now();
+  var want = sel.join(","), fresh = {};
+  Promise.all(sel.map(function(slug){
+    var keep = PAGES[slug];
+    return fetchPage(slug).then(function(){ if(PAGES[slug] && PAGES[slug].fail === "read" && keep && !keep.fail) PAGES[slug] = keep; });
+  })).then(function(){ if(sel.join(",") === want) build(); });
+}
+document.addEventListener("visibilitychange", function(){ if(!document.hidden && Date.now() - lastLoad > 60000) reread(); });
+window.addEventListener("pageshow", function(e){ if(e.persisted) reread(); });
+
+setInterval(function(){ if(STEPS.length) markNow(); }, 20000);
+/* Desktop layout: keep the sticky ingredient column just under the sticky bar. */
+function setBarH(){ var bar = document.querySelector(".bar"); if(bar) document.documentElement.style.setProperty("--barh", bar.offsetHeight + "px"); }
+window.addEventListener("resize", setBarH);
+if(window.ResizeObserver) new ResizeObserver(setBarH).observe(document.querySelector(".bar"));
+
+setDishes(readHash(), true);
+if("serviceWorker" in navigator){ navigator.serviceWorker.register("./sw.js").catch(function(){}); }
+</script>
+</body>
+</html>

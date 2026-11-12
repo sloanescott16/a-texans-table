@@ -964,6 +964,52 @@
    "steps": 11
   },
   {
+   "slug": "rice-cooker-rice",
+   "name": "Rice cooker rice",
+   "file": "rice-cooker-rice.html",
+   "sub": "Plain rice in the rice cooker, for under a sauce or a gumbo. Washed, water to the line, start. The cooker takes 45 minutes and then holds the rice on Keep Warm. Active time: about 6 minutes at an easy pace. From a 6:00 start the rice is ready at 6:51.",
+   "chapter": "stocks",
+   "label": "POT",
+   "blurb": "Rice cooker · washed, water to the line · 45 minutes",
+   "meal": [
+    "side"
+   ],
+   "protein": [
+    "none"
+   ],
+   "heat": [],
+   "total": 51,
+   "active": 6,
+   "band": "hour",
+   "time": "51 minutes, 45 of them the cooker",
+   "effort": 1,
+   "ahead": false,
+   "kid": true,
+   "serves": 3,
+   "occasion": [
+    "weeknight"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "rice",
+    "water for the rice cooker"
+   ],
+   "steps": 2,
+   "combo": {
+    "role": "side",
+    "tag": "RICE",
+    "mid": "rice",
+    "hold": 60,
+    "wait": "on Keep Warm",
+    "goes": [
+     "andouille-creole-sauce",
+     "steamed-green-beans"
+    ]
+   }
+  },
+  {
    "slug": "fried-grits-andouille-creole",
    "name": "Fried grit cakes with andouille Creole sauce",
    "file": "fried-grits-andouille-creole.html",
@@ -1017,6 +1063,64 @@
     "hot sauce"
    ],
    "steps": 12
+  },
+  {
+   "slug": "fried-grit-cakes",
+   "name": "Fried grit cakes",
+   "file": "fried-grit-cakes.html",
+   "sub": "Leftover cheese grits, cut cold, dusted with flour and fried crisp in the cast iron in beef tallow at 375°F, 5 minutes a side. One pan, six pieces. Active time: about 18 minutes at an easy pace, 30 minutes from pan on to plate. The cheese grits have to be made ahead and set cold in the fridge.",
+   "chapter": "mains",
+   "label": "PAN",
+   "blurb": "Leftover cheese grits · cast iron · 5 minutes a side at 375°F",
+   "meal": [
+    "dinner",
+    "side"
+   ],
+   "protein": [
+    "none"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 30,
+   "active": 18,
+   "band": "quick",
+   "time": "30 minutes, pan on to plate",
+   "effort": 1,
+   "ahead": false,
+   "kid": true,
+   "serves": 3,
+   "occasion": [
+    "weeknight"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "piece of leftover cheese grits",
+    "all-purpose flour",
+    "beef tallow (or canola oil)"
+   ],
+   "steps": 6,
+   "combo": {
+    "role": "main",
+    "tag": "CAKES",
+    "mid": "fried grit cakes",
+    "hold": 0,
+    "most": "the most one pan holds",
+    "goes": [
+     "andouille-creole-sauce",
+     "steamed-green-beans"
+    ],
+    "needs": [
+     {
+      "slug": "cheese-grits",
+      "ahead": 1440,
+      "word": "the day before",
+      "hint": "Uses leftover cheese grits, set cold in the fridge. None left over?"
+     }
+    ]
+   }
   },
   {
    "slug": "dirty-rice",
@@ -1296,6 +1400,71 @@
    "steps": 7
   },
   {
+   "slug": "andouille-creole-sauce",
+   "name": "Andouille Creole sauce",
+   "file": "andouille-creole-sauce.html",
+   "sub": "Andouille, the trinity, tomatoes and Cajun seasoning, slow cooked all day in the Instant Pot. The insert is loaded the night before, the pot goes on in the morning, and at dinner the sauce is waiting on Keep Warm for whatever it goes over: fried grit cakes, rice, cheese grits, potatoes. Active time: about 20 minutes at the counter the night before, 2 minutes in the morning, and about 8 minutes of easy work at dinner. Nothing happens at the stove.",
+   "chapter": "sauces",
+   "label": "POT",
+   "blurb": "Slow cooked all day in the Instant Pot · over grit cakes, rice or cheese grits",
+   "meal": [
+    "sauce"
+   ],
+   "protein": [
+    "pork"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 700,
+   "active": 31,
+   "band": "day",
+   "time": "pot on at 6:50 am, ready at dinner",
+   "effort": 1,
+   "ahead": true,
+   "kid": true,
+   "serves": 3,
+   "occasion": [
+    "weeknight"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "andouille or smoked sausage",
+    "yellow onion",
+    "green bell pepper",
+    "celery rib",
+    "can diced tomatoes",
+    "tomato paste",
+    "jarred minced garlic",
+    "Cajun seasoning",
+    "dried thyme",
+    "smoked paprika",
+    "water",
+    "powdered chicken stock",
+    "bay leaf",
+    "kosher salt, to finish",
+    "green onions",
+    "parsley",
+    "hot sauce"
+   ],
+   "steps": 7,
+   "combo": {
+    "role": "sauce",
+    "tag": "SAUCE",
+    "mid": "andouille Creole sauce",
+    "hold": 120,
+    "wait": "on Keep Warm",
+    "goes": [
+     "fried-grit-cakes",
+     "rice-cooker-rice",
+     "cheese-grits",
+     "steamed-green-beans"
+    ]
+   }
+  },
+  {
    "slug": "bacon-fat-aioli",
    "name": "Bacon-fat aioli",
    "file": "bacon-fat-aioli.html",
@@ -1420,6 +1589,58 @@
    "steps": 3
   },
   {
+   "slug": "steamed-green-beans",
+   "name": "Steamed green beans",
+   "file": "steamed-green-beans.html",
+   "sub": "Frozen green beans steamed from frozen in a small saucepan for 7 minutes, then tossed in butter. No trimming. Active time: about 5 minutes at an easy pace, 15 minutes from water on to the table.",
+   "chapter": "sides",
+   "label": "PAN",
+   "blurb": "Frozen green beans · steamed from frozen, 7 minutes · butter",
+   "meal": [
+    "side"
+   ],
+   "protein": [
+    "none"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 15,
+   "active": 5,
+   "band": "quick",
+   "time": "15 minutes",
+   "effort": 1,
+   "ahead": false,
+   "kid": true,
+   "serves": 3,
+   "occasion": [
+    "weeknight"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "frozen green beans",
+    "water",
+    "kosher salt",
+    "butter"
+   ],
+   "steps": 4,
+   "combo": {
+    "role": "side",
+    "tag": "BEANS",
+    "mid": "green beans",
+    "hold": 10,
+    "wait": "lid on",
+    "goes": [
+     "fried-grit-cakes",
+     "andouille-creole-sauce",
+     "rice-cooker-rice",
+     "cheese-grits"
+    ]
+   }
+  },
+  {
    "slug": "mash",
    "name": "Mashed potatoes",
    "file": "mash.html",
@@ -1467,6 +1688,66 @@
     "Parmesan, finely grated (not too much)"
    ],
    "steps": 12
+  },
+  {
+   "slug": "cheese-grits",
+   "name": "Cheese grits",
+   "file": "cheese-grits.html",
+   "sub": "Grits cooked in water with powdered chicken stock, finished with butter and sharp cheddar. About 40 minutes at an easy pace: about 10 for the water to boil, then 25 on low with a stir every 5 minutes. Active time: about 15 minutes. From a 6:00 start they are ready at 6:40. What is left sets firm in the fridge for fried grit cakes.",
+   "chapter": "sides",
+   "label": "POT",
+   "blurb": "Water and powdered chicken stock · butter and sharp cheddar · sets firm for grit cakes",
+   "meal": [
+    "side"
+   ],
+   "protein": [
+    "none"
+   ],
+   "heat": [
+    "stovetop"
+   ],
+   "total": 40,
+   "active": 15,
+   "band": "hour",
+   "time": "40 minutes",
+   "effort": 1,
+   "ahead": true,
+   "kid": true,
+   "serves": 3,
+   "occasion": [
+    "weeknight",
+    "weekend"
+   ],
+   "timed": true,
+   "scales": true,
+   "test": false,
+   "ingredients": [
+    "water",
+    "powdered chicken stock",
+    "kosher salt",
+    "grits",
+    "butter",
+    "sharp cheddar"
+   ],
+   "steps": 9,
+   "combo": {
+    "role": "side",
+    "tag": "GRITS",
+    "mid": "cheese grits",
+    "hold": 10,
+    "wait": "lid on, off the heat",
+    "goes": [
+     "andouille-creole-sauce",
+     "fried-grit-cakes",
+     "steamed-green-beans"
+    ],
+    "ahead": {
+     "short": "Into a dish to set",
+     "lane": "fridge",
+     "d": 3,
+     "txt": "3 minutes. Spread what is not being eaten tonight about 3/4 inch deep in a dish. Once it stops steaming, cover it and into the fridge. It sets firm overnight and keeps three to four days."
+    }
+   }
   },
   {
    "slug": "quick-pickles",

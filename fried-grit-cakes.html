@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fried grit cakes</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./favicon.ico">
+<link rel="preload" href="./special-elite-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./cutive-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./karla-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./fonts.css">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="A Texan&rsquo;s Table">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F3EBDA">
+<style>
+:root{
+  --ground:#F3EBDA; --card:#FAF4E7; --ink:#33291F; --muted:#7A6A56; --rule:#D9C9AF;
+  --citrus:#A85C34; --citrus-bg:#F0DFD1; --brine:#7E7047; --brine-bg:#E8E3D0;
+  --shell:#6E4A2E; --shell-bg:#EADCC9; --field:#FFFCF5;
+  --sans:Karla,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"Cutive Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --stamp:"Special Elite","Courier New",Courier,monospace;
+}
+@media (prefers-color-scheme:dark){
+ :root{
+  --ground:#17130F; --card:#211C15; --ink:#F1E3CE; --muted:#A2937C; --rule:#3A3026;
+  --citrus:#D3814F; --citrus-bg:#2E2018; --brine:#A99A63; --brine-bg:#222014;
+  --shell:#C89B6E; --shell-bg:#2A2018; --field:#1B1610;
+ }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.45;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+.wrap{max-width:620px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left))}
+.back{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin:22px 0 0}
+h1{font-family:var(--stamp);font-size:clamp(23px,7.2vw,30px);line-height:1.16;letter-spacing:0.03em;text-transform:uppercase;font-weight:400;margin:10px 0 10px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 18px;max-width:34em}
+h2{font-family:var(--stamp);font-size:13px;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:26px 0 10px}
+
+.bar{position:sticky;top:0;z-index:5;background:var(--ground);border-bottom:1px solid var(--rule);padding:10px 0 12px;margin-bottom:4px}
+.controls{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.ctl{display:flex;flex-direction:column;gap:4px}
+.ctl label{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-family:var(--mono)}
+input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:3px;padding:7px 9px;min-width:124px}
+.step{display:flex;align-items:center;gap:2px;background:var(--field);border:1px solid var(--rule);border-radius:3px;padding:3px}
+.step button{width:34px;height:34px;font-size:19px;line-height:1;border:0;background:transparent;color:var(--ink);border-radius:2px;cursor:pointer;font-family:var(--mono)}
+.step button:active{background:var(--rule)}
+.step span{min-width:26px;text-align:center;font-family:var(--mono);font-size:19px}
+.ghost{border:1px solid var(--rule);background:transparent;color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:9px 11px;border-radius:3px;cursor:pointer}
+.ghost:active{background:var(--rule)}
+:focus-visible{outline:2px solid var(--brine);outline-offset:2px}
+
+#nowline{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:9px;display:flex;gap:8px;align-items:baseline}
+#nowline b{color:var(--ink);font-weight:600}
+
+.card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:4px 14px;margin-bottom:8px}
+.grp{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);padding:14px 0 6px;border-bottom:1px solid var(--rule)}
+.item{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.item:last-child{border-bottom:0}
+.item input{width:21px;height:21px;margin:1px 0 0;accent-color:var(--citrus);flex:0 0 auto}
+.qty{font-family:var(--mono);font-size:14px;color:var(--citrus);min-width:64px;flex:0 0 auto;padding-top:1px}
+.nm{font-size:15px;line-height:1.35}
+.nm em{font-style:normal;color:var(--muted);font-size:13px;display:block}
+.on .nm,.on .qty{color:var(--muted);text-decoration:line-through}
+
+.row{display:flex;gap:11px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.row:last-child{border-bottom:0}
+.row input{width:21px;height:21px;margin:2px 0 0;accent-color:var(--citrus);flex:0 0 auto}
+.clock{font-family:var(--mono);font-size:14px;min-width:62px;flex:0 0 auto;color:var(--ink);padding-top:2px}
+.body{flex:1;min-width:0}
+.clock .day{display:block;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--citrus)}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;padding:2px 6px;border-radius:2px;margin-right:7px;vertical-align:1px}
+.t-pot{background:var(--brine-bg);color:var(--brine)}
+.t-pan{background:var(--shell-bg);color:var(--shell)}
+.t-prep{background:var(--rule);color:var(--muted)}
+.t-serve{background:var(--citrus-bg);color:var(--citrus)}
+.t-fire{background:var(--citrus-bg);color:var(--citrus)}
+.t-oven{background:var(--shell-bg);color:var(--shell)}
+.t-jar{background:var(--brine-bg);color:var(--brine)}
+.t-fridge{background:var(--brine-bg);color:var(--brine)}
+.txt{font-size:15px;line-height:1.4}
+.usehd{display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--muted);margin:0 0 5px}
+.uses{display:block;margin:0 0 8px;padding:5px 0 5px 10px;border-left:3px solid var(--citrus)}
+.ui{display:block;font-size:15px;line-height:1.35;padding:1px 0}
+.ui b{font-weight:700}
+.row.now{background:var(--brine-bg);margin:0 -14px;padding:13px 14px;border-radius:3px;border-bottom-color:transparent}
+.row.on .txt,.row.on .clock,.row.on .uses{color:var(--muted);text-decoration:line-through}
+.foot{display:flex;gap:8px;margin:12px 0 8px}
+.note{color:var(--muted);font-size:13px;line-height:1.5;margin:18px 0 0}
+.note b{color:var(--ink)}
+.rowact{display:block;margin-top:8px}
+.fromhere{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:transparent;border:1px solid var(--rule);border-radius:2px;padding:4px 9px;cursor:pointer}
+.fromhere:active{background:var(--rule)}
+.row.on .fromhere{opacity:0.4}
+.gap{display:block;font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--citrus);background:transparent;border:1px dashed var(--citrus);border-radius:2px;padding:9px 10px;margin-top:8px}
+.moved{display:none}
+.moved.on{display:block;font-family:var(--mono);font-size:12px;line-height:1.45;color:var(--brine);background:var(--brine-bg);border-radius:2px;padding:8px 10px;margin-top:9px}
+.moved b{color:var(--brine);font-weight:700}
+.card.notes{padding:13px 14px}
+#notes{display:block;width:100%;min-height:132px;resize:vertical;background:transparent;border:0;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;padding:0}
+#notes:focus{outline:none}
+#notes::placeholder{color:var(--muted)}
+.card.check{padding:2px 12px}
+.ck{display:flex;gap:8px;align-items:center;padding:1px 0;border-bottom:1px solid var(--rule);cursor:pointer;font-size:13px;line-height:1.25}
+.ck:last-child{border-bottom:0}
+.ck input{width:17px;height:17px;margin:0;accent-color:var(--citrus);flex:0 0 auto}
+.ck .ct{font-family:var(--mono);font-size:12px;min-width:58px;flex:0 0 auto}
+.ck .ct .cday{font-size:9px;margin-right:4px;letter-spacing:0.06em;text-transform:uppercase;color:var(--citrus)}
+.ck.on .cs,.ck.on .ct{color:var(--muted);text-decoration:line-through}
+.ck.now{background:var(--brine-bg);margin:0 -12px;padding:1px 12px}
+.saved{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);align-self:center}
+
+/* Desktop: ingredients in a sticky left column, steps on the right. Below 1024px nothing changes. */
+@media (min-width:1024px){
+ .wrap{max-width:1180px;padding:0 32px}
+ .layout{display:grid;grid-template-columns:minmax(330px,400px) minmax(0,1fr);gap:0 44px;align-items:start}
+ .side{position:sticky;top:calc(var(--barh,8px) + 8px);max-height:calc(100vh - var(--barh,8px) - 16px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding-bottom:8px}
+ .side h2:first-child,.main h2:first-child{margin-top:20px}
+}
+/* Louisiana week: tighter checklist rows so the longest day fits one phone screen. */
+.ck{font-size:12px;line-height:1.15;padding:0}
+.ck.now{padding:0 12px}
+.ck input{width:14px;height:14px}
+.ck .ct{font-size:11px;min-width:52px}
+/* A dish that can join a cook: the way into cook.html. */
+.pairs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:-6px 0 16px}
+.pairs .pl{flex-basis:100%;font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+a.ghost{display:inline-block;text-decoration:none;line-height:1.2}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class='back' href='./'>&lsaquo; A Texan&rsquo;s Table</a>
+  <h1>Fried grit cakes</h1>
+  <p class="sub">Leftover cheese grits, cut cold, dusted with flour and fried crisp in the cast iron in beef tallow at 375°F, 5 minutes a side. One pan, six pieces. Active time: about 18 minutes at an easy pace, 30 minutes from pan on to plate. The cheese grits have to be made ahead and set cold in the fridge.</p>
+  <div class="pairs"><span class="pl">Make it a whole cook with</span><a class="ghost" href="./cook.html#r=fried-grit-cakes,andouille-creole-sauce">Andouille Creole sauce</a><a class="ghost" href="./cook.html#r=fried-grit-cakes,steamed-green-beans">Steamed green beans</a><a class="ghost" href="./cook.html#r=fried-grit-cakes">Pick the dishes</a></div>
+
+  <div class="bar">
+    <div class="controls">
+      <div class="ctl">
+        <label for="serve">Eating at</label>
+        <input type="time" id="serve" value="18:30">
+      </div>
+      <div class="ctl">
+        <label for="dec">Servings</label>
+        <div class="step">
+          <button id="dec" aria-label="Fewer servings">&minus;</button>
+          <span id="sv">3</span>
+          <button id="inc" aria-label="More servings">+</button>
+        </div>
+      </div>
+      <button class="ghost" id="now">Start now</button>
+    </div>
+    <div id="nowline"></div>
+    <div class="moved" id="moved"></div>
+  </div>
+
+  <h2>Checklist</h2>
+  <div class="card check" id="checklist"></div>
+
+  <div class="layout">
+  <div class="side">
+  <h2>Ingredients</h2>
+  <div class="card" id="ing"></div>
+  <div class="foot">
+    <button class="ghost" id="allIng">Check all</button>
+    <button class="ghost" id="clrIng">Clear</button>
+  </div>
+  </div>
+  <div class="main">
+
+  <h2>The cook</h2>
+  <div class="card" id="steps"></div>
+  <div class="foot">
+    <button class="ghost" id="clrAll">Reset everything</button>
+  </div>
+
+  <h2>Notes</h2>
+  <div class="card notes">
+    <textarea id="notes" placeholder="What happened this cook. Times, changes, what to fix next time."></textarea>
+  </div>
+  <div class="foot">
+    <button class="ghost" id="clrNotes">Clear notes</button>
+    <span class="saved" id="notesSaved"></span>
+  </div>
+  </div>
+  </div>
+
+  <p class="note"><b>Equipment:</b> 12 inch cast iron skillet &middot; thin metal spatula &middot; infrared thermometer &middot; probe thermometer.</p>
+  <p class="note"><b>Crisp grits:</b> cold, firm grits fry best. Pat them dry and dust with flour, then leave them alone for the full first side. A crust that sticks is not ready to turn. One pan only: six pieces with a finger's gap between them. Crowded pieces steam and will not crisp.</p>
+  <p class="note"><b>Frying heat:</b> tallow at 375°F on the infrared, read on the fat. Tallow smokes from about 400°F, so lower the burner if it climbs.</p>
+  <p class="note"><b>Leftover grits:</b> cooked grits keep three to four days in the fridge, so fry them by the fourth day. Five minutes a side heats the pieces right through: 165°F or more on a probe in the middle of one.</p>
+  <p class="note"><b>Size:</b> 3 servings, six pieces, is the most one 12 inch pan holds. More means frying in batches, which is not weeknight work.</p>
+  <p class="note"><b>Infrared readings:</b> infrared reads the surface only. Cast iron reads true; a shiny saucepan reads low, so aim at the oil or the food. Aim close, straight down, and read two or three spots, as pans vary from edge to centre. Liquids (stock, gravy, sauce, grits) go by a probe.</p>
+</div>
+
+<script>
+var ING = [{"id":"setgrits","g":"Grit cakes","per":2,"step":1,"unit":"","name":"piece of leftover cheese grits","plural":"pieces of leftover cheese grits","note":"set cold in the fridge, about 2 1/2 inches across","from":"cheese-grits"},{"id":"flour","g":"Grit cakes","per":0.667,"step":0.5,"unit":"tbsp","name":"all-purpose flour","note":"to dust"},{"id":"ftallow","g":"Grit cakes","per":0.5,"step":0.5,"unit":"tbsp","name":"beef tallow (or canola oil)","note":"for frying"}];
+var PRE = [];
+var STEPS = [{"id":"c1","at":30,"d":1,"lane":"iron","short":"Cast iron on, tallow in","txt":"1 minute. Cast iron on medium with the beef tallow (or canola oil). It takes about 8 minutes to reach 375°F on the infrared, read on the fat, which is the time the grits need.","uses":["ftallow"]},{"id":"c2","at":28,"d":12,"flex":6,"lane":"prep","short":"Cut and flour the grits","txt":"12 minutes at an easy pace. Turn the cold grits out onto the board and cut the pieces, about 2 1/2 inches across and 3/4 inch thick, two a person. Pat every face dry with a paper towel, dust with the flour and shake off the extra.","uses":["setgrits","flour"]},{"id":"c3","at":16,"d":1,"lane":"iron","short":"Grit cakes in, side 1, 5 min","txt":"Side 1, 5 minutes. Pan at 375°F; lower the burner if it passes 400°F. All the pieces in, a finger's gap apart. Do not move them until they are deep golden and let go of the pan on their own."},{"id":"c4","at":10,"d":1,"lane":"iron","short":"Flip, side 2, 5 min","txt":"Side 2, 5 minutes. Turn each piece with the thin metal spatula. Untouched again."},{"id":"c5","at":5,"d":3,"lane":"iron","short":"Grit cakes out, plate","txt":"3 minutes. Burner off. Two grit cakes on each plate."},{"id":"c6","at":0,"lane":"serve","short":"Eat","txt":"Grit cakes hot from the pan, while the crust is crisp."}];
+var TIMED = true;
+var SERV = {"base":3,"min":2,"max":3};
+var KEY = "kitchen:fried-grit-cakes";
+var COMBO = {"role":"main","tag":"CAKES","mid":"fried grit cakes","hold":0,"most":"the most one pan holds","goes":["andouille-creole-sauce","steamed-green-beans"],"needs":[{"slug":"cheese-grits","ahead":1440,"word":"the day before","hint":"Uses leftover cheese grits, set cold in the fridge. None left over?"}]};
+
+var LANE = {pot:["POT","t-pot"], pan:["PAN","t-pan"], prep:["PREP","t-prep"], serve:["SERVE","t-serve"],
+            fire:["FIRE","t-fire"], oven:["OVEN","t-oven"], jar:["JAR","t-jar"], fridge:["FRIDGE","t-fridge"], cooker:["INSTANT POT","t-pot"], rice:["RICE COOKER","t-jar"], away:["AWAY","t-prep"], store:["STORE","t-prep"], iron:["CAST IRON","t-pan"], dutch:["DUTCH OVEN","t-pot"], bigpot:["BIG POT","t-pot"], sauce:["SAUCEPAN","t-pan"]};
+var state = {servings: SERV ? SERV.base : 0, serve: "18:30", checked:{}, notes:"", planned:null};
+
+function frac(n){
+  if(n === 0) return "0";
+  var w = Math.floor(n), r = n - w, best = "", d = 1;
+  var map = [[0.125,"1/8"],[0.25,"1/4"],[0.333,"1/3"],[0.375,"3/8"],[0.5,"1/2"],[0.625,"5/8"],[0.667,"2/3"],[0.75,"3/4"],[0.875,"7/8"]];
+  if(r > 0.02){
+    for(var i=0;i<map.length;i++){ var diff = Math.abs(r-map[i][0]); if(diff < d){ d = diff; best = map[i][1]; } }
+  }
+  if(!best) return String(w);
+  return w ? w + " " + best : best;
+}
+function amount(it, part){
+  if(it.fixed) return it.fixed;
+  /* An amount that does not scale in a straight line (water held under a pot's MAX line) reads from a table by count. */
+  if(it.by) return it.by[state.servings] || it.by[SERV.base];
+  var raw = it.per * state.servings;
+  if(part){
+    var whole = Math.max(it.step || 0.25, Math.round(raw / (it.step || 0.25)) * (it.step || 0.25));
+    raw = whole * part;
+  }
+  var s = it.step || 0.25;
+  var v = part ? Math.round(raw * 1000) / 1000 : Math.max(s, it.min || 0, Math.round(raw / s) * s);
+  v = Math.round(v * 1000) / 1000;
+  var txt = it.metric ? String(v) : frac(v);
+  if(it.unit){
+    var u = it.unit;
+    if(u === "tbsp" && v >= 4 && Math.abs(v/4 - Math.round(v/4)) < 1e-6){ v = v/16; txt = frac(v); u = "cup"; }
+    else if(u === "tbsp" && Math.abs(v*2 - Math.round(v*2)) > 1e-6){ v = v*3; txt = frac(v); u = "tsp"; }
+    else if(u === "cup" && v < 0.5 && Math.abs(v*4 - Math.round(v*4)) > 1e-6){ v = v*16; txt = frac(v); u = "tbsp"; }
+    if(u === "cup" && v > 1) u = "cups";
+    return txt + " " + u;
+  }
+  var nm = (v > 1 && it.plural) ? it.plural : it.name;
+  return txt + "|" + nm;
+}
+function label(it, part){
+  var a = amount(it, part);
+  if(a.indexOf("|") > -1){ var p = a.split("|"); return {qty:p[0], name:p[1]}; }
+  return {qty:a, name:it.name};
+}
+function byId(id){ for(var i=0;i<ING.length;i++){ if(ING[i].id === id) return ING[i]; } return null; }
+
+function pad2(n){ return (n < 10 ? "0" : "") + n; }
+/* This cook starts the day before, so once today's dinner time has passed by
+   25 minutes, Eating at means tomorrow and the night-before steps are tonight. */
+var LONG = STEPS.length && STEPS[0].at > 720;
+function serveDate(){
+  var d = dateOfHM(state.serve);
+  if(LONG && Date.now() > d.getTime() + 25*60000) d = new Date(d.getTime() + 86400000);
+  return d;
+}
+function dayOf(off){
+  var w = dayWord(off);
+  return w ? '<span class="day">' + w + '</span>' : "";
+}
+/* Any step more than 12 hours before serving, or on another day, says which day, counted back from the serve time. */
+function dayWord(off){
+  var c = clockOf(off), s = serveDate();
+  if(off < 720 && c.toDateString() === s.toDateString()) return "";
+  var a = new Date(c.getTime()), b = new Date(s.getTime());
+  a.setHours(0,0,0,0); b.setHours(0,0,0,0);
+  var n = Math.round((b - a) / 86400000), h = c.getHours();
+  var part = h < 12 ? "morning" : (h < 17 ? "afternoon" : "night");
+  if(n <= 0) return part === "night" ? "tonight" : "this " + part;
+  if(n === 1) return part === "afternoon" ? "day before" : part + " before";
+  return n + " days before";
+}
+function whenOf(off){
+  var w = dayWord(off);
+  return (w ? w.charAt(0).toUpperCase() + w.slice(1) + ", " : "") + hhmm(clockOf(off));
+}
+function dateOfHM(hm){
+  var p = (hm || "18:30").split(":");
+  var d = new Date();
+  d.setHours(parseInt(p[0],10), parseInt(p[1],10), 0, 0);
+  return d;
+}
+function clockOf(off){ return new Date(serveDate().getTime() - off*60000); }
+function hhmm(d){
+  var h = d.getHours(), m = d.getMinutes(), ap = h >= 12 ? "pm" : "am";
+  h = h % 12; if(h === 0) h = 12;
+  return h + ":" + (m < 10 ? "0" + m : m) + " " + ap;
+}
+
+/* One line per ingredient: lines with the same name merge into one total, still scaled (RECIPE-RULES.md). */
+function qParse(q){
+  var m = /^(?:(\d+) )?(?:(\d+)\/(\d+)|(\d+(?:\.\d+)?))(?: (tsp|tbsp|cups?|lb|oz))?$/.exec(String(q).replace(/^about /, ""));
+  if(!m) return null;
+  return {n: (m[1] ? +m[1] : 0) + (m[2] ? m[2] / m[3] : 0) + (m[4] ? +m[4] : 0), u: m[5] || ""};
+}
+function qFrac(v){
+  var w = Math.floor(v + 1e-9), r = v - w, map = [[0.125,"1/8"],[0.25,"1/4"],[0.333,"1/3"],[0.375,"3/8"],[0.5,"1/2"],[0.625,"5/8"],[0.667,"2/3"],[0.75,"3/4"],[0.875,"7/8"],[1,""]], best = "", d = 1;
+  if(r < 0.03) return String(w);
+  for(var i=0;i<map.length;i++){ var x = Math.abs(r - map[i][0]); if(x < d){ d = x; best = map[i][1]; } }
+  if(best === ""){ w += 1; return String(w); }
+  return w ? w + " " + best : best;
+}
+function mergeParts(parts){
+  var V = {tsp:1, tbsp:3, cup:48, cups:48}, sum = 0, kind = null, bigU = "", big = -1, i;
+  for(i=0;i<parts.length;i++){
+    var p = qParse(parts[i].l.qty);
+    if(!p){ kind = "x"; break; }
+    var k = V[p.u] ? "vol" : p.u, base = V[p.u] ? p.n * V[p.u] : p.n;
+    if(kind === null) kind = k; else if(kind !== k){ kind = "x"; break; }
+    if(base > big){ big = base; bigU = p.u; }
+    sum += base;
+  }
+  var it = parts[0].it;
+  if(kind === "x"){
+    var q = []; for(i=0;i<parts.length;i++) q.push(parts[i].l.qty);
+    return {qty: q.join(" + "), name: parts[0].l.name};
+  }
+  if(kind === "vol"){
+    var v = sum / V[bigU], u = bigU === "cups" ? "cup" : bigU, r8 = Math.abs(v * 8 - Math.round(v * 8)) / 8, r3 = Math.abs(v * 3 - Math.round(v * 3)) / 3;
+    if(Math.min(r8, r3) > 0.02){ var q2 = []; for(i=0;i<parts.length;i++) q2.push(parts[i].l.qty); return {qty: q2.join(" + "), name: it.name}; }
+    if(u === "cup" && v > 1) u = "cups";
+    return {qty: qFrac(v) + " " + u, name: it.name};
+  }
+  return {qty: qFrac(sum) + (kind ? " " + kind : ""), name: (sum > 1 && it.plural) ? it.plural : it.name};
+}
+function splitWords(parts){
+  var w = [];
+  for(var i=0;i<parts.length;i++){ var it = parts[i].it; w.push(parts[i].l.qty + " " + (it.note ? it.note : "for the " + String(it.g).toLowerCase())); }
+  return w.join(", ");
+}
+function renderIngredients(){
+  var host = document.getElementById("ing");
+  if(!host) return;
+  var html = "", last = "", seen = {};
+  for(var i=0;i<ING.length;i++){
+    var it = ING[i];
+    if(seen[it.name]) continue;
+    seen[it.name] = 1;
+    var parts = [];
+    for(var j=i;j<ING.length;j++){ if(ING[j].name === it.name) parts.push({it: ING[j], l: label(ING[j])}); }
+    var l = parts.length > 1 ? mergeParts(parts) : parts[0].l, note = parts.length > 1 ? splitWords(parts) : it.note;
+    if(it.g !== last){ html += '<div class="grp">' + it.g + '</div>'; last = it.g; }
+    html += '<label class="item' + (state.checked[it.id] ? ' on' : '') + '" data-id="' + it.id + '">' +
+      '<input type="checkbox"' + (state.checked[it.id] ? ' checked' : '') + '>' +
+      '<span class="qty">' + l.qty + '</span>' +
+      '<span class="nm">' + l.name + (note ? '<em>' + note + '</em>' : '') + '</span></label>';
+  }
+  host.innerHTML = html;
+}
+function renderPre(){
+  var host = document.getElementById("pre");
+  if(!host) return;
+  var html = "";
+  for(var i=0;i<PRE.length;i++){
+    var s = PRE[i], lane = LANE[s.lane] || LANE.prep;
+    html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '">' +
+      '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
+      '<span class="body"><span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>' + s.txt + '</span></span></label>';
+  }
+  host.innerHTML = html;
+}
+function renderSteps(){
+  var host = document.getElementById("steps"), html = "";
+  for(var i=0;i<STEPS.length;i++){
+    var s = STEPS[i], lane = LANE[s.lane] || LANE.prep, u = "";
+    var uses = s.uses || [];
+    var got = [], byName = {};
+    for(var j=0;j<uses.length;j++){
+      var pp = String(uses[j]).split("@"), part = pp[1] ? parseFloat(pp[1]) : 0;
+      var it = byId(pp[0]); if(!it) continue;
+      var e = {it: it, l: label(it, part), part: part};
+      if(byName[it.name]){ byName[it.name].push(e); continue; }
+      byName[it.name] = [e]; got.push(byName[it.name]);
+    }
+    for(var j=0;j<got.length;j++){
+      var g0 = got[j][0], l = got[j].length > 1 ? mergeParts(got[j]) : g0.l;
+      u += '<span class="ui" data-ing="' + g0.it.id + '"><b>' + l.qty + '</b> ' + l.name + (got[j].length === 1 && g0.part === 0.5 ? ', half' : '') + '</span>';
+    }
+    html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '"' +
+      (TIMED ? ' data-at="' + s.at + '"' : '') + '>' +
+      '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
+      (TIMED ? '<span class="clock">' + hhmm(clockOf(s.at)) + dayOf(s.at) + '</span>' : '') +
+      '<span class="body">' + (u ? '<span class="usehd"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>You\x27ll use</span><span class="uses">' + u + '</span><span class="txt">' : '<span class="txt"><span class="tag ' + lane[1] + '">' + lane[0] + '</span>') + fillT(s.txt) + '</span>' +
+      (s.gap ? '<span class="gap">' + s.gap + '</span>' : '') +
+      '</span></label>';
+  }
+  host.innerHTML = html;
+  renderChecklist();
+  if(TIMED) markNow();
+}
+function fillT(t){ return t.replace(/\{t:(\d+)\}/g, function(m, n){ return '<b class="tt">' + whenOf(parseInt(n,10)) + '</b>'; }); }
+function renderChecklist(){
+  var host = document.getElementById("checklist"), html = "";
+  if(!host) return;
+  for(var i=0;i<STEPS.length;i++){
+    var s = STEPS[i];
+    html += '<label class="ck' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '"' + (TIMED ? ' data-at="' + s.at + '"' : '') + '>' +
+      '<input type="checkbox"' + (state.checked[s.id] ? ' checked' : '') + '>' +
+      (TIMED ? '<span class="ct">' + (dayWord(s.at) ? '<span class="cday">' + dayWord(s.at) + '</span>' : '') + hhmm(clockOf(s.at)) + '</span>' : '') +
+      '<span class="cs">' + s.short + '</span></label>';
+  }
+  host.innerHTML = html;
+}
+function markNow(){
+  if(!TIMED) return;
+  /* The finish is the later of the time box and the last step, so a page timed forward from a start time ends at its last step. */
+  var now = new Date(), start = clockOf(STEPS[0].at), end = new Date(Math.max(serveDate().getTime(), clockOf(STEPS[STEPS.length-1].at).getTime())), line = document.getElementById("nowline");
+  var rows = document.querySelectorAll("#steps .row"), i;
+  for(i=0;i<rows.length;i++){ rows[i].classList.remove("now"); }
+  var cks = document.querySelectorAll("#checklist .ck");
+  for(i=0;i<cks.length;i++){ cks[i].classList.remove("now"); }
+  if(now < new Date(start.getTime() - 45*60000)){
+    line.innerHTML = 'First move at <b>' + hhmm(start) + '</b>' + (start.toDateString() !== end.toDateString() ? ' the day before' : '');
+    return;
+  }
+  if(now > new Date(end.getTime() + 25*60000)){
+    line.innerHTML = 'Dinner was at <b>' + hhmm(end) + '</b>';
+    return;
+  }
+  var cur = -1;
+  for(i=0;i<STEPS.length;i++){ if(clockOf(STEPS[i].at) <= now) cur = i; }
+  if(cur < 0){
+    var mins = Math.round((start - now) / 60000);
+    line.innerHTML = '<b>' + mins + ' min</b> until the first move';
+    if(rows[0]) rows[0].classList.add("now");
+    return;
+  }
+  if(rows[cur]) rows[cur].classList.add("now");
+  if(cks[cur]) cks[cur].classList.add("now");
+  if(cur < STEPS.length - 1){
+    var nxt = Math.max(0, Math.round((clockOf(STEPS[cur+1].at) - now) / 60000));
+    line.innerHTML = 'Now: <b>' + LANE[STEPS[cur].lane][0].toLowerCase() + '</b> · next move in <b>' + nxt + ' min</b>';
+  } else {
+    line.innerHTML = '<b>Eat.</b>';
+  }
+}
+
+/* Pin one step to right now and let every other step keep its original gap.
+   Setting the finish line to (now + that step's offset) moves the whole chain
+   and holds the spacing exactly. Reached through "Start now", which picks the
+   step for you: the first one you have not ticked off. */
+function startFrom(i){
+  var s = STEPS[i];
+  if(!s || !TIMED) return;
+  if(!state.planned) state.planned = state.serve;
+  var d = new Date(Date.now() + s.at*60000);
+  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  var el = document.getElementById("serve");
+  if(el) el.value = state.serve;
+  renderSteps(); renderShift(); save();
+}
+function renderShift(){
+  var el = document.getElementById("moved");
+  if(!el) return;
+  if(!TIMED || !state.planned || state.planned === state.serve){
+    el.className = "moved"; el.innerHTML = ""; return;
+  }
+  el.className = "moved on";
+  el.innerHTML = 'Dinner is now <b>' + hhmm(serveDate()) + '</b>, moved from ' + hhmm(dateOfHM(state.planned)) + '.';
+}
+function clearShift(){
+  state.planned = null;
+  renderShift();
+}
+function renderNotes(){
+  var el = document.getElementById("notes");
+  if(el && el.value !== (state.notes || "")) el.value = state.notes || "";
+}
+
+function save(){
+  try{ window.localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+}
+function apply(raw){
+  try{
+    var v = JSON.parse(raw);
+    if(v.servings) state.servings = v.servings;
+    if(v.serve) state.serve = v.serve;
+    if(v.checked) state.checked = v.checked;
+    if(typeof v.notes === "string") state.notes = v.notes;
+    if(v.planned) state.planned = v.planned;
+  }catch(e){}
+}
+function load(){
+  try{
+    var raw = window.localStorage.getItem(KEY);
+    if(raw) apply(raw);
+  }catch(e){}
+  boot();
+}
+function boot(){
+  var sEl = document.getElementById("serve");
+  if(sEl) sEl.value = state.serve;
+  var vEl = document.getElementById("sv");
+  if(vEl) vEl.textContent = state.servings;
+  renderIngredients(); renderPre(); renderSteps(); renderNotes(); renderShift();
+}
+
+document.addEventListener("change", function(e){
+  var host = e.target.closest ? e.target.closest("[data-id]") : null;
+  if(!host || e.target.type !== "checkbox") return;
+  var id = host.getAttribute("data-id");
+  state.checked[id] = e.target.checked;
+  var twins = document.querySelectorAll('[data-id="' + id + '"]');
+  for(var k=0;k<twins.length;k++){
+    twins[k].classList.toggle("on", e.target.checked);
+    var box = twins[k].querySelector("input"); if(box) box.checked = e.target.checked;
+  }
+  save();
+});
+var serveEl = document.getElementById("serve");
+if(serveEl) serveEl.addEventListener("change", function(e){
+  state.serve = e.target.value || "18:30";
+  clearShift();
+  renderSteps(); save();
+});
+var incEl = document.getElementById("inc");
+if(incEl) incEl.addEventListener("click", function(){
+  state.servings = Math.min(SERV.max, state.servings + (SERV.inc || 1));
+  document.getElementById("sv").textContent = state.servings;
+  renderIngredients(); renderSteps(); save();
+});
+var decEl = document.getElementById("dec");
+if(decEl) decEl.addEventListener("click", function(){
+  state.servings = Math.max(SERV.min, state.servings - (SERV.inc || 1));
+  document.getElementById("sv").textContent = state.servings;
+  renderIngredients(); renderSteps(); save();
+});
+/* The first step still unticked. Ticking is how you say where you are, so
+   this is the step "now" refers to once a cook is underway. If every step is
+   ticked there is nothing left to do, so the last one stands and dinner is now. */
+function firstOpenStep(){
+  for(var i=0;i<STEPS.length;i++){ if(!state.checked[STEPS[i].id]) return i; }
+  return STEPS.length - 1;
+}
+function anyStepTicked(){
+  for(var i=0;i<STEPS.length;i++){ if(state.checked[STEPS[i].id]) return true; }
+  return false;
+}
+var nowBtn = document.getElementById("now");
+if(nowBtn) nowBtn.addEventListener("click", function(){
+  if(!STEPS.length) return;
+  var i = firstOpenStep();
+  /* Mid-cook this is a stall, not a fresh plan: same move as "start from
+     here" on the step you are actually up to, banner and all. Nothing ticked
+     means you are setting the plan, so there is no move to report. */
+  if(anyStepTicked()){ startFrom(i); return; }
+  var d = new Date(Date.now() + STEPS[i].at*60000);
+  state.serve = pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  document.getElementById("serve").value = state.serve;
+  clearShift();
+  renderSteps(); save();
+});
+var allBtn = document.getElementById("allIng");
+if(allBtn) allBtn.addEventListener("click", function(){
+  for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = true; }
+  renderIngredients(); save();
+});
+var clrIngBtn = document.getElementById("clrIng");
+if(clrIngBtn) clrIngBtn.addEventListener("click", function(){
+  for(var i=0;i<ING.length;i++){ state.checked[ING[i].id] = false; }
+  renderIngredients(); save();
+});
+var notesTimer = null;
+var notesEl = document.getElementById("notes");
+if(notesEl) notesEl.addEventListener("input", function(){
+  state.notes = notesEl.value;
+  var st = document.getElementById("notesSaved");
+  if(st) st.textContent = "Saving";
+  clearTimeout(notesTimer);
+  notesTimer = setTimeout(function(){
+    save();
+    if(st){ st.textContent = "Saved"; setTimeout(function(){ st.textContent = ""; }, 1800); }
+  }, 400);
+});
+var clrNotesBtn = document.getElementById("clrNotes");
+if(clrNotesBtn) clrNotesBtn.addEventListener("click", function(){
+  state.notes = "";
+  var el = document.getElementById("notes");
+  if(el) el.value = "";
+  save();
+});
+/* Reset returns the page to clean: ticks off, the clock back to what was
+   planned before any "start from here" shift. Notes are kept; they have
+   their own Clear. */
+document.getElementById("clrAll").addEventListener("click", function(){
+  state.checked = {};
+  if(state.planned){
+    state.serve = state.planned;
+    state.planned = null;
+    var el = document.getElementById("serve");
+    if(el) el.value = state.serve;
+  }
+  renderIngredients(); renderPre(); renderSteps(); renderShift(); save();
+});
+
+if(TIMED) setInterval(markNow, 20000);
+load();
+/* Desktop layout: keep the sticky ingredient column just under the sticky bar. */
+(function(){
+  var bar = document.querySelector(".bar"); if(!bar) return;
+  function setBarH(){ document.documentElement.style.setProperty("--barh", bar.offsetHeight + "px"); }
+  setBarH();
+  window.addEventListener("resize", setBarH);
+  if(window.ResizeObserver) new ResizeObserver(setBarH).observe(bar);
+})();
+if("serviceWorker" in navigator){ navigator.serviceWorker.register("./sw.js").catch(function(){}); }
+</script>
+</body>
+</html>
