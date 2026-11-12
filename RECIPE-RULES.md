@@ -104,3 +104,14 @@ These are the ranges used so far, checked by the researcher on 16 Oct 2026 (rese
 
 - When he saves a leftover for a later night, that night keeps using it. A later rewrite never drops it or swaps the dish without asking him first.
 - A question to him that decides what a later page says (is the leftover in the fridge?) stays open until he answers it. No page is rewritten on a guess, and the question goes back to him before the night, not on it.
+
+## Weeknights on his real clock (the Captain, 11 Nov 2026)
+
+"An hour of straight cooking that starts at 5:35 when I'm home alone with two boys really isn't feasible. I'm also not going to pick up the boys and be back home until 5:45, almost 6 most days. So if I start then, we're not eating until 7. Also because you typically have me cooking way faster than I actually cook because I'm not going to be speed running through the kitchen. I think this menu tonight is a failure."
+
+- A weeknight page has no step between the morning and 6:00 pm. He walks in with the boys between 5:45 and 6. The first evening step is at 6:00 or later.
+- Step times are written at his pace, not a test kitchen's: every hands-on step gets double the time it would take in a hurry, and the page says "at an easy pace". Waiting on a pan or a pot is not doubled.
+- With the steps timed that way, a weeknight dinner lands by 6:30 from a 6:00 start, with about 20 minutes of hands-on work. If it does not fit, the pot does the work during the day (the pattern that works: the insert loaded the night before once the boys are down, Instant Pot on Slow Cook from the morning), or the dish moves to a night with room.
+- A page that is over the cap never goes to him with a note saying so. It is changed first, or he is given the choice before it is built.
+- Frying in batches is not weeknight work. One pan, with everything else already made.
+- A night that falls through is marked as it went on the weekly menu ("Eating out"), and every later night that leaned on it is checked the same evening.
