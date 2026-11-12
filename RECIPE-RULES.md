@@ -115,3 +115,13 @@ These are the ranges used so far, checked by the researcher on 16 Oct 2026 (rese
 - A page that is over the cap never goes to him with a note saying so. It is changed first, or he is given the choice before it is built.
 - Frying in batches is not weeknight work. One pan, with everything else already made.
 - A night that falls through is marked as it went on the weekly menu ("Eating out"), and every later night that leaned on it is checked the same evening.
+
+## Quick guide, not a checklist (the Captain, 11 Nov 2026)
+
+"Check list isn't helpful. A quick guide would be but that isn't." "For things like this with a bunch of little things in there, a little checkbox as I go down would be helpful."
+
+- The block at the top of a recipe page is a quick guide, never a checklist of step names. A few blocks, one per stretch of work (the night before, the morning, the evening), each headed by its clock time and how long it takes, each a few plain lines that say what to do with the amounts in them. He can cook from it without scrolling down to the steps.
+- It is written per recipe, as the page's `quick` in its generator. Amounts are tokens ({I:id} amount and name, {Q:id} amount alone), so they follow the servings and always match the ingredient list. Block times come from the steps, so they follow Eating at. Every other rule here still holds in it: exact ingredient names, a °F number on every heat cue, no em dashes.
+- It fits one phone screen under the sticky bar.
+- Every line of a step's "You'll use" list has its own tick box, so a list with a bunch of little things is ticked off line by line as they go in. Ticking a line never ticks the step, and a tap on the instruction still ticks the step.
+- The page code for both is in tools-quick-guide-1111.ts (quickGuide and useTicks); a generator calls them as it writes a page, and tools-check-quick-guide-1111.ts is the check. (Built first on the fried grit cakes page; the other recipes follow in a later job.)

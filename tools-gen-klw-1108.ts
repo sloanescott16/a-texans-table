@@ -2,6 +2,7 @@
 // (scampi pattern plus the single-screen checklist), and wires them into recipes.json, index.html and sw.js.
 // Usage: bun tools-gen-klw-1108.ts <site worktree> [slug ...]   (no slugs = all four)
 import { readFileSync, writeFileSync } from "fs";
+import { useTicks, quickGuide, type Quick } from "./tools-quick-guide-1111.ts";
 const W = process.argv[2];
 const only = process.argv.slice(3);
 const tpl = readFileSync(W + "/carne-guisada.html", "utf8").replace(/\r\n/g, "\n");
@@ -15,7 +16,7 @@ const THYME = `<b>No thyme?</b> Use the same amount of dried oregano.`;
 const HOT = `<b>No hot sauce?</b> A pinch of chili powder over his bowl, or a pinch of chili powder stirred into a spoon of cider vinegar.`;
 const MILD = `<b>Mild for the boys:</b> the Cajun seasoning amount keeps it gentle and nothing else hot goes in the pot. Hot sauce stays on the table for the Captain.`;
 
-type R = { slug: string; name: string; sub: string; notes: string[]; ing: any[]; steps: any[]; entry: any; serve: string; end?: number; anchorLabel?: string; unitLabel?: string; serv?: any; start?: boolean };
+type R = { slug: string; name: string; sub: string; notes: string[]; ing: any[]; steps: any[]; entry: any; serve: string; end?: number; anchorLabel?: string; unitLabel?: string; serv?: any; start?: boolean; quick?: Quick[] };
 const R: R[] = [];
 
 // ---------------- Sunday 8 Nov: grillades and grits, Instant Pot pressure route (job 1108-1938-7ii, after the real cook) ----------------
@@ -210,6 +211,26 @@ R.push({
     { id: "p11", at: 5, lane: "iron", short: "Grit cakes out, plate", txt: "3 minutes. Burner off. Two grit cakes on each plate, andouille Creole sauce spooned over, green onion and parsley on top. Cancel the Instant Pot." },
     { id: "p12", at: 0, lane: "serve", short: "Eat", txt: "Hot sauce on the table for the Captain; the boys' plates stay mild." },
   ],
+  // The quick guide at the top (the Captain, 11 Nov: "Check list isn't helpful. A quick guide would be but that isn't").
+  // One block per stretch of work. {I:id} is an ingredient's scaled amount and name, {Q:id} the amount alone, {t:N} a clock time.
+  quick: [
+    { at: 1320, mins: "about 20 min", lines: [
+      "Dice {I:onion} and {I:bpep}. Slice {I:celery}, and {I:saus} into 1/4 inch coins. All into the Instant Pot insert.",
+      "Add {I:tom}, {I:tpaste}, {I:garlic}, {I:cajun}, {I:thyme}, {I:paprika}, {I:water} with {I:powder} stirred in, and {I:bay}.",
+      "Stir, cover, and into the fridge overnight.",
+    ] },
+    { at: 700, mins: "2 min", lines: [
+      "Insert into the Instant Pot, lid on, valve to Venting.",
+      "Slow Cook, Normal, 10 hours, Keep Warm on.",
+    ] },
+    { at: 30, mins: "20 min, eat at {t:0}", lines: [
+      "Cast iron on medium with {I:ftallow}, to 375°F.",
+      "Stir the pot. Cut {Q:setgrits} grit cakes, pat dry, dust with {I:flour}.",
+      "Fry 5 minutes a side at 375°F, left alone.",
+      "Meanwhile slice {I:gonion}, chop {I:parsley}. Bay leaf out, taste the sauce.",
+      "Two cakes a plate, sauce over, green onion and parsley on top. Cancel the Instant Pot.",
+    ] },
+  ],
   entry: { chapter: "mains", label: "POT", blurb: "Sauce slow cooked all day in the Instant Pot · one pan of Sunday's grits fried crisp · 20 minutes from 6:00", meal: ["dinner"], protein: ["pork"], heat: ["stovetop"], total: 700, active: 42, band: "day", time: "pot on at 6:50 am, cakes from 6:00, eat at 6:30", effort: 2, ahead: true, kid: true, serves: 3, occasion: ["weeknight"], timed: true, scales: true, test: false },
 });
 
@@ -342,6 +363,9 @@ function page(r: R) {
   rep("</style>", "/* Louisiana week: tighter checklist rows so the longest day fits one phone screen. */\n.ck{font-size:12px;line-height:1.15;padding:0}\n.ck.now{padding:0 12px}\n.ck input{width:14px;height:14px}\n.ck .ct{font-size:11px;min-width:52px}\n</style>");
   rep(/<script>\n\/\* Step player settings[\s\S]*?<script src="\.\/step-player\.js">\n<\/script>\n/, "");
   if (/guisada|tortilla/i.test(h)) throw new Error("template text left in " + r.slug);
+  // Tick boxes on the You'll use lines, and the quick guide in place of the Checklist where the page has one (tools-quick-guide-1111.ts).
+  h = useTicks(h, r.slug);
+  if (r.quick) h = quickGuide(h, r.quick, r.slug);
   writeFileSync(W + "/" + r.slug + ".html", crlf(h));
 }
 const RETIRED: string[] = [];

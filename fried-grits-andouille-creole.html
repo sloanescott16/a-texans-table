@@ -84,7 +84,11 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 .txt{font-size:15px;line-height:1.4}
 .usehd{display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--muted);margin:0 0 5px}
 .uses{display:block;margin:0 0 8px;padding:5px 0 5px 10px;border-left:3px solid var(--citrus)}
-.ui{display:block;font-size:15px;line-height:1.35;padding:1px 0}
+.ui{display:flex;gap:9px;align-items:flex-start;font-size:15px;line-height:1.35;padding:5px 0;cursor:pointer}
+.ui .ub{flex:0 0 auto;width:18px;height:18px;margin-top:1px;border:1px solid var(--muted);border-radius:4px;background:#fff}
+.ui.on .ub{background:var(--citrus);border-color:var(--citrus)}
+.ui.on .ub::after{content:"";display:block;width:5px;height:10px;margin:1px 0 0 5px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.ui.on .ut{color:var(--muted);text-decoration:line-through}
 .ui b{font-weight:700}
 .row.now{background:var(--brine-bg);margin:0 -14px;padding:13px 14px;border-radius:3px;border-bottom-color:transparent}
 .row.on .txt,.row.on .clock,.row.on .uses{color:var(--muted);text-decoration:line-through}
@@ -125,6 +129,17 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 .ck.now{padding:0 12px}
 .ck input{width:14px;height:14px}
 .ck .ct{font-size:11px;min-width:52px}
+/* Quick guide: the whole cook in a few lines, one block per stretch of work. */
+.card.quick{padding:2px 14px}
+.qg{padding:11px 0 12px;border-bottom:1px solid var(--rule)}
+.qg:last-child{border-bottom:0}
+.qg.now{background:var(--brine-bg);margin:0 -14px;padding:11px 14px 12px;border-radius:3px;border-bottom-color:transparent}
+.qh{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--citrus);margin:0 0 5px}
+.qh .qm{color:var(--muted)}
+.qh b{font-weight:400}
+.ql{display:block;position:relative;font-size:14.5px;line-height:1.4;padding:2px 0 2px 13px}
+.ql::before{content:"";position:absolute;left:1px;top:10px;width:4px;height:4px;border-radius:50%;background:var(--muted)}
+.ql b{font-weight:700}
 </style>
 </head>
 <body>
@@ -153,8 +168,8 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
     <div class="moved" id="moved"></div>
   </div>
 
-  <h2>Checklist</h2>
-  <div class="card check" id="checklist"></div>
+  <h2>Quick guide</h2>
+  <div class="card quick" id="quick"></div>
 
   <div class="layout">
   <div class="side">
@@ -202,6 +217,7 @@ input[type=time]{font-family:var(--mono);font-size:19px;color:var(--ink);backgro
 var ING = [{"id":"saus","g":"Creole sauce, in the Instant Pot","per":0.25,"step":0.25,"unit":"lb","name":"andouille or smoked sausage","note":"the other half of the pack, 1/4 inch coins"},{"id":"onion","g":"Creole sauce, in the Instant Pot","per":0.167,"step":0.5,"unit":"","name":"yellow onion","plural":"yellow onions","note":"diced"},{"id":"bpep","g":"Creole sauce, in the Instant Pot","per":0.333,"step":0.5,"unit":"","name":"green bell pepper","plural":"green bell peppers","note":"diced"},{"id":"celery","g":"Creole sauce, in the Instant Pot","per":0.333,"step":1,"unit":"","name":"celery rib","plural":"celery ribs","note":"sliced"},{"id":"tom","g":"Creole sauce, in the Instant Pot","per":0.333,"step":1,"unit":"","name":"can diced tomatoes","plural":"cans diced tomatoes","note":"14.5 oz, with the juice"},{"id":"tpaste","g":"Creole sauce, in the Instant Pot","per":0.5,"step":0.5,"unit":"tbsp","name":"tomato paste"},{"id":"garlic","g":"Creole sauce, in the Instant Pot","per":0.333,"step":0.25,"unit":"tsp","name":"jarred minced garlic"},{"id":"cajun","g":"Creole sauce, in the Instant Pot","per":0.333,"step":0.25,"unit":"tsp","name":"Cajun seasoning"},{"id":"thyme","g":"Creole sauce, in the Instant Pot","per":0.083,"step":0.125,"unit":"tsp","name":"dried thyme"},{"id":"paprika","g":"Creole sauce, in the Instant Pot","per":0.167,"step":0.25,"unit":"tsp","name":"smoked paprika"},{"id":"water","g":"Creole sauce, in the Instant Pot","per":0.083,"step":0.25,"unit":"cup","name":"water"},{"id":"powder","g":"Creole sauce, in the Instant Pot","per":0.167,"step":0.25,"unit":"tsp","name":"powdered chicken stock","note":"stirred into the water"},{"id":"bay","g":"Creole sauce, in the Instant Pot","per":0.333,"step":1,"unit":"","name":"bay leaf","plural":"bay leaves"},{"id":"fsalt","g":"Creole sauce, in the Instant Pot","per":0.083,"step":0.125,"unit":"tsp","name":"kosher salt, to finish","note":"only if flat"},{"id":"setgrits","g":"Grit cakes","per":2,"step":1,"unit":"","name":"piece of Sunday's leftover cheese grits","plural":"pieces of Sunday's leftover cheese grits","note":"cold from the fridge, about 2 1/2 inches across"},{"id":"flour","g":"Grit cakes","per":0.667,"step":0.5,"unit":"tbsp","name":"all-purpose flour","note":"to dust"},{"id":"ftallow","g":"Grit cakes","per":0.5,"step":0.5,"unit":"tbsp","name":"beef tallow (or canola oil)","note":"for frying"},{"id":"gonion","g":"To serve","per":1,"step":1,"unit":"tbsp","name":"green onions","note":"sliced"},{"id":"parsley","g":"To serve","per":0.667,"step":0.5,"unit":"tbsp","name":"parsley","note":"chopped"},{"id":"hot","g":"To serve","fixed":"at the table","name":"hot sauce","note":"his plate only"}];
 var PRE = [];
 var STEPS = [{"id":"p1","at":1320,"lane":"prep","short":"Dice trinity, slice sausage","txt":"The night before, 15 minutes at an easy pace, once the boys are down. Dice the onion and the bell pepper about 1/2 inch and slice the celery 1/4 inch. Slice the sausage into 1/4 inch coins. Everything straight into the Instant Pot insert.","uses":["onion","bpep","celery","saus"]},{"id":"p2","at":1305,"lane":"cooker","short":"Load the insert, into the fridge","txt":"6 minutes. Into the insert on top of the sausage and vegetables: the tomatoes with their juice, the tomato paste, garlic, Cajun seasoning, thyme, smoked paprika, the water with the stock powder stirred in, and the bay leaf. Stir until the paste is worked through. A lid or a plate on the insert, and into the fridge overnight.","uses":["tom","tpaste","garlic","cajun","thyme","paprika","water","powder","bay"]},{"id":"p3","at":700,"lane":"cooker","short":"Insert in, Slow Cook Normal, 10 hours","txt":"2 minutes, on the way out of the door. Insert from the fridge into the Instant Pot. Lid on, steam valve to Venting. Slow Cook on Normal, 10 hours, Keep Warm left on. Normal is the Instant Pot's match for a slow cooker's Low. It drops to Keep Warm on its own at {t:100} and holds the sauce hot until dinner."},{"id":"p4","at":30,"lane":"iron","short":"Cast iron on, tallow in","txt":"1 minute. Cast iron on medium with the beef tallow (or canola oil). It takes about 8 minutes to reach 375°F on the infrared, read on the fat, which is the time the grits need.","uses":["ftallow"]},{"id":"p5","at":29,"lane":"cooker","short":"Pot: lid off, stir","txt":"1 minute. Instant Pot lid off, a good stir, then the lid resting back on top. Keep Warm stays on."},{"id":"p6","at":28,"lane":"prep","short":"Cut and flour the grits","txt":"12 minutes at an easy pace. Turn the cold grits out onto the board and cut the pieces, about 2 1/2 inches across and 3/4 inch thick, two a person. Pat every face dry with a paper towel, dust with the flour and shake off the extra.","uses":["setgrits","flour"]},{"id":"p7","at":16,"lane":"iron","short":"Grit cakes in, side 1, 5 min","txt":"Side 1, 5 minutes. Pan at 375°F; lower the burner if it passes 400°F. All the pieces in, a finger's gap apart. Do not move them until they are deep golden and let go of the pan on their own."},{"id":"p8","at":15,"lane":"prep","short":"Slice green onion, parsley","txt":"5 minutes. Slice the green onions and chop the parsley.","uses":["gonion","parsley"]},{"id":"p9","at":10,"lane":"iron","short":"Flip, side 2, 5 min","txt":"Side 2, 5 minutes. Turn each piece with the thin metal spatula. Untouched again."},{"id":"p10","at":8,"lane":"cooker","short":"Taste the sauce, bay out","txt":"2 minutes. Bay leaf out. Taste; only if flat, the finishing salt. On Keep Warm the sauce is above 145°F on a probe, hot enough to serve.","uses":["fsalt"]},{"id":"p11","at":5,"lane":"iron","short":"Grit cakes out, plate","txt":"3 minutes. Burner off. Two grit cakes on each plate, andouille Creole sauce spooned over, green onion and parsley on top. Cancel the Instant Pot."},{"id":"p12","at":0,"lane":"serve","short":"Eat","txt":"Hot sauce on the table for the Captain; the boys' plates stay mild."}];
+var QUICK = [{"at":1320,"mins":"about 20 min","lines":["Dice {I:onion} and {I:bpep}. Slice {I:celery}, and {I:saus} into 1/4 inch coins. All into the Instant Pot insert.","Add {I:tom}, {I:tpaste}, {I:garlic}, {I:cajun}, {I:thyme}, {I:paprika}, {I:water} with {I:powder} stirred in, and {I:bay}.","Stir, cover, and into the fridge overnight."]},{"at":700,"mins":"2 min","lines":["Insert into the Instant Pot, lid on, valve to Venting.","Slow Cook, Normal, 10 hours, Keep Warm on."]},{"at":30,"mins":"20 min, eat at {t:0}","lines":["Cast iron on medium with {I:ftallow}, to 375°F.","Stir the pot. Cut {Q:setgrits} grit cakes, pat dry, dust with {I:flour}.","Fry 5 minutes a side at 375°F, left alone.","Meanwhile slice {I:gonion}, chop {I:parsley}. Bay leaf out, taste the sauce.","Two cakes a plate, sauce over, green onion and parsley on top. Cancel the Instant Pot."]}];
 var TIMED = true;
 var SERV = {"base":3,"min":2,"max":3};
 var KEY = "kitchen:fried-grits-andouille-creole";
@@ -380,7 +396,8 @@ function renderSteps(){
     }
     for(var j=0;j<got.length;j++){
       var g0 = got[j][0], l = got[j].length > 1 ? mergeParts(got[j]) : g0.l;
-      u += '<span class="ui" data-ing="' + g0.it.id + '"><b>' + l.qty + '</b> ' + l.name + (got[j].length === 1 && g0.part === 0.5 ? ', half' : '') + '</span>';
+      var uk = "use:" + s.id + ":" + g0.it.id, uon = state.checked[uk];
+      u += '<span class="ui' + (uon ? ' on' : '') + '" data-ing="' + g0.it.id + '" data-use="' + uk + '" role="checkbox" tabindex="0" aria-checked="' + (uon ? 'true' : 'false') + '"><span class="ub"></span><span class="ut"><b>' + l.qty + '</b> ' + l.name + (got[j].length === 1 && g0.part === 0.5 ? ', half' : '') + '</span></span>';
     }
     html += '<label class="row' + (state.checked[s.id] ? ' on' : '') + '" data-id="' + s.id + '"' +
       (TIMED ? ' data-at="' + s.at + '"' : '') + '>' +
@@ -392,9 +409,37 @@ function renderSteps(){
   }
   host.innerHTML = html;
   renderChecklist();
+  renderQuick();
   if(TIMED) markNow();
 }
 function fillT(t){ return t.replace(/\{t:(\d+)\}/g, function(m, n){ return '<b class="tt">' + whenOf(parseInt(n,10)) + '</b>'; }); }
+/* Quick guide: QUICK is a few blocks, one per stretch of work, each with its lines. In a line {Q:id} is an
+   ingredient's scaled amount, {I:id} the amount with its name, and {t:N} the clock time N minutes before the finish. */
+function fillQ(t){
+  return fillT(t).replace(/\{([QI]):(\w+)\}/g, function(m, k, id){
+    var it = byId(id); if(!it) return m;
+    var l = label(it);
+    return '<b>' + l.qty + '</b>' + (k === "I" ? ' ' + l.name : '');
+  });
+}
+function renderQuick(){
+  var host = document.getElementById("quick"), html = "";
+  if(!host) return;
+  for(var i=0;i<QUICK.length;i++){
+    var q = QUICK[i];
+    html += '<div class="qg"' + (TIMED ? ' data-at="' + q.at + '"' : '') + '><div class="qh">' + (TIMED ? '<span class="qw">' + whenOf(q.at) + '</span>' : '') +
+      (q.mins ? '<span class="qm">' + (TIMED ? ' · ' : '') + fillQ(q.mins) + '</span>' : '') + '</div>';
+    for(var j=0;j<q.lines.length;j++){ html += '<span class="ql">' + fillQ(q.lines[j]) + '</span>'; }
+    html += '</div>';
+  }
+  host.innerHTML = html;
+}
+/* The block for right now: the last one that starts at or before the step in play. */
+function markQuick(at){
+  var qs = document.querySelectorAll("#quick .qg"), cur = -1;
+  for(var i=0;i<qs.length;i++){ qs[i].classList.remove("now"); if(at !== null && QUICK[i].at >= at) cur = i; }
+  if(cur >= 0) qs[cur].classList.add("now");
+}
 function renderChecklist(){
   var host = document.getElementById("checklist"), html = "";
   if(!host) return;
@@ -415,6 +460,7 @@ function markNow(){
   for(i=0;i<rows.length;i++){ rows[i].classList.remove("now"); }
   var cks = document.querySelectorAll("#checklist .ck");
   for(i=0;i<cks.length;i++){ cks[i].classList.remove("now"); }
+  markQuick(null);
   if(now < new Date(start.getTime() - 45*60000)){
     line.innerHTML = 'First move at <b>' + hhmm(start) + '</b>' + (start.toDateString() !== end.toDateString() ? ' the day before' : '');
     return;
@@ -429,10 +475,12 @@ function markNow(){
     var mins = Math.round((start - now) / 60000);
     line.innerHTML = '<b>' + mins + ' min</b> until the first move';
     if(rows[0]) rows[0].classList.add("now");
+    markQuick(STEPS[0].at);
     return;
   }
   if(rows[cur]) rows[cur].classList.add("now");
   if(cks[cur]) cks[cur].classList.add("now");
+  markQuick(STEPS[cur].at);
   if(cur < STEPS.length - 1){
     var nxt = Math.max(0, Math.round((clockOf(STEPS[cur+1].at) - now) / 60000));
     line.innerHTML = 'Now: <b>' + LANE[STEPS[cur].lane][0].toLowerCase() + '</b> · next move in <b>' + nxt + ' min</b>';
@@ -512,6 +560,28 @@ document.addEventListener("change", function(e){
     var box = twins[k].querySelector("input"); if(box) box.checked = e.target.checked;
   }
   save();
+});
+/* You'll use lists: each line ticks on its own as it goes in. The step card is a
+   label, so the tap is stopped here or it would tick the whole step as well. */
+function useTick(el){
+  var k = el.getAttribute("data-use"), v = !state.checked[k];
+  state.checked[k] = v;
+  el.classList.toggle("on", v);
+  el.setAttribute("aria-checked", v ? "true" : "false");
+  save();
+}
+document.addEventListener("click", function(e){
+  var el = e.target.closest ? e.target.closest("[data-use]") : null;
+  if(!el) return;
+  e.preventDefault();
+  useTick(el);
+});
+document.addEventListener("keydown", function(e){
+  if(e.key !== " " && e.key !== "Enter") return;
+  var el = e.target.closest ? e.target.closest("[data-use]") : null;
+  if(!el) return;
+  e.preventDefault();
+  useTick(el);
 });
 var serveEl = document.getElementById("serve");
 if(serveEl) serveEl.addEventListener("change", function(e){
